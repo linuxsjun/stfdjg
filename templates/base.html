@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>这是基础页</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    {% block styecss %}
+    {% endblock styecss %}
+</head>
+<body>
+   <header>
+   		<div class="logo"><a href="/">标</a></div>
+		<nav>
+			<li><a href="/getdata/">员工</a></li>
+			<li><a href="/data/">设备</a></li>
+			<li><a href="/search_form/">服务</a></li>
+			<li><a href="/search/?name=er&crnu=2">设置</a></li>
+		</nav>
+		<div class="userinfo">
+			<li><a href="/">用户</a></li>			
+		</div>
+   </header>
+
+   <div class="pager">
+        {% block mainbody %}
+        <p>这是主页</p>
+        {% endblock %}
+   </div>
+</body>
+</html>

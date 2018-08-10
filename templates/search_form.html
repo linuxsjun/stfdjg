@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block mainbody %}
+    <h3>搜索服务</h3>
+    <form action="/search" method="get">
+        <p>name:<input type="text" name="name"></p>
+        <p>crnu:<input type="text" name="crnu"></p>
+        <input type="submit" value="搜索">
+    </form>
+{% endblock %}

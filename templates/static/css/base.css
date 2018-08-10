@@ -1,0 +1,55 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin:0;padding:0}
+header{
+	background: black;
+	height: 36px;
+	position: fixed;
+	left: 0px;
+	right: 0px;
+	top: 0px;
+}
+
+header .logo{
+	float: left;
+	}
+header .logo a{
+	line-height: 36px;
+	}
+	
+header nav{
+	text-decoration: none;
+	float: left;
+	margin-left: 20px;
+	}
+		
+header nav li{
+	float: left;
+	margin-right: 20px;
+	list-style: none;
+}
+
+header nav li a{
+	color: white;
+	text-decoration: none;
+	text-size: 14px;
+	line-height: 36px;
+}
+header nav li:hover{
+	background: yellow;
+}
+
+header nav li:active{
+	list-style-position: inside;
+	border-bottom: 5px solid blue;
+}
+
+header .userinfo{
+	float: right;
+}
+	
+.pager{
+    margin-top: 36px;
+    width: 100%;
+}
+
