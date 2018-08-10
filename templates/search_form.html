@@ -3,8 +3,19 @@
 {% block mainbody %}
     <h3>搜索服务</h3>
     <form action="/search" method="get">
-        <p>name:<input type="text" name="name"></p>
-        <p>crnu:<input type="text" name="crnu"></p>
-        <input type="submit" value="搜索">
+        <p>user:<input type="text" name="user"></p>
+        <p>password:<input type="text" name="password"></p>
+        <p>uid:<input type="text" name="uid"></p>
+        <p>gid:<input type="text" name="gid"></p>
+        <p>dir:<input type="text" name="dir"></p>
+        <p>ulbandwidth:<input type="text" name="ulbandwidth"></p>
+        <p>dlbandwidth:<input type="text" name="dlbandwidth"></p>
+        <p>comment:<input type="text" name="comment"></p>
+        <p>ipaccess:<input type="text" name="ipaccess"></p>
+        <p>quotasize:<input type="text" name="quotasize"></p>
+        <p>quotaFiles:<input type="text" name="quotaFiles"></p>
+        <p>createdate:<input type="text" name="createdate"></p>
+        <p>lastedate:<input type="text" name="lastedate"></p>
+        <input type="submit" value="提交">
     </form>
 {% endblock %}

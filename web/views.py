@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
-from web.models import Test
+from web.models import pureftp
 # Create your views here.
 
 def index(request):
@@ -21,37 +21,41 @@ def search(request):
     request.encoding='utf-8'
     message={}
 
-    if 'name' in request.GET:
-        test = Test(name=request.GET['name'])
-        test = Test(crnu=request.GET['crnu'])
+    if 'user' in request.GET:
+        test = pureftp(createdate='2019-9-9',
+                       lastedate='2018-9-8',
+                       user=request.GET['user'],
+                       password=request.GET['password'])
+        # test = pureftp(password=request.GET['password'])
         test.save()
-        print("int -> %s"%test.name)
-        message['message'] = 'Null->' + test.name + ' ok'
+        print("%s -> %s"%(test.user,test.password))
+        message['message'] = 'Null->' + test.password + ' ok'
     else:
         message['message']= 'Null'
 
     return render(request, 'search.html',message)
 
 def data(request):
-    test= Test(name='runoob')
-
+    test= pureftp(createdate='2019-9-9',
+                  lastedate='2018-9-8',
+                  user='test001')
     test.save()
-    print(request)
 
     message='{% extends "base.html" %}{% block mainbody %}<p>ok</p>{% endblock %}'
+    message='no'
     return HttpResponse(message)
 
 def getdata(request):
     response=""
     response1=""
 
-    list = Test.objects.all()
+    list = pureftp.objects.all()
     # response2=Test.objects.filter(id=1)
     # response3=Test.objects.get(id=1)
 
-    Test.objects.order_by("id")
+    pureftp.objects.order_by("id")
 
     for var in list:
-        response1 += "<p>" + var.name + " -> " + str(var.crnu) + "</p> "
+        response1 += "<p>" + var.user + " -> " + var.password + "</p> "
     response = response1
     return HttpResponse(response)
