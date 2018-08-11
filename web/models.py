@@ -10,7 +10,7 @@ class pureftp(models.Model):
     dir=models.CharField(max_length=128)
     ulbandwidth=models.IntegerField(default=0)
     dlbandwidth=models.IntegerField(default=0)
-    comment=models.CharField(max_length=128)
+    comment=models.TextField(null=True)
     ipaccess=models.CharField(max_length=15,default='0.0.0.0')
     quotasize=models.IntegerField(default=0)
     quotaFiles=models.IntegerField(default=0)
@@ -18,10 +18,10 @@ class pureftp(models.Model):
     lastedate=models.DateField()
 
 class base_conf(models.Model):
-    corpid = models.CharField(max_length=128, )
-    corpsecret = models.CharField(max_length=64)
-    agentid = models.IntegerField()
-    token = models.CharField(max_length=256)
+    corpid = models.CharField(max_length=128, null=True)
+    corpsecret = models.CharField(max_length=64, null=True)
+    agentid = models.IntegerField(null=True)
+    token = models.CharField(max_length=256, null=True)
     expirestime = models.DateTimeField()
 
     class Meta:
