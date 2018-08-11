@@ -16,3 +16,13 @@ class pureftp(models.Model):
     quotaFiles=models.IntegerField(default=0)
     createdate=models.DateField()
     lastedate=models.DateField()
+
+class base_conf(models.Model):
+    corpid = models.CharField(max_length=128, )
+    corpsecret = models.CharField(max_length=64)
+    agentid = models.IntegerField()
+    token = models.CharField(max_length=256)
+    expirestime = models.DateTimeField()
+
+    class Meta:
+        db_table = "base_conf"

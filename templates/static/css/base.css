@@ -3,7 +3,7 @@
 *{margin:0;padding:0}
 header{
 	background: black;
-	height: 36px;
+	height: 40px;
 	position: fixed;
 	left: 0px;
 	right: 0px;
@@ -12,42 +12,71 @@ header{
 
 header .logo{
 	float: left;
+	width: 35px;
+	height: 35px;
+	background-image:url(/static/img/logo.png);
+	margin: 2px 10px;
 	}
 header .logo a{
-	line-height: 36px;
+	line-height: 40px;
 	}
 	
 header nav{
 	text-decoration: none;
 	float: left;
-	margin-left: 20px;
 	}
 		
 header nav li{
 	float: left;
-	margin-right: 20px;
+	padding: 0px 10px;
 	list-style: none;
 }
 
 header nav li a{
-	color: white;
+	color: darkgray;
 	text-decoration: none;
 	text-size: 14px;
-	line-height: 36px;
-}
-header nav li:hover{
-	background: yellow;
+	line-height: 40px;
 }
 
-header nav li:active{
-	list-style-position: inside;
-	border-bottom: 5px solid blue;
+header nav li:hover{
+	border-bottom: 3px solid deepskyblue;
+	box-sizing: border-box;
+}
+
+header nav li a:hover{
+	color: white;
+}
+
+header nav li a:checked{
+	color: red;
+	/*background: white;*/
 }
 
 header .userinfo{
 	float: right;
 }
-	
+
+header .userinfo li{
+	float: right;
+	list-style: none;
+	padding: 0px 10px;
+}
+header .userinfo li a{
+	color: darkgray;
+	text-decoration: none;
+	text-size: 14px;
+	line-height: 40px;
+}
+header .userinfo li:hover{
+	border-bottom: 3px solid deepskyblue;
+	box-sizing: border-box;
+}
+
+header .userinfo li a:hover{
+	color: white;
+	/*background: white;*/
+}
 .pager{
     margin-top: 36px;
     width: 100%;
