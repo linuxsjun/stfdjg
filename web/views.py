@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 
-from web.models import pureftp
+from web.models import pureftp, base_conf
 # Create your views here.
 
 def index(request):
@@ -16,6 +16,11 @@ def hello(request):
 
 def search_form(request):
     return render_to_response('search_form.html')
+
+def config(request):
+    context={}
+    context['message']='base_config'
+    return render(request, 'base_conf.html', context)
 
 def search(request):
     request.encoding='utf-8'

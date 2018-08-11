@@ -26,4 +26,5 @@ urlpatterns = [
     path('getdata/', views.getdata),
     path('search/', views.search),
     path('search_form/', views.search_form),
+    path('conf/', views.config)
 ]
