@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/search.css">
+{% endblock styecss %}
+
 {% block mainbody %}
     <h3>搜索服务</h3>
     <form action="/search" method="get">

@@ -5,6 +5,36 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-        <p>base_conf</p>
-        <p>{{ message }}</p>
+    <div class="context">
+        <div class="head_form">
+            <p>head_form</p>
+        </div>
+        <div class="nave_form">
+            <p>nave_form</p>
+        </div>
+        <div class="context_form">
+            <p>context_form</p>
+            <table border="1">
+        <tr>
+            <th>t1</th>
+            <th>t2</th>
+            <th>t3</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+        </tr>
+    </table>
+            <p>{{ message }}</p>
+        </div>
+        <div class="foot_form">
+            <p>foot_form</p>
+        </div>
+    </div>
 {% endblock %}

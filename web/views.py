@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+import requests, time, datetime, pytz
 
 from web.models import pureftp, base_conf
 # Create your views here.
@@ -12,14 +13,54 @@ def index(request):
 def hello(request):
     context={}
     context['hello']='this is .html! 页面'
+    to='2018-08-11 18:52:56+00:00'
+    # to='2018-08-11 18:52:56'
+    # k = datetime.datetime.utcfromtimestamp()
+    print(time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime(time.time())))
+    # print(time.strptime(to,"%Y-%m-%d %H:%M:%S"))
+    # print(time.time())
+    # print(time.mktime(time.gmtime(time.time())))
+    # print(time.gmtime(time.time()))
+    # print(time.gmtime(time.time()+7200))
+    # print('----------------')
+    # print(time.localtime(time.time()))
+    # print(time.asctime(time.gmtime(time.time())))
+    # print(time.mktime(time.strptime(time.asctime(time.gmtime(time.time())))))
+    # print(time.timezone)
     return render(request, 'hello.html', context)
 
 def search_form(request):
     return render_to_response('search_form.html')
 
 def config(request):
+    var = base_conf.objects.get(id=1)
+    print(var.expirestime)
+    # if var.token:
+    #     nowtime=time.time()
+    #     if time.mktime(time.strptime(var.expirestime)) > nowtime:
+    #         print('token is ok')
+    #     else:
+    #         print('token is no')
+    # else:
+    #     print('token is no')
+
+    if var.corpid :
+        id=var.corpid
+        secrect=var.corpsecret
+
+    #todo 判断Token是否有效，如无效重新申请并存进数据库
+    #todo Token 为空？
+    #不为空在有效时间内？
+    #有效用
+    #无效：获取
+    sendurl='https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s'%(id,secrect)
+
+    r = requests.get(sendurl)
+
+    print(r.content)
+
     context={}
-    context['message']='base_config'
+    context['message']=r.content
     return render(request, 'base_conf.html', context)
 
 def search(request):
