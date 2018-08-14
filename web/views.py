@@ -28,7 +28,7 @@ def hello(request):
     # print(time.asctime(time.gmtime(time.time())))
     # print(time.mktime(time.strptime(time.asctime(time.gmtime(time.time())))))
     # print(time.timezone)
-    return render(request, 'hello.html', context)
+    return render(request, 'view_hr_list.html', context)
 
 def search_form(request):
     return render_to_response('search_form.html')
