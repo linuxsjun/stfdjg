@@ -20,13 +20,18 @@ from web import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
     path('', views.index, name='index'),
-    path('view/', views.hr_view),
+
     path('data/', views.data),
-    path('gettoken/', views.getToken),
+
     path('search/', views.search),
     path('search_form/', views.search_form),
+
     path('conf/', views.config),
+    path('gettoken/', views.getToken),
+
+    path('view/', views.hr_view),
     path('sync/', views.readdepartment),
     # path('sync/', views.readdepartment),
 ]

@@ -16,12 +16,12 @@ def hr_view(request):
     context['hello']='this is .html! 页面'
 
     # d = base_conf.objects.all().first()
-    ps = hr_department.objects.all()
+    ps = hr_department.objects.all().order_by('parentid','order')
+    # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
 
     context['context']= ''
     for p in ps:
-        context['context']=context['context'] + "<tr>" + "<td>" + str(p.pid) + "</td><td></td><td></td><td></td>" + "</tr>"
-        print(str(p.pid))
+        context['context']=context['context'] + "<tr>" + "<td>" + str(p.pid) + "</td><td>" + p.name + "</td><td>" + str(p.parentid) + "</td><td>" + str(p.order) + "</td>" + "</tr>"
 
     return render(request, 'view_hr_list.html', context)
 
@@ -29,34 +29,8 @@ def search_form(request):
     return render_to_response('search_form.html')
 
 def config(request):
-    var = base_conf.objects.get(id=1)
-    print(var.expirestime)
-    # if var.token:
-    #     nowtime=time.time()
-    #     if time.mktime(time.strptime(var.expirestime)) > nowtime:
-    #         print('token is ok')
-    #     else:
-    #         print('token is no')
-    # else:
-    #     print('token is no')
-
-    if var.corpid :
-        id=var.corpid
-        secrect=var.corpsecret
-
-    #todo 判断Token是否有效，如无效重新申请并存进数据库
-    #todo Token 为空？
-    #不为空在有效时间内？
-    #有效用
-    #无效：获取
-    sendurl='https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=%s&corpsecret=%s'%(id,secrect)
-
-    r = requests.get(sendurl)
-
-    print(r.content)
-
     context={}
-    context['message']=r.content
+    context['message']=''
     return render(request, 'base_conf.html', context)
 
 def search(request):
@@ -88,23 +62,19 @@ def data(request):
     return HttpResponse(message)
 
 def getToken(request):
-    # response=""
-    # response1=""
-    #
     # list = pureftp.objects.all()
-    # # response2=Test.objects.filter(id=1)
-    # # response3=Test.objects.get(id=1)
-    #
-    # pureftp.objects.order_by("id")
-    #
-    # for var in list:
-    #     response1 += "<p>" + var.user + " -> " + var.password + "</p> "
-    # response = response1
-
     # d = base_conf.objects.all().first()
+    # d=base_conf.objects.filter(id=1)
+
+    # d=base_conf.objects.get(id=1)
     d = base_conf.objects.get(pk=1)
 
+    # pureftp.objects.order_by("id")
+
     #https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRECT
+    # corpid=ww74c5af840cdd5cb6
+    # corpsecret=uUJf-eFplyKlAWf2Cc9T8Guea4K1zpEiZXwXpCsHTQs
+
     url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
     v = {}
     v['corpid'] = d.corpid
@@ -118,11 +88,6 @@ def getToken(request):
         print(len(t['access_token']))
 
         tt = time.time()
-        # print(time.asctime(time.localtime(tt)))
-        # print(time.asctime(time.localtime(tt + t['expires_in'])))
-        # print(time.asctime(time.gmtime(tt)))
-        # print(time.asctime(time.gmtime(tt + t['expires_in'])))
-
         d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
 
         d.save()

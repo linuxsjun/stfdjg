@@ -9,13 +9,22 @@
 
 .cmd_nav{
     height: 30px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+    .cmd_nav form{
+        margin: auto 5px;
+    }
+
+context{
+    padding: 5px;
 }
 
 table{
     table-layout: auto;
-    border: 1px solid black;
     width: 70%;
     margin: 0px auto;
+    border-collapse: collapse;
 }
 
 caption {
@@ -33,5 +42,7 @@ th {
 }
 
 td {
-    border: 1px solid#777;
+    border: 1px solid #777;
 }
+
+.footbar{height:80px;}
