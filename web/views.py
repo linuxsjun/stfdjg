@@ -93,7 +93,7 @@ def data(request):
 
 def getdata(request):
     response=""
-    response1=""
+    response1="l"
 
     list = pureftp.objects.all()
     # response2=Test.objects.filter(id=1)
