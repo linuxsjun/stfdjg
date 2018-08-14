@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
 import requests, json, time, datetime
@@ -15,8 +15,13 @@ def hr_view(request):
     context={}
     context['hello']='this is .html! 页面'
 
-    ps = hr_department.objects.all().first()
-    print(ps)
+    # d = base_conf.objects.all().first()
+    ps = hr_department.objects.all()
+
+    context['context']= ''
+    for p in ps:
+        context['context']=context['context'] + "<tr>" + "<td>" + str(p.pid) + "</td><td></td><td></td><td></td>" + "</tr>"
+        print(str(p.pid))
 
     return render(request, 'view_hr_list.html', context)
 
@@ -82,7 +87,7 @@ def data(request):
     message='no'
     return HttpResponse(message)
 
-def getdata(request):
+def getToken(request):
     # response=""
     # response1=""
     #
@@ -108,9 +113,6 @@ def getdata(request):
     r = requests.get(url, params=v)
     t = json.loads(r.text)
 
-    # r = '{"errcode":0,"errmsg":"ok","access_token":"Rpdh41UVtGW-9RHuf2WrhNz6WecwWpCoyJp4Ptn_sbkXO3HMGnmLyAh4aW6GDX1wurCjEQP_VZu0iIJQcIdZfZ2N4Ic-y6-_icVELotesq2Heb6YS-jN2BcT5pGopd4OsKL6XnlzUCiz3ET4eNSsVT6qxUV8kstevDQRXhe-8dXN0iJHEgPImmXyULZgljsVYTDp4XcZYNgegszoDckBdw","expires_in":7200}'
-    # t = json.loads(r)
-
     if t['errcode'] == 0:
         d.token = t['access_token']
         print(len(t['access_token']))
@@ -124,9 +126,9 @@ def getdata(request):
         d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
 
         d.save()
-        response = d.expirestime
+        response = "GET Token ID is ok at %s"%d.expirestime
     else:
-        response = "no"
+        response = "No"
     return HttpResponse(response)
 
 def readdepartment(request):
@@ -151,6 +153,7 @@ def readdepartment(request):
                                    name=d['name'],
                                    parentid=d['parentid'],
                                    order=d['order'])
+                print(d)
                 dt.save()
         response = t
-    return HttpResponse(response)
+    return redirect('/view/')

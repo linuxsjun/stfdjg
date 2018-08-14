@@ -9,10 +9,14 @@
         <p>{{ hello }}</p>
     </div>
     <div class="cmd_nav">
-
+        <form action="/sync" method="get">
+            <input type="submit" value="获取数据">
+        </form>
+        <form action="/gettoken" method="get">
+            <input type="submit" value="Token">
+        </form>
     </div>
     <context>
-        <p>buttom</p>
         <table border="1">
             <thead>
                 <tr>
@@ -23,18 +27,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>31</td>
-                    <td>江通动画</td>
-                    <td>1</td>
-                    <td>99998000</td>
-                </tr>
-                <tr>
-                    <td>31</td>
-                    <td>江通动画</td>
-                    <td>1</td>
-                    <td>99998000</td>
-                </tr>
+                {{ context | safe }}
             </tbody>
         </table>
 	</context>

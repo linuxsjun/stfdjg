@@ -23,9 +23,10 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('view/', views.hr_view),
     path('data/', views.data),
-    path('getdata/', views.getdata),
+    path('gettoken/', views.getToken),
     path('search/', views.search),
     path('search_form/', views.search_form),
     path('conf/', views.config),
-    path('add/', views.readdepartment),
+    path('sync/', views.readdepartment),
+    # path('sync/', views.readdepartment),
 ]
