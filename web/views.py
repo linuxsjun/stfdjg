@@ -18,7 +18,7 @@ def hr_view(request):
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
     # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
-    ps = hr_department.objects.all().order_by('order')
+    ps = hr_department.objects.all().order_by('pid')
     context['context']= ''
     for p in ps:
         context['context']=context['context'] + "<tr>" + "<td>" + str(p.pid) + "</td><td>" + p.name + "</td><td>" + str(p.parentid) + "</td><td>" + str(p.order) + "</td>" + "</tr>"

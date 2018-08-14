@@ -4,17 +4,14 @@
 
 .header{
     height: 80px;
-    background: darkgray;
+    /*background: darkgray;*/
 }
 
 .cmd_nav{
     height: 30px;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid darkgrey;
+    box-shadow: 0 2px 6px 0 rgba(0,0,0,.3);
 }
-    .cmd_nav form{
-        margin: auto 5px;
-    }
 
 context{
     padding: 5px;
