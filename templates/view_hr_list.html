@@ -5,33 +5,42 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-    <div class="header">
+    <div class="view_menu">
+        <ul>
+            <li><a href="#">员工</a></li>
+            <li><a href="#">部门</a></li>
+            <li><a href="#">设置</a></li>
+        </ul>
+    </div>
+    <div class="view_form">
+        <div class="header">
         <h3>{{ hello }}</h3>
     </div>
-    <div class="cmd_nav">
-        <div class="cmd">
-            <form action="/sync" method="get">
-                <input type="submit" value="获取数据">
-            </form>
+        <div class="cmd_nav">
+            <div class="cmd">
+                <form action="/sync" method="get">
+                    <input type="submit" value="获取数据">
+                </form>
+            </div>
+            <div class="flowlist"></div>
         </div>
-        <div class="flowlist"></div>
-    </div>
-    <context>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Pid</th>
-                    <th>NAME</th>
-                    <th>PARENTID</th>
-                    <th>ORDER</th>
-                </tr>
-            </thead>
-            <tbody>
-                {{ context | safe }}
-            </tbody>
-        </table>
-	</context>
-    <div class="footbar">
+        <context>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Pid</th>
+                        <th>NAME</th>
+                        <th>PARENTID</th>
+                        <th>ORDER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ context | safe }}
+                </tbody>
+            </table>
+        </context>
+        <div class="footbar">
 
+        </div>
     </div>
 {% endblock %}
