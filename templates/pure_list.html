@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="header">
+        <h3>{{ hello }}</h3>
+    </div>
+    <div class="cmd_nav">
+        <div class="cmd">
+            <span>
+                <form action="#" method="get">
+                    <input type="submit" value="add">
+                </form>
+            </span>
+            <span>
+                <form action="#" method="get">
+                    <input type="submit" value="delete">
+                </form>
+            </span>
+        </div>
+        <div class="flowlist"></div>
+    </div>
+    <context>
+
+	</context>
+    <div class="footbar">
+
+    </div>
+{% endblock %}

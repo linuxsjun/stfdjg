@@ -51,15 +51,16 @@ def search(request):
 
     return render(request, 'search.html',message)
 
-def data(request):
-    test= pureftp(createdate='2019-9-9',
-                  lastedate='2018-9-8',
-                  user='test001')
-    test.save()
+def view_pure_list(request):
+    # test= pureftp(createdate='2019-9-9',
+    #               lastedate='2018-9-8',
+    #               user='test001')
+    # test.save()
 
-    message='{% extends "base.html" %}{% block mainbody %}<p>ok</p>{% endblock %}'
-    message='no'
-    return HttpResponse(message)
+    # message='{% extends "base.html" %}{% block mainbody %}<p>ok</p>{% endblock %}'
+    message={}
+    message['hello']='pure list'
+    return render(request, 'pure_list.html', message)
 
 def getToken(request):
     # list = pureftp.objects.all()

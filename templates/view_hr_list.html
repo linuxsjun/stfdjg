@@ -6,12 +6,15 @@
 
 {% block mainbody %}
     <div class="header">
-        <p>{{ hello }}</p>
+        <h3>{{ hello }}</h3>
     </div>
     <div class="cmd_nav">
-        <form action="/sync" method="get">
-            <input type="submit" value="获取数据">
-        </form>
+        <div class="cmd">
+            <form action="/sync" method="get">
+                <input type="submit" value="获取数据">
+            </form>
+        </div>
+        <div class="flowlist"></div>
     </div>
     <context>
         <table border="1">
