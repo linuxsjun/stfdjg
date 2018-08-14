@@ -16,9 +16,9 @@ def hr_view(request):
     context['hello']='this is .html! 页面'
 
     # d = base_conf.objects.all().first()
-    ps = hr_department.objects.all().order_by('parentid','order')
+    # ps = hr_department.objects.all().order_by('parentid','order')
     # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
-
+    ps = hr_department.objects.all().order_by('order')
     context['context']= ''
     for p in ps:
         context['context']=context['context'] + "<tr>" + "<td>" + str(p.pid) + "</td><td>" + p.name + "</td><td>" + str(p.parentid) + "</td><td>" + str(p.order) + "</td>" + "</tr>"
