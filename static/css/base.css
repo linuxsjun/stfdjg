@@ -14,7 +14,7 @@ header .logo{
 	float: left;
 	width: 35px;
 	height: 35px;
-	background-image:url(/static/img/logo.png);
+	/*background-image:url(/static/img/logo.png);*/
 	margin: 2px 10px;
 	}
 header .logo a{

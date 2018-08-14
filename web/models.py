@@ -26,3 +26,12 @@ class base_conf(models.Model):
 
     class Meta:
         db_table = "base_conf"
+
+class hr_department(models.Model):
+    pid = models.IntegerField(null=False)
+    name = models.CharField(max_length=32, null=False)
+    parentid = models.IntegerField(null=False,default=0)
+    order = models.IntegerField(null=True)
+
+    class Meta:
+        db_table = 'hr_department'

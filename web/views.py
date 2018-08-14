@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-import requests, time, datetime, pytz
+import requests, json, time, datetime
 
-from web.models import pureftp, base_conf
+from web.models import pureftp, base_conf, hr_department
+
 # Create your views here.
 
 def index(request):
@@ -92,16 +93,74 @@ def data(request):
     return HttpResponse(message)
 
 def getdata(request):
-    response=""
-    response1="l"
+    # response=""
+    # response1=""
+    #
+    # list = pureftp.objects.all()
+    # # response2=Test.objects.filter(id=1)
+    # # response3=Test.objects.get(id=1)
+    #
+    # pureftp.objects.order_by("id")
+    #
+    # for var in list:
+    #     response1 += "<p>" + var.user + " -> " + var.password + "</p> "
+    # response = response1
 
-    list = pureftp.objects.all()
-    # response2=Test.objects.filter(id=1)
-    # response3=Test.objects.get(id=1)
+    # d = base_conf.objects.all().first()
+    d = base_conf.objects.get(pk=1)
 
-    pureftp.objects.order_by("id")
+    #https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRECT
+    url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
+    v = {}
+    v['corpid'] = d.corpid
+    v['corpsecret'] = d.corpsecret
 
-    for var in list:
-        response1 += "<p>" + var.user + " -> " + var.password + "</p> "
-    response = response1
+    r = requests.get(url, params=v)
+    t = json.loads(r.text)
+
+    # r = '{"errcode":0,"errmsg":"ok","access_token":"Rpdh41UVtGW-9RHuf2WrhNz6WecwWpCoyJp4Ptn_sbkXO3HMGnmLyAh4aW6GDX1wurCjEQP_VZu0iIJQcIdZfZ2N4Ic-y6-_icVELotesq2Heb6YS-jN2BcT5pGopd4OsKL6XnlzUCiz3ET4eNSsVT6qxUV8kstevDQRXhe-8dXN0iJHEgPImmXyULZgljsVYTDp4XcZYNgegszoDckBdw","expires_in":7200}'
+    # t = json.loads(r)
+
+    if t['errcode'] == 0:
+        d.token = t['access_token']
+        print(len(t['access_token']))
+
+        tt = time.time()
+        # print(time.asctime(time.localtime(tt)))
+        # print(time.asctime(time.localtime(tt + t['expires_in'])))
+        # print(time.asctime(time.gmtime(tt)))
+        # print(time.asctime(time.gmtime(tt + t['expires_in'])))
+
+        d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
+
+        d.save()
+        response = d.expirestime
+    else:
+        response = "no"
+    return HttpResponse(response)
+
+def getdepartment(request):
+    p =  base_conf.objects.all().first()
+
+    # https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token=ACCESS_TOKEN&id=ID
+    url = 'https://qyapi.weixin.qq.com/cgi-bin/department/list'
+    v = {}
+    v['access_token'] = p.token
+    v['id'] = p.corpsecret
+
+    try:
+        r = requests.get(url, params=v)
+    except Exception:
+        print('get url is error')
+    else:
+        t = json.loads(r.text)
+        if t['errcode'] == 0:
+            d ={}
+            for d in t['department']:
+                dt = hr_department(pid=d['id'],
+                                   name=d['name'],
+                                   parentid=d['parentid'],
+                                   order=d['order'])
+                dt.save()
+        response = t
     return HttpResponse(response)
