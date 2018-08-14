@@ -1,0 +1,38 @@
+@charset "utf-8";
+/* CSS Document */
+*{margin: 0px;padding: 0px;}
+
+.header{
+    height: 80px;
+    background: darkgray;
+}
+
+.cmd_nav{
+    height: 30px;
+}
+
+table{
+    table-layout: auto;
+    border: 1px solid black;
+    width: 70%;
+    margin: 0px auto;
+}
+
+caption {
+    font-size: larger;
+    margin: 1em auto;
+}
+
+th,td {
+     /*padding: .65em;*/
+}
+
+th {
+    background: #555 nonerepeat scroll 0 0;
+    border: 1px solid #777;
+    color: #fff;
+}
+
+td {
+    border: 1px solid#777;
+}

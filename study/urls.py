@@ -21,11 +21,11 @@ from web import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('hello/', views.hello),
+    path('view/', views.hr_view),
     path('data/', views.data),
     path('getdata/', views.getdata),
     path('search/', views.search),
     path('search_form/', views.search_form),
     path('conf/', views.config),
-path('d/', views.getdepartment),
+    path('add/', views.readdepartment),
 ]

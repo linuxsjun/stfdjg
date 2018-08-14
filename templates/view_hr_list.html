@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="header">
+        <p>{{ hello }}</p>
+    </div>
+    <div class="cmd_nav">
+
+    </div>
+    <context>
+        <p>buttom</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Pid</th>
+                    <th>NAME</th>
+                    <th>PARENTID</th>
+                    <th>ORDER</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>31</td>
+                    <td>江通动画</td>
+                    <td>1</td>
+                    <td>99998000</td>
+                </tr>
+                <tr>
+                    <td>31</td>
+                    <td>江通动画</td>
+                    <td>1</td>
+                    <td>99998000</td>
+                </tr>
+            </tbody>
+        </table>
+	</context>
+{% endblock %}

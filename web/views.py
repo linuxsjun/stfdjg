@@ -11,23 +11,13 @@ def index(request):
     context={}
     return render(request, 'base.html', context)
 
-def hello(request):
+def hr_view(request):
     context={}
     context['hello']='this is .html! 页面'
-    to='2018-08-11 18:52:56+00:00'
-    # to='2018-08-11 18:52:56'
-    # k = datetime.datetime.utcfromtimestamp()
-    print(time.strftime("%Y-%m-%d %H:%M:%S",time.gmtime(time.time())))
-    # print(time.strptime(to,"%Y-%m-%d %H:%M:%S"))
-    # print(time.time())
-    # print(time.mktime(time.gmtime(time.time())))
-    # print(time.gmtime(time.time()))
-    # print(time.gmtime(time.time()+7200))
-    # print('----------------')
-    # print(time.localtime(time.time()))
-    # print(time.asctime(time.gmtime(time.time())))
-    # print(time.mktime(time.strptime(time.asctime(time.gmtime(time.time())))))
-    # print(time.timezone)
+
+    ps = hr_department.objects.all().first()
+    print(ps)
+
     return render(request, 'view_hr_list.html', context)
 
 def search_form(request):
@@ -139,7 +129,7 @@ def getdata(request):
         response = "no"
     return HttpResponse(response)
 
-def getdepartment(request):
+def readdepartment(request):
     p =  base_conf.objects.all().first()
 
     # https://qyapi.weixin.qq.com/cgi-bin/department/list?access_token=ACCESS_TOKEN&id=ID

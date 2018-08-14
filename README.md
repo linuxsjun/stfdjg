@@ -8,5 +8,6 @@ This is django2.0 project
 * django 2.0
 
 ##### 数据库
-* pure db
-* config db
+* pure table
+* config table
+* department table
