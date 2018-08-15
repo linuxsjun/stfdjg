@@ -40,6 +40,7 @@ th {
     border-right: 1px solid lightgray;
     border-top: 1px solid gray;
     border-bottom: 2px solid lightgray;
+    text-align: left;
 }
 
 td {
@@ -52,3 +53,6 @@ td {
     .bordform img{float: left;height:48px;width:48px;}
     .bordform span p{padding-left:53px}
 .bordform:hover{background:#a6a5ec;}
+
+.but_min{font-size:14px;text-decoration: none;color: #aaaaaa;}
+.but_min:hover{color: black;}

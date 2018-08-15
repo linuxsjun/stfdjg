@@ -6,7 +6,7 @@
 
 {% block mainbody %}
     <div class="header">
-        <h3>{{ title }}</h3>
+        <h1>{{ title }}</h1>
     </div>
     <div class="cmd_nav">
         <ul class="cmd">
@@ -28,10 +28,6 @@
                 <thead>
                     <tr>
                         <th></th>
-                        <th>exp</th>
-                        <th>edit</th>
-                        <th>del</th>
-                        <th>resend</th>
                         <th>USER</th>
                         <th>STATUS</th>
                         <th>PASSWD</th>
@@ -42,6 +38,10 @@
                         <th>COMMENT</th>
                         <th>IPACCESS</th>
                         <th>QUOTASIZE</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -49,10 +49,6 @@
                     {% for item in context %}
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td><a href=""></a></td>
-                            <td><a href=""></a></td>
-                            <td><a href=""></a></td>
-                            <td><a href=""></a></td>
                             <td>{{ item.status }}</td>
                             <td>{{ item.user }}</td>
                             <td>{{ item.password }}</td>
@@ -63,6 +59,10 @@
                             <td>{{ item.comment }}</td>
                             <td>{{ item.ipaccess }}</td>
                             <td>{{ item.quotasize }}</td>
+                            <td><a class="but_min" href="#"><i class="fa fa-reorder fa-1x"></i></a></td>
+                            <td><a class="but_min" href="#"><i class="fa fa-edit fa-1x"></i></a></td>
+                            <td><a class="but_min" href="#"><i class="fa fa-remove fa-1x"></i></a></td>
+                            <td><a class="but_min" href="#"><i class="fa fa-send fa-1x"></i></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

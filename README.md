@@ -11,3 +11,6 @@ This is django2.0 project
 * pure table
 * config table
 * department table
+* hr table
+
+##### VIEW
