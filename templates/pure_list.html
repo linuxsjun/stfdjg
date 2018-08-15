@@ -11,7 +11,7 @@
     <div class="cmd_nav">
         <ul class="cmd">
             <li>
-                <a href="#">add</a>
+                <a href="/search_form/">add</a>
             </li>
             <li>
                 <a href="#">delete</a>
@@ -20,7 +20,52 @@
         <div class="flowlist"></div>
     </div>
     <context>
-
+{#        <header class="">#}
+{##}
+{#        </header>#}
+        <div class="listview">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>exp</th>
+                        <th>edit</th>
+                        <th>del</th>
+                        <th>USER</th>
+                        <th>STATUS</th>
+                        <th>PASSWD</th>
+                        <th>UID</th>
+                        <th>GID</th>
+                        <th>ULBANDWIDTH</th>
+                        <th>DLBANDWIDTH</th>
+                        <th>COMMENT</th>
+                        <th>IPACCESS</th>
+                        <th>QUOTASIZE</th>
+                    </tr>
+                </thead>
+                <tbody>
+{#                    {{ context | safe }}#}
+                    {% for item in context %}
+                        <tr>
+                            <td><input type="checkbox"></td>
+                            <td><a href=""></a></td>
+                            <td><a href=""></a></td>
+                            <td><a href=""></a></td>
+                            <td>{{ item.user }}</td>
+                            <td>{{ item.status }}</td>
+                            <td>{{ item.passwd }}</td>
+                            <td>{{ item.uid }}</td>
+                            <td>{{ item.gid }}</td>
+                            <td>{{ item.ulbandwidth }}</td>
+                            <td>{{ item.dlbandwidth }}</td>
+                            <td>{{ item.comment }}</td>
+                            <td>{{ item.ipaccess }}</td>
+                            <td>{{ item.quotasize }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
 	</context>
     <div class="footbar">
 

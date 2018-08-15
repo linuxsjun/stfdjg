@@ -29,9 +29,9 @@
         <context>
             {% for item in context %}
                 <div class="bordform">
-                    <img src={{ item.avatar }} width="48" height="48" alt=""/>
+                    <img src="{{ item.avatar }}" alt=""/>
                     <span>
-{#                        <p>{{ item.usserid }}</p>#}
+{#                        <p>{{ item.userid }}</p>#}
                         <p><b>{{ item.name }}</b></p>
                         <p>职称: {{ item.position }}</p>
                         <p>手机: {{ item.mobile }}</p>

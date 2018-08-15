@@ -55,18 +55,16 @@ def search(request):
     else:
         message['message']= 'Null'
 
-    return render(request, 'search.html',message)
+    # return render(request, 'search.html',message)
+    return redirect('/pure_list/')
 
 def view_pure_list(request):
-    # test= pureftp(createdate='2019-9-9',
-    #               lastedate='2018-9-8',
-    #               user='test001')
-    # test.save()
+    context={}
+    context['hello']='pure list'
 
-    # message='{% extends "base.html" %}{% block mainbody %}<p>ok</p>{% endblock %}'
-    message={}
-    message['hello']='pure list'
-    return render(request, 'pure_list.html', message)
+    ps = pureftp.objects.all()
+    context['context'] = ps
+    return render(request, 'pure_list.html', context)
 
 def getToken(request):
     # list = pureftp.objects.all()
@@ -148,17 +146,17 @@ def gethr(request):
     if t['errcode'] == 0:
         d = {}
         for d in t['userlist']:
-            dt = hr_hr(usserid=d['userid'],
+            dt = hr_hr(userid=d['userid'],
                        name=d['name'],
                        department=d['department'],
                        position=d['position'],
                        mobile=d['mobile'],
-                       # gender=d['gender'],
+                       gender=d['gender'],
                        email=d['email'],
                        avatar=d['avatar'],
-                       # status=d['status'],
-                       # enable=d['enable'],
-                       # isleader=d['isleader'],
+                       status=d['status'],
+                       enable=d['enable'],
+                       isleader=d['isleader'],
                        extattr=d['extattr'],
                        hide_mobile=d['hide_mobile'],
                        english_name=d['english_name'],
