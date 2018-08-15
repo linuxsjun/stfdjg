@@ -13,7 +13,7 @@ def index(request):
 
 def dep_view(request):
     context={}
-    context['hello']='dep 页面'
+    context['title']='dep 页面'
 
     ps = hr_department.objects.all().order_by('pid')
     context['context']= ps
@@ -22,7 +22,7 @@ def dep_view(request):
 
 def hr_view(request):
     context={}
-    context['hello']='h 页面'
+    context['title']='h 页面'
 
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
@@ -36,6 +36,7 @@ def search_form(request):
 
 def config(request):
     context={}
+    context['title']='设置'
     context['message']='dddddddddddddddddd'
     return render(request, 'base_conf.html', context)
 
@@ -60,7 +61,7 @@ def search(request):
 
 def view_pure_list(request):
     context={}
-    context['hello']='pure list'
+    context['title']='pure list'
 
     ps = pureftp.objects.all()
     context['context'] = ps
