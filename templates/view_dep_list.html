@@ -30,16 +30,18 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th>Pid</th>
-                        <th>NAME</th>
-                        <th>PARENTID</th>
-                        <th>ORDER</th>
+                        <th></th>
+                        <th>编号</th>
+                        <th>名称</th>
+                        <th>上级</th>
+                        <th>序号</th>
                     </tr>
                 </thead>
                 <tbody>
 {#                    {{ context | safe }}#}
                     {% for item in context %}
                         <tr>
+                            <td><input type="checkbox"></td>
                             <td>{{ item.pid }}</td>
                             <td>{{ item.name }}</td>
                             <td>{{ item.parentid }}</td>

@@ -27,17 +27,17 @@
             <table border="1">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>USER</th>
-                        <th>STATUS</th>
-                        <th>PASSWD</th>
-                        <th>UID</th>
-                        <th>GID</th>
-                        <th>ULBANDWIDTH</th>
-                        <th>DLBANDWIDTH</th>
-                        <th>COMMENT</th>
-                        <th>IPACCESS</th>
-                        <th>QUOTASIZE</th>
+                        <th><input type="checkbox"></th>
+                        <th>状态</th>
+                        <th>用户</th>
+                        <th>密码</th>
+                        <th>用户ID</th>
+                        <th>组ID</th>
+                        <th>上行带宽</th>
+                        <th>下行带宽</th>
+                        <th>说明</th>
+                        <th>访问IP</th>
+                        <th>空间大小</th>
                         <th></th>
                         <th></th>
                         <th></th>
@@ -49,7 +49,14 @@
                     {% for item in context %}
                         <tr>
                             <td><input type="checkbox"></td>
-                            <td>{{ item.status }}</td>
+                            <td>
+
+                                {% if  item.status %}
+                                    <i class="fa fa-check-square-o fa-1x"></i>
+                                {% else %}
+                                    <i class="fa fa-square-o fa-1x"></i>
+                                {% endif %}
+                            </td>
                             <td>{{ item.user }}</td>
                             <td>{{ item.password }}</td>
                             <td>{{ item.uid }}</td>
@@ -59,10 +66,10 @@
                             <td>{{ item.comment }}</td>
                             <td>{{ item.ipaccess }}</td>
                             <td>{{ item.quotasize }}</td>
-                            <td><a class="but_min" href="#"><i class="fa fa-reorder fa-1x"></i></a></td>
-                            <td><a class="but_min" href="#"><i class="fa fa-edit fa-1x"></i></a></td>
-                            <td><a class="but_min" href="#"><i class="fa fa-remove fa-1x"></i></a></td>
-                            <td><a class="but_min" href="#"><i class="fa fa-send fa-1x"></i></a></td>
+                            <td><a class="but_min" href="reorder/{{ item.id }}" title="详细"><i class="fa fa-reorder fa-1x"></i></a></td>
+                            <td><a class="but_min" href="edit/{{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
+                            <td><a class="but_min" href="del/{{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
+                            <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

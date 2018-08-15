@@ -26,7 +26,11 @@
             <div class="flowlist"></div>
         </div>
         <context>
-            <p>{{ message }}</p>
+            <form action="/conf" method="get" value=1>
+                <p>CORPID:<input type="text" name="corpid" value="{{ context.corpid }}"></p>
+                <p>CORPSECRET:<input type="text" name="corpsecret" value="{{ context.corpsecret }}"></p>
+                <input type="submit" value="提交">
+            </form>
         </context>
         <div class="footbar">
 

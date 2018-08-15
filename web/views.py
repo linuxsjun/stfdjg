@@ -38,6 +38,9 @@ def config(request):
     context={}
     context['title']='设置'
     context['message']='dddddddddddddddddd'
+
+    p = base_conf.objects.get(id=1)
+    context['context'] = p
     return render(request, 'base_conf.html', context)
 
 def search(request):
@@ -63,7 +66,7 @@ def view_pure_list(request):
     context={}
     context['title']='pure list'
 
-    ps = pureftp.objects.all()
+    ps = pureftp.objects.all().order_by('user')
     context['context'] = ps
     return render(request, 'pure_list.html', context)
 
