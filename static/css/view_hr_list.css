@@ -2,43 +2,32 @@
 /* CSS Document */
 *{margin: 0px;padding: 0px;}
 
-.view_menu{
-    float: left;
-    width: 15%;
-    height: 100%;
-    background: #aaaaaa;
-}
+.view_menu{float: left;width: 15%;height: 500px;border-right: 1px solid #aaaaaa;box-sizing: border-box;}
+    .view_menu .limg{height:100px;}
+    .view_menu ul .semenuli{height: 35px;}
+        .view_menu ul .semenuli .semenua{width:100%;text-decoration:none;color:black;padding:3px 55px;line-height:40px;}
+        .view_menu ul .semenuli .semenua:hover{color:white;background: #7c7bad;}
 
-.view_form{
-    float: right;
-    width: 85%;
-}
+.view_form{float: right;width: 85%;}
+    .header{height: 80px;
+        /*background: darkgray;*/
+    }
 
-.header{
-    height: 80px;
-    /*background: darkgray;*/
-}
+    .cmd_nav{height: 30px;border-top: 1px solid a8a8a8;border-bottom: 1px solid cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);}
+        .cmd_nav .cmd ul{float:left; border: 1px solid black;}
+            .cmd_nav .cmd li{float: left;margin-left: 10px;list-style-type: none;}
+                .cmd_nav .cmd li a{text-decoration: none;color: white;background: #7c7bad;line-height: 28px;padding: 4px 8px;border-radius: 3px;}
+                .cmd_nav .cmd li a:hover{background: #a6a5ec;}
 
-.cmd_nav{
-    height: 30px;
-    /*border-bottom: 1px solid darkgrey;*/
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);
-}
-
-context{
-    padding: 5px;
-}
-
-table{
-    table-layout: auto;
-    width: 70%;
-    margin: 0px auto;
-    border-collapse: collapse;
-}
+    context{padding: 0px;}
+        table{width: 100%;border-collapse: collapse;
+            /*table-layout: auto;*/
+            /*margin: 0px auto;*/
+        }
 
 caption {
-    font-size: larger;
-    margin: 1em auto;
+    /*font-size: larger;*/
+    /*margin: 1em auto;*/
 }
 
 th,td {
@@ -46,12 +35,17 @@ th,td {
 }
 
 th {
-    background: #555 nonerepeat scroll 0 0;
-    border: 1px solid #777;
+    /*background: #555 nonerepeat scroll 0 0;*/
+    /*border: 1px solid #777;*/
 }
 
 td {
-    border: 1px solid #777;
+    /*border: 1px solid #777;*/
 }
 
 .footbar{height:80px;}
+
+.bordform{float:left; width:260px;margin:5px;padding:5px;border:1px solid #7c7bad;border-radius: 4px;box-sizing: border-box;}
+    .bordform img{float: left;height:48px;width:48px;}
+    .bordform p{padding-left:53px}
+.bordform:hover{background:#a6a5ec;}

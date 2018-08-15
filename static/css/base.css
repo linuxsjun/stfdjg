@@ -2,12 +2,13 @@
 /* CSS Document */
 *{margin:0;padding:0;	font-family:"Microsoft Yahei";	font-size: 14px;}
 header{
-	background: black;
+	background: #222222;
 	height: 40px;
 	position: fixed;
 	left: 0px;
 	right: 0px;
 	top: 0px;
+	/*bottom: 0px;*/
 }
 
 header .logo{
@@ -28,7 +29,7 @@ header nav{
 		
 header nav li{
 	float: left;
-	padding: 0px 10px;
+	/*padding: 0px 10px;*/
 	list-style: none;
 }
 
@@ -37,12 +38,24 @@ header nav li a{
 	text-decoration: none;
 	text-size: 14px;
 	line-height: 40px;
-}
-
-header nav li:hover{
-	border-bottom: 3px solid deepskyblue;
+	padding: 8px 15px;
 	box-sizing: border-box;
 }
+header nav li a:hover{
+	border-bottom: 4px solid deepskyblue;
+	box-sizing: border-box;
+	background: black;
+}
+header nav li a:visited{
+	border-bottom: 4px solid deepskyblue;
+	box-sizing: border-box;
+	background: black;
+}
+
+/*header nav li:hover{*/
+	/*border-bottom: 3px solid deepskyblue;*/
+	/*box-sizing: border-box;*/
+/*}*/
 
 header nav li a:hover{
 	color: white;

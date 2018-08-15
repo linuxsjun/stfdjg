@@ -31,7 +31,9 @@ urlpatterns = [
     path('conf/', views.config),
     path('gettoken/', views.getToken),
 
-    path('view/', views.hr_view),
+    path('hr/', views.hr_view),
+    path('gethr/', views.gethr),
+
+    path('dep/', views.dep_view),
     path('sync/', views.readdepartment),
-    # path('sync/', views.readdepartment),
 ]

@@ -2,24 +2,33 @@
 
 {% block styecss %}
     <link rel="stylesheet" type="text/css" href="/static/css/base_conf.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
 {% endblock styecss %}
 
 {% block mainbody %}
-    <div class="context">
-        <div class="head_form">
-
+    <div class="view_menu">
+        <ul>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+        </ul>
+    </div>
+    <div class="view_form">
+        <div class="header">
+            <h3>{{ hello }}</h3>
         </div>
-        <div class="nave_form">
-
+        <div class="cmd_nav">
+            <ul class="cmd">
+                <li>
+                    <a href="/gettoken">Token</a>
+                </li>
+            </ul>
+            <div class="flowlist"></div>
         </div>
-        <div class="context_form">
-            <p>context_form</p>
+        <context>
             <p>{{ message }}</p>
-            <form action="/gettoken" method="get">
-            <input type="submit" value="Token">
-        </form>
-        </div>
-        <div class="foot_form">
+        </context>
+        <div class="footbar">
 
         </div>
     </div>

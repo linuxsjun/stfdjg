@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 import requests, json, time, datetime
 
-from web.models import pureftp, base_conf, hr_department
+from web.models import pureftp, base_conf, hr_department, hr_hr
 
 # Create your views here.
 
@@ -11,18 +11,24 @@ def index(request):
     context={}
     return render(request, 'base.html', context)
 
+def dep_view(request):
+    context={}
+    context['hello']='dep 页面'
+
+    ps = hr_department.objects.all().order_by('pid')
+    context['context']= ps
+
+    return render(request, 'view_dep_list.html', context)
+
 def hr_view(request):
     context={}
-    context['hello']='this is .html! 页面'
+    context['hello']='h 页面'
 
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
     # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
-    ps = hr_department.objects.all().order_by('pid')
-    context['context']= ''
-    for p in ps:
-        context['context']=context['context'] + "<tr>" + "<td>" + str(p.pid) + "</td><td>" + p.name + "</td><td>" + str(p.parentid) + "</td><td>" + str(p.order) + "</td>" + "</tr>"
-
+    ps = hr_hr.objects.all().order_by('name')
+    context['context']= ps
     return render(request, 'view_hr_list.html', context)
 
 def search_form(request):
@@ -30,7 +36,7 @@ def search_form(request):
 
 def config(request):
     context={}
-    context['message']=''
+    context['message']='dddddddddddddddddd'
     return render(request, 'base_conf.html', context)
 
 def search(request):
@@ -122,4 +128,43 @@ def readdepartment(request):
                 print(d)
                 dt.save()
         response = t
-    return redirect('/view/')
+    return redirect('/dep/')
+
+def gethr(request):
+    p =  base_conf.objects.all().first()
+
+    # https://qyapi.weixin.qq.com/cgi-bin/user/list?access_token=ACCESS_TOKEN&department_id=DEPARTMENT_ID&fetch_child=FETCH_CHILD
+    url = 'https://qyapi.weixin.qq.com/cgi-bin/user/list'
+    # https://qyapi.weixin.qq.com/cgi-bin/user/simplelist?access_token=ACCESS_TOKEN&department_id=DEPARTMENT_ID&fetch_child=FETCH_CHILD
+    # url = 'https://qyapi.weixin.qq.com/cgi-bin/user/simplelist'
+    v = {}
+    v['access_token'] = p.token
+    v['department_id'] = p.department_id =1
+    v['fetch_child'] = 1
+
+    r = requests.get(url, params=v)
+    t = json.loads(r.text)
+
+    if t['errcode'] == 0:
+        d = {}
+        for d in t['userlist']:
+            dt = hr_hr(usserid=d['userid'],
+                       name=d['name'],
+                       department=d['department'],
+                       position=d['position'],
+                       mobile=d['mobile'],
+                       # gender=d['gender'],
+                       email=d['email'],
+                       avatar=d['avatar'],
+                       # status=d['status'],
+                       # enable=d['enable'],
+                       # isleader=d['isleader'],
+                       extattr=d['extattr'],
+                       hide_mobile=d['hide_mobile'],
+                       english_name=d['english_name'],
+                       telephone=d['telephone'],
+                       order=d['order'],
+                       # external_profile=d['external_profile'],
+                       qr_code=d['qr_code'])
+            dt.save()
+    return redirect('/hr/')

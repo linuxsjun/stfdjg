@@ -21,24 +21,33 @@
         <div class="cmd_nav">
             <ul class="cmd">
                 <li>
-                    <a href="/gethr">获取员工</a>
+                    <a href="/sync">获取部门</a>
                 </li>
             </ul>
             <div class="flowlist"></div>
         </div>
         <context>
-            {% for item in context %}
-                <div class="bordform">
-                    <img src={{ item.avatar }} width="48" height="48" alt=""/>
-                    <span>
-{#                        <p>{{ item.usserid }}</p>#}
-                        <p><b>{{ item.name }}</b></p>
-                        <p>职称: {{ item.position }}</p>
-                        <p>手机: {{ item.mobile }}</p>
-                        <p>座机: {{ item.telephone }}</p>
-                    </span>
-                </div>
-            {% endfor %}
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Pid</th>
+                        <th>NAME</th>
+                        <th>PARENTID</th>
+                        <th>ORDER</th>
+                    </tr>
+                </thead>
+                <tbody>
+{#                    {{ context | safe }}#}
+                    {% for item in context %}
+                        <tr>
+                            <td>{{ item.pid }}</td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.parentid }}</td>
+                            <td>{{ item.order }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </context>
         <div class="footbar">
 

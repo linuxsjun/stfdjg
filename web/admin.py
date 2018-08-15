@@ -1,5 +1,5 @@
 from django.contrib import admin
-from web.models import pureftp, base_conf, hr_department
+from web.models import pureftp, base_conf, hr_department, hr_hr
 
 # Register your models here.
 class pueftp_Admin(admin.ModelAdmin):
@@ -14,3 +14,4 @@ class hr_department_Admin(admin.ModelAdmin):
 admin.site.register(pureftp, pueftp_Admin)
 admin.site.register(base_conf, base_conf_Admin)
 admin.site.register(hr_department, hr_department_Admin)
+admin.site.register(hr_hr)
