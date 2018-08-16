@@ -37,4 +37,6 @@ urlpatterns = [
 
     path('dep/', views.dep_view),
     path('sync/', views.readdepartment),
+
+    path('upload/', views.uploadfile),
 ]

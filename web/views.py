@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 import requests, json, time, datetime
 
+import os
+from django.conf import settings
+
 from web.models import pureftp, base_conf, hr_department, hr_hr
 
 # Create your views here.
@@ -181,3 +184,18 @@ def gethr(request):
                        qr_code=d['qr_code'])
             dt.save()
     return redirect('/hr/')
+
+def uploadfile(request):
+    if request.method == "POST":
+        f = request.FILES["file"]
+        filePath = os.path.join(settings.MDEIA_ROOT, f.name)
+        print(filePath)
+        i=0
+        with open(filePath,'wb') as fp:
+            for info in f.chunks():
+                i = i + 1
+                print (i)
+                fp.write(info)
+        return HttpResponse('ok')
+    else:
+        return HttpResponse('no')
