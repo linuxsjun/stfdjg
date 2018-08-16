@@ -51,7 +51,6 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -74,8 +73,7 @@
                                 <td>{{ item.comment }}</td>
                                 <td>{{ item.ipaccess }}</td>
                                 <td>{{ item.quotasize }}</td>
-                                <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="详细"><i class="fa fa-reorder fa-1x"></i></a></td>
-                                <td><a class="but_min" href="edit/{{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
+                                <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
                                 <td><a class="but_min" href="del/{{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
                                 <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
                             </tr>

@@ -5,9 +5,11 @@
 /*二级菜单*/
 .view_menu{float: left;width: 15%;height: 500px;border-right: 1px solid #aaaaaa;box-sizing: border-box;}
     .view_menu .limg{height:100px;}
-    .view_menu ul .semenuli{height: 35px;}
-        .view_menu ul .semenuli .semenua{width:100%;text-decoration:none;color:black;padding:3px 55px;line-height:40px;}
-        .view_menu ul .semenuli .semenua:hover{color:white;background: #7c7bad;}
+
+    /*二级菜单样式*/
+    .sub_menu li{height: 30px;}
+        .sub_menu li a{display: block;width:100%;text-decoration:none;color:black;padding-left:20px;line-height:30px;box-sizing:border-box;}
+        .sub_menu li a:hover{color:white;background: #7c7bad;}
 
 .view_form{float: right;width: 85%;}
     /*上部面板*/
