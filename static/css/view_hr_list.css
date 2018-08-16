@@ -51,7 +51,7 @@
     .form_view form table tr td input{width:100%;border:0px solid white;}
     .form_view form table tr td input:hover{border-bottom:2px solid #7c7bad;box-sizing: border-box;}
 
-    .footbar{height:80px;}
+    .footbar{}
 
 /*按键定义*/
 
