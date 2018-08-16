@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     path('pure_list/', views.view_pure_list),
+    path('pure_form/', views.pure_form),
 
     path('search/', views.search),
     path('search_form/', views.search_form),

@@ -66,9 +66,20 @@ def view_pure_list(request):
     context={}
     context['title']='pure list'
 
-    ps = pureftp.objects.all().order_by('user')
+    ps = pureftp.objects.all()
     context['context'] = ps
     return render(request, 'pure_list.html', context)
+
+def pure_form(request):
+    request.encoding='utf-8'
+    context={}
+    context['title']='pure list'
+
+    if int(request.GET['act']):
+        p = pureftp.objects.get(id=request.GET['act'])
+        context['context'] = p
+
+    return render(request, 'pure_form.html', context)
 
 def getToken(request):
     # list = pureftp.objects.all()

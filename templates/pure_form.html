@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="view_menu">
+        <div class="limg"></div>
+        <div class="sub_menu">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="sub_menu_foot"></div>
+    </div>
+    <div class="view_form">
+        <div class="header">
+            <h1>{{ title }}</h1>
+        </div>
+        <context>
+            <div class="formview">
+                <div class="cmd_nav">
+                    <ul class="but_cmd">
+                        <li><a href="/search">保存</a></li>
+                        <li><a href="/pure_list/">取消</a></li>
+                    </ul>
+                    <div class="flowlist"></div>
+                </div>
+                <div class="form_view">
+                    <form action="#" method="get" name="pure">
+                        <table>
+                            <tr>
+                                <td class="leb">status</td>
+                                <td class="val"><input type="checkbox" name="status" value="{{ context.status }}"></td>
+                                <td class="leb">user</td>
+                                <td class="val"><input type="text" name="user" value="{{ context.user }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">password</td>
+                                <td class="val"><input type="password" name="password" value="{{ context.password }}"></td>
+                                <td class="leb">uid</td>
+                                <td class="val"><input type="number" name="uid" value="{{ context.uid }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">gid</td>
+                                <td class="val"><input type="number" name="gid" value="{{ context.gid }}"></td>
+                                <td class="leb">dir</td>
+                                <td class="val"><input type="text" name="dir" value="{{ context.dir }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">ulbandwidth</td>
+                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.ulbandwidth }}"></td>
+                                <td class="leb">dlbandwidth</td>
+                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.dlbandwidth }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">ipaccess</td>
+                                <td class="val"><input type="text" name="ulbandwidth" value="{{ context.ipaccess }}"></td>
+                                <td class="leb">quotasize</td>
+                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.quotasize }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">comment</td>
+                                <td class="val"><input type="text" name="ulbandwidth" value="{{ context.comment }}"></td>
+                                <td class="leb">quotafiles</td>
+                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.quotafiles }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">createdate</td>
+                                <td class="val"><input type="date" name="ulbandwidth" value="{{ context.createdate }}"></td>
+                                <td class="leb">lastedate</td>
+                                <td class="val"><input type="date" name="ulbandwidth" value="{{ context.lastedate }}"></td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="form_foot"></div>
+            </div>
+        </context>
+        <div class="footbar"></div>
+    </div>
+{% endblock %}

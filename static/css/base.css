@@ -1,8 +1,12 @@
 @charset "utf-8";
 /* CSS Document */
+
 *{margin:0;padding:0;	font-family:"Microsoft Yahei";
 	/*font-size: 14px;*/
 }
+.clearfix:after{content:"";height:0;line-height:0;display:block;visibility:hidden;clear:both;}
+.clearfix{zoom:1;}
+
 header{
 	background: #222222;
 	height: 40px;
@@ -20,80 +24,17 @@ header .logo{
 	/*background-image:url(/static/img/logo.png);*/
 	margin: 2px 10px;
 	}
-header .logo a{
-	line-height: 40px;
-	}
+header .logo a{line-height: 40px;}
 	
-header nav{
-	text-decoration: none;
-	float: left;
-	}
+header nav{text-decoration: none;float: left;}
 		
-header nav li{
-	float: left;
-	/*padding: 0px 10px;*/
-	list-style: none;
-}
+.but_top_menu li{	float: left;list-style: none;}
+	.but_top_menu li a{color: lightgray;	text-decoration: none;text-size: 14px;line-height: 40px;padding: 8px 15px;box-sizing: border-box;}
+	.but_top_menu li a:hover{color: white;border-bottom: 4px solid deepskyblue;box-sizing: border-box;background: black;}
+	.but_top_menu li a:visited{border-bottom: 4px solid deepskyblue;box-sizing: border-box;background: black;}
 
-header nav li a{
-	color: darkgray;
-	text-decoration: none;
-	text-size: 14px;
-	line-height: 40px;
-	padding: 8px 15px;
-	box-sizing: border-box;
-}
-header nav li a:hover{
-	border-bottom: 4px solid deepskyblue;
-	box-sizing: border-box;
-	background: black;
-}
-header nav li a:visited{
-	border-bottom: 4px solid deepskyblue;
-	box-sizing: border-box;
-	background: black;
-}
 
-/*header nav li:hover{*/
-	/*border-bottom: 3px solid deepskyblue;*/
-	/*box-sizing: border-box;*/
-/*}*/
+header .userinfo{	float: right;}
 
-header nav li a:hover{
-	color: white;
-}
-
-header nav li a:checked{
-	color: red;
-	/*background: white;*/
-}
-
-header .userinfo{
-	float: right;
-}
-
-header .userinfo li{
-	float: right;
-	list-style: none;
-	padding: 0px 10px;
-}
-header .userinfo li a{
-	color: darkgray;
-	text-decoration: none;
-	text-size: 14px;
-	line-height: 40px;
-}
-header .userinfo li:hover{
-	border-bottom: 3px solid deepskyblue;
-	box-sizing: border-box;
-}
-
-header .userinfo li a:hover{
-	color: white;
-	/*background: white;*/
-}
-.pager{
-    margin-top: 36px;
-    width: 100%;
-}
+.pager{margin-top: 40px;width: 100%;}
 

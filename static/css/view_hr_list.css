@@ -2,6 +2,7 @@
 /* CSS Document */
 *{margin: 0px;padding: 0px;}
 
+/*二级菜单*/
 .view_menu{float: left;width: 15%;height: 500px;border-right: 1px solid #aaaaaa;box-sizing: border-box;}
     .view_menu .limg{height:100px;}
     .view_menu ul .semenuli{height: 35px;}
@@ -9,50 +10,54 @@
         .view_menu ul .semenuli .semenua:hover{color:white;background: #7c7bad;}
 
 .view_form{float: right;width: 85%;}
-    .header{height: 80px;}
+    /*上部面板*/
+    .header{height: 100px;}
 
-    .cmd_nav{height: 32px;border-top: 1px solid #a8a8a8;border-bottom: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);}
-        .cmd_nav .cmd ul{float:left;}
-            .cmd_nav .cmd li{float: left;margin-left: 10px;list-style-type: none;}
-                .cmd_nav .cmd li a{text-decoration: none;color: white;background: #7c7bad;line-height: 28px;padding: 4px 8px;border-radius: 3px;}
-                .cmd_nav .cmd li a:hover{background: #a6a5ec;}
+    .cmd_nav{height: 32px;background:linear-gradient(white,lightgrey); border-top: 1px solid #a8a8a8;border-bottom: 1px solid #cacaca;}
+
 
     context{padding: 0px;}
 
-    table{width: 100%;border-collapse: collapse;border: 0px solid black;
-        /*table-layout: auto;*/
-        /*margin: 0px auto;*/
+    /*表格样式*/
+    .table_view{width: 100%;border-collapse: collapse;border: 0px solid black;font-size:12px;}
+        .table_view caption {}
+        .table_view tr:nth-child(2n){background: #dddddd;}
+            .table_view th,.table_view td {padding: .3em 10px;border: 0px solid black;border-bottom: 1px solid lightgray;}
+                .table_view th {border-right: 1px solid lightgray;border-top: 1px solid gray;border-bottom: 2px solid lightgray;text-align: left;  }
+                .table_view td {color: rgb(76,76,76);}
+
+    /*bord样式*/
+    .bordform{float:left; width:260px;margin:5px;padding:5px;border:1px solid #7c7bad;border-radius: 4px;box-sizing: border-box;font-size:12px;}
+        .bordform:hover{background:#a6a5ec;}
+        .bordform img{float: left;height:48px;width:48px;}
+        .bordform span p{padding-left:53px}
+
+    /*form样式*/
+    .form_view{
+        margin: 20px auto;
+        width: 80%;
+        border: 1px solid lightgray;
+        border-radius: 5px;
+        box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);
+        padding: 20px;
+        font-size: 12px;
+        color: #222222;
     }
+    .form_view form table{width: 100%;border-collapse: collapse;border: 0px solid black;font-size:14px;}
+    .form_view form table tr .val{width:35%;padding:.3em .5em;}
+    .form_view form table tr .leb{width:15%;border-right:1px solid grey;font-weight: bold;padding:.3em .5em;}
+    .form_view form table tr td input{width:100%;border:0px solid white;}
+    .form_view form table tr td input:hover{border-bottom:2px solid #7c7bad;box-sizing: border-box;}
 
-caption {
-    /*font-size: larger;*/
-    /*margin: 1em auto;*/
-}
+    .footbar{height:80px;}
 
-th,td {
-    padding: .3em 10px;
-    border: 0px solid black;
-    border-bottom: 1px solid lightgray;
-}
+/*按键定义*/
 
-th {
-    /*background: #555 nonerepeat scroll 0 0;*/
-    border-right: 1px solid lightgray;
-    border-top: 1px solid gray;
-    border-bottom: 2px solid lightgray;
-    text-align: left;
-}
-
-td {
-    color: rgb(76,76,76);
-}
-
-.footbar{height:80px;}
-
-.bordform{float:left; width:260px;margin:5px;padding:5px;border:1px solid #7c7bad;border-radius: 4px;box-sizing: border-box;}
-    .bordform img{float: left;height:48px;width:48px;}
-    .bordform span p{padding-left:53px}
-.bordform:hover{background:#a6a5ec;}
-
+/*图标按键样式*/
 .but_min{font-size:14px;text-decoration: none;color: #aaaaaa;}
-.but_min:hover{color: black;}
+    .but_min:hover{color: black;}
+
+.but_cmd {float:left;}
+    .but_cmd li{float: left;margin-left: 10px;list-style-type: none;}
+    .but_cmd li a{text-decoration: none;color: white;background: #7c7bad;line-height: 32px;padding: 4px 8px;border-radius: 3px;font-size:12px;}
+    .but_cmd li a:hover{background: #a6a5ec;}
