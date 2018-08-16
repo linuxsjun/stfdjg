@@ -40,7 +40,6 @@ def search_form(request):
 def config(request):
     context={}
     context['title']='设置'
-    context['message']='dddddddddddddddddd'
 
     p = base_conf.objects.get(id=1)
     context['context'] = p
@@ -76,7 +75,7 @@ def view_pure_list(request):
 def pure_form(request):
     request.encoding='utf-8'
     context={}
-    context['title']='pure list'
+    context['title']='pure form'
 
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
