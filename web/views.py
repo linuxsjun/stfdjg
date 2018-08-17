@@ -83,6 +83,30 @@ def pure_form(request):
 
     return render(request, 'pure_form.html', context)
 
+def pure_add(request):
+    request.encoding = 'utf-8'
+    k='no'
+    if request.method == "POST":
+        k = request.POST["num"]
+        c = request.POST.copy()
+        print(len(request.POST))
+        # print(type(request.POST)
+        # message={}
+        # if 'user' in request.GET:
+        #     test = pureftp(createdate='2019-9-9',
+        #                    lastedate='2018-9-8',
+        #                    user=request.GET['user'],
+        #                    password=request.GET['password'])
+        #     # test = pureftp(password=request.GET['password'])
+        #     test.save()
+        #     print("%s -> %s"%(test.user,test.password))
+        #     message['message'] = 'Null->' + test.password + ' ok'
+        # else:
+        #     message['message']= 'Null'
+        #
+        # # return render(request, 'search.html',message)
+    return HttpResponse(k)
+
 def getToken(request):
     # list = pureftp.objects.all()
     # d = base_conf.objects.all().first()

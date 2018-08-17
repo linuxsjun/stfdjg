@@ -25,6 +25,7 @@ urlpatterns = [
 
     path('pure_list/', views.view_pure_list),
     path('pure_form/', views.pure_form),
+    path('pure_add/', views.pure_add),
 
     path('search/', views.search),
     path('search_form/', views.search_form),
