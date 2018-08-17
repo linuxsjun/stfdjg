@@ -31,11 +31,19 @@
                     <div class="flowlist"></div>
                 </div>
                 <div class="form_view">
-                    <form action="#" method="get" name="pure">
+                    <button type="submit" form="cccc">chlick me!</button>
+                    <form action="/pure_add/" method="post" id="cccc" name="pure">
+                        {% csrf_token %}
                         <table>
                             <tr>
                                 <td class="leb">status</td>
-                                <td class="val"><input type="checkbox" name="status" value="{{ context.status }}"></td>
+                                <td class="val">
+                                    {% if context.status %}
+                                    <input type="checkbox" name="status" value="true" checked="">
+                                    {% else %}
+                                    <input type="checkbox" name="status" value="false">
+                                    {% endif %}
+                                </td>
                                 <td class="leb">user</td>
                                 <td class="val"><input type="text" name="user" value="{{ context.user }}"></td>
                             </tr>
@@ -55,25 +63,25 @@
                                 <td class="leb">ulbandwidth</td>
                                 <td class="val"><input type="number" name="ulbandwidth" value="{{ context.ulbandwidth }}"></td>
                                 <td class="leb">dlbandwidth</td>
-                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.dlbandwidth }}"></td>
+                                <td class="val"><input type="number" name="dlbandwidth" value="{{ context.dlbandwidth }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">ipaccess</td>
-                                <td class="val"><input type="text" name="ulbandwidth" value="{{ context.ipaccess }}"></td>
+                                <td class="val"><input type="text" name="ipaccess" value="{{ context.ipaccess }}"></td>
                                 <td class="leb">quotasize</td>
-                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.quotasize }}"></td>
+                                <td class="val"><input type="number" name="quotasize" value="{{ context.quotasize }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">comment</td>
-                                <td class="val"><input type="text" name="ulbandwidth" value="{{ context.comment }}"></td>
+                                <td class="val"><input type="text" name="comment" value="{{ context.comment }}"></td>
                                 <td class="leb">quotafiles</td>
-                                <td class="val"><input type="number" name="ulbandwidth" value="{{ context.quotafiles }}"></td>
+                                <td class="val"><input type="number" name="quotafiles" value="{{ context.quotafiles }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">createdate</td>
-                                <td class="val"><input type="date" name="ulbandwidth" value="{{ context.createdate }}"></td>
+                                <td class="val"><input type="date" name="createdate" value="{{ context.createdate }}"></td>
                                 <td class="leb">lastedate</td>
-                                <td class="val"><input type="date" name="ulbandwidth" value="{{ context.lastedate }}"></td>
+                                <td class="val"><input type="date" name="lastedate" value="{{ context.lastedate }}"></td>
                             </tr>
                         </table>
                     </form>

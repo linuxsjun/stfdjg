@@ -87,10 +87,10 @@ def pure_add(request):
     request.encoding = 'utf-8'
     k='no'
     if request.method == "POST":
-        k = request.POST["num"]
+        k = request.POST["user"]
         c = request.POST.copy()
-        print(len(request.POST))
-        # print(type(request.POST)
+        print(len(c))
+        print(request.POST)
         # message={}
         # if 'user' in request.GET:
         #     test = pureftp(createdate='2019-9-9',
