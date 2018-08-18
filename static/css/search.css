@@ -2,6 +2,32 @@
 /* CSS Document */
 
 .pager{
-    background: lightgray;
-    height: 600px;
+}
+
+.appbox{
+	float:left;
+	border:1px solid #aaaaaa;
+	border-radius: 5px;
+	margin: 30px;
+}
+.appbox a{
+	display: block;
+	box-sizing: border-box;
+	height:410px;
+	width:260px;
+	box-shadow: 0 3px 6px 0 rgba(0,0,0,.5);
+	text-decoration: none;
+	padding:90px;
+}
+.appbox a:hover{
+	background: #dddddd;
+}
+.appbox a p {
+	margin: 0px auto;
+	width: 100%;
+	padding:30px auto;
+}
+.appbox a .appleb{
+	marging-top: 60px;
+	background: red;
 }

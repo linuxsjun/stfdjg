@@ -15,6 +15,10 @@
     /*上部面板*/
     .header{height: 100px;}
 
+    .pl_title{
+        padding:.5em 10px;
+    }
+
     .cmd_nav{height: 32px;background:linear-gradient(white,lightgrey); border-top: 1px solid #a8a8a8;border-bottom: 1px solid #cacaca;}
 
 

@@ -90,3 +90,24 @@ class hr_Test(models.Model):
     # r = requests.get(sendurl)
     #
     # print(r.content)
+#
+#     < form
+#     action = "/upload/"
+#     method = "post"
+#     enctype = "multipart/form-data" >
+#     { % csrf_token %}
+#     < input
+#     type = "file"
+#     name = "file" / >
+#     < input
+#     type = "submit"
+#     value = "upload" / >
+#
+# < / form >
+
+#                <form action="#" method="post" name="iii">
+#                     {% csrf_token %}
+#                     <input type="text" name="fname"/>
+#                     <input type="number" name="num"/>
+#                     <button type="submit" value="1" ><i class="fa fa-subway fa-1x"></i></button>
+#                 </form>

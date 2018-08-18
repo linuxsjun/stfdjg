@@ -26,7 +26,7 @@
         <ul class="but_top_menu">
             <li><a href="/hr/">员工</a></li>
             <li><a href="/pure_list/">设备</a></li>
-            <li><a href="/">服务</a></li>
+            <li><a href="/search/">服务</a></li>
             <li><a href="/conf/">设置</a></li>
         </ul>
 		<div class="userinfo">
@@ -37,37 +37,9 @@
 		</div>
    </header>
 
-   <div class="pager">
+   <div class="pager clearfix">
         {% block mainbody %}
-        <div class="appbox">
-            <a href="#">
-                <p class="applogo"><i class="fa fa-share-alt fa-5x"></i></p>
-                <p>FTP</p>
-            </a>
-        </div>
-        <div class="appbox">
-            <a href="#">
-                <p class="applogo"><i class="fa fa-exchange fa-5x"></i></p>
-                <form action="/upload/" method="post"  enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="file" name="file"/>
-                    <input type="submit" value="upload"/>
-                </form>
-            </a>
-        </div>
-        <div class="appbox">
-            <a href="#">
-                <form action="#" method="post" name="iii">
-                    {% csrf_token %}
-                    <input type="text" name="fname"/>
-                    <input type="number" name="num"/>
-                    <button type="submit" value="1" ><i class="fa fa-subway fa-1x"></i></button>
-                </form>
-            </a>
-        </div>
-
-        <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
-
+        <p> logo</p>
         {% endblock %}
    </div>
 </body>

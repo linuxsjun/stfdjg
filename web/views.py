@@ -16,7 +16,7 @@ def index(request):
 
 def dep_view(request):
     context={}
-    context['title']='dep 页面'
+    context['title']='部门'
 
     ps = hr_department.objects.all().order_by('pid')
     context['context']= ps
@@ -25,7 +25,7 @@ def dep_view(request):
 
 def hr_view(request):
     context={}
-    context['title']='h 页面'
+    context['title']='人员'
 
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
@@ -46,23 +46,9 @@ def config(request):
     return render(request, 'base_conf.html', context)
 
 def search(request):
-    request.encoding='utf-8'
-    message={}
-
-    if 'user' in request.GET:
-        test = pureftp(createdate='2019-9-9',
-                       lastedate='2018-9-8',
-                       user=request.GET['user'],
-                       password=request.GET['password'])
-        # test = pureftp(password=request.GET['password'])
-        test.save()
-        print("%s -> %s"%(test.user,test.password))
-        message['message'] = 'Null->' + test.password + ' ok'
-    else:
-        message['message']= 'Null'
-
-    # return render(request, 'search.html',message)
-    return redirect('/pure_list/')
+    context={}
+    context['title']='pure list'
+    return render(request, 'search.html',context)
 
 def view_pure_list(request):
     context={}
@@ -75,7 +61,7 @@ def view_pure_list(request):
 def pure_form(request):
     request.encoding='utf-8'
     context={}
-    context['title']='pure form'
+    context['title']='表单'
 
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
