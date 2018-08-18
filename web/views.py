@@ -22,8 +22,16 @@ def index(request):
     return render(request, 'base.html', context)
 
 def dep_view(request):
+
     context={}
     context['title']='部门'
+
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
 
     ps = hr_department.objects.all().order_by('pid')
     context['context']= ps
@@ -34,6 +42,13 @@ def hr_view(request):
     context={}
     context['title']='人员'
 
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
     # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
@@ -43,6 +58,7 @@ def hr_view(request):
 
 def search_form(request):
     context={}
+    context['userinfo'] = '用户'
     request.encoding = 'utf-8'
     if request.method == "POST":
         if request.POST["user"]:
@@ -59,6 +75,13 @@ def config(request):
     context={}
     context['title']='设置'
 
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+
     p = base_conf.objects.get(id=1)
     context['context'] = p
     return render(request, 'base_conf.html', context)
@@ -66,13 +89,26 @@ def config(request):
 def search(request):
     context={}
     context['title']='pure list'
-    username = request.COOKIES.get('username','')
-    context['title'] = username
+
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+
     return render(request, 'search.html',context)
 
 def view_pure_list(request):
     context={}
     context['title']='pure list'
+
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
 
     ps = pureftp.objects.all()
     context['context'] = ps
@@ -82,6 +118,13 @@ def pure_form(request):
     request.encoding='utf-8'
     context={}
     context['title']='表单'
+
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
 
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
