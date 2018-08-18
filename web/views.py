@@ -81,31 +81,35 @@ def pure_form(request):
         p = pureftp.objects.get(id=request.GET['act'])
         context['context'] = p
 
+    context['act'] = request.GET['act']
+    print(context)
     return render(request, 'pure_form.html', context)
 
 def pure_add(request):
     request.encoding = 'utf-8'
-    k='no'
+    print(request.POST)
     if request.method == "POST":
-        k = request.POST["user"]
-        c = request.POST.copy()
-        print(len(c))
-        print(request.POST)
-        # message={}
-        # if 'user' in request.GET:
-        #     test = pureftp(createdate='2019-9-9',
-        #                    lastedate='2018-9-8',
-        #                    user=request.GET['user'],
-        #                    password=request.GET['password'])
-        #     # test = pureftp(password=request.GET['password'])
-        #     test.save()
-        #     print("%s -> %s"%(test.user,test.password))
-        #     message['message'] = 'Null->' + test.password + ' ok'
-        # else:
-        #     message['message']= 'Null'
-        #
-        # # return render(request, 'search.html',message)
-    return HttpResponse(k)
+        if int(request.POST["acte"]):
+            #change
+            return redirect('/pure_list/')
+        else:
+            addnew = pureftp(
+                status = 1,
+                user = str(request.POST['user']),
+                password = str(request.POST['password']),
+                ipaccess = str(request.POST['ipaccess']),
+                dir = str(request.POST['dir']),
+                uid = str(request.POST['uid']),
+                gid = str(request.POST['gid']),
+                ulbandwidth = str(request.POST['ulbandwidth']),
+                dlbandwidth = str(request.POST['dlbandwidth']),
+                quotasize = str(request.POST['quotasize']),
+                quotafiles = str(request.POST['quotafiles']),
+                createdate = str(request.POST['createdate']),
+                lastedate = str(request.POST['lastedate']),
+                comment = str(request.POST['comment']))
+            addnew.save()
+            return redirect('/pure_list/')
 
 def getToken(request):
     # list = pureftp.objects.all()

@@ -21,16 +21,14 @@
             </script>
 </head>
 <body>
-   <header>
-   		<div class="logo"><a href="/"></a></div>
-		<nav>
-            <ul class="but_top_menu">
-                <li><a href="/hr/">员工</a></li>
-                <li><a href="/pure_list/">设备</a></li>
-                <li><a href="/search_form/">服务</a></li>
-                <li><a href="/conf/">设置</a></li>
-            </ul>
-		</nav>
+   <header class="clearfix">
+   		<a class="logo" href="/"><i class="fa fa-windows fa-2x"></i></a>
+        <ul class="but_top_menu">
+            <li><a href="/hr/">员工</a></li>
+            <li><a href="/pure_list/">设备</a></li>
+            <li><a href="/search_form/">服务</a></li>
+            <li><a href="/conf/">设置</a></li>
+        </ul>
 		<div class="userinfo">
             <ul class="but_top_menu">
                 <li><a href="/">help<i class="fa fa-book fa-1x"></i></a></li>
@@ -41,22 +39,27 @@
 
    <div class="pager">
         {% block mainbody %}
-        <p>这是主页</p>
-            <form action="/upload/" method="post"  enctype="multipart/form-data">
-                {% csrf_token %}
-                <input type="file" name="file"/>
-                <input type="submit" value="upload"/>
-            </form>
+        <div class="appbox">
+            <a>
+                <img src="/static/img/ftp-icon.jpg" height="32px" width="32" alt="">
+                <p>FTP</p>
+            </a>
+        </div>
+        <form class="appbox" action="/upload/" method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="file"/>
+            <input type="submit" value="upload"/>
+        </form>
 
-            <form action="/pure_add/" method="post" name="iii">
-                {% csrf_token %}
-                <input type="text" name="fname"/>
-                <input type="number" name="num"/>
-                <button type="submit" value="1" ><i class="fa fa-subway fa-1x"></i></button>
-            </form>
+        <form class="appbox" action="/pure_add/" method="post" name="iii">
+            {% csrf_token %}
+            <input type="text" name="fname"/>
+            <input type="number" name="num"/>
+            <button type="submit" value="1" ><i class="fa fa-subway fa-1x"></i></button>
+        </form>
 
 
-            <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
+        <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
 
         {% endblock %}
    </div>

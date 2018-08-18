@@ -28,7 +28,7 @@ header .logo{
 
 .but_top_menu li{float: left;list-style: none;}
 	.but_top_menu li a{color: lightgray;text-decoration: none;text-size: 12px;line-height: 40px;padding: 0px 15px;display: block;box-sizing: border-box;height: 40px;}
-	.but_top_menu li a:hover{color: white;border-bottom: 3px solid #6699cc;box-sizing: border-box;background: black;}
+	.but_top_menu li a:hover{color: white;border-bottom: 3px solid #cccc00;box-sizing: border-box;background: black;}
 	.but_top_menu li a i{margin: 0px 5px;}
 
 

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+                <meta charset="utf-8">
+                <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                <title>dell - Odoo</title>
+                <link type="image/x-icon" rel="shortcut icon" href="http://192.168.8.50:8069/web/static/src/img/favicon.ico">
+
+                <script type="text/javascript">
+                    var odoo = {
+                        csrf_token: "9b9568380fec1eb8d7ca4c7d99a5f633d45c0017o",
+                    };
+                </script>
+
+                
+                <script type="text/javascript">
+                    odoo.session_info = {"username": "admin", "currencies": {"1": {"digits": [69, 2], "position": "after", "symbol": "\u20ac"}, "3": {"digits": [69, 2], "position": "before", "symbol": "$"}}, "uid": 1, "db": "odoo10_db", "is_admin": true, "server_version_info": [10, 0, 0, "final", 0, ""], "server_version": "10.0", "user_context": {"lang": "zh_CN", "tz": "Asia/Shanghai", "uid": 1}, "web.base.url": "http://192.168.8.50:8069", "name": "Administrator", "partner_id": 3, "web_tours": ["mail_tour", "rte", "rte_inline"], "company_id": 1, "session_id": "5a17bc529952067079a9c98f69b26a68db19048b", "is_superuser": true, "user_companies": false};
+                </script>
+
+                
+            <link href="dell%20-%20Odoo_files/web_003.css" rel="stylesheet">
+                
+            <link href="dell%20-%20Odoo_files/web.css" rel="stylesheet">
+            <link href="dell%20-%20Odoo_files/web_002.css" rel="stylesheet">
+                
+            <link href="dell%20-%20Odoo_files/web_editor.css" rel="stylesheet">
+        
+            <link href="dell%20-%20Odoo_files/web_editor_002.css" rel="stylesheet">
+    
+            <script type="text/javascript" src="dell%20-%20Odoo_files/web.js"></script>
+                
+            <script type="text/javascript" src="dell%20-%20Odoo_files/web_002.js"></script>
+
+                
+                    <!--[if lt IE 10]>
+                        <body class="ie9">
+                    <![endif]-->
+                
+
+                
+            <script type="text/javascript" src="dell%20-%20Odoo_files/web_editor.js"></script>
+        
+            <script type="text/javascript" src="dell%20-%20Odoo_files/web_editor_002.js"></script>
+    
+        <script type="text/javascript">
+            odoo.define('web.web_client', function (require) {
+                var WebClient = require('web.WebClient');
+                var web_client = new WebClient();
+                $(function() {
+                    web_client.setElement($(document.body));
+                    web_client.start();
+                });
+                return web_client;
+            });
+        </script>
+    
+            
+            <script type="text/javascript" src="dell%20-%20Odoo_files/zh_CN"></script></head>
+            <body class="o_web_client">
+                
+            
+            
+            
+
+            <nav id="oe_main_menu_navbar" class="navbar navbar-inverse">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    
+        <ul class="nav navbar-nav navbar-left oe_application_menu_placeholder" style="">
+            <li style="display: block;" class="">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=85&amp;action=97" class="oe_menu_leaf" data-menu="85" data-action-model="ir.actions.client" data-action-id="97">
+            <span class="oe_menu_text">
+                讨论
+            </span>
+        </a>
+    
+            </li><li style="display: block;">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=112&amp;action=150" class="oe_menu_leaf" data-menu="112" data-action-model="ir.actions.act_window" data-action-id="150">
+            <span class="oe_menu_text">
+                日历
+            </span>
+        </a>
+    
+            </li><li style="display: block;">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=132&amp;action=" class="oe_menu_toggler" data-menu="132">
+            <span class="oe_menu_text">
+                工资表
+            </span>
+        </a>
+    
+            </li><li style="display: block;" class="">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=89&amp;action=" class="oe_menu_toggler" data-menu="89">
+            <span class="oe_menu_text">
+                员工
+            </span>
+        </a>
+    
+            </li><li style="display: block;" class="active">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=104&amp;action=" class="oe_menu_toggler" data-menu="104">
+            <span class="oe_menu_text">
+                资产
+            </span>
+        </a>
+    
+            </li><li style="display: block;">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=118&amp;action=" class="oe_menu_toggler" data-menu="118">
+            <span class="oe_menu_text">
+                休假
+            </span>
+        </a>
+    
+            </li><li style="display: block;">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=5&amp;action=" class="oe_menu_toggler" data-menu="5">
+            <span class="oe_menu_text">
+                应用
+            </span>
+        </a>
+    
+            </li><li style="display: block;">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=4&amp;action=" class="oe_menu_toggler" data-menu="4">
+            <span class="oe_menu_text">
+                设置
+            </span>
+        </a>
+    
+            </li>
+            <li id="menu_more_container" class="dropdown" style="display: none;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多<b class="caret"></b></a>
+                <ul id="menu_more" class="dropdown-menu"></ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right oe_user_menu_placeholder" style=""><li class="o_user_menu">
+        <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#">
+            <img class="img-circle oe_topbar_avatar" src="dell%20-%20Odoo_files/image.jpg">
+            <span class="oe_topbar_name">Administrator</span> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            <li><a data-menu="documentation" href="#">文档</a></li>
+            <li><a data-menu="support" href="#">支持</a></li>
+            <li class="divider"></li>
+            <li><a data-menu="settings" href="#">首选项</a></li>
+            <li><a data-menu="account" href="#">Odoo.com帐户</a></li>
+            <li><a data-menu="logout" href="#">注销</a></li>
+        </ul>
+    </li></ul>
+        <ul class="nav navbar-nav navbar-right oe_systray" style=""><li class="o_planner_systray hidden-xs" style="display: none;">
+            <div class="progress" data-original-title="" title=""><div class="progress-bar"></div></div>
+        </li><li class="o_mail_navbar_item">
+            <a href="#" title="收件箱">
+                <i class="fa fa-at"></i> <span class="o_notification_counter">10</span>
+            </a>
+        </li><li class="o_mail_navbar_item o_no_notification">
+            <a aria-expanded="false" class="dropdown-toggle" data-toggle="dropdown" href="#" title="对话">
+                <i class="fa fa-comments"></i> <span class="o_notification_counter">0</span>
+            </a>
+            <ul class="o_mail_navbar_dropdown dropdown-menu" role="menu">
+                <li class="o_mail_navbar_dropdown_top">
+                    <div>
+                        <button class="btn btn-sm o_filter_button o_selected" type="button"> 全部 </button>
+                        <button class="btn btn-sm o_filter_button" data-filter="chat" type="button"> 聊天 </button>
+                        <button class="btn btn-sm o_filter_button" data-filter="channels" type="button"> 频道 </button>
+                    </div>
+                    <button class="btn btn-sm o_new_message" type="button"> 新建消息 </button>
+                </li>
+                <li class="o_mail_navbar_dropdown_channels"></li>
+            </ul>
+        </li></ul>
+    
+                </div>
+            </nav>
+            <div class="o_main">
+                <div class="o_sub_menu">
+                    
+        <a class="o_sub_menu_logo" href="http://192.168.8.50:8069/web">
+            <span class="oe_logo_edit oe_logo_edit_admin">编辑公司数据</span>
+            <img src="dell%20-%20Odoo_files/company_logo.png">
+        </a>
+        <div class="o_sub_menu_content">
+            
+                <div style="display: none;" class="oe_secondary_menu" data-menu-parent="85">
+                    
+                </div>
+            
+                <div style="display: none" class="oe_secondary_menu" data-menu-parent="112">
+                    
+                </div>
+            
+                <div style="display: none" class="oe_secondary_menu" data-menu-parent="132">
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=136&amp;action=192" class="oe_menu_leaf" data-menu="136" data-action-model="ir.actions.act_window" data-action-id="192">
+            <span class="oe_menu_text">
+                员工工资单
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=141&amp;action=199" class="oe_menu_leaf" data-menu="141" data-action-model="ir.actions.act_window" data-action-id="199">
+            <span class="oe_menu_text">
+                工资单批处理
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            配置
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=134&amp;action=189" class="oe_menu_leaf" data-menu="134" data-action-model="ir.actions.act_window" data-action-id="189">
+            <span class="oe_menu_text">
+                薪资结构
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=135&amp;action=190" class="oe_menu_leaf" data-menu="135" data-action-model="ir.actions.act_window" data-action-id="190">
+            <span class="oe_menu_text">
+                薪资结构层级
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=140&amp;action=197" class="oe_menu_leaf" data-menu="140" data-action-model="ir.actions.act_window" data-action-id="197">
+            <span class="oe_menu_text">
+                薪资规则
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=139&amp;action=196" class="oe_menu_leaf" data-menu="139" data-action-model="ir.actions.act_window" data-action-id="196">
+            <span class="oe_menu_text">
+                缴纳登记册
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                </div>
+            
+                <div style="display: none;" class="oe_secondary_menu" data-menu-parent="89">
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=93&amp;action=106" class="oe_menu_leaf" data-menu="93" data-action-model="ir.actions.act_window" data-action-id="106">
+            <span class="oe_menu_text">
+                员工
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=117&amp;action=155" class="oe_menu_leaf" data-menu="117" data-action-model="ir.actions.act_window" data-action-id="155">
+            <span class="oe_menu_text">
+                合约
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=95&amp;action=111" class="oe_menu_leaf" data-menu="95" data-action-model="ir.actions.act_window" data-action-id="111">
+            <span class="oe_menu_text">
+                部门
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                </div>
+            
+                <div style="display: block;" class="oe_secondary_menu" data-menu-parent="104">
+                    
+                        <div class="oe_secondary_menu_section">
+                            资产
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li class="active">
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=106&amp;action=124" class="oe_menu_leaf" data-menu="106" data-action-model="ir.actions.act_window" data-action-id="124">
+            <span class="oe_menu_text">
+                资产
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=107&amp;action=123" class="oe_menu_leaf" data-menu="107" data-action-model="ir.actions.act_window" data-action-id="123">
+            <span class="oe_menu_text">
+                配件
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            设置
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=109&amp;action=125" class="oe_menu_leaf" data-menu="109" data-action-model="ir.actions.act_window" data-action-id="125">
+            <span class="oe_menu_text">
+                类别
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                </div>
+            
+                <div style="display: none" class="oe_secondary_menu" data-menu-parent="118">
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=119&amp;action=165" class="oe_menu_leaf" data-menu="119" data-action-model="ir.actions.act_window" data-action-id="165">
+            <span class="oe_menu_text">
+                仪表板
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            我的休假
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=125&amp;action=170" class="oe_menu_leaf" data-menu="125" data-action-model="ir.actions.act_window" data-action-id="170">
+            <span class="oe_menu_text">
+                休假摘要
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=123&amp;action=166" class="oe_menu_leaf" data-menu="123" data-action-model="ir.actions.act_window" data-action-id="166">
+            <span class="oe_menu_text">
+                休假申请
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=124&amp;action=168" class="oe_menu_leaf" data-menu="124" data-action-model="ir.actions.act_window" data-action-id="168">
+            <span class="oe_menu_text">
+                分配申请
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            待批准休假
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=126&amp;action=172" class="oe_menu_leaf" data-menu="126" data-action-model="ir.actions.act_window" data-action-id="172">
+            <span class="oe_menu_text">
+                休假
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=127&amp;action=173" class="oe_menu_leaf" data-menu="127" data-action-model="ir.actions.act_window" data-action-id="173">
+            <span class="oe_menu_text">
+                休假分配
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            报告
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=128&amp;action=171" class="oe_menu_leaf" data-menu="128" data-action-model="ir.actions.act_window" data-action-id="171">
+            <span class="oe_menu_text">
+                休假详细描述
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=131&amp;action=187" class="oe_menu_leaf" data-menu="131" data-action-model="ir.actions.act_window" data-action-id="187">
+            <span class="oe_menu_text">
+                休假
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=130&amp;action=184" class="oe_menu_leaf" data-menu="130" data-action-model="ir.actions.act_window" data-action-id="184">
+            <span class="oe_menu_text">
+                休假按部门
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=129&amp;action=174" class="oe_menu_leaf" data-menu="129" data-action-model="ir.actions.act_window" data-action-id="174">
+            <span class="oe_menu_text">
+                配置
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                </div>
+            
+                <div style="display: none" class="oe_secondary_menu" data-menu-parent="5">
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=52&amp;action=37" class="oe_menu_leaf" data-menu="52" data-action-model="ir.actions.act_window" data-action-id="37">
+            <span class="oe_menu_text">
+                应用
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=54&amp;action=39" class="oe_menu_leaf" data-menu="54" data-action-model="ir.actions.client" data-action-id="39">
+            <span class="oe_menu_text">
+                更新
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                </div>
+            
+                <div style="display: none" class="oe_secondary_menu" data-menu-parent="4">
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=69&amp;action=76" class="oe_menu_leaf" data-menu="69" data-action-model="ir.actions.client" data-action-id="76">
+            <span class="oe_menu_text">
+                仪表板
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            用户
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=65&amp;action=71" class="oe_menu_leaf" data-menu="65" data-action-model="ir.actions.act_window" data-action-id="71">
+            <span class="oe_menu_text">
+                用户
+            </span>
+        </a>
+    
+                
+        
+    
+            </li><li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=61&amp;action=51" class="oe_menu_leaf" data-menu="61" data-action-model="ir.actions.act_window" data-action-id="51">
+            <span class="oe_menu_text">
+                公司
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            
+                            
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=70&amp;action=77" class="oe_menu_leaf" data-menu="70" data-action-model="ir.actions.act_window" data-action-id="77">
+            <span class="oe_menu_text">
+                通用设置
+            </span>
+        </a>
+    
+                        </div>
+                        
+        
+    
+                    
+                        <div class="oe_secondary_menu_section">
+                            翻译
+                            
+                        </div>
+                        
+        <ul class="oe_secondary_submenu nav nav-pills nav-stacked">
+            <li>
+                
+        
+        <a href="http://192.168.8.50:8069/web#menu_id=56&amp;action=42" class="oe_menu_leaf" data-menu="56" data-action-model="ir.actions.act_window" data-action-id="42">
+            <span class="oe_menu_text">
+                加载翻译
+            </span>
+        </a>
+    
+                
+        
+    
+            </li>
+        </ul>
+    
+                    
+                </div>
+            
+        </div>
+        <div class="o_sub_menu_footer">
+            技术支持 <a href="http://www.odoo.com/" target="_blank"><span>Odoo</span></a>
+        </div>
+    
+                </div>
+                <div class="o_main_content"><div class="o_control_panel o_breadcrumb_full">
+        <ol class="breadcrumb"><li><a>资产</a></li><li class="active">dell</li></ol>
+        <div class="o_cp_searchview" style="display: none;"><div class="o_searchview o_hidden">
+    <span class="o_searchview_more fa fa-search-plus" title="高级搜索..."></span>
+<ul class="dropdown-menu o_searchview_autocomplete" role="menu" style="display: none;"></ul><input class="o_searchview_input" placeholder="搜索..." type="text"></div></div>
+        <div class="o_cp_left">
+            <div class="o_cp_buttons"><div>
+    <div class="o_form_buttons_view" style="display: block;">
+        <button accesskey="a" class="btn btn-primary btn-sm o_form_button_edit" type="button">
+            编辑
+        </button>
+        <button accesskey="c" class="btn btn-default btn-sm o_form_button_create" type="button">
+            创建
+        </button>
+    </div>
+    <div class="o_form_buttons_edit" style="display: none;">
+        <button accesskey="s" class="btn btn-primary btn-sm o_form_button_save" type="button">
+            保存
+        </button>
+        <button accesskey="j" class="btn btn-default btn-sm o_form_button_cancel" type="button">
+            丢弃
+        </button>
+    </div>
+</div></div>
+            <div class="o_cp_sidebar"><div class="btn-group">
+    
+        <div class="btn-group o_dropdown" style="display: none;">
+            <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                
+                打印 <span class="caret"></span>
+            </button>
+            
+            <ul class="dropdown-menu" role="menu">
+                
+                
+            </ul>
+        </div>
+    
+        <div class="btn-group o_dropdown">
+            <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+                
+                动作 <span class="caret"></span>
+            </button>
+            
+            <ul class="dropdown-menu" role="menu">
+                <li>
+                    
+                    <a data-index="0" data-section="other">
+                        刪除
+                        
+                    </a>
+                </li><li>
+                    
+                    <a data-index="1" data-section="other">
+                        复制
+                        
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    
+</div></div>
+        </div>
+        <div class="o_cp_right">
+            <div class="btn-group o_search_options" style="display: none;"><div class="btn-group o_dropdown">
+    <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-filter"></span> 筛选 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu o_filters_menu" role="menu">
+        <li data-index="0">
+        <a href="#">闲置</a>
+    </li><li class="divider"></li><li data-index="0">
+        <a href="#">已存档</a>
+    </li><li class="divider"></li><li class="o_add_filter o_closed_menu">
+            <a href="#">添加自定义筛选</a>
+        </li>
+        <li class="o_add_filter_menu">
+            <button class="btn btn-primary btn-sm o_apply_filter" type="button">应用</button>
+            <button class="btn btn-default btn-sm o_add_condition" type="button"><span class="fa fa-plus-circle"></span> 添加条件</button>
+        </li>
+    </ul>
+</div><div class="btn-group hidden-xs o_dropdown">
+    <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-bars"></span> 分组 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu o_group_by_menu" role="menu">
+        <li data-index="0">
+        <a href="#">Type</a>
+    </li><li data-index="1">
+        <a href="#">Status</a>
+    </li><li class="divider" style="display: list-item;"></li>
+        <li class="o_add_custom_group o_closed_menu">
+            <a href="#">添加自定义分组</a>
+        </li>
+    </ul>
+</div><div class="btn-group o_dropdown">
+    <button class="o_dropdown_toggler_btn btn btn-sm dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-star"></span> 收藏 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu o_favorites_menu" role="menu">
+        <li class="divider"></li>
+        <li class="o_save_search o_closed_menu">
+            <a href="#">保存当前搜索</a>
+        </li>
+        <li class="o_save_name">
+            <input value="资产" type="text">
+        </li>
+        <li class="o_save_name">
+            <span><div class="o_checkbox"><input type="checkbox"><span></span></div> 默认使用</span>
+        </li>
+        <li class="o_save_name">
+            <span><div class="o_checkbox"><input type="checkbox"><span></span></div> 与所有用户共享 </span><span class="fa fa-users"></span>
+        </li>
+        <li class="o_save_name">
+            <button class="btn btn-primary btn-sm" type="button">保存</button>
+        </li>
+    </ul>
+</div></div>
+            <div class="o_cp_pager"><div>
+    <span class="o_pager_value">1</span> / <span class="o_pager_limit">1</span>
+    <span class="btn-group btn-group-sm">
+        
+        
+            
+            
+        
+        <button class="fa fa-chevron-left btn btn-icon o_pager_previous" type="button" accesskey="p" disabled="disabled"></button>
+        <button class="fa fa-chevron-right btn btn-icon o_pager_next" type="button" accesskey="n" disabled="disabled"></button>
+    </span>
+</div></div>
+            <div class="btn-group btn-group-sm o_cp_switch_buttons"></div>
+        </div>
+    </div><div class="o_content"><div class="o_view_manager_content"><div class="o_form_view o_form_readonly">
+    <header><button type="button" class="btn btn-sm action_form_mp">
+        
+        <span>To Use</span>
+    </button><button type="button" class="btn btn-sm action_form_mp">
+        
+        <span>To Borrow</span>
+    </button><ul class="oe_form_field_status oe_form_status_clickable o_form_field">
+    
+        <li class="oe_active" data-id="idle">
+            <span class="label">Idle</span>
+            
+            <span class="arrow"><span></span></span>
+        </li>
+    
+        <li class="" data-id="used">
+            <span class="label">Used</span>
+            
+            <span class="arrow"><span></span></span>
+        </li>
+    
+        <li class="" data-id="borrow">
+            <span class="label">Borrow</span>
+            
+            <span class="arrow"><span></span></span>
+        </li>
+    
+        <li class="" data-id="repair">
+            <span class="label">Repair</span>
+            
+            <span class="arrow"><span></span></span>
+        </li>
+    
+        <li class="" data-id="scrap">
+            <span class="label">Scrap</span>
+            
+            <span class="arrow"><span></span></span>
+        </li>
+    
+    
+</ul></header><div class="o_form_sheet_bg">
+        <div class="o_form_sheet"><div class="oe_button_box" name="button_box"><button type="button" class="btn btn-sm oe_stat_button">
+        
+            
+            <div class="fa fa-fw fa-archive o_button_icon"></div>
+        
+        
+    <div class="o_stat_info o_form_field">
+    
+    
+        <span class="o_stat_text o_not_hover text-danger">已存档</span>
+        <span class="o_stat_text o_hover text-success">取消存档</span>
+    
+</div></button><button type="button" class="btn btn-sm oe_stat_button">
+        
+            
+            <div class="fa fa-fw fa-gears o_button_icon"></div>
+        
+        
+    <div class="o_stat_info o_form_field">
+    
+    
+        <span class="o_stat_text o_not_hover text-danger">已存档</span>
+        <span class="o_stat_text o_hover text-success">取消存档</span>
+    
+</div></button><button type="button" class="btn btn-sm oe_stat_button">
+        
+            
+            <div class="fa fa-fw fa-wrench o_button_icon"></div>
+        
+        
+    <div class="o_stat_info o_form_field">
+    
+    
+        <span class="o_stat_text o_not_hover text-danger">已存档</span>
+        <span class="o_stat_text o_hover text-success">取消存档</span>
+    
+</div></button><button type="button" class="btn btn-sm oe_stat_button">
+        
+            
+            <div class="fa fa-fw fa-wrench o_button_icon"></div>
+        
+        
+    <div class="o_stat_info o_form_field">
+    
+    
+        <span class="o_stat_text o_not_hover text-danger">已存档</span>
+        <span class="o_stat_text o_hover text-success">取消存档</span>
+    
+</div></button></div><div class="oe_title"><label for="o_field_input_6" class="o_form_label  oe_edit_only">
+        资产编号
+    </label><h1><span class="o_form_field o_form_required">TE-SP00001</span></h1></div><div class="o_group">
+    
+<table class="o_group o_inner_group o_group_col_6">
+    
+<tbody><tr><td colspan="1" class="o_td_label"><label for="o_field_input_7" class="o_form_label o_form_label_help" data-original-title="" title="">
+        名字
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field o_form_required">dell</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_8" class="o_form_label">
+        规格
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field">T3600</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_9" class="o_form_label">
+        模型
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field">T3600</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_10" class="o_form_label o_form_label_empty o_form_label_false">
+        类别
+    </label></td><td colspan="1" style="width: 100%;"><a class="o_form_uri o_form_field o_form_field_empty" href="#"></a></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_11" class="o_form_label">
+        有效
+    </label></td><td colspan="1" style="width: 100%;"><div class="o_checkbox o_form_field_boolean o_form_field">
+        <input id="o_field_input_11" name="active" disabled="disabled" checked="checked" type="checkbox">
+        <span></span>
+    </div></td></tr></tbody></table><table class="o_group o_inner_group o_group_col_6">
+    
+<tbody><tr><td colspan="1" class="o_td_label"><label for="o_field_input_12" class="o_form_label">
+        采购日期
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field_date o_form_field">2018年02月03日</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_13" class="o_form_label">
+        单价
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field o_form_field_number">12,500.00</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_14" class="o_form_label">
+        制造日期
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field_date o_form_field">2016年03月04日</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_15" class="o_form_label">
+        序列号
+    </label></td><td colspan="1" style="width: 100%;"><span class="o_form_field">NOW83JN</span></td></tr><tr><td colspan="1" class="o_td_label"><label for="o_field_input_16" class="o_form_label o_form_label_empty o_form_label_false">
+        员工
+    </label></td><td colspan="1" style="width: 100%;"><a class="o_form_uri o_form_field o_form_field_empty" href="#"></a></td></tr></tbody></table></div><div class="o_notebook">
+        <ul role="tablist" class="nav nav-tabs">
+            <li class="active">
+                <a data-toggle="tab" disable_anchor="true" role="tab" href="#notebook_page_17">
+                    配件
+                </a>
+            </li><li>
+                <a data-toggle="tab" disable_anchor="true" role="tab" href="#notebook_page_18">
+                    其它
+                </a>
+            </li>
+        </ul>
+        <div class="tab-content nav nav-tabs">
+            <div role="tabpanel" id="notebook_page_17" class="tab-pane  active">
+                <div class="o_horizontal_separator">
+        配件
+    </div><button type="button" class="btn btn-sm">
+        
+            
+            <div class="fa fa-fw fa-sign-in o_button_icon"></div>
+        
+        <span>Add Part</span>
+    </button><div class="o_form_field o_form_field_one2many o_view_manager_content"><div class="o_x2m_control_panel">
+        <div class="o_cp_buttons"></div>
+        <div class="o_cp_pager"><div class="o_hidden">
+    <span class="o_pager_value"></span> / <span class="o_pager_limit"></span>
+    <span class="btn-group btn-group-sm">
+        
+        
+        <button class="fa fa-chevron-left btn btn-icon o_pager_previous" type="button"></button>
+        <button class="fa fa-chevron-right btn btn-icon o_pager_next" type="button"></button>
+    </span>
+</div></div>
+    </div><div class="o_list_editable"><div class="o_form_view o_list_editable_form o_form_nosheet o_hidden">
+    <field name="type" modifiers="{}" nolabel="true"></field><field name="name" modifiers="{&quot;required&quot;:true}" nolabel="true"></field><field name="specifications" modifiers="{}" nolabel="true"></field><field name="sn" modifiers="{}" nolabel="true"></field><field name="wrranty" modifiers="{}" nolabel="true"></field><button name="split_remove_lot" string="Remove Part" type="button" icon="fa-sign-out " nolabel="true" modifiers="{&quot;invisible&quot;:true}" data-button-type="object"></button></div><div class="table-responsive">
+    <table class="o_list_view table table-condensed table-striped">
+        
+        <thead>
+            <tr>
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                    
+                
+                
+                
+                    <th data-id="type" class="o_column_sortable">
+                        类型
+                    </th>
+                
+                    <th data-id="name" class="o_column_sortable">
+                        名字
+                    </th>
+                
+                    <th data-id="specifications" class="o_column_sortable">
+                        规格
+                    </th>
+                
+                    <th data-id="sn" class="o_column_sortable">
+                        序列号
+                    </th>
+                
+                    <th data-id="wrranty" class="o_column_sortable">
+                        维保期
+                    </th>
+                
+                    <th data-id="split_remove_lot" class="">
+                        
+                    </th>
+                
+                
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                
+                <td>
+                </td><td>
+                </td><td>
+                </td><td>
+                </td><td>
+                </td><td>
+                </td>
+                
+            </tr>
+        </tfoot>
+    <tbody><tr><td title="类型">&nbsp;</td><td title="名字">&nbsp;</td><td title="规格">&nbsp;</td><td title="序列号">&nbsp;</td><td title="维保期">&nbsp;</td><td title="Remove Part">&nbsp;</td></tr><tr><td title="类型">&nbsp;</td><td title="名字">&nbsp;</td><td title="规格">&nbsp;</td><td title="序列号">&nbsp;</td><td title="维保期">&nbsp;</td><td title="Remove Part">&nbsp;</td></tr><tr><td title="类型">&nbsp;</td><td title="名字">&nbsp;</td><td title="规格">&nbsp;</td><td title="序列号">&nbsp;</td><td title="维保期">&nbsp;</td><td title="Remove Part">&nbsp;</td></tr><tr><td title="类型">&nbsp;</td><td title="名字">&nbsp;</td><td title="规格">&nbsp;</td><td title="序列号">&nbsp;</td><td title="维保期">&nbsp;</td><td title="Remove Part">&nbsp;</td></tr></tbody></table>
+</div></div></div>
+            </div><div role="tabpanel" id="notebook_page_18" class="tab-pane">
+                <table class="o_group o_inner_group">
+    
+        <tbody><tr><td colspan="2" style="width: 100%;">
+    <div class="o_horizontal_separator">
+        其它
+    </div>
+</td></tr>
+    
+<tr><td colspan="1" class="o_td_label"><label class=" o_form_label ">
+        资产编号
+    </label></td></tr></tbody></table>
+            </div>
+        </div>
+    </div></div>
+    </div><div class="oe_chatter"><p>history</p></div></div></div></div></div>
+            </div>
+        
+            
+        
+    
+    <div class="o_notification_manager"></div><div class="o_loading" style="display: none;">正在加载</div></body></html>

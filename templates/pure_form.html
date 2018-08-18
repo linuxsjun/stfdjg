@@ -24,16 +24,18 @@
             <div class="formview">
                 <div class="cmd_nav">
                     <ul class="but_cmd">
-                        <li><a href="/">删除</a></li>
-                        <li><a href="/pure_add">保存</a></li>
-                        <li><a href="/pure_list/">取消</a></li>
+                        <li><button class="btn" type="submit" form="cccc">保存</button></li>
                     </ul>
                     <div class="flowlist"></div>
                 </div>
                 <div class="form_view">
-                    <button type="submit" form="cccc">chlick me!</button>
+                    <div class="formtitle">
+                        <h1>{{ context.user }}</h1>
+                        <div class="smarttools"></div>
+                    </div>
                     <form action="/pure_add/" method="post" id="cccc" name="pure">
                         {% csrf_token %}
+                        <input name="acte" value="{{ act }}" type="hidden">
                         <table>
                             <tr>
                                 <td class="leb">status</td>
@@ -50,14 +52,18 @@
                             <tr>
                                 <td class="leb">password</td>
                                 <td class="val"><input type="password" name="password" value="{{ context.password }}"></td>
-                                <td class="leb">uid</td>
-                                <td class="val"><input type="number" name="uid" value="{{ context.uid }}"></td>
+                                <td class="leb">ipaccess</td>
+                                <td class="val"><input type="text" name="ipaccess" value="{{ context.ipaccess }}"></td>
                             </tr>
                             <tr>
-                                <td class="leb">gid</td>
-                                <td class="val"><input type="number" name="gid" value="{{ context.gid }}"></td>
                                 <td class="leb">dir</td>
-                                <td class="val"><input type="text" name="dir" value="{{ context.dir }}"></td>
+                                <td class="val" colspan="3"><input type="text" name="dir" value="{{ context.dir }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">uid</td>
+                                <td class="val"><input type="text" name="uid" value="{{ context.uid }}"></td>
+                                <td class="leb">gid</td>
+                                <td class="val"><input type="text" name="gid" value="{{ context.gid }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">ulbandwidth</td>
@@ -66,14 +72,8 @@
                                 <td class="val"><input type="number" name="dlbandwidth" value="{{ context.dlbandwidth }}"></td>
                             </tr>
                             <tr>
-                                <td class="leb">ipaccess</td>
-                                <td class="val"><input type="text" name="ipaccess" value="{{ context.ipaccess }}"></td>
                                 <td class="leb">quotasize</td>
                                 <td class="val"><input type="number" name="quotasize" value="{{ context.quotasize }}"></td>
-                            </tr>
-                            <tr>
-                                <td class="leb">comment</td>
-                                <td class="val"><input type="text" name="comment" value="{{ context.comment }}"></td>
                                 <td class="leb">quotafiles</td>
                                 <td class="val"><input type="number" name="quotafiles" value="{{ context.quotafiles }}"></td>
                             </tr>
@@ -82,6 +82,12 @@
                                 <td class="val"><input type="date" name="createdate" value="{{ context.createdate }}"></td>
                                 <td class="leb">lastedate</td>
                                 <td class="val"><input type="date" name="lastedate" value="{{ context.lastedate }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">comment</td>
+                                <td colspan="3">
+                                <textarea class="val" name="comment" clos=",100" rows="5" warp="{{ context.comment }}"></textarea>
+                                </td>
                             </tr>
                         </table>
                     </form>
