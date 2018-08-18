@@ -11,7 +11,14 @@ from web.models import pureftp, base_conf, hr_department, hr_hr
 # Create your views here.
 
 def index(request):
+
     context={}
+    username = request.COOKIES.get('username', '')
+    if username:
+        signuser = hr_hr.objects.get(userid=username)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
     return render(request, 'base.html', context)
 
 def dep_view(request):
@@ -35,7 +42,18 @@ def hr_view(request):
     return render(request, 'view_hr_list.html', context)
 
 def search_form(request):
-    return render_to_response('search_form.html')
+    context={}
+    request.encoding = 'utf-8'
+    if request.method == "POST":
+        if request.POST["user"]:
+            seluser = request.POST['user']
+            users = hr_hr.objects.filter(userid = seluser)
+            if users:
+                gourl = redirect('/')
+                gourl.set_cookie('username',seluser,60)
+                return gourl
+                # return HttpResponse(seluser)
+    return render(request, 'search_form.html',context)
 
 def config(request):
     context={}
@@ -48,6 +66,8 @@ def config(request):
 def search(request):
     context={}
     context['title']='pure list'
+    username = request.COOKIES.get('username','')
+    context['title'] = username
     return render(request, 'search.html',context)
 
 def view_pure_list(request):
@@ -73,7 +93,6 @@ def pure_form(request):
 
 def pure_add(request):
     request.encoding = 'utf-8'
-    print(request.POST)
     if request.method == "POST":
         if int(request.POST["acte"]):
             #change

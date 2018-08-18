@@ -55,4 +55,5 @@ class hr_hr(models.Model):
     order = models.CharField(max_length=256)
     external_profile = models.CharField(max_length=256)
     qr_code = models.CharField(max_length=256)
+    passwd = models.CharField(max_length=256,null=True)
 

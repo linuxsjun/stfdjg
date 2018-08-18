@@ -6,8 +6,9 @@
 
 {% block mainbody %}
     <h3>搜索服务</h3>
-    <form action="/search" method="get" value=1>
-        <p>lastedate:<input type="date" name="lastedate" value="2018-2-4"></p>
+    <form action="/search_form/" method="post" name="sign">
+        {% csrf_token %}
+        <p>user:<input type="text" name="user" value=""></p>
         <input type="submit" value="提交">
     </form>
 {% endblock %}
