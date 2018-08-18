@@ -24,7 +24,7 @@
             <ul class="but_cmd">
                 <li><a href="/pure_form?act=0">新建</a></li>
                 <li>
-                    <a href="#">delete</a>
+                    <a href="#">删除</a>
                 </li>
             </ul>
             <div class="flowlist"></div>
@@ -74,7 +74,7 @@
                                 <td>{{ item.ipaccess }}</td>
                                 <td>{{ item.quotasize }}</td>
                                 <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
-                                <td><a class="but_min" href="del/{{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
+                                <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
                                 <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
                             </tr>
                         {% empty %}

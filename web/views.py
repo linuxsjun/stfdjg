@@ -111,6 +111,17 @@ def pure_add(request):
             addnew.save()
             return redirect('/pure_list/')
 
+def pure_del(request):
+    request.encoding='utf-8'
+    context={}
+    context['title']='pure form'
+
+    delid = int(request.GET['id'])
+    delitem = pureftp.objects.get(id=delid)
+    delitem.delete()
+
+    return redirect('/pure_list/')
+
 def getToken(request):
     # list = pureftp.objects.all()
     # d = base_conf.objects.all().first()

@@ -38,11 +38,21 @@ header .userinfo{float: right;margin-right:10px;}
 
 
 .appbox{
-	height:200px;
-	width:150px;
 	float:left;
 	border:1px solid #5b5a91;
 	border-radius: 5px;
 	margin: 10px;
 }
+.appbox a{
+	display: block;
+	box-sizing: border-box;
+	height:410px;
+	width:260px;
 
+}
+.appbox a:hover{
+	background: lightblue;
+}
+.appbox .applogo{
+	margin:0px auto;
+}

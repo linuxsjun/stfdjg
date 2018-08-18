@@ -80,8 +80,8 @@ class hr_Test(models.Model):
     #     id=var.corpid
     #     secrect=var.corpsecret
     #
-    # #todo 判断Token是否有效，如无效重新申请并存进数据库
-    # #todo Token 为空？
+    # #toqdo 判断Token是否有效，如无效重新申请并存进数据库
+    # #toqdo Token 为空？
     # #不为空在有效时间内？
     # #有效用
     # #无效：获取
