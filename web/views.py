@@ -16,9 +16,10 @@ def index(request):
     if username:
         signuser = hr_hr.objects.get(userid=username)
         context['userinfo'] = signuser.name
+        return render(request, 'base.html', context)
     else:
         context['userinfo'] = '用户'
-    return render(request, 'base.html', context)
+        return render(request, 'sign.html', context)
 
 def dep_view(request):
     context={}
@@ -53,9 +54,10 @@ def hr_view(request):
     context['context']= ps
     return render(request, 'view_hr_list.html', context)
 
-def search_form(request):
+def sign_view(request):
     context={}
     context['userinfo'] = '用户'
+    context['stat'] = 'CLItMYby44wD8vgM'
     request.encoding = 'utf-8'
     if request.method == "POST":
         if request.POST["user"]:
@@ -63,9 +65,39 @@ def search_form(request):
             users = hr_hr.objects.filter(userid = seluser)
             if users:
                 gourl = redirect('/')
-                gourl.set_cookie('username',seluser,300)
+                gourl.set_cookie('username',seluser,600)
                 return gourl
-    return render(request, 'search_form.html',context)
+    elif request.method == "GET":
+        if 'code' in request.GET:
+            if request.GET['code']:
+                code = request.GET['code']
+
+                url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
+                v = {}
+                v['corpid'] = 'ww74c5af840cdd5cb6'
+                v['corpsecret'] = 'HBzQYMHZHw1UwQcqDI8GBsTnTTRJA_ODkgZuo2QuT28'
+
+                r = requests.get(url, params=v)
+                t = json.loads(r.text)
+
+                url = 'https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo'
+                v = {}
+                v['access_token'] = t['access_token']
+                v['code'] = code
+
+                r = requests.get(url, params=v)
+                t = json.loads(r.text)
+
+                seluser = t['UserId']
+                users = hr_hr.objects.filter(userid=seluser)
+                if users:
+                    gourl = redirect('/')
+                    gourl.set_cookie('username', seluser, 300)
+                    return gourl
+        else:
+            print('code is no')
+
+    return render(request, 'sign.html', context)
 
 def config(request):
     context={}
@@ -189,7 +221,6 @@ def getToken(request):
 
     if t['errcode'] == 0:
         d.token = t['access_token']
-        print(len(t['access_token']))
 
         tt = time.time()
         d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
@@ -222,7 +253,6 @@ def readdepartment(request):
                                    name=d['name'],
                                    parentid=d['parentid'],
                                    order=d['order'])
-                print(d)
                 dt.save()
         response = t
     return redirect('/dep/')
@@ -271,11 +301,8 @@ def uploadfile(request):
         f = request.FILES["file"]
         filePath = os.path.join(settings.MDEIA_ROOT, f.name)
         print(filePath)
-        i=0
         with open(filePath,'wb') as fp:
             for info in f.chunks():
-                i = i + 1
-                print (i)
                 fp.write(info)
         return HttpResponse('ok')
     else:

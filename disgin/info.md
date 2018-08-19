@@ -12,7 +12,12 @@ https://open.work.weixin.qq.com/wwopen/sso/qrConnect?appid=ww74c5af840cdd5cb6&ag
 #### 扫码&同意 & 网页跳转
 
 ```angular2html
-http://127.0.0.1:8000/pure_list/?code=eDJ5sv-wr5JYKDZAQxRCRIOZFOefK2Kalhd5ncy-4cw&state=web_login@gyoss9&appid=ww74c5af840cdd5cb6
+通过返回
+redirect_uri?code=CODE&state=STATE
+
+未通过返回
+redirect_uri?state=STATE
+
 ```
 #### 获取用户userid
 ```angular2html

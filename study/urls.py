@@ -21,7 +21,7 @@ from web import views
 urlpatterns = [
     path('admin/', admin.site.urls),
 
-    path('', views.index, name='index'),
+    path('', views.index),
 
     path('pure_list/', views.view_pure_list),
     path('pure_form/', views.pure_form),
@@ -29,7 +29,8 @@ urlpatterns = [
     path('pure_del/', views.pure_del),
 
     path('search/', views.search),
-    path('search_form/', views.search_form),
+
+    path('sign/', views.sign_view),
 
     path('conf/', views.config),
     path('gettoken/', views.getToken),
