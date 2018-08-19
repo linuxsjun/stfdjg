@@ -16,10 +16,10 @@ def index(request):
     if username:
         signuser = hr_hr.objects.get(userid=username)
         context['userinfo'] = signuser.name
-        return render(request, 'base.html', context)
     else:
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
+    return render(request, 'base.html', context)
 
 def dep_view(request):
     context={}
@@ -31,6 +31,7 @@ def dep_view(request):
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     ps = hr_department.objects.all().order_by('pid')
     context['context']= ps
@@ -46,6 +47,7 @@ def hr_view(request):
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
@@ -56,7 +58,7 @@ def hr_view(request):
 
 def sign_view(request):
     context={}
-    context['userinfo'] = '用户'
+    context['userinfo'] = '登录'
     context['stat'] = 'CLItMYby44wD8vgM'
     request.encoding = 'utf-8'
     if request.method == "POST":
@@ -92,7 +94,7 @@ def sign_view(request):
                 users = hr_hr.objects.filter(userid=seluser)
                 if users:
                     gourl = redirect('/')
-                    gourl.set_cookie('username', seluser, 300)
+                    gourl.set_cookie('username', seluser, 600)
                     return gourl
         else:
             print('code is no')
@@ -109,6 +111,7 @@ def config(request):
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     p = base_conf.objects.get(id=1)
     context['context'] = p
@@ -124,6 +127,7 @@ def search(request):
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     return render(request, 'search.html',context)
 
@@ -137,6 +141,7 @@ def view_pure_list(request):
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     ps = pureftp.objects.all()
     context['context'] = ps
@@ -153,6 +158,7 @@ def pure_form(request):
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
