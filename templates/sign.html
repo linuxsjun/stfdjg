@@ -1,35 +1,52 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/sign.css">
 
-{% block styecss %}
-    <link rel="stylesheet" type="text/css" href="/static/css/search.css">
-{% endblock styecss %}
-
-
-{% block jquery %}
     <script src="/static/js/wwLogin-1.0.0.js"></script>
-{% endblock jquery%}
 
-{% block mainbody %}
-    <h3>登录页</h3>
-    <div id="uspwd">
-        <form action="/sign/" method="post" name="sign">
-            {% csrf_token %}
-            <p>user:<input type="text" name="user" value=""></p>
-            <input type="submit" value="提交">
-        </form>
-    </div>
+</head>
+<body>
+   <header class="clearfix">
+   		<a class="logo" href="/"><i class="fa fa-windows fa-2x"></i></a>
 
-    <div id="wx_reg">
-        <script>
-            window.WwLogin({
-            "id" : "wx_reg",
-            "appid" : "ww74c5af840cdd5cb6",
-            "agentid" : "1000013",
-            "redirect_uri" :"http://127.0.0.1:8000/sign",
-            "state" : "{{ stat }}",
-            "href" : "",
-            });
-        </script>
-    </div>
+		<div class="userinfo">
+            <ul class="but_top_menu">
+                <li><a href="/">登录<i class="fa fa-user fa-1x"></i></a></li>
+            </ul>
+		</div>
+   </header>
 
-{% endblock %}
+   <div class="pager clearfix">
+       <div class="colcenter clearfix">
+            <div class="signstyle" id="uspwd">
+                <form action="/sign/" method="post" name="sign">
+                    {% csrf_token %}
+                    <span class="clearfix"><i class="fa fa-user fa-5x"></i></span>
+                    <p>user:<input type="text" name="user" value=""></p>
+                    <p>passwd:<input type="password" name="passwd" value=""</p>
+                    <p><input type="submit" value="登录"></p>
+                </form>
+            </div>
+
+            <div class="signstyle" id="wx_reg">
+                <script>
+                    window.WwLogin({
+                    "id" : "wx_reg",
+                    "appid" : "ww74c5af840cdd5cb6",
+                    "agentid" : "1000013",
+                    "redirect_uri" :"http://127.0.0.1:8000/sign",
+                    "state" : "{{ stat }}",
+                    "href" : "",
+                    });
+                </script>
+            </div>
+       </div>
+
+   </div>
+</body>
+</html>
