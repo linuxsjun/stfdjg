@@ -11,7 +11,6 @@ from web.models import pureftp, base_conf, hr_department, hr_hr
 # Create your views here.
 
 def index(request):
-
     context={}
     username = request.COOKIES.get('username', '')
     if username:
@@ -22,7 +21,6 @@ def index(request):
     return render(request, 'base.html', context)
 
 def dep_view(request):
-
     context={}
     context['title']='部门'
 
@@ -35,7 +33,6 @@ def dep_view(request):
 
     ps = hr_department.objects.all().order_by('pid')
     context['context']= ps
-
     return render(request, 'view_dep_list.html', context)
 
 def hr_view(request):
@@ -66,9 +63,8 @@ def search_form(request):
             users = hr_hr.objects.filter(userid = seluser)
             if users:
                 gourl = redirect('/')
-                gourl.set_cookie('username',seluser,60)
+                gourl.set_cookie('username',seluser,300)
                 return gourl
-                # return HttpResponse(seluser)
     return render(request, 'search_form.html',context)
 
 def config(request):
@@ -131,7 +127,6 @@ def pure_form(request):
         context['context'] = p
 
     context['act'] = request.GET['act']
-    print(context)
     return render(request, 'pure_form.html', context)
 
 def pure_add(request):

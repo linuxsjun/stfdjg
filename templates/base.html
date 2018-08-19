@@ -12,13 +12,13 @@
     {% block jquery %}
     {% endblock jquery%}
 
-            <script>
-            $(document).ready(function () {
-                $(".kkkk").click(function () {
-                    $(this).fadeOut("slow");
-                });
-            });
-            </script>
+    <script>
+    $(document).ready(function () {
+        $(".kkkk").click(function () {
+            $(this).fadeOut("slow");
+        });
+    });
+    </script>
 </head>
 <body>
    <header class="clearfix">
@@ -39,8 +39,11 @@
 
    <div class="pager clearfix">
         {% block mainbody %}
+            <div class="blk">
+            <img src="/static/img/backgroud.gif" width="100%" height="100%" atl="">
+            </div>
 
-        <p> logo</p>
+
         {% endblock %}
    </div>
 </body>

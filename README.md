@@ -14,3 +14,7 @@ This is django2.0 project
 * hr table
 
 ##### VIEW
+
+
+#### Login
+* 尝试微信扫码登录

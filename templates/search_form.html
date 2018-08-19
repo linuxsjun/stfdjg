@@ -4,10 +4,24 @@
     <link rel="stylesheet" type="text/css" href="/static/css/search.css">
 {% endblock styecss %}
 
+
+{% block jquery %}
+    <script src="/static/js/wwLogin-1.0.0.js"></script>
+    window.WwLogin({
+        "id" : "wx_reg",
+        "appid" : "ww74c5af840cdd5cb6",
+        "agentid" : "1000013",
+        "redirect_uri" :"http://127.0.0.1:8000",
+        "state" : "state",
+        "href" : "href",
+    });
+{% endblock jquery%}
+
 {% block mainbody %}
     <h3>搜索服务</h3>
     <form action="/search_form/" method="post" name="sign">
         {% csrf_token %}
+        <div id="wx_reg">dddd</div>
         <p>user:<input type="text" name="user" value=""></p>
         <input type="submit" value="提交">
     </form>
