@@ -13,6 +13,7 @@ from web.models import pureftp, base_conf, hr_department, hr_hr
 def index(request):
     context={}
     username = request.COOKIES.get('username', '')
+    #TODO 判断COOKIE的方式有问题，无这一COOKIE用户的情况下就会ERROR
     if username:
         signuser = hr_hr.objects.get(userid=username)
         context['userinfo'] = signuser.name
@@ -193,9 +194,7 @@ def pure_add(request):
     request.encoding = 'utf-8'
     if request.method == "POST":
         if int(request.POST["acte"]):
-            #change
             cid = int((request.POST["acte"]))
-            print(request.POST)
 
             cstatus = 1
             cuser = str(request.POST['user'])
@@ -222,9 +221,6 @@ def pure_add(request):
                                                   quotafiles = cquotafiles,
                                                   quotasize = cquotasize,
                                                   comment = ccomment)
-
-            # print(changeitem.objects)
-
             return redirect('/pure_list/')
         else:
             addnew = pureftp(

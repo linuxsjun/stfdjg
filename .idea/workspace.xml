@@ -4,16 +4,24 @@
     <bookmark url="file://$PROJECT_DIR$/static/css/view_hr_list.css" description="        display: block;&#10;        box-sizing: border..." line="68" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/migrations/0002_hr_hr_passwd.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/study.iml" afterPath="$PROJECT_DIR$/.idea/study.iml" />
+    <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="update pure update view">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.keystream" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.keystream.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.values.at" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata_i" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata_i.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i.len" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/35b916dc-8868-49c0-b74e-b93462698c66.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/study/settings.py" afterPath="$PROJECT_DIR$/study/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/migrations/0001_initial.py" afterPath="$PROJECT_DIR$/web/migrations/0001_initial.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/models.py" afterPath="$PROJECT_DIR$/web/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views.py" afterPath="$PROJECT_DIR$/web/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,32 +56,7 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/web/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="343">
-              <caret line="222" column="73" lean-forward="false" selection-start-line="222" selection-start-column="73" selection-end-line="222" selection-end-column="73" />
-              <folding>
-                <element signature="e#330#653#0" expanded="false" />
-                <element signature="e#682#1122#0" expanded="false" />
-                <element signature="e#1150#1769#0" expanded="false" />
-                <element signature="e#1799#3323#0" expanded="false" />
-                <element signature="e#3351#3573#0" expanded="false" />
-                <element signature="e#3600#4019#0" expanded="false" />
-                <element signature="e#4046#4405#0" expanded="false" />
-                <element signature="e#4440#4862#0" expanded="false" />
-                <element signature="e#4892#5796#0" expanded="false" />
-                <element signature="e#8449#8658#0" expanded="false" />
-                <element signature="e#9625#10406#0" expanded="false" />
-                <element signature="e#10432#11995#0" expanded="false" />
-                <element signature="e#12026#12358#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -129,13 +112,13 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/disgin/info.md" />
         <option value="$PROJECT_DIR$/templates/search_form.html" />
-        <option value="$PROJECT_DIR$/study/urls.py" />
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/static/css/search.css" />
         <option value="$PROJECT_DIR$/templates/sign.html" />
         <option value="$PROJECT_DIR$/static/css/sign.css" />
         <option value="$PROJECT_DIR$/study/settings.py" />
         <option value="$PROJECT_DIR$/web/models.py" />
+        <option value="$PROJECT_DIR$/study/urls.py" />
         <option value="$PROJECT_DIR$/web/views.py" />
       </list>
     </option>
@@ -178,16 +161,6 @@
             <path>
               <item name="stfdjg" type="b2602c69:ProjectViewProjectNode" />
               <item name="stfdjg" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stfdjg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stfdjg" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="stfdjg" type="b2602c69:ProjectViewProjectNode" />
-              <item name="stfdjg" type="462c0819:PsiDirectoryNode" />
-              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -604,7 +577,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534720178831</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="update pure update view">
+      <created>1534783369335</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1534783369335</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView">
@@ -618,22 +598,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="606" y="2" width="765" height="735" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2948929" sideWeight="0.5088161" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="manage.py@study" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32608697" sideWeight="0.49338147" order="9" side_tool="false" content_ui="tabs" x="26" y="102" width="1018" height="618" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36622074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.49118388" order="2" side_tool="false" content_ui="tabs" x="11" y="574" width="496" height="150" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3255814" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2354049" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24105461" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23404256" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2397163" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32765958" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -707,7 +686,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tables base config" />
     <MESSAGE value="update read me" />
     <MESSAGE value="update pure db" />
     <MESSAGE value="update" />
@@ -732,7 +710,8 @@
     <MESSAGE value="update weixin Qcode login" />
     <MESSAGE value="update weixin Qcode login ok" />
     <MESSAGE value="update login page style disgn" />
-    <option name="LAST_COMMIT_MESSAGE" value="update login page style disgn" />
+    <MESSAGE value="update pure update view" />
+    <option name="LAST_COMMIT_MESSAGE" value="update pure update view" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -883,14 +862,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/study/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="23" column="26" lean-forward="true" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/search.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -1022,23 +993,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="222" column="73" lean-forward="false" selection-start-line="222" selection-start-column="73" selection-end-line="222" selection-end-column="73" />
+        <state relative-caret-position="114">
+          <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
           <folding>
-            <element signature="e#330#653#0" expanded="false" />
-            <element signature="e#682#1122#0" expanded="false" />
-            <element signature="e#1150#1769#0" expanded="false" />
-            <element signature="e#1799#3323#0" expanded="false" />
-            <element signature="e#3351#3573#0" expanded="false" />
-            <element signature="e#3600#4019#0" expanded="false" />
-            <element signature="e#4046#4405#0" expanded="false" />
-            <element signature="e#4440#4862#0" expanded="false" />
-            <element signature="e#4892#5796#0" expanded="false" />
-            <element signature="e#8449#8658#0" expanded="false" />
-            <element signature="e#9625#10406#0" expanded="false" />
-            <element signature="e#10432#11995#0" expanded="false" />
-            <element signature="e#12026#12358#0" expanded="false" />
+            <element signature="e#730#1170#0" expanded="false" />
+            <element signature="e#1198#1817#0" expanded="false" />
+            <element signature="e#1847#3371#0" expanded="false" />
+            <element signature="e#3399#3621#0" expanded="false" />
+            <element signature="e#3648#4067#0" expanded="false" />
+            <element signature="e#4094#4453#0" expanded="false" />
+            <element signature="e#4488#4910#0" expanded="false" />
+            <element signature="e#4940#5844#0" expanded="false" />
+            <element signature="e#5873#8374#0" expanded="false" />
+            <element signature="e#8403#8612#0" expanded="false" />
+            <element signature="e#8641#9544#0" expanded="false" />
+            <element signature="e#9579#10360#0" expanded="false" />
+            <element signature="e#10386#11949#0" expanded="false" />
+            <element signature="e#11980#12312#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/study/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
