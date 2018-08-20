@@ -196,7 +196,32 @@ def pure_add(request):
             #change
             cid = int((request.POST["acte"]))
             print(request.POST)
-            changeitem = pureftp.objects.get(id=cid)
+
+            cstatus = 1
+            cuser = str(request.POST['user'])
+            cpassword = str(request.POST['password'])
+            cipaccess = str(request.POST['ipaccess'])
+            cdir = str(request.POST['dir'])
+            cuid = str(request.POST['uid'])
+            cgid = str(request.POST['gid'])
+            culbandwidth = int(request.POST['ulbandwidth'])
+            cdlbandwidth = int(request.POST['dlbandwidth'])
+            cquotasize = int(request.POST['quotasize'])
+            cquotafiles = int(request.POST['quotafiles'])
+            ccomment = str(request.POST['comment'])
+
+            pureftp.objects.filter(id=cid).update(status = cstatus,
+                                                  user = cuser,
+                                                  password = cpassword,
+                                                  ipaccess = cipaccess,
+                                                  dir = cdir,
+                                                  uid = cuid,
+                                                  gid = cgid,
+                                                  ulbandwidth = culbandwidth,
+                                                  dlbandwidth = cdlbandwidth,
+                                                  quotafiles = cquotafiles,
+                                                  quotasize = cquotasize,
+                                                  comment = ccomment)
 
             # print(changeitem.objects)
 

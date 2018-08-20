@@ -43,7 +43,7 @@ class hr_hr(models.Model):
     position = models.CharField(max_length=32)
     mobile = models.CharField(max_length=20)
     gender = models.CharField(max_length=16)
-    email = models.CharField(max_length=128)
+    email = models.EmailField()
     avatar = models.CharField(max_length=256)
     status = models.IntegerField(default=1)
     enable = models.IntegerField(default=1)
