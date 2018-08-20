@@ -4,30 +4,3 @@
 .pager{
 }
 
-.appbox{
-	float:left;
-
-}
-.appbox a{
-	display: block;
-	box-sizing: border-box;
-	height:410px;
-	width:280px;
-	box-shadow: 0 3px 6px 0 rgba(0,0,0,.5);
-	text-decoration: none;
-	padding:90px;
-	border:1px solid #aaaaaa;
-	border-radius: 1em;
-	margin: 30px;
-}
-.appbox a:hover{
-	background: #dddddd;
-}
-.appbox a p {
-	margin: 0px auto;
-	width: 100%;
-	padding:30px auto;
-}
-.appbox a .appleb{
-	marging-top: 60px;
-}

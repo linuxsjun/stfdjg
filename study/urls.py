@@ -31,6 +31,7 @@ urlpatterns = [
     path('search/', views.search),
 
     path('sign/', views.sign_view),
+    path('signout/', views.signout),
 
     path('conf/', views.config),
     path('gettoken/', views.getToken),

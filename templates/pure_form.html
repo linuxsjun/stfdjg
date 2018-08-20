@@ -47,11 +47,11 @@
                                     {% endif %}
                                 </td>
                                 <td class="leb">user</td>
-                                <td class="val"><input type="text" name="user" value="{{ context.user }}"></td>
+                                <td class="val"><input type="text" name="user" value="{{ context.user }}" placeholder="登录名"></td>
                             </tr>
                             <tr>
                                 <td class="leb">password</td>
-                                <td class="val"><input type="password" name="password" value="{{ context.password }}"></td>
+                                <td class="val"><input type="password" name="password" value="{{ context.password }}" placeholder="密码"></td>
                                 <td class="leb">ipaccess</td>
                                 <td class="val"><input type="text" name="ipaccess" value="{{ context.ipaccess }}"></td>
                             </tr>
@@ -73,20 +73,20 @@
                             </tr>
                             <tr>
                                 <td class="leb">quotasize</td>
-                                <td class="val"><input type="number" name="quotasize" value="{{ context.quotasize }}"></td>
+                                <td class="val"><input type="number" name="空间配额" value="{{ context.quotasize }}"></td>
                                 <td class="leb">quotafiles</td>
-                                <td class="val"><input type="number" name="quotafiles" value="{{ context.quotafiles }}"></td>
+                                <td class="val"><input type="number" name="文件配额" value="{{ context.quotafiles }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">createdate</td>
-                                <td class="val"><input type="date" name="createdate" value="{{ context.createdate }}"></td>
+                                <td class="val"><input type="date" name="createdate" value="{{ context.createdate|date:'Y-m-d' }}"></td>
                                 <td class="leb">lastedate</td>
-                                <td class="val"><input type="date" name="lastedate" value="{{ context.lastedate }}"></td>
+                                <td class="val"><input type="date" name="lastedate" value="{{ context.lastedate|date:'Y-m-d' }}"></td>
                             </tr>
                             <tr>
-                                <td class="leb">comment</td>
+                                <td class="leb">用途</td>
                                 <td colspan="3">
-                                <textarea class="val" name="comment" clos=",100" rows="5" warp="{{ context.comment }}"></textarea>
+                                <textarea class="val" name="comment" clos=",100" rows="3" warp="{{ context.comment }}" placeholder="使用说明"></textarea>
                                 </td>
                             </tr>
                         </table>

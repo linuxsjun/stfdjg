@@ -67,7 +67,7 @@ def sign_view(request):
             users = hr_hr.objects.filter(userid = seluser)
             if users:
                 gourl = redirect('/')
-                gourl.set_cookie('username',seluser,600)
+                gourl.set_cookie('username',seluser,120)
                 return gourl
     elif request.method == "GET":
         if 'code' in request.GET:
@@ -94,12 +94,22 @@ def sign_view(request):
                 users = hr_hr.objects.filter(userid=seluser)
                 if users:
                     gourl = redirect('/')
-                    gourl.set_cookie('username', seluser, 600)
+                    gourl.set_cookie('username', seluser, 120)
                     return gourl
         else:
             print('code is no')
 
     return render(request, 'sign.html', context)
+
+def signout(request):
+    username = request.COOKIES.get('username', '')
+    try:
+        gourl = redirect('/')
+        gourl.delete_cookie('username')
+        return gourl
+    except Exception:
+        return redirect('/')
+    return redirect('/')
 
 def config(request):
     context={}

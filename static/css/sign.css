@@ -1,14 +1,22 @@
 @charset "utf-8";
 /* CSS Document */
 
-.pager{
+bady{
+    height: 100%;
+}
 
+.pager{
+	background: url(/static/img/backgroud.gif) no-repeat center top;
+	background-size: 150% 150%;
+	opacity: .8;
+    height: 100%;
 }
 
 .colcenter{
-	float: left;
-	margin: 0px auto;
+	/*float: left;*/
+	margin: 0 auto;
 }
+
 .signstyle{
 	float:left;
 	height:410px;
@@ -18,6 +26,8 @@
 	border-radius: 1em;
 	margin: 30px;
 	padding:30px;
+	background: white;
+	opacity: .8;
 }
 
 .signstyle span{
@@ -34,10 +44,19 @@
 	margin: 50px 30px;
 	height: 14px;
 	width: 30px;
-	border: 1px solid black;
 }
-.signstyle p input{
-	height: 28px;
-	width: 60px;
+.txtstyle{
+	font-size: 14px;
+	height: 32px;
+	width: 220px;
+	border: 0px solid black;
+	border-bottom: 2px solid deepskyblue;
+	text-align: center;
+}
+.signbtu{
+	background: #dddddd;
+}
+.signbtu:hover{
+	background: deepskyblue;
 }
 
