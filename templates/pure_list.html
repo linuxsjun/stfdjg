@@ -39,13 +39,11 @@
                         <tr>
                             <th><input type="checkbox"></th>
                             <th>状态</th>
+                            <th>用途</th>
                             <th>用户</th>
                             <th>密码</th>
-                            <th>用户ID</th>
-                            <th>组ID</th>
                             <th>上行带宽</th>
                             <th>下行带宽</th>
-                            <th>说明</th>
                             <th>访问IP</th>
                             <th>空间大小</th>
                             <th></th>
@@ -64,13 +62,11 @@
                                         <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>
                                     {% endif %}
                                 </td>
+                                <td>{{ item.comment }}</td>
                                 <td>{{ item.user }}</td>
                                 <td>{{ item.password }}</td>
-                                <td>{{ item.uid }}</td>
-                                <td>{{ item.gid }}</td>
                                 <td>{{ item.ulbandwidth }}</td>
                                 <td>{{ item.dlbandwidth }}</td>
-                                <td>{{ item.comment }}</td>
                                 <td>{{ item.ipaccess }}</td>
                                 <td>{{ item.quotasize }}</td>
                                 <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>

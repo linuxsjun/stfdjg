@@ -1,20 +1,23 @@
 @charset "utf-8";
 /* CSS Document */
 
-bady{
-    height: 100%;
-}
+html,body{width:100%;height:100%;}
 
 .pager{
-	background: url(/static/img/backgroud.gif) no-repeat center top;
-	background-size: 150% 150%;
+	background: url(/static/img/backgroud.jpg) no-repeat center top;
+	/*background: #7a3737;*/
+    overflow:hidden;
 	opacity: .8;
-    height: 100%;
+    width: 100%;
+	height: 100%;
+	overflow:auto;
 }
 
 .colcenter{
+    width: 805px;
 	/*float: left;*/
-	margin: 0 auto;
+	margin: 0px auto;
+    padding: 100px 0px;
 }
 
 .signstyle{
@@ -49,14 +52,14 @@ bady{
 	font-size: 14px;
 	height: 32px;
 	width: 220px;
-	border: 0px solid black;
-	border-bottom: 2px solid deepskyblue;
+	border: 0px solid #7c7bad;
+	border-bottom: 2px solid #7c7bad;
 	text-align: center;
 }
 .signbtu{
 	background: #dddddd;
 }
 .signbtu:hover{
-	background: deepskyblue;
+	background: #7c7bad;
 }
 

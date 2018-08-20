@@ -67,7 +67,7 @@ def sign_view(request):
             users = hr_hr.objects.filter(userid = seluser)
             if users:
                 gourl = redirect('/')
-                gourl.set_cookie('username',seluser,120)
+                gourl.set_cookie('username',seluser,3600)
                 return gourl
     elif request.method == "GET":
         if 'code' in request.GET:
@@ -94,7 +94,7 @@ def sign_view(request):
                 users = hr_hr.objects.filter(userid=seluser)
                 if users:
                     gourl = redirect('/')
-                    gourl.set_cookie('username', seluser, 120)
+                    gourl.set_cookie('username', seluser, 3600)
                     return gourl
         else:
             print('code is no')
@@ -173,6 +173,18 @@ def pure_form(request):
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
         context['context'] = p
+    else:
+        p = {'status': 'true',
+             'ipaccess': '0.0.0.0',
+             'uid': 1001,
+             'gid': 1001,
+             'ulbandwidth': 0,
+             'dlbandwidth': 0,
+             'quotasize': 0,
+             'quotafiles': 0,
+             'createdate': "2018-8-14",
+             'lastedate': "2018-8-7",}
+        context['context'] = p
 
     context['act'] = request.GET['act']
     return render(request, 'pure_form.html', context)
@@ -182,6 +194,12 @@ def pure_add(request):
     if request.method == "POST":
         if int(request.POST["acte"]):
             #change
+            cid = int((request.POST["acte"]))
+            print(request.POST)
+            changeitem = pureftp.objects.get(id=cid)
+
+            # print(changeitem.objects)
+
             return redirect('/pure_list/')
         else:
             addnew = pureftp(
@@ -192,10 +210,10 @@ def pure_add(request):
                 dir = str(request.POST['dir']),
                 uid = str(request.POST['uid']),
                 gid = str(request.POST['gid']),
-                ulbandwidth = str(request.POST['ulbandwidth']),
-                dlbandwidth = str(request.POST['dlbandwidth']),
-                quotasize = str(request.POST['quotasize']),
-                quotafiles = str(request.POST['quotafiles']),
+                ulbandwidth = int(request.POST['ulbandwidth']),
+                dlbandwidth = int(request.POST['dlbandwidth']),
+                quotasize = int(request.POST['quotasize']),
+                quotafiles = int(request.POST['quotafiles']),
                 createdate = str(request.POST['createdate']),
                 lastedate = str(request.POST['lastedate']),
                 comment = str(request.POST['comment']))
