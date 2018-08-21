@@ -5,7 +5,11 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-
-        <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
-                <p>{{ title }}</p>
+    <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
+    <p>{{ title }}</p>
+    <form  action = "/upload/" method = "post" enctype = "multipart/form-data">
+        {% csrf_token %}
+        <input type = "file" name = "file" />
+        <input type = "submit" value = "upload" />
+    </form >
 {% endblock %}
