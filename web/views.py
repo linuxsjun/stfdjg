@@ -253,9 +253,11 @@ def pure_del(request):
     context={}
     context['title']='pure form'
 
-    delid = int(request.GET['id'])
-    delitem = pureftp.objects.get(id=delid)
-    delitem.delete()
+    print("aaaaa")
+    if "act" in request.GET:
+        delid = int(request.GET['id'])
+        delitem = pureftp.objects.get(id=delid)
+        delitem.delete()
 
     return redirect('/pure_list/')
 

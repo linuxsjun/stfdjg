@@ -40,8 +40,6 @@
                             <th><input type="checkbox"></th>
                             <th>状态</th>
                             <th>用途</th>
-                            <th>用户</th>
-                            <th>密码</th>
                             <th>上行带宽</th>
                             <th>下行带宽</th>
                             <th>访问IP</th>
@@ -54,7 +52,7 @@
                     <tbody>
                         {% for item in context %}
                             <tr>
-                                <td><input type="checkbox"></td>
+                                <td><input type="checkbox" name="selitem"></td>
                                 <td>
                                     {% if  item.status %}
                                         <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>
@@ -63,8 +61,6 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ item.comment }}</td>
-                                <td>{{ item.user }}</td>
-                                <td>{{ item.password }}</td>
                                 <td>{{ item.ulbandwidth }}</td>
                                 <td>{{ item.dlbandwidth }}</td>
                                 <td>{{ item.ipaccess }}</td>
