@@ -4,25 +4,17 @@
     <bookmark url="file://$PROJECT_DIR$/static/css/view_hr_list.css" description="        display: block;&#10;        box-sizing: border..." line="68" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="update pure update view">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.keystream" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.keystream.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata.values.at" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata_i" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523/_metadata_/metadata_i.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i.len" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/35b916dc-8868-49c0-b74e-b93462698c66.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422.xml" />
+    <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/1dcb14ec-0c30-4b51-b74b-20587111c523.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/dataSources/35b916dc-8868-49c0-b74e-b93462698c66.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream.len" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.keystream.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.len" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i.len" afterPath="$PROJECT_DIR$/.idea/dataSources/8f6f1545-9557-4bfb-b045-4df9cd6dd422/_metadata_/metadata_i.len" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views.py" afterPath="$PROJECT_DIR$/web/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -56,7 +48,34 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="226">
+              <caret line="191" column="0" lean-forward="false" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
+              <folding>
+                <element signature="e#330#701#0" expanded="false" />
+                <element signature="e#730#1170#0" expanded="false" />
+                <element signature="e#1198#1817#0" expanded="false" />
+                <element signature="e#1847#3371#0" expanded="false" />
+                <element signature="e#3399#3621#0" expanded="false" />
+                <element signature="e#3648#4067#0" expanded="false" />
+                <element signature="e#4094#4453#0" expanded="false" />
+                <element signature="e#4488#4910#0" expanded="false" />
+                <element signature="e#4940#5844#0" expanded="false" />
+                <element signature="e#5873#8374#0" expanded="false" />
+                <element signature="e#8403#8612#0" expanded="false" />
+                <element signature="e#8641#9544#0" expanded="false" />
+                <element signature="e#9579#10360#0" expanded="false" />
+                <element signature="e#10386#11949#0" expanded="false" />
+                <element signature="e#11980#12312#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -130,9 +149,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="606" />
-    <option name="y" value="2" />
-    <option name="width" value="765" />
+    <option name="x" value="401" />
+    <option name="width" value="972" />
     <option name="height" value="735" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -153,8 +171,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -162,10 +178,17 @@
               <item name="stfdjg" type="b2602c69:ProjectViewProjectNode" />
               <item name="stfdjg" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="stfdjg" type="b2602c69:ProjectViewProjectNode" />
+              <item name="stfdjg" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -186,130 +209,6 @@
       <recent name="C:\Python37env\study" />
       <recent name="C:\Python37env\study\web" />
     </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/study.iml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/db.sqlite3</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/static/css/base.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/static/css/search.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/static/css/sign.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/static/css/view_hr_list.css</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/study/urls.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/base.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/pure_form.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/pure_list.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/search.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/templates/sign.html</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/web/views.py</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -584,7 +483,14 @@
       <option name="project" value="LOCAL" />
       <updated>1534783369335</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="update pure update view">
+      <created>1534783871811</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1534783871811</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TodoView">
@@ -597,19 +503,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="606" y="2" width="765" height="735" extended-state="0" />
+    <frame x="401" y="0" width="972" height="735" extended-state="0" />
     <layout>
-      <window_info id="TODO" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23355263" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2948929" sideWeight="0.5088161" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="manage.py@study" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32608697" sideWeight="0.49338147" order="9" side_tool="false" content_ui="tabs" x="26" y="102" width="1018" height="618" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36622074" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30043858" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.583612" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32943144" sideWeight="0.49118388" order="2" side_tool="false" content_ui="tabs" x="11" y="574" width="496" height="150" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3255814" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23404256" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2397163" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3255814" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32765958" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -617,7 +521,9 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@study" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32608697" sideWeight="0.49338147" order="9" side_tool="false" content_ui="tabs" x="26" y="102" width="1018" height="618" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277592" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -720,15 +626,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/hr/admin.py" />
-    <entry file="file://$PROJECT_DIR$/hr/apps.py" />
-    <entry file="file://$PROJECT_DIR$/hr/views.py" />
-    <entry file="file://$PROJECT_DIR$/hr/tests.py" />
-    <entry file="file://$PROJECT_DIR$/hr/models.py" />
-    <entry file="file://$PROJECT_DIR$/../pro_django/templates/css/index.css" />
-    <entry file="file://$PROJECT_DIR$/../pro_django/templates/index.html" />
-    <entry file="file://$PROJECT_DIR$/templates/static/css/search.css" />
-    <entry file="file://$PROJECT_DIR$/templates/static/css/base_conf.css" />
     <entry file="file://$PROJECT_DIR$/../pureUI/web/models.py" />
     <entry file="file://$PROJECT_DIR$/../pureUI/web/admin.py" />
     <entry file="file://$PROJECT_DIR$/../pureUI/templates/base.html" />
@@ -768,7 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="26" column="34" lean-forward="false" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -797,7 +693,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="59">
           <caret line="36" column="37" lean-forward="false" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -834,7 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -873,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="49" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -884,65 +777,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/bba319b6/35b916dc-8868-49c0-b74e-b93462698c66/test.web_acsetess">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/bba319b6/35b916dc-8868-49c0-b74e-b93462698c66/test.web_acsetess" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/35b916dc-8868-49c0-b74e-b93462698c66/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.base_conf">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.web_pureftp">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.hr_department">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.base_conf" />
+    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.web_pureftp" />
+    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.hr_department" />
     <entry file="file://$PROJECT_DIR$/static/css/sign.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="114">
           <caret line="6" column="32" lean-forward="false" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.web_hr_hr">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="das://table:/bba319b6/1dcb14ec-0c30-4b51-b74b-20587111c523/main.web_hr_hr" />
     <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.hr_department">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.base_conf">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -953,7 +807,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -980,7 +833,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="27" column="36" lean-forward="true" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="36" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -991,11 +843,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/study/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.django_session">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.django_migrations">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.django_content_type">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.django_admin_log">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.auth_user">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.auth_user_groups">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.sqlite_master">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.auth_user_user_permissions">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.base_conf">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/bba319b6/8f6f1545-9557-4bfb-b045-4df9cd6dd422/main.web_pureftp">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="14" column="40" lean-forward="false" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="40" />
+        <state relative-caret-position="226">
+          <caret line="191" column="0" lean-forward="false" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
           <folding>
+            <element signature="e#330#701#0" expanded="false" />
             <element signature="e#730#1170#0" expanded="false" />
             <element signature="e#1198#1817#0" expanded="false" />
             <element signature="e#1847#3371#0" expanded="false" />
@@ -1011,14 +941,6 @@
             <element signature="e#10386#11949#0" expanded="false" />
             <element signature="e#11980#12312#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/study/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="23" column="24" lean-forward="false" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
