@@ -2,13 +2,13 @@ from django.db import models
 
 # Create your models here.
 class pureftp(models.Model):
-    status = models.BooleanField(default=1)
-    user=models.CharField(max_length=32)
-    password=models.CharField(max_length=64)
-    uid=models.CharField(max_length=11)
-    gid=models.CharField(max_length=11)
-    dir=models.CharField(max_length=128)
-    ulbandwidth=models.IntegerField(default=0)
+    status = models.BooleanField(default=1,verbose_name='状态')
+    user=models.CharField(max_length=32,verbose_name='账号')
+    password=models.CharField(max_length=64,verbose_name='密码')
+    uid=models.CharField(max_length=11,verbose_name='用户ID')
+    gid=models.CharField(max_length=11,verbose_name='组ID')
+    dir=models.CharField(max_length=128,verbose_name='目录')
+    ulbandwidth=models.IntegerField(default=0,verbose_name='上传带宽')
     dlbandwidth=models.IntegerField(default=0)
     comment=models.TextField(null=True)
     ipaccess=models.CharField(max_length=15,default='0.0.0.0')

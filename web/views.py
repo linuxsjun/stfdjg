@@ -174,6 +174,8 @@ def pure_form(request):
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
         context['context'] = p
+        print('chang')
+        print(type(p.lastedate))
     else:
         p = {'status': 'true',
              'ipaccess': '0.0.0.0',
@@ -182,10 +184,13 @@ def pure_form(request):
              'ulbandwidth': 0,
              'dlbandwidth': 0,
              'quotasize': 0,
-             'quotafiles': 0,
-             'createdate': "2018-8-14",
-             'lastedate': "2018-8-7",}
+             'quotafiles': 0}
+        p['createdate']=datetime.date
+        # 'createdate': '2018-8-14',
+        # 'lastedate': '2018-8-7',
         context['context'] = p
+        print('add')
+        print(type(p['createdate']))
 
     context['act'] = request.GET['act']
     return render(request, 'pure_form.html', context)
