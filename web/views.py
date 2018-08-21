@@ -175,6 +175,9 @@ def pure_form(request):
         p = pureftp.objects.get(id=request.GET['act'])
         context['context'] = p
     else:
+        cdate = datetime.date.fromtimestamp(time.time())
+        ldate = datetime.date.fromtimestamp(time.time())
+
         p = {'status': 'true',
              'ipaccess': '0.0.0.0',
              'uid': 1001,
@@ -183,8 +186,9 @@ def pure_form(request):
              'dlbandwidth': 0,
              'quotasize': 0,
              'quotafiles': 0,
-             'createdate': "2018-8-14",
-             'lastedate': "2018-8-7",}
+             'createdate': cdate,
+             'lastedate': ldate}
+
         context['context'] = p
 
     context['act'] = request.GET['act']
@@ -196,7 +200,10 @@ def pure_add(request):
         if int(request.POST["acte"]):
             cid = int((request.POST["acte"]))
 
-            cstatus = 1
+            if 'status' in request.POST:
+                cstatus = 1
+            else:
+                cstatus = 0
             cuser = str(request.POST['user'])
             cpassword = str(request.POST['password'])
             cipaccess = str(request.POST['ipaccess'])
