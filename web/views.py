@@ -154,7 +154,7 @@ def view_pure_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = pureftp.objects.all()
+    ps = pureftp.objects.all().order_by('-id')
     context['context'] = ps
     return render(request, 'pure_list.html', context)
 
@@ -411,10 +411,10 @@ def wxdoor(request):
     v['scope'] = 'snsapi_base'
     v['agentid'] = '1000013'
     v['state'] =  ''
-    r = requests.get(url, params=v)
+    # r = requests.get(url, params=v)
 
     print(request.method)
     print(request.GET)
     print(request.COOKIES)
     # g = get hr_hr.objects
-    return HttpResponse(r.text)
+    return HttpResponse('')
