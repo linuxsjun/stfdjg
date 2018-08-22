@@ -372,7 +372,7 @@ def uploadfile(request):
     else:
         return HttpResponse('no')
 
-def test(request):
+def sendmsg(request):
     v = {}
     v['access_token'] = 'PP-YvltOWYOlkz28puKRqlCIA8pkrGy2X-qMapexdjz-2-CmRA8eteyZ1g2rUzu5IWS3lnmoIHX1nR5EZTEKJb2RR6WroAR-KHvl0Zl3Al886Ny-pySOqkP8obzTQlw1ipMVRTZ1wAGpXW3vt3mLCTkCCo2unZ5f_oPjZzRmU100QOTEmWyB3a0Zi50uwVk5BNzk9YP8PSK-wlNdWFkheQ'
     txt = {"touser" : "SunJun",
@@ -380,7 +380,7 @@ def test(request):
                "agentid" : 1000013,
                "text" : {
                    "content" : "测试消息\n文本内容<a href=\"http://work.weixin.qq.com\">网页链接</a>，请勿回复。"},
-               "safe":1
+               "safe":0
                }
     # jsontxt = json.dumps(context)
     print(txt)
@@ -388,4 +388,33 @@ def test(request):
     urls = 'https://qyapi.weixin.qq.com/cgi-bin/message/send'
     r = requests.post(urls,params=v,json=txt)
 
+    return HttpResponse(r.text)
+
+def wxdoor(request):
+    # url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
+    # v = {}
+    # v['corpid'] = 'ww74c5af840cdd5cb6'
+    # v['corpsecret'] = 'HBzQYMHZHw1UwQcqDI8GBsTnTTRJA_ODkgZuo2QuT28'
+    #
+    # r = requests.get(url, params=v)
+    # t = json.loads(r.text)
+    # print(t['access_token'])
+    #
+    # context = t['access_token']
+
+    print('tttt')
+    v = {}
+    url = 'https://open.weixin.qq.com/connect/oauth2/authorize'
+    v['appid'] = 'ww74c5af840cdd5cb6'
+    v['redirect_uri'] = '172.18.0.231:8000'
+    v['response_type'] = 'code'
+    v['scope'] = 'snsapi_base'
+    v['agentid'] = '1000013'
+    v['state'] =  ''
+    r = requests.get(url, params=v)
+
+    print(request.method)
+    print(request.GET)
+    print(request.COOKIES)
+    # g = get hr_hr.objects
     return HttpResponse(r.text)

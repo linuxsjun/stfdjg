@@ -43,5 +43,6 @@ urlpatterns = [
     path('sync/', views.readdepartment),
 
     path('upload/', views.uploadfile),
-    path('test/', views.test),
+    path('sendmsg/', views.sendmsg),
+    path('wxdoor/', views.wxdoor),
 ]
