@@ -91,19 +91,7 @@ class hr_Test(models.Model):
     #
     # print(r.content)
 #
-#     < form
-#     action = "/upload/"
-#     method = "post"
-#     enctype = "multipart/form-data" >
-#     { % csrf_token %}
-#     < input
-#     type = "file"
-#     name = "file" / >
-#     < input
-#     type = "submit"
-#     value = "upload" / >
 #
-# < / form >
 
 #                <form action="#" method="post" name="iii">
 #                     {% csrf_token %}

@@ -174,9 +174,10 @@ def pure_form(request):
     if int(request.GET['act']):
         p = pureftp.objects.get(id=request.GET['act'])
         context['context'] = p
-        print('chang')
-        print(type(p.lastedate))
     else:
+        cdate = datetime.date.fromtimestamp(time.time())
+        ldate = datetime.date.fromtimestamp(time.time())
+
         p = {'status': 'true',
              'ipaccess': '0.0.0.0',
              'uid': 1001,
@@ -184,13 +185,11 @@ def pure_form(request):
              'ulbandwidth': 0,
              'dlbandwidth': 0,
              'quotasize': 0,
-             'quotafiles': 0}
-        p['createdate']=datetime.date
-        # 'createdate': '2018-8-14',
-        # 'lastedate': '2018-8-7',
+             'quotafiles': 0,
+             'createdate': cdate,
+             'lastedate': ldate}
+
         context['context'] = p
-        print('add')
-        print(type(p['createdate']))
 
     context['act'] = request.GET['act']
     return render(request, 'pure_form.html', context)
@@ -201,7 +200,10 @@ def pure_add(request):
         if int(request.POST["acte"]):
             cid = int((request.POST["acte"]))
 
-            cstatus = 1
+            if 'status' in request.POST:
+                cstatus = 1
+            else:
+                cstatus = 0
             cuser = str(request.POST['user'])
             cpassword = str(request.POST['password'])
             cipaccess = str(request.POST['ipaccess'])
@@ -251,9 +253,11 @@ def pure_del(request):
     context={}
     context['title']='pure form'
 
-    delid = int(request.GET['id'])
-    delitem = pureftp.objects.get(id=delid)
-    delitem.delete()
+    print("aaaaa")
+    if "act" in request.GET:
+        delid = int(request.GET['id'])
+        delitem = pureftp.objects.get(id=delid)
+        delitem.delete()
 
     return redirect('/pure_list/')
 
