@@ -44,6 +44,8 @@
                             <th>下行带宽</th>
                             <th>访问IP</th>
                             <th>空间大小</th>
+                            <th>创建日期</th>
+                            <th>最后登录日期</th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -65,6 +67,8 @@
                                 <td>{{ item.dlbandwidth }}</td>
                                 <td>{{ item.ipaccess }}</td>
                                 <td>{{ item.quotasize }}</td>
+                                <td>{{ item.createdate|date:'Y-m-d' }}</td>
+                                <td>{{ item.lastedate|date:'Y-m-d' }}</td>
                                 <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
                                 <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
                                 <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
