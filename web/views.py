@@ -371,3 +371,21 @@ def uploadfile(request):
         return HttpResponse('ok')
     else:
         return HttpResponse('no')
+
+def test(request):
+    v = {}
+    v['access_token'] = 'PP-YvltOWYOlkz28puKRqlCIA8pkrGy2X-qMapexdjz-2-CmRA8eteyZ1g2rUzu5IWS3lnmoIHX1nR5EZTEKJb2RR6WroAR-KHvl0Zl3Al886Ny-pySOqkP8obzTQlw1ipMVRTZ1wAGpXW3vt3mLCTkCCo2unZ5f_oPjZzRmU100QOTEmWyB3a0Zi50uwVk5BNzk9YP8PSK-wlNdWFkheQ'
+    txt = {"touser" : "SunJun",
+               "msgtype" : "text",
+               "agentid" : 1000013,
+               "text" : {
+                   "content" : "测试消息\n文本内容<a href=\"http://work.weixin.qq.com\">网页链接</a>，请勿回复。"},
+               "safe":1
+               }
+    # jsontxt = json.dumps(context)
+    print(txt)
+
+    urls = 'https://qyapi.weixin.qq.com/cgi-bin/message/send'
+    r = requests.post(urls,params=v,json=txt)
+
+    return HttpResponse(r.text)

@@ -43,4 +43,5 @@ urlpatterns = [
     path('sync/', views.readdepartment),
 
     path('upload/', views.uploadfile),
+    path('test/', views.test),
 ]
