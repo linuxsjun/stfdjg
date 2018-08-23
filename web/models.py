@@ -57,3 +57,8 @@ class hr_hr(models.Model):
     qr_code = models.CharField(max_length=256,verbose_name='个人二维码')
     passwd = models.CharField(max_length=256,null=True,verbose_name='密码')
 
+class hr_conf(models.Model):
+    name = models.CharField(max_length=32,null=True)
+    agentid = models.IntegerField(null=True)
+    corpsecret = models.CharField(max_length=64,null=True)
+
