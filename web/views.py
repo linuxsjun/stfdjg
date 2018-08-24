@@ -13,6 +13,7 @@ from web.models import pureftp, base_conf, hr_department, hr_hr
 def index(request):
     context={}
     username = request.COOKIES.get('username', '')
+
     #TODO 判断COOKIE的方式有问题，无这一COOKIE用户的情况下就会ERROR
     if username:
         signuser = hr_hr.objects.get(userid=username)
@@ -69,6 +70,7 @@ def sign_view(request):
             if users:
                 gourl = redirect('/')
                 gourl.set_cookie('username',seluser,3600)
+
                 return gourl
     elif request.method == "GET":
         if 'code' in request.GET:

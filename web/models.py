@@ -56,6 +56,7 @@ class hr_hr(models.Model):
     external_profile = models.CharField(max_length=256)
     qr_code = models.CharField(max_length=256,verbose_name='个人二维码')
     passwd = models.CharField(max_length=256,null=True,verbose_name='密码')
+    session = models.CharField(max_length=256,null=True,verbose_name='Cookice_session')
 
 class hr_conf(models.Model):
     name = models.CharField(max_length=32,null=True)
