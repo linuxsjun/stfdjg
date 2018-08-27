@@ -13,17 +13,8 @@
     {% block styecss %}
     {% endblock styecss %}
 
-    <script src="/static/js/jquery-3.3.1.min.js"></script>
-    {% block jquery %}
-    {% endblock jquery%}
-
-    <script>
-    $(document).ready(function () {
-        $(".kkkk").click(function () {
-            $(this).fadeOut("slow");
-        });
-    });
-    </script>
+{#    <script src="/static/js/jquery-3.3.1.min.js"></script>#}
+    <script src="/static/js/jquery-3.3.1.js"></script>
 </head>
 <body>
    <header class="clearfix">
@@ -71,5 +62,7 @@
 
         {% endblock %}
    </div>
+    {% block jquery %}
+    {% endblock jquery%}
 </body>
 </html>

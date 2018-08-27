@@ -1,16 +1,79 @@
 {% extends "base.html" %}
 
 {% block styecss %}
-    <link rel="stylesheet" type="text/css" href="/static/css/search.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/searcht.css">
 {% endblock styecss %}
 
 {% block mainbody %}
-    <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
+
     <p>{{ title }}</p>
+    <br>
+    <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
+    <br>
     <form  action = "/upload/" method = "post" enctype = "multipart/form-data">
         {% csrf_token %}
         <input type = "file" name = "file" />
         <input type = "submit" value = "upload" />
+        <button class="x666" type="submit" value="1" >sssss</button>
     </form >
+    <br>
+    <form action="#" method="post">
+        {% csrf_token %}
+        <p>who<input type="text" name="who"></p>
+        <p>pwd<input type="text" name="pwd"></p>
+        <p>color<input type="color" name="color"></p>
+        <input type="submit" class='kkk' value="pppp">
+    </form>
+    <br>
     <button type="submit" value="1" onclick="/pure_del/">llllllll</button>
+    <br>
+    <ul class="clearfix">
+        <li class="tabb"><a class="tabbtn" value="tb1">tab1</a></li>
+        <li class="tabb"><a class="tabbtn" value="tb2">tab2</a></li>
+        <li class="tabb"><a class="tabbtn" value="tb3">tab3</a></li>
+    </ul>
+    <div class="tabcont">
+        <div class="tb1cont"><p>tbs1</p></div>
+        <div class="tb2cont"><p>tbs2</p></div>
+        <div class="tb3cont"><p>tbs3</p></div>
+    </div>
 {% endblock %}
+
+{% block jquery %}
+    <script>
+        $(document).ready(function () {
+            $(".kkkk").click(function () {
+                $(this).fadeOut("slow");
+            });
+        });
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var $divs = $('button')
+            console.log($divs.length)
+
+            console.log($divs[2].innerHTML)
+
+            $divs.each(function (index, domEle) {
+                console.log(index,domEle.innerHTML,this.innerHTML)
+            })
+
+            console.log($('.x666').index())
+            $('button').css('background','blue')
+            $('.x666').css('color','red')
+            $('div,p').css('color','green')
+
+            $(':submit.kkk').click(function () {
+                alert('jkjkljkl')
+            })
+
+            $('.tabcont>div').css("display","none")
+            $($('.tabcont>div')[0]).css("display","block")
+            $('.tabb').click(function () {
+                $('.tabcont>div').css("display","none")
+                $('.tabcont>div')[$(this).index()].style.display='block'
+                $($('.tabcont>div')[$(this).index()]).css("display","block")
+            })
+        })
+    </script>
+{% endblock jquery%}
