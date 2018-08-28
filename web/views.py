@@ -10,6 +10,7 @@ from web.models import pureftp, base_conf, hr_department, hr_hr
 
 # Create your views here.
 
+
 def index(request):
     context={}
 
@@ -453,19 +454,67 @@ def wxdoor(request):
     #
     # context = t['access_token']
 
-    print('tttt')
-    v = {}
-    url = 'https://open.weixin.qq.com/connect/oauth2/authorize'
-    v['appid'] = 'ww74c5af840cdd5cb6'
-    v['redirect_uri'] = '172.18.0.231:8000'
-    v['response_type'] = 'code'
-    v['scope'] = 'snsapi_base'
-    v['agentid'] = '1000013'
-    v['state'] =  ''
+    # print(request.text)
+    # v = {}
+    # url = 'https://open.weixin.qq.com/connect/oauth2/authorize'
+    # v['appid'] = 'ww74c5af840cdd5cb6'
+    # v['redirect_uri'] = '172.18.0.231:8000'
+    # v['response_type'] = 'code'
+    # v['scope'] = 'snsapi_base'
+    # v['agentid'] = '1000013'
+    # v['state'] =  ''
     # r = requests.get(url, params=v)
 
-    print(request.method)
-    print(request.GET)
-    print(request.COOKIES)
+    # print(request.method)
+    # print(request.GET)
+    # print(request.COOKIES)
     # g = get hr_hr.objects
-    return HttpResponse('')
+
+    url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=ww74c5af840cdd5cb6&redirect_uri=http://p.jtanimation.com:8000/wxcode&response_type=code&scope=snsapi_base&agentid=1000013&state=STATE#wechat_redirect'
+    print(url)
+    return redirect(url)
+
+def wxcode(request):
+    if request.method  == "GET":
+        if 'code' in request.GET:
+            code = request.GET["code"]
+
+            url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
+            v = {}
+            v['corpid'] = 'ww74c5af840cdd5cb6'
+            v['corpsecret'] = 'HBzQYMHZHw1UwQcqDI8GBsTnTTRJA_ODkgZuo2QuT28'
+
+            r = requests.get(url, params=v)
+            t = json.loads(r.text)
+
+            url = 'https://qyapi.weixin.qq.com/cgi-bin/user/getuserinfo'
+            v = {}
+            v['access_token'] = t['access_token']
+            v['code'] = code
+
+            print(url)
+
+            r = requests.get(url, params=v)
+            t = json.loads(r.text)
+
+            print(t)
+
+            seluser = t['UserId']
+            users = hr_hr.objects.filter(userid=seluser)
+            if users:
+                u = users.first()
+                rnd = seluser + str(time.time()) + str(random.randint(10000, 20000))
+                strsession = hashlib.md5()
+                strsession.update(rnd.encode('utf-8'))
+                s = strsession.hexdigest()
+                u.session = s
+                u.save()
+
+                gourl = redirect('/')
+                gourl.set_cookie('usercookie', s, 3600)
+                return gourl
+
+    return HttpResponse('wxcode')
+
+def wxtext(request):
+    return HttpResponse('xtT9JTstqSGD5Lu2')
