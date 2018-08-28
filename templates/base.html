@@ -13,8 +13,11 @@
     {% block styecss %}
     {% endblock styecss %}
 
-{#    <script src="/static/js/jquery-3.3.1.min.js"></script>#}
+    {#    <script src="/static/js/jquery-3.3.1.min.js"></script>#}
     <script src="/static/js/jquery-3.3.1.js"></script>
+    {% block jquery %}
+    {% endblock jquery%}
+
 </head>
 <body>
    <header class="clearfix">
@@ -62,7 +65,5 @@
 
         {% endblock %}
    </div>
-    {% block jquery %}
-    {% endblock jquery%}
 </body>
 </html>

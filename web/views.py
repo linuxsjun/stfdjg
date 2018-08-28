@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
-import requests, json, time, datetime
+import requests, json, time, datetime, hashlib, random
 
 import os
 from django.conf import settings
@@ -12,24 +12,32 @@ from web.models import pureftp, base_conf, hr_department, hr_hr
 
 def index(request):
     context={}
-    username = request.COOKIES.get('username', '')
 
-    #TODO 判断COOKIE的方式有问题，无这一COOKIE用户的情况下就会ERROR
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
+
     return render(request, 'base.html', context)
 
 def dep_view(request):
     context={}
     context['title']='部门'
 
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
@@ -43,9 +51,13 @@ def hr_view(request):
     context={}
     context['title']='人员'
 
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
@@ -68,8 +80,16 @@ def sign_view(request):
             seluser = request.POST['user']
             users = hr_hr.objects.filter(userid = seluser)
             if users:
+                u = users.first()
+                rnd = seluser + str(time.time()) + str(random.randint(10000,20000))
+                strsession = hashlib.md5()
+                strsession.update(rnd.encode('utf-8'))
+                s = strsession.hexdigest()
+                u.session = s
+                u.save()
+
                 gourl = redirect('/')
-                gourl.set_cookie('username',seluser,3600)
+                gourl.set_cookie('usercookie',s,3600)
 
                 return gourl
     elif request.method == "GET":
@@ -96,8 +116,16 @@ def sign_view(request):
                 seluser = t['UserId']
                 users = hr_hr.objects.filter(userid=seluser)
                 if users:
+                    u = users.first()
+                    rnd = seluser + str(time.time()) + str(random.randint(10000, 20000))
+                    strsession = hashlib.md5()
+                    strsession.update(rnd.encode('utf-8'))
+                    s = strsession.hexdigest()
+                    u.session = s
+                    u.save()
+
                     gourl = redirect('/')
-                    gourl.set_cookie('username', seluser, 3600)
+                    gourl.set_cookie('usercookie', s, 3600)
                     return gourl
         else:
             print('code is no')
@@ -105,8 +133,13 @@ def sign_view(request):
     return render(request, 'sign.html', context)
 
 def signout(request):
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     try:
+        signuser = hr_hr.objects.get(session=username)
+        signuser.session = '0000000000000000'
+        # signuser.expsession = 0
+        signuser.save()
+
         gourl = redirect('/')
         gourl.delete_cookie('username')
         return gourl
@@ -118,9 +151,13 @@ def config(request):
     context={}
     context['title']='设置'
 
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
@@ -134,9 +171,13 @@ def search(request):
     context={}
     context['title']='pure list'
 
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
@@ -148,9 +189,13 @@ def view_pure_list(request):
     context={}
     context['title']='pure list'
 
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
@@ -165,9 +210,13 @@ def pure_form(request):
     context={}
     context['title']='表单'
 
-    username = request.COOKIES.get('username', '')
+    username = request.COOKIES.get('usercookie', None)
     if username:
-        signuser = hr_hr.objects.get(userid=username)
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
         context['userinfo'] = signuser.name
     else:
         context['userinfo'] = '用户'
