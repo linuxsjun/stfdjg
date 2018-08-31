@@ -6,7 +6,7 @@ import requests, json, time, datetime, hashlib, random
 import os
 from django.conf import settings
 
-from web.models import pureftp, base_conf, hr_department, hr_hr
+from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department
 
 # Create your views here.
 
@@ -168,23 +168,7 @@ def config(request):
     context['context'] = p
     return render(request, 'base_conf.html', context)
 
-def search(request):
-    context={}
-    context['title']='pure list'
 
-    username = request.COOKIES.get('usercookie', None)
-    if username:
-        try:
-            signuser = hr_hr.objects.get(session=username)
-        except Exception:
-            context['userinfo'] = '用户'
-            return render(request, 'sign.html', context)
-        context['userinfo'] = signuser.name
-    else:
-        context['userinfo'] = '用户'
-        return render(request, 'sign.html', context)
-
-    return render(request, 'search.html',context)
 
 def view_pure_list(request):
     context={}
@@ -393,7 +377,7 @@ def gethr(request):
         for d in t['userlist']:
             dt = hr_hr(userid=d['userid'],
                        name=d['name'],
-                       department=d['department'],
+                       # department=d['department'],
                        position=d['position'],
                        mobile=d['mobile'],
                        gender=d['gender'],
@@ -409,7 +393,39 @@ def gethr(request):
                        order=d['order'],
                        # external_profile=d['external_profile'],
                        qr_code=d['qr_code'])
-            dt.save()
+            try:
+                chkem=None
+                chkem = hr_hr.objects.filter(userid=d['userid'])
+            except Exception:
+                print('chkem error')
+                pass
+            if chkem:
+                #记录已存在
+                pass
+            else:
+                dt.save()
+
+                #关联员工与部门
+                nemp = hr_hr.objects.get(userid=d['userid'])
+                ds = d['department']
+
+                for de in ds:
+                    des = int(de)
+                    try:
+                        dep = hr_department.objects.filter(pid=des).first()
+                    except Exception:
+                        pass
+                    else:
+                        try:
+                            rep = employee_department.objects.filter(employeeid=nemp.userid,departmentid=des)
+                        except Exception:
+                            pass
+                        else:
+                            if len(rep):
+                                return redirect('/hr/')
+                        seds = employee_department.objects.create(employeeid=nemp,departmentid=dep)
+                        seds.save()
+
     return redirect('/hr/')
 
 def uploadfile(request):
@@ -518,3 +534,25 @@ def wxcode(request):
 
 def wxtext(request):
     return HttpResponse('xtT9JTstqSGD5Lu2')
+
+#功能测试路由
+def search(request):
+    context={}
+    context['title']='pure list'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+    print(signuser.id)
+
+    depid = 12
+
+    return render(request, 'search.html',context)
