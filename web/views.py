@@ -168,8 +168,6 @@ def config(request):
     context['context'] = p
     return render(request, 'base_conf.html', context)
 
-
-
 def view_pure_list(request):
     context={}
     context['title']='pure list'
@@ -374,25 +372,9 @@ def gethr(request):
 
     if t['errcode'] == 0:
         d = {}
+
         for d in t['userlist']:
-            dt = hr_hr(userid=d['userid'],
-                       name=d['name'],
-                       # department=d['department'],
-                       position=d['position'],
-                       mobile=d['mobile'],
-                       gender=d['gender'],
-                       email=d['email'],
-                       avatar=d['avatar'],
-                       status=d['status'],
-                       enable=d['enable'],
-                       isleader=d['isleader'],
-                       extattr=d['extattr'],
-                       hide_mobile=d['hide_mobile'],
-                       english_name=d['english_name'],
-                       telephone=d['telephone'],
-                       order=d['order'],
-                       # external_profile=d['external_profile'],
-                       qr_code=d['qr_code'])
+            print('-----------------')
             try:
                 chkem=None
                 chkem = hr_hr.objects.filter(userid=d['userid'])
@@ -403,7 +385,47 @@ def gethr(request):
                 #记录已存在
                 pass
             else:
+                #-----------------
+                u_userid = d['userid']
+                u_name = d['name']
+                u_department=d['department']
+                u_position = d['position']
+                u_mobile = d['mobile']
+                u_gender = d['gender']
+                u_email = d['email']
+                u_avatar = d['avatar']
+                u_status = d['status']
+                u_enable = d['enable']
+                u_isleader = d['isleader']
+                u_extattr = d['extattr']
+                u_hide_mobile = d['hide_mobile']
+                u_english_name = d['english_name']
+                u_telephone = d['telephone']
+                u_order = d['order']
+                # u_external_profile=d['external_profile']
+                u_qr_code = d['qr_code']
+                #-----------------
+
+                dt = hr_hr(userid=u_userid,
+                           name=u_name,
+                           # department=u_department,
+                           position=u_position,
+                           mobile=u_mobile,
+                           gender=u_gender,
+                           email=u_email,
+                           avatar=u_avatar,
+                           status=u_status,
+                           enable=u_enable,
+                           isleader=u_isleader,
+                           extattr=u_extattr,
+                           hide_mobile=u_hide_mobile,
+                           english_name=u_english_name,
+                           telephone=u_telephone,
+                           order=u_order,
+                           # external_profile=u_external_profile,
+                            qr_code=u_qr_code)
                 dt.save()
+                print(u_name)
 
                 #关联员工与部门
                 nemp = hr_hr.objects.get(userid=d['userid'])
@@ -422,9 +444,10 @@ def gethr(request):
                             pass
                         else:
                             if len(rep):
-                                return redirect('/hr/')
-                        seds = employee_department.objects.create(employeeid=nemp,departmentid=dep)
-                        seds.save()
+                                pass
+                            else:
+                                seds = employee_department.objects.create(employeeid=nemp,departmentid=dep)
+                                seds.save()
 
     return redirect('/hr/')
 
@@ -554,5 +577,8 @@ def search(request):
     print(signuser.id)
 
     depid = 12
+    dep = hr_department.objects.filter(id=depid).first()
+    hhhh = employee_department.objects.filter(hr_department__id__int=12)
+    print(hhhh)
 
     return render(request, 'search.html',context)
