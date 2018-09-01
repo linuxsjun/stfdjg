@@ -6,7 +6,7 @@ import requests, json, time, datetime, hashlib, random
 import os
 from django.conf import settings
 
-from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department
+from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
 
 # Create your views here.
 
@@ -89,6 +89,13 @@ def sign_view(request):
                 u.session = s
                 u.save()
 
+                #登录日志
+                wlog = base_user_sign_log(signtime = datetime.datetime.fromtimestamp(time.time()),
+                                          employeeid = u,
+                                          fromip = request.META.get('REMOTE_ADDR','0.0.0.0'),
+                                          contl = 'user&passwd')
+                wlog.save()
+
                 gourl = redirect('/')
                 gourl.set_cookie('usercookie',s,3600)
 
@@ -124,6 +131,13 @@ def sign_view(request):
                     s = strsession.hexdigest()
                     u.session = s
                     u.save()
+
+                    # 登录日志
+                    wlog = base_user_sign_log(signtime=datetime.datetime.fromtimestamp(time.time()),
+                                              employeeid=u,
+                                              fromip=request.META.get('REMOTE_ADDR', '0.0.0.0'),
+                                              contl='Scan WX-code')
+                    wlog.save()
 
                     gourl = redirect('/')
                     gourl.set_cookie('usercookie', s, 3600)
@@ -388,7 +402,6 @@ def gethr(request):
                 #-----------------
                 u_userid = d['userid']
                 u_name = d['name']
-                u_department=d['department']
                 u_position = d['position']
                 u_mobile = d['mobile']
                 u_gender = d['gender']
@@ -406,9 +419,8 @@ def gethr(request):
                 u_qr_code = d['qr_code']
                 #-----------------
 
-                dt = hr_hr(userid=u_userid,
+                dt = hr_hr(userid=d['userid'],
                            name=u_name,
-                           # department=u_department,
                            position=u_position,
                            mobile=u_mobile,
                            gender=u_gender,
@@ -446,7 +458,7 @@ def gethr(request):
                             if len(rep):
                                 pass
                             else:
-                                seds = employee_department.objects.create(employeeid=nemp,departmentid=dep)
+                                seds = employee_department(employeeid=nemp,departmentid=dep)
                                 seds.save()
 
     return redirect('/hr/')
@@ -577,8 +589,12 @@ def search(request):
     print(signuser.id)
 
     depid = 12
-    dep = hr_department.objects.filter(id=depid).first()
-    hhhh = employee_department.objects.filter(hr_department__id__int=12)
-    print(hhhh)
+    dep = hr_department.objects.all().first()
+    # hhhh = employee_department.objects.filter(hr_department__id__int=12)
+    # print(hhhh)
+    # kk = hr_department.employee_department_set.all()
+    # print(kk)
+
+
 
     return render(request, 'search.html',context)
