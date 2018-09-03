@@ -29,6 +29,16 @@ class base_conf(models.Model):
     class Meta:
         db_table = "base_conf"
 
+class base_menu(models.Model):
+    #菜单
+    name = models.CharField(max_length=16, verbose_name='菜单')
+    nameid = models.CharField(unique=True, max_length=8, verbose_name='菜单编号')
+    parentid = models.ForeignKey('self', null=True, blank=True, to_field='nameid', on_delete=models.SET_NULL, verbose_name='上级菜单')
+    status = models.FloatField(default=True)
+
+    class Meta:
+        db_table = 'base_menu'
+
 class base_user_sign_log(models.Model):
     #用户登录日志
     signtime = models.DateTimeField(verbose_name='登录时间')
@@ -82,3 +92,55 @@ class hr_conf(models.Model):
     agentid = models.IntegerField(null=True, verbose_name='企业微信ID')
     corpsecret = models.CharField(max_length=64,null=True, verbose_name='企业微信密钥')
 
+class asset_category(models.Model):
+    #设备分类
+    name = models.CharField()
+    parentid = models.ForeignKey('self', null=True, on_delete=models.SET_NULL)
+    bom = models.BooleanField()
+    active = models.BooleanField(verbose_name='删除状况')
+
+    class Meta:
+        db_table = 'asset_category'
+
+class asset_parts(models.Model):
+    #设备配件
+    parentid = models.ForeignKey('asset_property',on_delete=models.SET_NULL)
+    name = models.CharField()
+    sn = models.CharField()
+    type = models.CharField()
+    specifications = models.CharField()
+    bom = models.BooleanField()
+    price = models.FloatField()
+    purchase = models.DateField()
+    wrranty = models.DateField()
+    notes = models.TextField()
+    status = models.IntegerField(verbose_name='状态')
+    active = models.BooleanField(verbose_name='删除状况')
+
+    class Meta:
+        db_table = 'asset_parts'
+
+class asset_property(models.Model):
+    #设备表
+    sid = models.CharField()
+    name = models.CharField()
+    specifications = models.CharField()
+    model = models.CharField()
+    typeid = models.ForeignKey('asset_category', on_delete=models.SET_NULL)
+    purchase = models.DateField()
+    price = models.FloatField()
+    manufacture = models.DateField()
+    warranty = models.DateField()
+    sn = models.CharField(verbose_name='出厂编号')
+    user = models.ForeignKey('hr_hr', on_delete=models.SET_NULL, verbose_name='用户')
+    partlist = models.CharField(verbose_name='配件-多个')
+    status = models.IntegerField(verbose_name='设备状态')
+    nots = models.TextField(verbose_name='备注')
+    active = models.BooleanField(verbose_name='是否删除')
+
+    class Meta:
+        db_table = 'asset_property'
+
+class position(models.Model):
+    #设备地址
+    name = models.CharField(verbose_name='地址名')

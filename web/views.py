@@ -69,7 +69,7 @@ def hr_view(request):
     # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
     ps = hr_hr.objects.all().order_by('name')
     context['context']= ps
-    return render(request, 'view_hr_list.html', context)
+    return render(request, 'view_hr_broad.html', context)
 
 def sign_view(request):
     context={}
@@ -589,12 +589,12 @@ def search(request):
     print(signuser.id)
 
     depid = 12
-    dep = hr_department.objects.all().first()
+    dep = hr_department.objects.all()
     # hhhh = employee_department.objects.filter(hr_department__id__int=12)
     # print(hhhh)
     # kk = hr_department.employee_department_set.all()
     # print(kk)
-
+    print(dep.query)
 
 
     return render(request, 'search.html',context)
