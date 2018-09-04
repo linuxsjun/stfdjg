@@ -31,7 +31,7 @@
                 </div>
                 <div class="form_view">
                     <div class="formtitle">
-                        <h1>{{ context.user }}</h1>
+                        <h1>{{ context.sid }}</h1>
                         <div class="smarttools"></div>
                     </div>
                     <form action="#" method="post" id="cccc" name="pure">
@@ -84,12 +84,6 @@
                                 <td class="leb">维保到期</td>
                                 <td class="val"><input class="form_txtin" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}"></td>
                             </tr>
-                            <tr>
-                                <td class="leb">备注</td>
-                                <td colspan="3" class="val">
-                                <textarea class="form_txtin" name="comment" clos=",100" rows="3" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
-                                </td>
-                            </tr>
                         </table>
                     </form>
                     <div class="sheet">
@@ -101,7 +95,12 @@
                         <div class="sheetcontext">
                             <div><p>td1</p></div>
                             <div><p>td2</p></div>
-                            <div><p>td3</p></div>
+                            <div>
+                                <p>td3</p>
+                                <td class="leb">备注</td>
+                                <td colspan="3" class="val">
+                                <textarea class="form_txtin" name="comment" clos=",100" rows="3" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
+                            </div>
                         </div>
                     </div>
                 </div>

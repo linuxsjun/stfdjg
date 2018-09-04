@@ -153,6 +153,9 @@ class asset_property(models.Model):
 class asset_conf(models.Model):
     name = models.CharField(max_length=16)
 
+    class Meta:
+        db_table = 'asset_conf'
+
 class position(models.Model):
     #设备地址
     name = models.CharField(max_length=32, verbose_name='地址名')
