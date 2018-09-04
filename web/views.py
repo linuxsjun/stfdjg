@@ -631,12 +631,27 @@ def search(request):
     # for i in hee:
     #     print(i.employeeid.name)
 
-    em = hr_department.objects.get(pid=8)
-    print(em.employee_department_set.all())
+    # em = hr_department.objects.get(pid=8)
+    # print(em.employee_department_set.all())
 
     # h = hr_department.objects.get(pid=9)
     # lks = h.employee_department_set.all()
     # for p in lks:
     #     print(p.employeeid.name)
+
+    pr = asset_property.objects.get(pk=1)
+    pts = pr.asset_parts_set.all()
+    for pt in pts:
+        print(pt.name)
+
+    pr1 = asset_property.objects.filter(pk=1)
+    print(type(pr1), pr1.query)
+
+    pr = asset_property.objects.get(pk=1)
+    print(type(pr))
+
+    print(pr.name,
+          pr.user.name,
+          pr.user.employee_department_set.all().values('departmentid__name'))
 
     return render(request, 'search.html',context)

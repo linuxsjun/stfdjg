@@ -7,9 +7,14 @@
     .view_menu .limg{height:100px;}
 
     /*二级菜单样式*/
-    .sub_menu li{height: 30px;}
-        .sub_menu li a{display: block;width:100%;text-decoration:none;color:black;padding-left:20px;line-height:30px;box-sizing:border-box;}
+    /*.sub_menu li{height: 30px;}*/
+        .sub_menu li a{display: block;width:100%;text-decoration:none;color:#7c7bad;;padding-left:1em;line-height:30px;box-sizing:border-box;}
         .sub_menu li a:hover{color:white;background: #7c7bad;}
+
+    /*三级菜单样式*/
+    /*.thr_menu li{height: 30px;}*/
+        .thr_menu li a{display: block;width:100%;text-decoration:none;color:black;padding-left:2em;line-height:30px;box-sizing:border-box;}
+        .thr_menu li a:hover{color:white;background: #7c7bad;}
 
 .view_form{float: right;width: 85%;border-left: 1px solid #aaaaaa;box-sizing: border-box;}
     /*上部面板*/

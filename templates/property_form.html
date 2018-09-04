@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="view_menu">
+        <div class="limg"></div>
+        <div class="sub_menu">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="sub_menu_foot"></div>
+    </div>
+    <div class="view_form">
+        <div class="header">
+            <h1>{{ title }}</h1>
+        </div>
+        <context>
+            <div class="formview">
+                <div class="cmd_nav">
+                    <ul class="but_cmd">
+                        <li><button class="btn" type="submit" form="cccc">保存</button></li>
+                    </ul>
+                    <div class="flowlist"></div>
+                </div>
+                <div class="form_view">
+                    <div class="formtitle">
+                        <h1>{{ context.user }}</h1>
+                        <div class="smarttools"></div>
+                    </div>
+                    <form action="/pure_add/" method="post" id="cccc" name="pure">
+                        {% csrf_token %}
+                        <input name="acte" value="{{ act }}" type="hidden">
+                        <table>
+                            <tr>
+                                <td class="leb">状态</td>
+                                <td class="val">
+                                    {% if context.status %}
+                                    <input type="checkbox" name="status" value="true" checked="">
+                                    {% else %}
+                                    <input type="checkbox" name="status" value="false">
+                                    {% endif %}
+                                </td>
+                                <td class="leb">账号</td>
+                                <td class="val"><input class="form_txtin" type="text" name="user" value="{{ context.user }}" placeholder="登录名"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">密码</td>
+                                <td class="val"><input class="form_txtin" type="password" name="password" value="{{ context.password }}" placeholder="密码"></td>
+                                <td class="leb">ipaccess</td>
+                                <td class="val"><input class="form_txtin" type="text" name="ipaccess" value="{{ context.ipaccess|default:'0.0.0.0' }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">目录</td>
+                                <td class="val" colspan="3"><input class="form_txtin" type="text" name="dir" value="{{ context.dir }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">用户ID</td>
+                                <td class="val"><input class="form_txtin" type="text" name="uid" value="{{ context.uid|default:'1001' }}"></td>
+                                <td class="leb">组ID</td>
+                                <td class="val"><input class="form_txtin" type="text" name="gid" value="{{ context.gid|default:'1001' }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">上传带宽</td>
+                                <td class="val"><input class="form_txtin" type="number" name="ulbandwidth" value="{{ context.ulbandwidth|default:'0' }}"></td>
+                                <td class="leb">下载带宽</td>
+                                <td class="val"><input class="form_txtin" type="number" name="dlbandwidth" value="{{ context.dlbandwidth|default:'0' }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">空间配额</td>
+                                <td class="val"><input class="form_txtin" type="number" name="quotasize" value="{{ context.quotasize|default:'0' }}"></td>
+                                <td class="leb">文件配额</td>
+                                <td class="val"><input class="form_txtin" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">创建日期</td>
+                                <td class="val"><input class="form_txtin" type="date" name="createdate" value="{{ context.createdate|date:'Y-m-d' }}"></td>
+                                <td class="leb">最后登录日期</td>
+                                <td class="val"><input class="form_txtin" type="date" name="lastedate" value="{{ context.lastedate|date:'Y-m-d' }}"></td>
+                            </tr>
+                            <tr>
+                                <td class="leb">用途</td>
+                                <td colspan="3" class="val">
+                                <textarea class="form_txtin" name="comment" clos=",100" rows="3" warp="soft" placeholder="使用说明">{{ context.comment }}</textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+                <div class="form_foot"></div>
+            </div>
+        </context>
+        <div class="footbar"></div>
+    </div>
+{% endblock %}
