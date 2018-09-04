@@ -37,6 +37,7 @@ class base_menu(models.Model):
     name = models.CharField(max_length=16, verbose_name='菜单')
     parentid = models.ForeignKey('self', null=True, blank=True, to_field='mnid', on_delete=models.SET_NULL, verbose_name='上级菜单')
     sequence = models.IntegerField(default=0, verbose_name='顺序')
+    linkto = models.CharField(max_length=256, null=True, blank=True, verbose_name='跳转到...')
     active = models.FloatField(default=True, verbose_name='是否删除')
 
     class Meta:
@@ -116,7 +117,7 @@ class asset_parts(models.Model):
     name = models.CharField(max_length=32, verbose_name='名称')
     sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
     type = models.CharField(max_length=32, null=True)
-    specifications = models.CharField(max_length=32, null=True, verbose_name='规格')
+    specifications = models.CharField(max_length=64, null=True, verbose_name='规格')
     bom = models.BooleanField(default=False, verbose_name='组件')
     price = models.FloatField(default=0, verbose_name='价格')
     purchase = models.DateField(null=True, verbose_name='购买日期')
@@ -132,7 +133,7 @@ class asset_property(models.Model):
     #设备表
     sid = models.CharField(max_length=32, unique=True, verbose_name='编号')
     name = models.CharField(max_length=64, verbose_name='名称')
-    specifications = models.CharField(null=True, max_length=32, verbose_name='规格')
+    specifications = models.CharField(null=True, max_length=64, verbose_name='规格')
     model = models.CharField(null=True, max_length=64, verbose_name='型号')
     categoryid = models.ForeignKey('asset_category', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='类型')
     purchase = models.DateField(null=True, verbose_name='购买日期')

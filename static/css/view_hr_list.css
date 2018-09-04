@@ -8,8 +8,8 @@
 
     /*二级菜单样式*/
     /*.sub_menu li{height: 30px;}*/
-        .sub_menu li a{display: block;width:100%;text-decoration:none;color:#7c7bad;;padding-left:1em;line-height:30px;box-sizing:border-box;}
-        .sub_menu li a:hover{color:white;background: #7c7bad;}
+        .sub_menu li a{display: block;width:100%;text-decoration:none;color:#7c7bad;;padding-left:1em;line-height:2.5em;box-sizing:border-box;font-size:14px;}
+        /*.sub_menu li a:hover{color:white;background: #7c7bad;}*/
 
     /*三级菜单样式*/
     /*.thr_menu li{height: 30px;}*/

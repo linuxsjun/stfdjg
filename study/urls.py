@@ -49,5 +49,6 @@ urlpatterns = [
     path('wxdoor/', views.wxdoor),
     path('wxcode/', views.wxcode),
 
-    path('property/', views.property),
+    path('property_list/', views.property_list),
+    path('property_form/', views.property_form),
 ]

@@ -571,7 +571,7 @@ def wxcode(request):
 def wxtext(request):
     return HttpResponse('xtT9JTstqSGD5Lu2')
 
-def property(request):
+def property_list(request):
     context={}
     context['title']='property_list'
 
@@ -591,6 +591,29 @@ def property(request):
     context['context'] = ps
 
     return render(request, 'property_list.html', context)
+
+def property_form(request):
+    context={}
+    context['title']='property_form'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_property.objects.get(pk=1)
+
+    context['context'] = ps
+
+    print(ps.categoryid.name)
+    return render(request, 'property_form.html', context)
 
 
 #功能测试路由
