@@ -43,16 +43,12 @@
                         <tr>
                             <th><input type="checkbox"></th>
                             <th>状态</th>
-                            <th>用途</th>
-                            <th>上行带宽</th>
-                            <th>下行带宽</th>
-                            <th>访问IP</th>
-                            <th>空间大小</th>
-                            <th>创建日期</th>
-                            <th>最后登录日期</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
+                            <th>编号</th>
+                            <th>名称</th>
+                            <th>规格</th>
+                            <th>出厂编号</th>
+                            <th>购买日期</th>
+                            <th>维保到期</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -66,20 +62,16 @@
                                         <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>
                                     {% endif %}
                                 </td>
-                                <td>{{ item.comment }}</td>
-                                <td>{{ item.ulbandwidth }}</td>
-                                <td>{{ item.dlbandwidth }}</td>
-                                <td>{{ item.ipaccess }}</td>
-                                <td>{{ item.quotasize }}</td>
-                                <td>{{ item.createdate|date:'Y-m-d' }}</td>
-                                <td>{{ item.lastedate|date:'Y-m-d' }}</td>
-                                <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
-                                <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
-                                <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
+                                <td>{{ item.sid }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>{{ item.specifications }}</td>
+                                <td>{{ item.sn }}</td>
+                                <td>{{ item.purchase }}</td>
+                                <td>{{ item.warranty|date:'Y-m-d' }}</td>
                             </tr>
                         {% empty %}
                             <tr>
-                                <td  colspan="14" style="text-align: center;">(暂无数据)</td>
+                                <td  colspan="8" style="text-align: center;">(暂无数据)</td>
                             </tr>
                         {% endfor %}
                     </tbody>

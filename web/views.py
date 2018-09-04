@@ -7,6 +7,7 @@ import os
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
+from web.models import asset_conf, asset_category, asset_parts, asset_property, position
 
 # Create your views here.
 
@@ -570,6 +571,28 @@ def wxcode(request):
 def wxtext(request):
     return HttpResponse('xtT9JTstqSGD5Lu2')
 
+def property(request):
+    context={}
+    context['title']='property_list'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_property.objects.all()
+    context['context'] = ps
+
+    return render(request, 'property_list.html', context)
+
+
 #功能测试路由
 def search(request):
     context={}
@@ -588,13 +611,32 @@ def search(request):
         return render(request, 'sign.html', context)
     print(signuser.id)
 
-    depid = 12
-    dep = hr_department.objects.all()
-    # hhhh = employee_department.objects.filter(hr_department__id__int=12)
-    # print(hhhh)
-    # kk = hr_department.employee_department_set.all()
-    # print(kk)
-    print(dep.query)
+    # depid = 8
+    # hre = hr_hr.objects.get(id=depid)
+    # dpe = employee_department.objects.filter(employeeid__gender=1)
+    # print(dpe.query)
+    # print('--------------------------')
+    # # print(dpe)
+    # for i in dpe:
+    #     print(i)
+    #
+    # print('=================================')
+    # hre = employee_department.objects.all().values('employeeid__name','departmentid__name')
+    # print(hre.query)
+    # print('--------------------------')
+    # print(hre)
+    #
+    # print('--------------------------')
+    # hee = employee_department.objects.all()
+    # for i in hee:
+    #     print(i.employeeid.name)
 
+    em = hr_department.objects.get(pid=8)
+    print(em.employee_department_set.all())
+
+    # h = hr_department.objects.get(pid=9)
+    # lks = h.employee_department_set.all()
+    # for p in lks:
+    #     print(p.employeeid.name)
 
     return render(request, 'search.html',context)
