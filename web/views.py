@@ -608,10 +608,13 @@ def property_form(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.get(pk=1)
-
+    ps = asset_property.objects.get(pk=2)
     context['context'] = ps
 
+    prs = ps.asset_parts_set.all()
+    context['parts'] = prs
+
+    print(context['parts'])
     print(ps.categoryid.name)
     return render(request, 'property_form.html', context)
 

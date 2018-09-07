@@ -4,19 +4,13 @@
     <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
 {% endblock styecss %}
 
+{% block jquery %}
+        <script src="/static/js/property_form.js"></script>
+{% endblock jquery%}
+
 {% block mainbody %}
-    <div class="view_menu">
-        <div class="limg"></div>
-        <div class="sub_menu">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="sub_menu_foot"></div>
-    </div>
-    <div class="view_form">
+    <!--<div class="view_form"> -->
+    <div>
         <div class="header">
             <h1>{{ title }}</h1>
         </div>
@@ -87,14 +81,44 @@
                         </table>
                     </form>
                     <div class="sheet">
-                        <div class="sheetheader">
-                            <a>配件</a>
-                            <a>采购</a>
-                            <a>其它</a>
-                        </div>
+                        <ul class="clearfix">
+                            <li><a>配件</a></li>
+                            <li><a>采购</a></li>
+                            <li><a>其它</a></li>
+                        </ul>
                         <div class="sheetcontext">
-                            <div><p>td1</p></div>
-                            <div><p>td2</p></div>
+                            <div>
+                                <button class="btn" type="submit" form="cccc">添加</button>
+                                <table class="table_view" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th><input type="checkbox"></th>
+                                            <th>名称</th>
+                                            <th>规格</th>
+                                            <th>编号</th>
+                                            <th>拆出</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in parts %}
+                                            <tr>
+                                                <td><input type="checkbox" name="selitem"></td>
+                                                <td><a href="#">{{ item.name }}</a></td>
+                                                <td>{{ item.specifications }}</td>
+                                                <td>{{ item.sn }}</td>
+                                                <td><a class="but_min" href="#" title="删除"><i class="fa fa-unlink fa-1x"></i></a></td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td  colspan="5" style="text-align: center;">(暂无数据)</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div>
+                                <p>td2</p>
+                            </div>
                             <div>
                                 <p>td3</p>
                                 <td class="leb">备注</td>

@@ -23,28 +23,18 @@
 
    <div class="pager clearfix">
        <div class="colcenter clearfix">
-            <div class="signstyle" id="">
-                <form action="/sign/" method="post" name="sign">
-                    {% csrf_token %}
-                    <span class="clearfix"><i class="fa fa-user fa-5x"></i></span>
-                    <p><input class="txtstyle" type="text" name="user" value="" placeholder="用户名(拼音 首字母大写)"></p>
-                    <p><input class="txtstyle" type="password" name="passwd" value="" placeholder="密码"></p>
-                    <p><input class="txtstyle signbtu" type="submit" value="登   录"></p>
-                </form>
-            </div>
-
-            <div class="signstyle" id="wx_reg">
-{#                <script>#}
-{#                    window.WwLogin({#}
-{#                    "id" : "wx_reg",#}
-{#                    "appid" : "ww74c5af840cdd5cb6",#}
-{#                    "agentid" : "1000013",#}
-{#                    "redirect_uri" :"http://127.0.0.1:8000/sign",#}
-{#                    "state" : "{{ stat }}",#}
-{#                    "href" : "",#}
-{#                    });#}
-{#                </script>#}
-            </div>
+           <div class="signstyle" id="">
+               <form action="/sign/" method="post" name="sign">
+                   {% csrf_token %}
+                   <span class="clearfix"><i class="fa fa-user fa-5x"></i></span>
+                   <p><input class="txtstyle" type="text" name="user" value="" placeholder="用户名(拼音 首字母大写)"></p>
+                   <p><input class="txtstyle" type="password" name="passwd" value="" placeholder="密码"></p>
+                   <p><input class="txtstyle signbtu" type="submit" value="登   录"></p>
+               </form>
+           </div>
+           <div class="signstyle" id="wx_reg">
+           </div>
+           <script src="/static/js/sign.js"></script>
        </div>
 
    </div>

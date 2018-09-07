@@ -24,7 +24,7 @@
         padding:.5em 10px;
     }
 
-    .cmd_nav{height: 32px;background:linear-gradient(white,lightgrey); border-top: 1px solid #a8a8a8;border-bottom: 1px solid #cacaca;}
+    .cmd_nav{height: 32px;border-top:1px solid #a8a8a8;border-bottom: 1px solid #cacaca;border-top: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);}
 
 
     context{padding: 0px;}
@@ -46,7 +46,7 @@
     /*form样式*/
     .form_view{
         margin: 20px auto;
-        width: 80%;
+        width: 90%;
         border: 1px solid lightgray;
         border-radius: 5px;
         box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);
@@ -90,3 +90,11 @@
 .btn{border:1px solid #a6a5ec;color: white;background: #7c7bad;padding: 4px 15px;border-radius: .5em;font-size:12px;margin-top:3px;margin-left: 5px;}
     .btn:hover{background: #a6a5ec;}
 
+/*部件*/
+.sheet{margin:2em;}
+    .sheet ul{margin-left:5em;font-size:12px;line-height:2em;}
+    .sheet ul li{float:left;list-style:none;}
+    .sheet ul li a{text-decoration:none;background:#dddddd;padding:1em 2em;box-sizing:border-box;display:block;overflow:hidden;}
+    .sheet ul li a:hover{border:2px solid #cccc00;}
+    .sheet div {min-height:20em;border-top:1px solid #dddddd;border-bottom:1px solid #dddddd;}
+    .sheet div div{padding:2em;}
