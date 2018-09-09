@@ -19,9 +19,14 @@
             <div class="formview">
                 <div class="cmd_nav">
                     <ul class="but_cmd">
-                        <li><button class="btn" type="submit" form="cccc">保存</button></li>
+                        <li><button class="btn btn-default" type="submit" form="cccc">保存</button></li>
                     </ul>
-                    <div class="flowlist"></div>
+                    <ul class="flowlist">
+                        <li><a href="#l">状态1</a></li>
+                        <li><a href="#l">状态2</a></li>
+                        <li><a href="#l">状态3</a></li>
+                        <li><a href="#l">状态4</a></li>
+                    </ul>
                 </div>
                 <div class="form_view">
                     <div class="formtitle">
@@ -42,54 +47,51 @@
                                     {% endif %}
                                 </td>
                                 <td class="leb">编号</td>
-                                <td class="val"><input class="form_txtin" type="text" name="sid" value="{{ context.sid }}" placeholder="编号"></td>
+                                <td class="val"><input class="form-control" type="text" name="sid" value="{{ context.sid }}" placeholder="编号"></td>
                             </tr>
                             <tr>
                                 <td class="leb">名称</td>
-                                <td class="val"><input class="form_txtin" type="text" name="name" value="{{ context.name }}" placeholder="名称"></td>
+                                <td class="val"><input class="form-control" type="text" name="name" value="{{ context.name }}" placeholder="名称"></td>
                                 <td class="leb">规格</td>
-                                <td class="val"><input class="form_txtin" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格"></td>
+                                <td class="val"><input class="form-control" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格"></td>
                             </tr>
                             <tr>
                                 <td class="leb">型号</td>
-                                <td class="val" colspan="3"><input class="form_txtin" type="text" name="model" value="{{ context.model }}"  placeholder="型号"></td>
+                                <td class="val" colspan="3"><input class="form-control" type="text" name="model" value="{{ context.model }}"  placeholder="型号"></td>
                             </tr>
                             <tr>
                                 <td class="leb">类型</td>
-                                <td class="val"><input class="form_txtin" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}"></td>
-                                <td class="leb">购买日期</td>
-                                <td class="val"><input class="form_txtin" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}"></td>
-                            </tr>
+                                <td class="val"><input class="form-control" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}"></td>
+                                </tr>
                             <tr>
                                 <td class="leb">价格</td>
-                                <td class="val"><input class="form_txtin" type="number" name="price" value="{{ context.price|default:'0' }}"></td>
+                                <td class="val"><input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}"></td>
                                 <td class="leb">出厂编号</td>
-                                <td class="val"><input class="form_txtin" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号"></td>
+                                <td class="val"><input class="form-control" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号"></td>
                             </tr>
                             <tr>
                                 <td class="leb">用户</td>
-                                <td class="val"><input class="form_txtin" type="text" name="user" value="{{ context.user }}"></td>
-                                <td class="leb">文件配额</td>
-                                <td class="val"><input class="form_txtin" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}"></td>
+                                <td class="val"><input class="form-control" type="text" name="user" value="{{ context.user }}"></td>
+
                             </tr>
                             <tr>
                                 <td class="leb">出厂日期</td>
-                                <td class="val"><input class="form_txtin" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}"></td>
+                                <td class="val"><input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}"></td>
                                 <td class="leb">维保到期</td>
-                                <td class="val"><input class="form_txtin" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}"></td>
+                                <td class="val"><input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}"></td>
                             </tr>
                         </table>
                     </form>
                     <div class="sheet">
-                        <ul class="clearfix">
-                            <li><a>配件</a></li>
-                            <li><a>采购</a></li>
-                            <li><a>其它</a></li>
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active" role="presentation"><a href="#pp">配件</a></li>
+                            <li role="presentation"><a href="#pp">采购</a></li>
+                            <li role="presentation"><a href="#pp">其它</a></li>
                         </ul>
                         <div class="sheetcontext">
                             <div>
-                                <button class="btn" type="submit" form="cccc">添加</button>
-                                <table class="table_view" border="1">
+                                <button class="btn btn-primary" type="submit" form="cccc">添加</button>
+                                <table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th><input type="checkbox"></th>
@@ -116,14 +118,60 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div>
-                                <p>td2</p>
+                            <div class="clearfix">
+                                <div style="width:49%;float: left;">
+                                    <h3>信息</h3>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="leb">文件配额</td>
+                                                <td class="val"><input class="form_txtin" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="leb">购买日期</td>
+                                                <td class="val"><input class="form_txtin" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="leb">购买日期</td>
+                                                <td class="val"><input class="form_txtin" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}"></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="leb">购买日期</td>
+                                                <td class="val"><input class="form_txtin" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div style="width:49%;float: right;">
+                                    <h3>功耗</h3>
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="checkbox" name="selitem"></td>
+                                                <td><a href="#">{{ item.name }}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ item.specifications }}</td>
+                                                <td>{{ item.sn }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="leb">购买日期</td>
+                                                <td class="val"><input class="form_txtin" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}"></td>
+                                            </tr>
+                                            <tr>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                            <div>
-                                <p>td3</p>
-                                <td class="leb">备注</td>
-                                <td colspan="3" class="val">
-                                <textarea class="form_txtin" name="comment" clos=",100" rows="3" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <p>备注</p>
+                                </div>
+                                <div class="col-sm-8">
+                                    <textarea class="form_txtin" name="comment" clos=",100" rows="5" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
+                                </div>
                             </div>
                         </div>
                     </div>

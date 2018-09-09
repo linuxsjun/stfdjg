@@ -30,12 +30,12 @@
     context{padding: 0px;}
 
     /*表格样式*/
-    .table_view{width: 100%;border-collapse: collapse;border: 0px solid black;font-size:12px;}
-        .table_view caption {}
-        .table_view tr:nth-child(2n){background: #dddddd;}
-            .table_view th,.table_view td {padding: .3em 10px;border: 0px solid black;border-bottom: 1px solid lightgray;}
-                .table_view th {border-right: 1px solid lightgray;border-top: 1px solid gray;border-bottom: 2px solid lightgray;text-align: left;  }
-                .table_view td {color: rgb(76,76,76);}
+    /*.table_view{width: 100%;border-collapse: collapse;border: 0px solid black;font-size:12px;}*/
+        /*.table_view caption {}*/
+        /*.table_view tr:nth-child(2n){background: #dddddd;}*/
+            /*.table_view th,.table_view td {padding: .3em 10px;border: 0px solid black;border-bottom: 1px solid lightgray;}*/
+                /*.table_view th {border-right: 1px solid lightgray;border-top: 1px solid gray;border-bottom: 2px solid lightgray;text-align: left;  }*/
+                /*.table_view td {color: rgb(76,76,76);}*/
 
     /*bord样式*/
     .bordform{float:left; width:260px;margin:5px;padding:5px;border:1px solid #7c7bad;border-radius: .5em;box-sizing: border-box;font-size:12px;}
@@ -64,7 +64,7 @@
         display: block;
         box-sizing: border-box;
         width:100%;
-        height: 28px;
+        line-height: 1.8em;
         border:1px solid #cccccc;
         border-radius: .5em;
         padding:2px 15px;
@@ -87,14 +87,18 @@
     .but_cmd li a{text-decoration: none;color: white;background: #7c7bad;line-height: 32px;padding: 4px 8px;border-radius: .5em;font-size:12px;}
     .but_cmd li a:hover{background: #a6a5ec;}
 
-.btn{border:1px solid #a6a5ec;color: white;background: #7c7bad;padding: 4px 15px;border-radius: .5em;font-size:12px;margin-top:3px;margin-left: 5px;}
-    .btn:hover{background: #a6a5ec;}
+/*.btn{border:1px solid #a6a5ec;color: white;background: #7c7bad;padding: 4px 15px;border-radius: .5em;font-size:12px;margin-top:3px;margin-left: 5px;}*/
+    /*.btn:hover{background: #a6a5ec;}*/
 
 /*部件*/
 .sheet{margin:2em;}
-    .sheet ul{margin-left:5em;font-size:12px;line-height:2em;}
-    .sheet ul li{float:left;list-style:none;}
-    .sheet ul li a{text-decoration:none;background:#dddddd;padding:1em 2em;box-sizing:border-box;display:block;overflow:hidden;}
-    .sheet ul li a:hover{border:2px solid #cccc00;}
-    .sheet div {min-height:20em;border-top:1px solid #dddddd;border-bottom:1px solid #dddddd;}
-    .sheet div div{padding:2em;}
+    /*.sheet ul{margin-left:3em;font-size:12px;line-height:2em;}*/
+    /*.sheet ul li{float:left;list-style:none;margin-left:2px;}*/
+    /*.sheet ul li a{text-decoration:none;color: #4c4c4c;background:#dddddd;padding:.6em 2em;box-sizing:border-box;display:block;overflow:hidden;border:1px solid #dddddd;}*/
+    /*.sheet ul li a:hover{background:#eeeeee;}*/
+    /*.sheet div {min-height:20em;border-top:1px solid #dddddd;border-bottom:1px solid #dddddd;}*/
+    /*.sheet div div{padding:2em;}*/
+
+.flowlist{float: right;margin-right:20px;}
+    .flowlist li{float:left;list-style:none;}
+    .flowlist li a{text-decoration:none;line-height:1.8em;border:1px red solid;box-sizing:border-box;}

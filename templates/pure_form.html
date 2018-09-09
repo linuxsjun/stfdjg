@@ -47,46 +47,46 @@
                                     {% endif %}
                                 </td>
                                 <td class="leb">账号</td>
-                                <td class="val"><input class="form_txtin" type="text" name="user" value="{{ context.user }}" placeholder="登录名"></td>
+                                <td class="val"><input class="form-control" type="text" name="user" value="{{ context.user }}" placeholder="登录名"></td>
                             </tr>
                             <tr>
                                 <td class="leb">密码</td>
-                                <td class="val"><input class="form_txtin" type="password" name="password" value="{{ context.password }}" placeholder="密码"></td>
+                                <td class="val"><input class="form-control" type="password" name="password" value="{{ context.password }}" placeholder="密码"></td>
                                 <td class="leb">ipaccess</td>
-                                <td class="val"><input class="form_txtin" type="text" name="ipaccess" value="{{ context.ipaccess|default:'0.0.0.0' }}"></td>
+                                <td class="val"><input class="form-control" type="text" name="ipaccess" value="{{ context.ipaccess|default:'0.0.0.0' }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">目录</td>
-                                <td class="val" colspan="3"><input class="form_txtin" type="text" name="dir" value="{{ context.dir }}"></td>
+                                <td class="val" colspan="3"><input class="form-control" type="text" name="dir" value="{{ context.dir }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">用户ID</td>
-                                <td class="val"><input class="form_txtin" type="text" name="uid" value="{{ context.uid|default:'1001' }}"></td>
+                                <td class="val"><input class="form-control" type="text" name="uid" value="{{ context.uid|default:'1001' }}"></td>
                                 <td class="leb">组ID</td>
-                                <td class="val"><input class="form_txtin" type="text" name="gid" value="{{ context.gid|default:'1001' }}"></td>
+                                <td class="val"><input class="form-control" type="text" name="gid" value="{{ context.gid|default:'1001' }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">上传带宽</td>
-                                <td class="val"><input class="form_txtin" type="number" name="ulbandwidth" value="{{ context.ulbandwidth|default:'0' }}"></td>
+                                <td class="val"><input class="form-control" type="number" name="ulbandwidth" value="{{ context.ulbandwidth|default:'0' }}"></td>
                                 <td class="leb">下载带宽</td>
-                                <td class="val"><input class="form_txtin" type="number" name="dlbandwidth" value="{{ context.dlbandwidth|default:'0' }}"></td>
+                                <td class="val"><input class="form-control" type="number" name="dlbandwidth" value="{{ context.dlbandwidth|default:'0' }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">空间配额</td>
-                                <td class="val"><input class="form_txtin" type="number" name="quotasize" value="{{ context.quotasize|default:'0' }}"></td>
+                                <td class="val"><input class="form-control" type="number" name="quotasize" value="{{ context.quotasize|default:'0' }}"></td>
                                 <td class="leb">文件配额</td>
-                                <td class="val"><input class="form_txtin" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}"></td>
+                                <td class="val"><input class="form-control" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">创建日期</td>
-                                <td class="val"><input class="form_txtin" type="date" name="createdate" value="{{ context.createdate|date:'Y-m-d' }}"></td>
+                                <td class="val"><input class="form-control" type="date" name="createdate" value="{{ context.createdate|date:'Y-m-d' }}"></td>
                                 <td class="leb">最后登录日期</td>
-                                <td class="val"><input class="form_txtin" type="date" name="lastedate" value="{{ context.lastedate|date:'Y-m-d' }}"></td>
+                                <td class="val"><input class="form-control" type="date" name="lastedate" value="{{ context.lastedate|date:'Y-m-d' }}"></td>
                             </tr>
                             <tr>
                                 <td class="leb">用途</td>
                                 <td colspan="3" class="val">
-                                <textarea class="form_txtin" name="comment" clos=",100" rows="3" warp="soft" placeholder="使用说明">{{ context.comment }}</textarea>
+                                <textarea class="form-control" name="comment" clos=",100" rows="3" warp="soft" placeholder="使用说明">{{ context.comment }}</textarea>
                                 </td>
                             </tr>
                         </table>

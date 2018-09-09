@@ -7,6 +7,8 @@
 .clearfix:after{content:"";height:0;line-height:0;display:block;visibility:hidden;clear:both;}
 .clearfix{zoom:1;}
 
+body{padding-top:50px;}
+
 header{
 	background: #222222;
 	/*height: 40px;*/
@@ -34,9 +36,6 @@ header .logo{
 
 header .userinfo{float: right;margin-right:10px;}
 
-.pager{margin-top: 40px;width: 100%;}
-/*.pager .blk{background: #4c4c4c;width: 100%;hight:100%;}*/
-/*.pager .blk img{opacity:.3;width: 100%;hight:100%;}*/
 
 .appbox{
 	float:left;
