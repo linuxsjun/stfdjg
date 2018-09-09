@@ -46,8 +46,8 @@
                                     <input type="checkbox" name="status" value="false">
                                     {% endif %}
                                 </td>
-                                <td class="leb">编号</td>
-                                <td class="val"><input class="form-control" type="text" name="sid" value="{{ context.sid }}" placeholder="编号"></td>
+                                <td class="leb"><label for="exampleInputName2">编号</label></td>
+                                <td class="val"><input class="form-control" id="exampleInputName2" type="text" name="sid" value="{{ context.sid }}" placeholder="编号"></td>
                             </tr>
                             <tr>
                                 <td class="leb">名称</td>
@@ -61,7 +61,11 @@
                             </tr>
                             <tr>
                                 <td class="leb">类型</td>
-                                <td class="val"><input class="form-control" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}"></td>
+                                <td class="val">
+                                    <select class="form-control" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
+                                        <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                    </select>
+                                </td>
                                 </tr>
                             <tr>
                                 <td class="leb">价格</td>
@@ -71,7 +75,11 @@
                             </tr>
                             <tr>
                                 <td class="leb">用户</td>
-                                <td class="val"><input class="form-control" type="text" name="user" value="{{ context.user }}"></td>
+                                <td class="val">
+                                    <select class="form-control" type="text" name="user" value="{{ context.user }}">
+                                        <option>{{ context.user }}</option>
+                                    </select>
+                                </td>
 
                             </tr>
                             <tr>
@@ -98,7 +106,7 @@
                                             <th>名称</th>
                                             <th>规格</th>
                                             <th>编号</th>
-                                            <th>拆出</th>
+                                            <th>取出</th>
                                         </tr>
                                     </thead>
                                     <tbody>
