@@ -5,26 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/mob/base.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/mob/base_conf.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/mob/font-awesome.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/mob/font-awesome.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/mob/search.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/static/css/mob/view_hr_list.css" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/study.iml" afterPath="$PROJECT_DIR$/.idea/study.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/base.css" afterPath="$PROJECT_DIR$/static/css/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/view_hr_list.css" afterPath="$PROJECT_DIR$/static/css/view_hr_list.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/property_form.js" afterPath="$PROJECT_DIR$/static/js/property_form.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/property_form.html" afterPath="$PROJECT_DIR$/templates/property_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/property_list.html" afterPath="$PROJECT_DIR$/templates/property_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pure_form.html" afterPath="$PROJECT_DIR$/templates/pure_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/pure_list.html" afterPath="$PROJECT_DIR$/templates/pure_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/sign.html" afterPath="$PROJECT_DIR$/templates/sign.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/view_dep_list.html" afterPath="$PROJECT_DIR$/templates/view_dep_list.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -340,13 +321,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533705842830</updated>
-    </task>
-    <task id="LOCAL-00003" summary="add tables base config">
-      <created>1533995011323</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1533995011323</updated>
     </task>
     <task id="LOCAL-00004" summary="update read me">
       <created>1533996686103</created>
@@ -684,7 +658,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536055421104</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="update view bootstrap">
+      <created>1536509734532</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1536509734533</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TodoView">
@@ -788,7 +769,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update UI meunu style" />
     <MESSAGE value="update Jquery3.3.1" />
     <MESSAGE value="update pure del" />
     <MESSAGE value="update rename view" />
@@ -813,7 +793,8 @@
     <MESSAGE value="update view property" />
     <MESSAGE value="update view assect sub menu" />
     <MESSAGE value="update view property form list" />
-    <option name="LAST_COMMIT_MESSAGE" value="update view property form list" />
+    <MESSAGE value="update view bootstrap" />
+    <option name="LAST_COMMIT_MESSAGE" value="update view bootstrap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
