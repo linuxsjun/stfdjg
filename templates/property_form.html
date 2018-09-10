@@ -17,7 +17,7 @@
 
         <context>
             <div class="formview">
-                <div class="cmd_nav">
+                <div class="cmd_nav clearfix">
                     <ul class="but_cmd">
                         <li><button class="btn btn-default" type="submit" form="cccc">保存</button></li>
                     </ul>
@@ -33,62 +33,93 @@
                         <h1>{{ context.sid }}</h1>
                         <div class="smarttools"></div>
                     </div>
+
                     <form action="#" method="post" id="cccc" name="pure">
                         {% csrf_token %}
                         <input name="acte" value="{{ act }}" type="hidden">
-                        <table>
-                            <tr>
-                                <td class="leb">状态</td>
-                                <td class="val">
-                                    {% if context.status %}
-                                    <input type="checkbox" name="status" value="true" checked="">
-                                    {% else %}
-                                    <input type="checkbox" name="status" value="false">
-                                    {% endif %}
-                                </td>
-                                <td class="leb"><label for="exampleInputName2">编号</label></td>
-                                <td class="val"><input class="form-control" id="exampleInputName2" type="text" name="sid" value="{{ context.sid }}" placeholder="编号"></td>
-                            </tr>
-                            <tr>
-                                <td class="leb">名称</td>
-                                <td class="val"><input class="form-control" type="text" name="name" value="{{ context.name }}" placeholder="名称"></td>
-                                <td class="leb">规格</td>
-                                <td class="val"><input class="form-control" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格"></td>
-                            </tr>
-                            <tr>
-                                <td class="leb">型号</td>
-                                <td class="val" colspan="3"><input class="form-control" type="text" name="model" value="{{ context.model }}"  placeholder="型号"></td>
-                            </tr>
-                            <tr>
-                                <td class="leb">类型</td>
-                                <td class="val">
-                                    <select class="form-control" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
-                                        <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                    </select>
-                                </td>
-                                </tr>
-                            <tr>
-                                <td class="leb">价格</td>
-                                <td class="val"><input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}"></td>
-                                <td class="leb">出厂编号</td>
-                                <td class="val"><input class="form-control" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号"></td>
-                            </tr>
-                            <tr>
-                                <td class="leb">用户</td>
-                                <td class="val">
-                                    <select class="form-control" type="text" name="user" value="{{ context.user }}">
-                                        <option>{{ context.user }}</option>
-                                    </select>
-                                </td>
 
-                            </tr>
-                            <tr>
-                                <td class="leb">出厂日期</td>
-                                <td class="val"><input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}"></td>
-                                <td class="leb">维保到期</td>
-                                <td class="val"><input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}"></td>
-                            </tr>
-                        </table>
+                        <div class="">
+                            <label>状态</label>
+                            <div>
+                                {% if context.status %}
+                                <input type="checkbox" name="status" value="true" checked="">
+                                {% else %}
+                                <input type="checkbox" name="status" value="false">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2" for="sid">编号</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="编号">
+                            </div>
+{#                        </div>#}
+{##}
+{#                        <div class="form-group">#}
+                            <label class="col-sm-2" for="name">名称</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称">
+                            </div>
+{#                        </div>#}
+{##}
+{#                        <div class="form-group">#}
+                            <label class="col-sm-2" for="spec">规格</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格">
+                            </div>
+
+                            <label class="col-sm-2" for="model">型号</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" id="model" type="text" name="model" value="{{ context.model }}"  placeholder="型号">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2" for="cate">类型</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" id="cate" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
+                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">价格</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}">
+                            </div>
+
+                            <label class="col-sm-2">出厂编号</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-2">出厂日期</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}">
+                            </div>
+
+                            <label class="col-sm-2">维保到期</label>
+                            <div class="col-sm-4">
+                                <input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2">用户</label>
+                            <div class="col-sm-10">
+                                <select class="form-control" type="text" name="user" value="{{ context.user }}">
+                                    <option>{{ context.user }}</option>
+                                    <option>{{ context.user }}</option>
+                                    <option>{{ context.user }}</option>
+                                    <option>{{ context.user }}</option>
+                                </select>
+                            </div>
+                        </div>
                     </form>
                     <div class="sheet">
                         <ul class="nav nav-tabs" role="tablist">

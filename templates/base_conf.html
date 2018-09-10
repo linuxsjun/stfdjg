@@ -30,10 +30,17 @@
             <div class="flowlist"></div>
         </div>
         <context>
-            <form action="/conf" method="get" value=1>
-                <p>CORPID:<input type="text" name="corpid" value="{{ context.corpid }}"></p>
-                <p>CORPSECRET:<input type="text" name="corpsecret" value="{{ context.corpsecret }}"></p>
-                <input type="submit" value="提交">
+            <form  class="navbar-form navbar-left" action="/conf" method="get" value=1>
+                <div class="form-group input-group">
+                    <label class="input-group-addon" >CORPID:</label>
+                    <input class="form-control" type="text" name="corpid" value="{{ context.corpid }}">
+                </div>
+
+                <div class="form-group input-group">
+                    <label class="input-group-addon">CORPSECRET:</label>
+                    <input class="form-control" type="text" name="corpsecret" value="{{ context.corpsecret }}">
+                </div>
+                <button type="submit" class="btn btn-default" value="提交">提交</button>
             </form>
         </context>
         <div class="footbar">
