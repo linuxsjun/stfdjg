@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.db.models import Count
 from django.shortcuts import render_to_response
 import requests, json, time, datetime, hashlib, random
 
@@ -608,13 +609,21 @@ def property_form(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.get(pk=2)
+    pn = 2
+    spn = asset_property.objects.filter(active=True).aggregate(ids=Count('id'))
+    context['spk'] = spn['ids']
+    print(spn)
+
+    ps = asset_property.objects.get(pk=pn)
+    context['pk']=pn
     context['context'] = ps
 
     prs = ps.asset_parts_set.all()
     context['parts'] = prs
 
-    print(context['parts'])
+    hrs = hr_hr.objects.filter(active=True)
+    context['hrs']= hrs
+
     print(ps.categoryid.name)
     return render(request, 'property_form.html', context)
 

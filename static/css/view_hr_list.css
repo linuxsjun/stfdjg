@@ -24,12 +24,13 @@
         padding:.5em 10px;
     }
 
-    .cmd_nav{border-top:1px solid #a8a8a8;border-bottom: 1px solid #cacaca;border-top: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);}
+    .cmd_nav{border-bottom: 1px solid #cacaca;border-top: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);}
 
 
     context{padding: 0px;}
 
     /*表格样式*/
+.listview{border-top:1px solid #cccccc;}
     /*.table_view{width: 100%;border-collapse: collapse;border: 0px solid black;font-size:12px;}*/
         /*.table_view caption {}*/
         /*.table_view tr:nth-child(2n){background: #dddddd;}*/
@@ -99,6 +100,13 @@
     /*.sheet div {min-height:20em;border-top:1px solid #dddddd;border-bottom:1px solid #dddddd;}*/
     /*.sheet div div{padding:2em;}*/
 
-.flowlist{float: right;margin-right:20px;}
+.flowlist{float: right;}
     .flowlist li{float:left;list-style:none;}
-    .flowlist li a{text-decoration:none;line-height:1.8em;border:1px red solid;box-sizing:border-box;}
+    .flowlist li a{text-decoration:none;line-height:18px;box-sizing:border-box;padding: 6px 12px;}
+    .flowlist li a:hover{color: #333;background-color: #e6e6e6;border-color: #adadad;}
+
+.middle {
+    float: none;
+    display: inline-block;
+    vertical-align: middle;
+}

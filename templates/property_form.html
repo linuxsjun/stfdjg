@@ -11,121 +11,186 @@
 {% block mainbody %}
     <!--<div class="view_form"> -->
     <div>
-        <div class="header">
-            <h1>{{ title }}</h1>
+        <div class="container-fluid">
+            <div>
+                <h3>{{ title }}</h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--工具条-->
+                    <div>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑</button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建</button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除</button>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <!--导入导出条-->
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">打印</a></li>
+                            <li><a href="#">导出</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+            </div>
+                <div class="col-sm-2">
+                    <!--导航条-->
+                    <div class="input-group pull-right">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
+                        </span>
+                        <input type="text" class="form-control text-center" placeholder="{{ pk }}/{{ spk }}" readonly>
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
+                        </span>
+                    </div>
+                </div>
+                </div>
+            </div>
         </div>
 
-        <context>
-            <div class="formview">
-                <div class="cmd_nav clearfix">
-                    <ul class="but_cmd">
-                        <li><button class="btn btn-default" type="submit" form="cccc">保存</button></li>
-                    </ul>
-                    <ul class="flowlist">
-                        <li><a href="#l">状态1</a></li>
-                        <li><a href="#l">状态2</a></li>
-                        <li><a href="#l">状态3</a></li>
-                        <li><a href="#l">状态4</a></li>
-                    </ul>
+        <context class="container-fluid">
+            <form class="form-horizontal" action="#" method="post" id="cccc" name="pure">
+                {% csrf_token %}
+                <input name="acte" value="{{ act }}" type="hidden">
+
+                <div class="container-fluid cmd_nav">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button class="btn btn-default" type="submit" form="cccc">保存</button>
+                        </div>
+                        <div class="col-sm-6">
+{#                            <div class="collapse navbar-collapse">#}
+                            <div class="clearfix">
+{#                                <input name="status" value="{{ context.status }}" type="hidden">#}
+{#                                <input name="status" value="{{ context.status }}">#}
+{#                                <ul class="nav navbar-nav navbar-right">#}
+                                <ul class="flowlist">
+                                    <li><a href="#l">闲置</a></li>
+                                    <li><a href="#l">在用</a></li>
+                                    <li><a href="#l">维修</a></li>
+                                    <li><a href="#l">报废</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="form_view">
-                    <div class="formtitle">
-                        <h1>{{ context.sid }}</h1>
-                        <div class="smarttools"></div>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h1>{{ context.sid }}</h1>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="btn-group btn-group-justified" role="group">
+                                <div class="btn-group" role="group">
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>归档</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>维修</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>调配</button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                <button class="btn btn-default"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>附件</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
-                    <form action="#" method="post" id="cccc" name="pure">
-                        {% csrf_token %}
-                        <input name="acte" value="{{ act }}" type="hidden">
+                    <div class="clearfix"></div>
 
-                        <div class="">
-                            <label>状态</label>
-                            <div>
-                                {% if context.status %}
-                                <input type="checkbox" name="status" value="true" checked="">
-                                {% else %}
-                                <input type="checkbox" name="status" value="false">
-                                {% endif %}
-                            </div>
+                    <!-- 上面是头 -->
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="sid">编号*</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="编号">
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2" for="sid">编号</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="编号">
-                            </div>
-{#                        </div>#}
-{##}
-{#                        <div class="form-group">#}
-                            <label class="col-sm-2" for="name">名称</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称">
-                            </div>
-{#                        </div>#}
-{##}
-{#                        <div class="form-group">#}
-                            <label class="col-sm-2" for="spec">规格</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格">
-                            </div>
-
-                            <label class="col-sm-2" for="model">型号</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" id="model" type="text" name="model" value="{{ context.model }}"  placeholder="型号">
-                            </div>
+                        <label class="control-label col-sm-2" for="name">名称*</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称">
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-2" for="cate">类型</label>
-                            <div class="col-sm-10">
-                                <select class="select" id="cate" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
-                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                </select>
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="spec">规格</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格">
                         </div>
-
-                        <div class="form-group">
-                            <label class="col-sm-2">价格</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}">
-                            </div>
-
-                            <label class="col-sm-2">出厂编号</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号">
-                            </div>
+                        <label class="control-label col-sm-2" for="model">型号</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" id="model" type="text" name="model" value="{{ context.model }}"  placeholder="型号">
                         </div>
+                    </div>
 
-                        <div class="form-group">
-                            <label class="col-sm-2">出厂日期</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}">
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="cate">类型*</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="cate" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
+                                <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                <option selected="selected">fgdrt</option>
+                            </select>
+                        </div>
+                    </div>
 
-                            <label class="col-sm-2">维保到期</label>
-                            <div class="col-sm-4">
-                                <input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}">
-                            </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">出厂编号*</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号">
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2">用户</label>
-                            <div class="col-sm-10">
-                                <select class="form-control" type="text" name="user" value="{{ context.user }}">
-                                    <option>{{ context.user }}</option>
-                                    <option>{{ context.user }}</option>
-                                    <option>{{ context.user }}</option>
-                                    <option>{{ context.user }}</option>
-                                </select>
-                            </div>
+                    </div>
+
+                    <!-- 居中横线 -->
+                    <h5 class="page-header"></h5>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">用户</label>
+                        <div class="col-sm-4">
+
+                            <select class="form-control" type="text" name="user">
+                                {% for hr in hrs %}
+                                    {% if hr.name == context.user.name %}
+                                        <option value="{{ hr.id }}" selected="selected">{{ hr.name }}</option>
+                                    {% else %}
+                                        <option value="{{ hr.id }}">{{ hr.name }}</option>
+                                    {% endif %}
+                                {% empty %}
+                                    <option>请先添加员工</option>
+                                {% endfor %}
+                            </select>
                         </div>
-                    </form>
+                        <label class="control-label col-sm-2">位置</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" type="text" name="sn" value="" placeholder="所在位置">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-2">部门</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">部门</p>
+                        </div>
+                        <label class="control-label col-sm-2">职务</label>
+                        <div class="col-sm-4">
+                            <p class="form-control-static">职务</p>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+                    <!-- 下面是Tabs-->
                     <div class="sheet">
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="active" role="presentation"><a href="#pp">配件</a></li>
-                            <li role="presentation"><a href="#pp">采购</a></li>
-                            <li role="presentation"><a href="#pp">其它</a></li>
+                            <li class="active" role="presentation"><a href="#parts">配件</a></li>
+                            <li role="presentation"><a href="#purchase">采购</a></li>
+                            <li role="presentation"><a href="#other">其它</a></li>
                         </ul>
                         <div class="sheetcontext">
                             <div>
@@ -157,98 +222,60 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <h3>信息</h3>
-                                    <div class="row">
-                                        <label class="col-sm-4">文件配额</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-4">购买日期</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-4">购买日期</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <label class="col-sm-4">购买日期</label>
-                                        <div class="col-sm-8">
-                                            <input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3>功耗</h3>
-                                    <table>
-                                        <tbody>
-                                            <div class="row">
-                                                <td><input type="checkbox" name="selitem"></td>
-                                                <td><a href="#">{{ item.name }}</a></td>
-                                            </div>
-                                            <tr>
-                                                <td>{{ item.specifications }}</td>
-                                                <td>{{ item.sn }}</td>
-                                            </tr>
-                                            <tr>
-                                                <td class="leb">购买日期</td>
-                                                <td class="val"><input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}"></td>
-                                            </tr>
-                                            <tr>
-
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
                             <div class="row">
-                                <label class="col-sm-1">备注</label>
-                                <div class="col-sm-11">
-                                    <textarea class="form_txtin" name="comment" clos=",100" rows="5" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
+                                <div class="col-sm-6">
+                                    <h4>信息</h4>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">购买日期</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">价格</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">出厂日期</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-4">维保到期</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h4>供应商</h4>
+                                    <div class="row">
+                                        <label class="control-label col-sm-4">名称</label>
+                                        <div class="col-sm-8">
+                                            <input class="form-control" type="text" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-1">备注</label>
+                                    <div class="col-sm-11">
+                                        <textarea class="form-control" name="comment" clos=",100" rows="5" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div class="form_foot">
-                    <p>分配记录</p>
-                    <div class="tbtable">
-                        <div class="tbheader">
-
-                        </div>
-                        <div class="tbbody">
-                            <div class="tbtr">
-                                <a>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                </a>
-                            </div>
-                            <div class="tbtr">
-                                <a>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                <div class="tbtd"></div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            </form>
+            <div class="form_foot">
+                <p class="text-center">分配记录form_foot</p>
             </div>
         </context>
-
-        <div class="footbar"></div>
+        <div class="footbar">footbar</div>
     </div>
 {% endblock %}
