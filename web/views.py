@@ -621,12 +621,32 @@ def property_form(request):
     prs = ps.asset_parts_set.all()
     context['parts'] = prs
 
-    hrs = hr_hr.objects.filter(active=True)
+    hrs = hr_hr.objects.filter(active=True).order_by('name')
     context['hrs']= hrs
 
     print(ps.categoryid.name)
     return render(request, 'property_form.html', context)
 
+def parts_list(request):
+    context={}
+    context['title']='parts_list'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_parts.objects.all().order_by('name')
+    context['context'] = ps
+
+    return render(request, 'parts_list.html', context)
 
 #功能测试路由
 def search(request):

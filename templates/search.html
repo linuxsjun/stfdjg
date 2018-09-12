@@ -33,14 +33,6 @@
                 alert('jkjkljkl')
             })
 
-            $('.tabcont>div').css("display","none")
-            $($('.tabcont>div')[0]).css("display","block")
-            $('.tabb').click(function () {
-                $('.tabcont>div').css("display","none")
-                $('.tabcont>div')[$(this).index()].style.display='block'
-                $($('.tabcont>div')[$(this).index()]).css("display","block")
-            })
-
             $('button#csrf').css('color','red')
             $('#csrf').click(function () {
                 var $csrfval = '{{ csrf_token }}'
@@ -107,16 +99,7 @@
     <br>
     <button type="submit" value="1" onclick="/pure_del/">llllllll</button>
     <br>
-    <ul class="clearfix">
-        <li class="tabb"><a class="tabbtn" value="tb1">tab1</a></li>
-        <li class="tabb"><a class="tabbtn" value="tb2">tab2</a></li>
-        <li class="tabb"><a class="tabbtn" value="tb3">tab3</a></li>
-    </ul>
-    <div class="tabcont">
-        <div class="tb1cont"><p>tbs1</p></div>
-        <div class="tb2cont"><p>tbs2</p></div>
-        <div class="tb3cont"><p>tbs3</p></div>
-    </div>
+
     <br/>
     <button id="csrf">csrf</button>
     <br/>
