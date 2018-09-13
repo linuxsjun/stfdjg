@@ -53,5 +53,7 @@ urlpatterns = [
     path('property_form/', views.property_form),
 
     path('parts_list/', views.parts_list),
+
+    path('importdata/', views.importdata),
 ]
 

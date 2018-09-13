@@ -6,41 +6,64 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-    <div class="view_menu">
-        <div class="limg"></div>
-        <div class="sub_menu">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="sub_menu_foot"></div>
-    </div>
-    <div class="view_form">
-        <div class="header">
-            <h1>{{ title }}</h1>
-        </div>
-        <div class="cmd_nav">
-            <ul class="but_cmd">
-                <li>
-                    <a href="/gettoken">Token</a>
-                </li>
-            </ul>
-            <div class="flowlist"></div>
-        </div>
-        <context>
-            <form  class="navbar-form navbar-left" action="/conf" method="get" value=1>
-                <div class="form-group input-group">
-                    <label class="input-group-addon" >CORPID:</label>
-                    <input class="form-control" type="text" name="corpid" value="{{ context.corpid }}">
+    <div>
+        <div class="container-fluid">
+            <div>
+                <h3>{{ title }}</h3>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <!--工具条-->
+                    <div>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
+                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>取消</button>
+                    </div>
                 </div>
+                <div class="col-sm-4">
+                    <!--导入导出条-->
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">打印</a></li>
+                            <li><a href="#">导出</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>
+            </div>
+            </div>
+        </div>
 
-                <div class="form-group input-group">
-                    <label class="input-group-addon">CORPSECRET:</label>
-                    <input class="form-control" type="text" name="corpsecret" value="{{ context.corpsecret }}">
+        <context class="container-fluid">
+            <form  class="form-horizontal" action="/conf" method="get" value=1>
+                <div class="container-fluid cmd_nav">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <a href="/gettoken"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>Token</button></a>
+                        </div>
+                    </div>
                 </div>
-                <button type="submit" class="btn btn-default" value="提交">提交</button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group input-group">
+                                <label class="input-group-addon" >CORPID:</label>
+                                <input class="form-control" type="text" name="corpid" value="{{ context.corpid }}">
+                            </div>
+
+                            <div class="form-group input-group">
+                                <label class="input-group-addon">CORPSECRET:</label>
+                                <input class="form-control" type="text" name="corpsecret" value="{{ context.corpsecret }}">
+                            </div>
+                            <button type="submit" class="btn btn-default" value="提交">提交</button>
+                        </div>
+
+                    </div>
+
+                </div>
             </form>
         </context>
         <div class="footbar">

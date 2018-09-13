@@ -8,6 +8,7 @@
     <title>登录</title>
 
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/sign.css">
 
     <!-- font-awesome -->
     <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
@@ -32,22 +33,34 @@
        </div>
    </header>
 
-   <div class="clearfix">
-       <div class="colcenter clearfix">
-           <div class="signstyle" id="">
-               <form action="/sign/" method="post" name="sign">
-                   {% csrf_token %}
-                   <span class="clearfix"><i class="fa fa-user fa-5x"></i></span>
-                   <p><input class="txtstyle" type="text" name="user" value="" placeholder="用户名(拼音 首字母大写)"></p>
-                   <p><input class="txtstyle" type="password" name="passwd" value="" placeholder="密码"></p>
-                   <p><input class="txtstyle signbtu" type="submit" value="登   录"></p>
-               </form>
-           </div>
-           <div class="signstyle" id="wx_reg">
-           </div>
-           <script src="/static/js/sign.js"></script>
-       </div>
+   <div class="container">
+      <div class="signstyle sheet">
+          <ul class="nav navbar-nav" role="tablist">
+              <li class="active" role="presentation"><a href="#parts">密码</a></li>
+              <li role="presentation"><a href="#purchase">扫码</a></li>
+          </ul>
+          <div>
+              <div>
+                  <form class="form-signin" action="/sign/" method="post" name="sign">
+                      {% csrf_token %}
+                      <h2 class="form-signin-heading text-center"><i class="fa fa-user fa-2x"></i></h2>
+                      <div class="form-group">
+                          <label class="sr-only" for="user">用户</label>
+                          <input class="form-control" type="text" name="user" id="user" placeholder="用户名(拼音 首字母大写)">
+                      </div>
+                      <div class="form-group">
+                          <label class="sr-only" for="pwd">密码</label>
+                          <input class="form-control" type="password" name="passwd" id="pwd" placeholder="密码">
+                      </div>
+                      <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录">
+                  </form>
+              </div>
+{#              <div id="wx_reg">#}
+{#              </div>#}
+          </div>
 
+      </div>
+       <script src="/static/js/sign.js"></script>
    </div>
 </body>
 </html>

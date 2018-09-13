@@ -10,6 +10,8 @@ from django.conf import settings
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
 from web.models import asset_conf, asset_category, asset_parts, asset_property, position
 
+from openpyxl import load_workbook
+
 # Create your views here.
 
 
@@ -649,6 +651,47 @@ def parts_list(request):
     return render(request, 'parts_list.html', context)
 
 #功能测试路由
+def importdata(request):
+    wb = load_workbook("kkk.xlsx")
+    sheet = wb.get_sheet_by_name("Sheet2")
+    print(sheet["C1"].value)
+
+    p = list()
+    x = 0
+    for i in sheet["A"]:
+        x += 1
+        if x != 1:
+            u = sheet["F"+str(x)].value
+            m = sheet["I"+str(x)].value
+            w = sheet["J"+str(x)].value
+            p.append(asset_property(
+                sid=sheet["B"+str(x)].value,
+                name=sheet["C"+str(x)].value,
+                specifications=sheet["E"+str(x)].value,
+                model=sheet["T"+str(x)].value,
+                # categoryid=sheet["E"+str(x)].value,
+                purchase=u.date(),
+                price=sheet["N"+str(x)].value,
+                manufacture=m.date(),
+                warranty=w.date(),
+                sn=sheet["H"+str(x)].value,
+                # user=sheet["Q"+str(x)].value,
+                partlist=1,
+            ))
+
+            # u = u.date()
+            # print(u)
+            # print(type(u))
+
+    # b = asset_property.objects.get(pk=1)
+    # print(b.purchase)
+    # print(type(b.purchase))
+    asset_property.objects.bulk_create(p)
+
+    response = "ok"
+    return HttpResponse(response)
+
+
 def search(request):
     context={}
     context['title']='pure list'
@@ -708,5 +751,11 @@ def search(request):
     print(pr.name,
           pr.user.name,
           pr.user.employee_department_set.all().values('departmentid__name'))
+
+    from openpyxl import Workbook
+    wb = Workbook()
+    ws = wb.active
+    ws['A1'] = 42
+    wb.save("kkk.xlsx")
 
     return render(request, 'search.html',context)

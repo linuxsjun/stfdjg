@@ -24,7 +24,7 @@
         padding:.5em 10px;
     }
 
-    .cmd_nav{border-bottom: 1px solid #cacaca;border-top: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);}
+    .cmd_nav{border-bottom: 1px solid #cacaca;border-top: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);padding:.4em 1em;}
 
 
     context{padding: 0px;}
@@ -92,12 +92,12 @@
     /*.btn:hover{background: #a6a5ec;}*/
 
 /*部件*/
-.sheet{margin:2em;}
-    /*.sheet ul{margin-left:3em;font-size:12px;line-height:2em;}*/
+.sheet{margin:0px -19px;}
+    .sheet ul{margin-left:3em;}
     /*.sheet ul li{float:left;list-style:none;margin-left:2px;}*/
     /*.sheet ul li a{text-decoration:none;color: #4c4c4c;background:#dddddd;padding:.6em 2em;box-sizing:border-box;display:block;overflow:hidden;border:1px solid #dddddd;}*/
     /*.sheet ul li a:hover{background:#eeeeee;}*/
-    /*.sheet div {min-height:20em;border-top:1px solid #dddddd;border-bottom:1px solid #dddddd;}*/
+    .sheet div {padding:0px 1em;}
     /*.sheet div div{padding:2em;}*/
 
 .flowlist{float: right;}

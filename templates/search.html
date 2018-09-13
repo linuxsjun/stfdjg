@@ -70,14 +70,7 @@
 {% endblock jquery%}
 
 {% block mainbody %}
-    <br/>
-    <br/>
 
-    <br/>
-    <a class="weui-btn weui-btn_mini weui-btn_primary">test</a>
-    <a class="weui-btn weui-btn_mini weui-btn_primary">test</a>
-    <a class="weui-btn weui-btn_mini weui-btn_primary">test</a>
-    <a class="weui-btn weui-btn_mini weui-btn_primary">test</a>
     <p>{{ title }}</p>
     <br>
     <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
@@ -88,25 +81,40 @@
         <input type = "submit" value = "upload" />
         <button class="x666" type="submit" value="1" >sssss</button>
     </form >
-    <br>
-    <form action="#" method="post">
-        {% csrf_token %}
-        <p>who<input type="text" name="who"></p>
-        <p>pwd<input type="text" name="pwd"></p>
-        <p>color<input type="color" name="color"></p>
-        <input type="submit" class='kkk' value="pppp">
-    </form>
-    <br>
-    <button type="submit" value="1" onclick="/pure_del/">llllllll</button>
-    <br>
 
     <br/>
     <button id="csrf">csrf</button>
     <br/>
+
     <input class="clkall" type="checkbox" value="0" />
     <input class="clk" type="checkbox" name="item" value="1" />
     <input class="clk" type="checkbox" name="item" value="2" />
     <input class="clk" type="checkbox" name="item" value="3" />
     <input class="clk" type="checkbox" name="item" value="4" />
+
+
+    <br>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h5 class="modal-title" id="myModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
