@@ -17,7 +17,7 @@ class pureftp(models.Model):
     quotafiles=models.IntegerField(default=0)
     createdate=models.DateField()
     lastedate=models.DateField()
-    active = models.BooleanField(default=True, verbose_name='是否删除')
+    active = models.BooleanField(default=True, verbose_name='有效的')
 
 #==================基本表==================
 class base_conf(models.Model):
@@ -38,7 +38,7 @@ class base_menu(models.Model):
     parentid = models.ForeignKey('self', null=True, blank=True, to_field='mnid', on_delete=models.SET_NULL, verbose_name='上级菜单')
     sequence = models.IntegerField(default=0, verbose_name='顺序')
     linkto = models.CharField(max_length=256, null=True, blank=True, verbose_name='跳转到...')
-    active = models.FloatField(default=True, verbose_name='是否删除')
+    active = models.FloatField(default=True, verbose_name='有效的')
 
     class Meta:
         db_table = 'base_menu'
@@ -87,7 +87,7 @@ class hr_hr(models.Model):
     passwd = models.CharField(max_length=256,null=True,verbose_name='密码')
     session = models.CharField(max_length=32,null=True,verbose_name='Cookice_session')
     expsession = models.TimeField(null=True)
-    active = models.BooleanField(default=True, verbose_name='是否删除')
+    active = models.BooleanField(default=True, verbose_name='有效的')
 
 class employee_department(models.Model):
     #员工部门表
@@ -103,10 +103,10 @@ class hr_conf(models.Model):
 #==================设备表==================
 class asset_category(models.Model):
     #设备分类
-    name = models.CharField(max_length=32, verbose_name='名称')
+    name = models.CharField(unique=True, max_length=32, verbose_name='名称')
     parentid = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
     bom = models.BooleanField(default=False, verbose_name='组件')
-    active = models.BooleanField(default=True, verbose_name='是否删除')
+    active = models.BooleanField(default=True, verbose_name='有效的')
 
     class Meta:
         db_table = 'asset_category'
@@ -124,7 +124,7 @@ class asset_parts(models.Model):
     wrranty = models.DateField(null=True, verbose_name='维保到期')
     notes = models.TextField(null=True, blank=True, verbose_name='备注')
     status = models.IntegerField(default=1, verbose_name='状态')
-    active = models.BooleanField(default=True, verbose_name='是否删除')
+    active = models.BooleanField(default=True, verbose_name='有效的')
 
     class Meta:
         db_table = 'asset_parts'
@@ -143,9 +143,10 @@ class asset_property(models.Model):
     sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
     user = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='用户')
     partlist = models.CharField(max_length=32, null=True, verbose_name='配件-多个')
+    position = models.CharField(null=True, blank=True, max_length=24, verbose_name='所在位置')
     status = models.IntegerField(default=1, verbose_name='设备状态')
     nots = models.TextField(null=True, blank=True, verbose_name='备注')
-    active = models.BooleanField(default=True, verbose_name='是否删除')
+    active = models.BooleanField(default=True, verbose_name='有效的')
 
     class Meta:
         db_table = 'asset_property'

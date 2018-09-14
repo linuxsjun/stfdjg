@@ -590,7 +590,7 @@ def property_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.all()
+    ps = asset_property.objects.all().order_by('name','specifications')
     context['context'] = ps
 
     return render(request, 'property_list.html', context)
@@ -653,6 +653,8 @@ def parts_list(request):
 #功能测试路由
 def importdata(request):
     wb = load_workbook("kkk.xlsx")
+
+    # 导入设备
     sheet = wb.get_sheet_by_name("Sheet2")
     print(sheet["C1"].value)
 
@@ -678,15 +680,32 @@ def importdata(request):
                 # user=sheet["Q"+str(x)].value,
                 partlist=1,
             ))
+    # asset_property.objects.bulk_create(p)
 
-            # u = u.date()
-            # print(u)
-            # print(type(u))
 
-    # b = asset_property.objects.get(pk=1)
-    # print(b.purchase)
-    # print(type(b.purchase))
-    asset_property.objects.bulk_create(p)
+    # 导入设备使用人
+    x = 0
+    m = 0
+    n = 0
+    w = 0
+    for i in sheet["A"]:
+        x += 1
+        if x != 1:
+            s = sheet["B" + str(x)].value
+            c =sheet["Q"+str(x)].value
+
+            cou = hr_hr.objects.filter(name=c).first()
+            if c:
+                if cou:
+                    w += 1
+                    # asset_property.objects.filter(sid=s).update(user=cou)
+                else:
+                    m += 1
+            else:
+                n += 1
+    print("空=%s   无=%s   写=%s"% (n,m,w))
+
+    sheet3 = wb.get_sheet_by_name("Sheet3")
 
     response = "ok"
     return HttpResponse(response)

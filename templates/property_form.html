@@ -26,19 +26,31 @@
                 </div>
                 <div class="col-sm-4">
                     <!--导入导出条-->
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">打印</a></li>
-                            <li><a href="#">导出</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
+                    <div class="btn-group">
+                        <div class="btn-group dropdown">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>打印
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">信息单</a></li>
+                                <li><a href="#">基本信息</a></li>
+                            </ul>
+                        </div>
+                        <div class="btn-group dropdown">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">导入</a></li>
+                                <li><a href="#">导出</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">同步到企业微信<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a></li>
+                            </ul>
+                        </div>
                     </div>
-            </div>
+                </div>
                 <div class="col-sm-2">
                     <!--导航条-->
                     <div class="input-group pull-right">
