@@ -611,7 +611,7 @@ def property_form(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    pn = 2
+    pn = 9
     spn = asset_property.objects.filter(active=True).aggregate(ids=Count('id'))
     context['spk'] = spn['ids']
     print(spn)
@@ -626,7 +626,7 @@ def property_form(request):
     hrs = hr_hr.objects.filter(active=True).order_by('name')
     context['hrs']= hrs
 
-    print(ps.categoryid.name)
+    # print(ps.categoryid.name)
     return render(request, 'property_form.html', context)
 
 def parts_list(request):
@@ -710,7 +710,6 @@ def importdata(request):
     response = "ok"
     return HttpResponse(response)
 
-
 def search(request):
     context={}
     context['title']='pure list'
@@ -771,10 +770,6 @@ def search(request):
           pr.user.name,
           pr.user.employee_department_set.all().values('departmentid__name'))
 
-    from openpyxl import Workbook
-    wb = Workbook()
-    ws = wb.active
-    ws['A1'] = 42
-    wb.save("kkk.xlsx")
+
 
     return render(request, 'search.html',context)
