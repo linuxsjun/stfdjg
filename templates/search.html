@@ -15,66 +15,49 @@
     </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var $divs = $('button')
-            console.log($divs.length)
+            var $divs = $('button');
+            console.log($divs.length);
 
-            console.log($divs[2].innerHTML)
+            console.log($divs[2].innerHTML);
 
             $divs.each(function (index, domEle) {
                 console.log(index,domEle.innerHTML,this.innerHTML)
-            })
+            });
 
-            console.log($('.x666').index())
+            console.log($('.x666').index());
 {#            $('button').css('background','blue')#}
-            $('.x666').css('color','red')
-            $('div,p').css('color','green')
+            $('.x666').css('color','red');
+            $('div,p').css('color','green');
 
-            $('button#csrf').css('color','red')
+            $('button#csrf').css({'color':'red','background':'blue'});
             $('#csrf').click(function () {
-                var $csrfval = '{{ csrf_token }}'
+                var $csrfval = '{{ csrf_token }}';
                 alert($csrfval)
-                console.log($csrfval)
-            })
+            });
 
             $('input.clkall').click(function () {
                 if($(this).prop("checked")){
-                    $('input.clk').prop('checked','True')
+                    $('input.clk').prop('checked','True');
                     $('input.clk').each(function () {
                         console.log("+" + $(this).val())
                     })
                 } else{
-                    $('input.clk').prop('checked','')
+                    $('input.clk').prop('checked','');
                     $('input.clk').each(function () {
                         console.log("-" + $(this).val())
                     })
                 }
 
-            })
+            });
 
             $('input.clk').click(function () {
-                var $id = $(this).val()
+                var $id = $(this).val();
                 if ($(this).prop("checked")) {
                     console.log("+" + $id)
                 }else{
                     console.log("-" + $id)
                 }
                 console.log($("[name='item']").val())
-
-            })
-
-            $('[data-toggle="test1"]').click(function () {
-                $.ajax({
-                    url:"/property_form/",
-                    type:"POST",
-                    data:{
-                        "test1":"klokkl",
-                        "test2":"llkk",
-                        "csrfmiddlewaretoken": $("[name = 'csrfmiddlewaretoken']").val()
-                    },
-                    success:function (data) {
-                        alert(data)
-                    }
-                })
             })
         })
     </script>
@@ -128,6 +111,5 @@
       </div>
     </div>
 
-    <button type="button" class="btn btn-default" data-toggle="test1">测试</button>
 {% endblock %}
 

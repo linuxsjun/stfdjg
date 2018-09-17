@@ -54,6 +54,8 @@ urlpatterns = [
 
     path('parts_list/', views.parts_list),
 
+    path('category_list/', views.category_list),
+
     path('importdata/', views.importdata),
 ]
 

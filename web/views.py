@@ -32,6 +32,34 @@ def index(request):
 
     return render(request, 'base.html', context)
 
+def category_list(request):
+    request.encoding = 'utf-8'
+    context={}
+    context['title']='property_list'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    print(request.method)
+    if request.method == "GET":
+        if "act" in request.GET:
+            if request.GET['act'] == 'sort':
+                pass
+        else:
+            ps = asset_category.objects.all()
+            context['context'] = ps
+
+    return render(request, 'category_list.html', context)
+
 def dep_view(request):
     context={}
     context['title']='部门'
@@ -101,7 +129,7 @@ def sign_view(request):
                 wlog.save()
 
                 gourl = redirect('/')
-                gourl.set_cookie('usercookie',s,3600)
+                gourl.set_cookie('usercookie',s,14400)
 
                 return gourl
     elif request.method == "GET":
@@ -144,7 +172,7 @@ def sign_view(request):
                     wlog.save()
 
                     gourl = redirect('/')
-                    gourl.set_cookie('usercookie', s, 3600)
+                    gourl.set_cookie('usercookie', s, 14400)
                     return gourl
         else:
             print('code is no')
@@ -314,37 +342,40 @@ def pure_del(request):
     return redirect('/pure_list/')
 
 def getToken(request):
-    # list = pureftp.objects.all()
-    # d = base_conf.objects.all().first()
-    # d=base_conf.objects.filter(id=1)
+    if "act" in request.GET:
+        if request.GET['act'] == 'gettoken':
+            # list = pureftp.objects.all()
+            # d = base_conf.objects.all().first()
+            # d=base_conf.objects.filter(id=1)
 
-    # d=base_conf.objects.get(id=1)
-    d = base_conf.objects.get(pk=1)
+            # d=base_conf.objects.get(id=1)
+            d = base_conf.objects.get(pk=1)
 
-    # pureftp.objects.order_by("id")
+            # pureftp.objects.order_by("id")
 
-    #https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRECT
-    # corpid=ww74c5af840cdd5cb6
-    # corpsecret=uUJf-eFplyKlAWf2Cc9T8Guea4K1zpEiZXwXpCsHTQs
+            #https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=ID&corpsecret=SECRECT
+            # corpid=ww74c5af840cdd5cb6
+            # corpsecret=uUJf-eFplyKlAWf2Cc9T8Guea4K1zpEiZXwXpCsHTQs
 
-    url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
-    v = {}
-    v['corpid'] = d.corpid
-    v['corpsecret'] = d.corpsecret
+            url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
+            v = {}
+            v['corpid'] = d.corpid
+            v['corpsecret'] = d.corpsecret
 
-    r = requests.get(url, params=v)
-    t = json.loads(r.text)
+            r = requests.get(url, params=v)
+            t = json.loads(r.text)
 
-    if t['errcode'] == 0:
-        d.token = t['access_token']
+            if t['errcode'] == 0:
+                d.token = t['access_token']
 
-        tt = time.time()
-        d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
+                tt = time.time()
+                d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
 
-        d.save()
-        response = "GET Token ID is ok at %s"%d.expirestime
-    else:
-        response = "No"
+                d.save()
+                response = "GET Token ID is ok at %s"%d.expirestime
+            else:
+                response = "No"
+
     return HttpResponse(response)
 
 def readdepartment(request):
@@ -566,7 +597,7 @@ def wxcode(request):
                 u.save()
 
                 gourl = redirect('/')
-                gourl.set_cookie('usercookie', s, 3600)
+                gourl.set_cookie('usercookie', s, 14400)
                 return gourl
 
     return HttpResponse('wxcode')
@@ -575,6 +606,7 @@ def wxtext(request):
     return HttpResponse('xtT9JTstqSGD5Lu2')
 
 def property_list(request):
+    request.encoding = 'utf-8'
     context={}
     context['title']='property_list'
 
@@ -590,12 +622,19 @@ def property_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.all().order_by('name','specifications')
-    context['context'] = ps
+    print(request.method)
+    if request.method == "GET":
+        if "act" in request.GET:
+            if request.GET['act'] == 'sort':
+                pass
+        else:
+            ps = asset_property.objects.all().order_by('name','specifications')
+            context['context'] = ps
 
     return render(request, 'property_list.html', context)
 
 def property_form(request):
+    request.encoding = 'utf-8'
     context={}
     context['title']='property_form'
 
@@ -611,22 +650,29 @@ def property_form(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    pn = 9
-    spn = asset_property.objects.filter(active=True).aggregate(ids=Count('id'))
-    context['spk'] = spn['ids']
-    print(spn)
+    if request.method == "GET":
+        if "act" in request.GET:
+            if request.GET['act'] == "display":
+                pn = int(request.GET['id'])
 
-    ps = asset_property.objects.get(pk=pn)
-    context['pk']=pn
-    context['context'] = ps
+                spn = asset_property.objects.filter(active=True).count()
+                context['spk'] = spn
 
-    prs = ps.asset_parts_set.all()
-    context['parts'] = prs
+                hrs = hr_hr.objects.filter(active=True).order_by('name')
+                context['hrs']= hrs
 
-    hrs = hr_hr.objects.filter(active=True).order_by('name')
-    context['hrs']= hrs
+                try:
+                    ps = asset_property.objects.get(id=pn)
+                except Exception:
+                    return redirect('/property_list/')
+                else:
+                    context['pk']=pn
+                    context['context'] = ps
 
-    # print(ps.categoryid.name)
+                    prs = ps.asset_parts_set.all()
+                    context['parts'] = prs
+
+                # print(ps.categoryid.name)
     return render(request, 'property_form.html', context)
 
 def parts_list(request):

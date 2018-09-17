@@ -42,12 +42,12 @@
                 <div class="container-fluid cmd_nav">
                     <div class="row">
                         <div class="col-sm-6">
-                            <a href="/gettoken">
-                                <button type="button" class="btn btn-primary">
+{#                            <a href="/gettoken">#}
+                                <button type="button" class="btn btn-primary" data-toggle="gettoken">
                                     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                                     Token
                                 </button>
-                            </a>
+{#                            </a>#}
                         </div>
                     </div>
                 </div>
@@ -76,3 +76,7 @@
         </div>
     </div>
 {% endblock %}
+
+{% block jquery %}
+    <script src="/static/js/base_conf.js"></script>
+{% endblock jquery%}
