@@ -74,8 +74,8 @@ class hr_hr(models.Model):
     gender = models.CharField(null=True, max_length=16,verbose_name='姓别')
     email = models.EmailField(null=True, verbose_name='邮箱')
     avatar = models.CharField(null=True, max_length=256,verbose_name='头像')
-    status = models.IntegerField(default=1)
-    enable = models.IntegerField(default=1)
+    status = models.IntegerField(default=1, verbose_name="状态")
+    enable = models.IntegerField(default=1, verbose_name="有效")
     isleader = models.IntegerField(default=0,verbose_name='主管')
     extattr = models.CharField(null=True, max_length=256, verbose_name='扩展属性')
     hide_mobile = models.BooleanField(default=0,verbose_name='隐蔽手机')
@@ -87,6 +87,7 @@ class hr_hr(models.Model):
     passwd = models.CharField(max_length=256,null=True,verbose_name='密码')
     session = models.CharField(max_length=32,null=True,verbose_name='Cookice_session')
     expsession = models.TimeField(null=True)
+    wxsync = models.BooleanField(default=0, verbose_name="同步企业微信")
     active = models.BooleanField(default=True, verbose_name='有效的')
 
 class employee_department(models.Model):
@@ -118,6 +119,7 @@ class asset_parts(models.Model):
     sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
     type = models.CharField(max_length=32, null=True)
     specifications = models.CharField(max_length=64, null=True, verbose_name='规格')
+    categoryid = models.ForeignKey('asset_category', null=True, blank=True, on_delete=models.SET_NULL,verbose_name='类型')
     bom = models.BooleanField(default=False, verbose_name='组件')
     price = models.FloatField(default=0, verbose_name='价格')
     purchase = models.DateField(null=True, verbose_name='购买日期')

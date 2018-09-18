@@ -18,7 +18,7 @@ class hr_department_Admin(admin.ModelAdmin):
     list_display = ('pid', 'name', 'parentid', 'order')
 
 class hr_hr_Admin(admin.ModelAdmin):
-    list_display = ('name','userid', 'department', 'position', 'mobile')
+    list_display = ('name','userid', 'department', 'position', 'mobile', 'session', 'active')
 
 admin.site.register(pureftp, pueftp_Admin)
 admin.site.register(base_conf, base_conf_Admin)

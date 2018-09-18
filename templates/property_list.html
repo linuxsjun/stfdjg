@@ -24,8 +24,8 @@
                 <div class="col-sm-6">
                     <!--工具条-->
                     <div>
-                        <button type="button" class="btn btn-default" data-toggle="create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建</button>
-                        <button type="button" class="btn btn-default" data-toggle="del"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除</button>
+                        <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
+                        <button type="button" class="btn btn-default disabled" data-toggle="del">删除</button>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -33,7 +33,7 @@
                     <div class="btn-group">
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                                动作
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -43,11 +43,11 @@
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>筛选
+                                筛选
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
-                                <li><a href="#">归档</a></li>
+                                <li><a href="#filter=unactive">归档</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">规格</a></li>
                                 <li><a href="#">用户</a></li>
@@ -58,7 +58,7 @@
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>分组
+                                分组
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -91,14 +91,14 @@
                     <thead>
                         <tr>
                             <th><input type="checkbox" name="selall"></th>
-                            <th>状态<span class="caret"></span></th>
-                            <th>编号<span class="caret"></span></th>
-                            <th>名称<span class="caret"></span></th>
-                            <th>规格<span class="caret"></span></th>
-                            <th>出厂编号<span class="caret"></span></th>
-                            <th>购买日期<span class="caret"></span></th>
-                            <th>维保到期<span class="caret"></span></th>
-                            <th>用户<span class="caret"></span></th>
+                            <th data-id="status">状态<span></span></th>
+                            <th data-id="sid">编号<span></span></th>
+                            <th data-id="name">名称<span></span></th>
+                            <th data-id="specifications">规格<span></span></th>
+                            <th data-id="sn">出厂编号<span></span></th>
+                            <th data-id="purchase">购买日期<span></span></th>
+                            <th data-id="warranty">维保到期<span></span></th>
+                            <th data-id="user">用户<span></span></th>
                         </tr>
                     </thead>
                     <tbody>

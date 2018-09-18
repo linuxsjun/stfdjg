@@ -19,9 +19,9 @@
                 <div class="col-sm-6">
                     <!--工具条-->
                     <div>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>编辑</button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建</button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除</button>
+                        <button type="button" class="btn btn-primary">编辑</button>
+                        <button type="button" class="btn btn-default">创建</button>
+                        <button type="button" class="btn btn-default">删除</button>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -29,7 +29,7 @@
                     <div class="btn-group">
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-print" aria-hidden="true"></span>打印
+                                打印
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -39,14 +39,16 @@
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                                动作
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
+                                <li><a href="#">复制</a></li>
+                                <li role="separator" class="divider"></li>
                                 <li><a href="#">导入</a></li>
                                 <li><a href="#">导出</a></li>
                                 <li role="separator" class="divider"></li>
-                                <li><a href="#">同步到企业微信<span class="glyphicon glyphicon-transfer" aria-hidden="true"></span></a></li>
+                                <li><a href="#">同步到企业微信</a></li>
                             </ul>
                         </div>
                     </div>
@@ -75,7 +77,7 @@
                 <div class="container-fluid cmd_nav">
                     <div class="row">
                         <div class="col-sm-6">
-                            <button type="submit" class="btn btn-default" data-toggle="save" form="cccc">保存</button>
+                            <button type="submit" class="btn btn-primary disabled" data-toggle="save" form="cccc">保存</button>
                             <button class="btn btn-default" data-toggle="goback">返回</button>
                         </div>
                         <div class="col-sm-6">
@@ -85,10 +87,10 @@
 {#                                <input name="status" value="{{ context.status }}">#}
 {#                                <ul class="nav navbar-nav navbar-right">#}
                                 <ul class="flowlist">
-                                    <li><a href="#l">闲置</a></li>
-                                    <li><a href="#l">在用</a></li>
-                                    <li><a href="#l">维修</a></li>
-                                    <li><a href="#l">报废</a></li>
+                                    <li><a href="#sal">闲置</a></li>
+                                    <li><a href="#sl">在用</a></li>
+                                    <li><a href="#dl">维修</a></li>
+                                    <li><a href="#lr">报废</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -96,7 +98,13 @@
                 </div>
                 <div class="form_view">
                     <div class="row">
-                        <div class="col-sm-8">
+                        <div class="col-sm-3">
+                            <a href="#" class="thumbnail">
+                                <img src="..." alt="..." style="width: 100px; height: 160px;">
+                            </a>
+                        </div>
+                        <div class="col-sm-5">
+
                             <h1>{{ context.sid }}</h1>
 {#                            <div class="form-group">#}
 {#                                <label class="control-label col-sm-4 sr-only" for="sid">编号*</label>#}
@@ -151,12 +159,17 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="cate">类型*</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="cate" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
-                                <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                <option selected="selected">fgdrt</option>
-                            </select>
+                        <div class="col-sm-4">
+                            <div class="input-group">
+                                <select class="form-control" id="cate" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
+                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
+                                    <option selected="selected">fgdrt</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></button>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
@@ -166,18 +179,22 @@
                     <div class="form-group">
                         <label class="control-label col-sm-2">用户</label>
                         <div class="col-sm-4">
-
-                            <select class="form-control" type="text" name="user">
-                                {% for hr in hrs %}
-                                    {% if hr.name == context.user.name %}
-                                        <option value="{{ hr.id }}" selected="selected">{{ hr.name }}</option>
-                                    {% else %}
-                                        <option value="{{ hr.id }}">{{ hr.name }}</option>
-                                    {% endif %}
-                                {% empty %}
-                                    <option>请先添加员工</option>
-                                {% endfor %}
-                            </select>
+                            <div class="input-group">
+                                <select class="form-control" type="text" name="user">
+                                    {% for hr in hrs %}
+                                        {% if hr.name == context.user.name %}
+                                            <option value="{{ hr.id }}" selected="selected">{{ hr.name }}</option>
+                                        {% else %}
+                                            <option value="{{ hr.id }}">{{ hr.name }}</option>
+                                        {% endif %}
+                                    {% empty %}
+                                        <option>请先添加员工</option>
+                                    {% endfor %}
+                                </select>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></button>
+                                </span>
+                            </div>
                         </div>
                         <label class="control-label col-sm-2">位置</label>
                         <div class="col-sm-4">
@@ -199,15 +216,15 @@
                     <div class="clearfix"></div>
 
                     <!-- 下面是Tabs-->
-                    <div class="sheet">
+                    <div>
                         <ul class="nav nav-tabs" role="tablist">
-                            <li class="active" role="presentation"><a href="#parts">配件</a></li>
-                            <li role="presentation"><a href="#purchase">采购</a></li>
-                            <li role="presentation"><a href="#other">其它</a></li>
+                            <li role="presentation" class="active"><a href="#parts" data-toggle="tab">配件</a></li>
+                            <li role="presentation"><a href="#purchase" data-toggle="tab">采购</a></li>
+                            <li role="presentation"><a href="#other" data-toggle="tab">其它</a></li>
                         </ul>
-                        <div class="sheetcontext">
-                            <div>
-                                <button class="btn btn-primary" type="submit" form="cccc">添加</button>
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="parts">
+                                <button class="btn btn-primary disabled" type="submit" form="cccc">添加</button>
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
@@ -235,7 +252,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row">
+                            <div class="tab-pane row" id="purchase">
                                 <div class="col-sm-6">
                                     <h4>信息</h4>
                                     <div class="form-group">
@@ -273,7 +290,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div>
+                            <div class="tab-pane" id="other">
                                 <div class="form-group">
                                     <label class="control-label col-sm-1">备注</label>
                                     <div class="col-sm-11">

@@ -110,3 +110,7 @@
     display: inline-block;
     vertical-align: middle;
 }
+
+.form_sheet_bg {
+    background: url("/static/img/form_sheetbg.png");
+}

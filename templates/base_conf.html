@@ -15,15 +15,15 @@
                 <div class="col-sm-6">
                     <!--工具条-->
                     <div>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>保存</button>
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>取消</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-default">取消</button>
                     </div>
                 </div>
                 <div class="col-sm-4">
                     <!--导入导出条-->
-                    <div class="dropdown">
+                    <div class="dropdown sr-only">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                            动作
                             <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
@@ -33,7 +33,7 @@
                             <li><a href="#">Separated link</a></li>
                         </ul>
                     </div>
-            </div>
+                </div>
             </div>
         </div>
 
@@ -42,12 +42,10 @@
                 <div class="container-fluid cmd_nav">
                     <div class="row">
                         <div class="col-sm-6">
-{#                            <a href="/gettoken">#}
-                                <button type="button" class="btn btn-primary" data-toggle="gettoken">
-                                    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-                                    Token
-                                </button>
-{#                            </a>#}
+                            <button type="button" data-loading-text="Loading..." class="btn btn-primary" data-toggle="gettoken" autocomplete="off">
+                                <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                                Token
+                            </button>
                         </div>
                     </div>
                 </div>

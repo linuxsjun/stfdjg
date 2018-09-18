@@ -24,8 +24,8 @@
                 <div class="col-sm-6">
                     <!--工具条-->
                     <div>
-                        <a href="/pure_form?act=0"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>创建</button></a>
-                        <a href="#"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>删除</button></a>
+                        <a href="#"><button type="button" class="btn btn-primary">创建</button></a>
+                        <a href="#"><button type="button" class="btn btn-default">删除</button></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -33,7 +33,7 @@
                     <div class="btn-group">
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>动作
+                                动作
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
@@ -45,25 +45,23 @@
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-filter" aria-hidden="true"></span>筛选
+                                筛选
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
                                 <li><a href="#">归档</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">用户</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="#">自定义</a></li>
                             </ul>
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>分组
+                                分组
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu">
+                                <li><a href="#">名称</a></li>
                                 <li><a href="#">状态</a></li>
-                                <li><a href="#">部门</a></li>
                             </ul>
                         </div>
                     </div>
@@ -111,7 +109,14 @@
                                 <td>{{ item.name }}</td>
                                 <td>{{ item.specifications }}</td>
                                 <td>{{ item.sn }}</td>
-                                <td>{{ item.bom }}</td>
+                                <td>
+                                    {% if item.bom %}
+{#                                        <input type="checkbox" name="bom" value="{{ item.bom }}" checked>#}
+                                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
+                                    {% else %}
+{#                                        <input type="checkbox" name="bom" value="{{ item.bom }}">#}
+                                    {% endif %}
+                                </td>
                                 <td>{{ item.purchase|date:'Y-m-d' }}</td>
                             </tr>
                         {% empty %}

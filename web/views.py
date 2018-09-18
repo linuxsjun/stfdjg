@@ -35,7 +35,7 @@ def index(request):
 def category_list(request):
     request.encoding = 'utf-8'
     context={}
-    context['title']='property_list'
+    context['title']='category_list'
 
     username = request.COOKIES.get('usercookie', None)
     if username:
@@ -55,7 +55,7 @@ def category_list(request):
             if request.GET['act'] == 'sort':
                 pass
         else:
-            ps = asset_category.objects.all()
+            ps = asset_category.objects.all().order_by('parentid')
             context['context'] = ps
 
     return render(request, 'category_list.html', context)
@@ -99,7 +99,7 @@ def hr_view(request):
     # d = base_conf.objects.all().first()
     # ps = hr_department.objects.all().order_by('parentid','order')
     # ps = hr_department.objects.filter(parentid=1).order_by('pid', 'order')
-    ps = hr_hr.objects.all().order_by('name')
+    ps = hr_hr.objects.filter(active=True).order_by('name')
     context['context']= ps
     return render(request, 'view_hr_broad.html', context)
 
@@ -333,7 +333,6 @@ def pure_del(request):
     context={}
     context['title']='pure form'
 
-    print("aaaaa")
     if "act" in request.GET:
         delid = int(request.GET['id'])
         delitem = pureftp.objects.get(id=delid)
@@ -622,13 +621,13 @@ def property_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    print(request.method)
+    print("%s\n%s" % (request.method,request.GET))
     if request.method == "GET":
         if "act" in request.GET:
             if request.GET['act'] == 'sort':
                 pass
         else:
-            ps = asset_property.objects.all().order_by('name','specifications')
+            ps = asset_property.objects.all().order_by('name','specifications', 'sid')
             context['context'] = ps
 
     return render(request, 'property_list.html', context)
@@ -652,6 +651,7 @@ def property_form(request):
 
     if request.method == "GET":
         if "act" in request.GET:
+            print(request.GET)
             if request.GET['act'] == "display":
                 pn = int(request.GET['id'])
 
@@ -700,58 +700,79 @@ def parts_list(request):
 def importdata(request):
     wb = load_workbook("kkk.xlsx")
 
-    # 导入设备
-    sheet = wb.get_sheet_by_name("Sheet2")
-    print(sheet["C1"].value)
+    # # 导入设备
+    # sheet = wb.get_sheet_by_name("Sheet2")
+    # print(sheet["C1"].value)
+    #
+    # p = list()
+    # x = 0
+    # for i in sheet["A"]:
+    #     x += 1
+    #     if x != 1:
+    #         u = sheet["F"+str(x)].value
+    #         m = sheet["I"+str(x)].value
+    #         w = sheet["J"+str(x)].value
+    #         p.append(asset_property(
+    #             sid=sheet["B"+str(x)].value,
+    #             name=sheet["C"+str(x)].value,
+    #             specifications=sheet["E"+str(x)].value,
+    #             model=sheet["T"+str(x)].value,
+    #             # categoryid=sheet["E"+str(x)].value,
+    #             purchase=u.date(),
+    #             price=sheet["N"+str(x)].value,
+    #             manufacture=m.date(),
+    #             warranty=w.date(),
+    #             sn=sheet["H"+str(x)].value,
+    #             # user=sheet["Q"+str(x)].value,
+    #             partlist=1,
+    #         ))
+    # # asset_property.objects.bulk_create(p)
 
-    p = list()
-    x = 0
-    for i in sheet["A"]:
-        x += 1
-        if x != 1:
-            u = sheet["F"+str(x)].value
-            m = sheet["I"+str(x)].value
-            w = sheet["J"+str(x)].value
-            p.append(asset_property(
-                sid=sheet["B"+str(x)].value,
-                name=sheet["C"+str(x)].value,
-                specifications=sheet["E"+str(x)].value,
-                model=sheet["T"+str(x)].value,
-                # categoryid=sheet["E"+str(x)].value,
-                purchase=u.date(),
-                price=sheet["N"+str(x)].value,
-                manufacture=m.date(),
-                warranty=w.date(),
-                sn=sheet["H"+str(x)].value,
-                # user=sheet["Q"+str(x)].value,
-                partlist=1,
-            ))
-    # asset_property.objects.bulk_create(p)
 
+    # # 导入设备使用人
+    # x = 0
+    # m = 0
+    # n = 0
+    # w = 0
+    # for i in sheet["A"]:
+    #     x += 1
+    #     if x != 1:
+    #         s = sheet["B" + str(x)].value
+    #         c =sheet["Q"+str(x)].value
+    #
+    #         cou = hr_hr.objects.filter(name=c).first()
+    #         if c:
+    #             if cou:
+    #                 w += 1
+    #                 # asset_property.objects.filter(sid=s).update(user=cou)
+    #             else:
+    #                 m += 1
+    #         else:
+    #             n += 1
+    # print("空=%s   无=%s   写=%s"% (n,m,w))
 
-    # 导入设备使用人
-    x = 0
-    m = 0
-    n = 0
-    w = 0
-    for i in sheet["A"]:
-        x += 1
-        if x != 1:
-            s = sheet["B" + str(x)].value
-            c =sheet["Q"+str(x)].value
-
-            cou = hr_hr.objects.filter(name=c).first()
-            if c:
-                if cou:
-                    w += 1
-                    # asset_property.objects.filter(sid=s).update(user=cou)
-                else:
-                    m += 1
-            else:
-                n += 1
-    print("空=%s   无=%s   写=%s"% (n,m,w))
-
-    sheet3 = wb.get_sheet_by_name("Sheet3")
+    # # 导入类型
+    # sheet1 = wb["Sheet1"]
+    # n = 0
+    # for i in sheet1['A']:
+    #     n += 1
+    #     if n != 1:
+    #         namen = sheet1["B" + str(n)].value
+    #         upd = sheet1["G" + str(n)].value
+    #         upd = int(upd)+1
+    #         up = sheet1["B" + str(upd)].value
+    #         print("%s - %s" % (namen,up))
+    #
+    #         ni = asset_category.objects.filter(name=namen)
+    #         if ni:
+    #             puid = asset_category.objects.filter(name=up).first()
+    #             asset_category.objects.filter(name=namen).update(parentid=puid)
+    #         else:
+    #             #add
+    #             nn = asset_category(name=namen)
+    #             nn.save()
+    #             puid = asset_category.objects.filter(name=up).first()
+    #             asset_category.objects.filter(name=namen).update(parentid=puid)
 
     response = "ok"
     return HttpResponse(response)
