@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list id="f5d9c4a4-8c27-44a4-8d6c-5877907d7103" name="Revert: update input property" comment="" />
     <list id="5d41860e-1907-4c7b-be19-24c2cff566d1" name="Revert: update input property for user" comment="" />
-    <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="update input property">
+    <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/migrations/0016_auto_20180918_1721.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/migrations/0017_asset_parts_categoryid.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034/_metadata_/metadata" />
@@ -418,13 +418,6 @@
       <option name="presentableId" value="Default" />
       <updated>1533705842830</updated>
     </task>
-    <task id="LOCAL-00009" summary="update hr_dep view">
-      <created>1534221554532</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1534221554532</updated>
-    </task>
     <task id="LOCAL-00010" summary="update hr_dep view style">
       <created>1534228088628</created>
       <option name="number" value="00010" />
@@ -761,7 +754,14 @@
       <option name="project" value="LOCAL" />
       <updated>1536841009716</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="update input crot">
+      <created>1537287919407</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1537287919407</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="TodoView">
@@ -870,7 +870,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update pure del" />
     <MESSAGE value="update rename view" />
     <MESSAGE value="update cookie" />
     <MESSAGE value="update cookie to all pager" />
@@ -895,7 +894,8 @@
     <MESSAGE value="update view property form list" />
     <MESSAGE value="update view bootstrap" />
     <MESSAGE value="update input property" />
-    <option name="LAST_COMMIT_MESSAGE" value="update input property" />
+    <MESSAGE value="update input crot" />
+    <option name="LAST_COMMIT_MESSAGE" value="update input crot" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
