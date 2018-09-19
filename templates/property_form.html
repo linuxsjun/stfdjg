@@ -55,16 +55,21 @@
                 </div>
                 <div class="col-sm-2">
                     <!--导航条-->
-                    <div class="input-group pull-right">
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                        </span>
-                        <input type="text" class="form-control text-center" placeholder="{{ pk }}/{{ spk }}" readonly>
-                        <span class="input-group-btn">
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-                        </span>
+                    <div aria-label="Page navigation clearfix">
+                        <ul class="pagination pull-right">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><span>{{ pk }}/{{ spk }}</span></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -98,21 +103,35 @@
                 </div>
                 <div class="form_view">
                     <div class="row">
-                        <div class="col-sm-3">
-                            <a href="#" class="thumbnail">
-                                <img src="..." alt="..." style="width: 100px; height: 160px;">
-                            </a>
+                        <div class="col-sm-8">
+                            <div class="media">
+                                <div class="media-left media-middle">
+                                    <a href="#">
+                                        <img class="media-object" src="/static/img/asset.png" alt="..." style="width: 100px; height: 100px;">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h1 class="media-heading">{{ context.sid }}</h1>
+                                    <p>
+                                        <span class="label label-default">闲置</span>
+                                        <span class="label label-primary">主要的</span>
+                                        <span class="label label-success">可用</span>
+                                        <span class="label label-info">在用</span>
+                                        <span class="label label-warning">维修</span>
+                                        <span class="label label-danger">报废</span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-sm-5">
-
-                            <h1>{{ context.sid }}</h1>
+{#                        <div class="col-sm-5">#}
+{#                            #}
 {#                            <div class="form-group">#}
 {#                                <label class="control-label col-sm-4 sr-only" for="sid">编号*</label>#}
 {#                                <div class="col-sm-8">#}
 {#                                    <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="编号">#}
 {#                                </div>#}
 {#                            </div>#}
-                        </div>
+{#                        </div>#}
                         <div class="col-sm-4">
                             <div class="btn-group btn-group-justified" role="group">
                                 <div class="btn-group" role="group">
@@ -130,8 +149,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="clearfix"></div>
+                    <h5 class="page-header"></h5>
+{#                    <div class="clearfix"></div>#}
 
                     <!-- 上面是头 -->
 
@@ -161,20 +180,24 @@
                         <label class="control-label col-sm-2" for="cate">类型*</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <select class="form-control" id="cate" type="text" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}">
-                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                    <option>{{ context.categoryid.name|default:'1001' }}</option>
-                                    <option selected="selected">fgdrt</option>
-                                </select>
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></button>
-                                </span>
+                                <input type="text" class="form-control" id="cate" name="categoryid" value="{{ context.categoryid.name|default:'1001' }}" />
+                                <div class="input-group-btn">
+                                    <button type="button" class="btn btn-default" id="cateid"><span class="glyphicon glyphicon-share" aria-hidden="true"></span></button>
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        {% for hr in hrs %}
+                                            <li><a href="#{{ hr.id }}">{{ hr.name }}</a></li>
+                                        {% empty %}
+                                            <option>请先添加员工</option>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 居中横线 -->
-                    <h5 class="page-header"></h5>
+                    <!-- 居中横线
+                    <h5 class="page-header"></h5> -->
 
                     <div class="form-group">
                         <label class="control-label col-sm-2">用户</label>
@@ -304,6 +327,35 @@
             </form>
             <div class="form_foot">
                 <p class="text-center">分配记录form_foot</p>
+            </div>
+
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h5 class="modal-title" id="myModalLabel">类型: 添加</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <label class="">名称</label>
+                                <input type="text" class="form-control" name="cate" value="{{ context.categoryid }}">
+                            </div>
+                            <div class="input-group">
+                                <label class="">上一级</label>
+                                <input type="text" class="form-control" name="upd">
+                            </div>
+                            <div class="input-group">
+                                <label class="">组件</label>
+                                <input type="checkbox">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </context>
         <div class="footbar">footbar</div>

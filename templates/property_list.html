@@ -106,11 +106,12 @@
                             <tr>
                                 <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                                 <td>
-                                    {% if  item.status %}
-                                        <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>
-                                    {% else %}
-                                        <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>
-                                    {% endif %}
+{#                                    {% if  item.status %}#}
+{#                                        <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>#}
+{#                                    {% else %}#}
+{#                                        <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>#}
+{#                                    {% endif %}#}
+                                    <span class="label label-default">闲置{{ item.status }}</span>
                                 </td>
                                 <td>{{ item.sid }}</td>
                                 <td>{{ item.name }}</td>

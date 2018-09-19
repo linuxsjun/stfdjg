@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('tbody tr').dblclick(function () {
+    $('tbody tr').click(function () {
          var showsel = $(this).find('td input').val();
          window.location.href="/property_form?act=display&id="+showsel;
     });
