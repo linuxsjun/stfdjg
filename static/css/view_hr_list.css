@@ -27,7 +27,7 @@
     .cmd_nav{border-bottom: 1px solid #cacaca;border-top: 1px solid #cacaca;box-shadow: 0 3px 6px 0 rgba(0,0,0,.3);padding:.4em 1em;}
 
 
-    context{padding: 0px;}
+    /*context{padding: 0px;}*/
 
     /*表格样式*/
 .listview{border-top:1px solid #cccccc;}
@@ -39,6 +39,8 @@
                 /*.table_view td {color: rgb(76,76,76);}*/
 
     /*bord样式*/
+.kanban{margin-top:20px;}
+.cardm{margin:05px;}
     .bordform{float:left; width:260px;margin:5px;padding:5px;border:1px solid #7c7bad;border-radius: .5em;box-sizing: border-box;font-size:12px;}
         .bordform:hover{background:#a6a5ec;}
         .bordform img{float: left;height:48px;width:48px;}

@@ -14,9 +14,9 @@
                 <div class="col-sm-6">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="搜索...">
-                        <span class="input-group-btn">
+                        <div class="input-group-append">
                             <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button>
-                        </span>
+                        </div>
                     </div><!-- /input-group -->
                 </div>
             </div>
@@ -36,58 +36,64 @@
                                 动作
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">导入</a></li>
-                                <li><a href="#">导出</a></li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">导入</a>
+                                <a class="dropdown-item" href="#">导出</a>
+                            </div>
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 筛选
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#filter=unactive">归档</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">规格</a></li>
-                                <li><a href="#">用户</a></li>
-                                <li><a href="#">部门</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">自定义</a></li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#filter=unactive">归档</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">规格</a>
+                                <a class="dropdown-item" href="#">用户</a>
+                                <a class="dropdown-item" href="#">部门</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">自定义</a>
+                            </div>
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 分组
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">名称</a></li>
-                                <li><a href="#">规格</a></li>
-                                <li><a href="#">部门</a></li>
-                                <li><a href="#">状态</a></li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">名称</a>
+                                <a class="dropdown-item" href="#">规格</a>
+                                <a class="dropdown-item" href="#">部门</a>
+                                <a class="dropdown-item" href="#">状态</a>
+                            </div>
                         </div>
                     </div>
 
             </div>
                 <div class="col-sm-2">
                     <!--导航条-->
-                    <div class="btn-group pull-right">
-                        <span class="btn-group">
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                        </span>
-                        <span class="btn-group">
-                            <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-                        </span>
-                    </div>
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
 
-        <context class="container-fluid">
-            <div class="listview">
-                <table class="table table-striped table-hover table-condensed">
+        <context>
+            <div>
+                <table class="table table-striped table-hover table-condensed table-sm">
                     <thead>
                         <tr>
                             <th><input type="checkbox" name="selall"></th>
@@ -106,12 +112,15 @@
                             <tr>
                                 <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                                 <td>
-{#                                    {% if  item.status %}#}
-{#                                        <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>#}
-{#                                    {% else %}#}
-{#                                        <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>#}
-{#                                    {% endif %}#}
-                                    <span class="label label-default">闲置{{ item.status }}</span>
+                                    {% if  item.status == 1 %}
+                                        <span class="badge badge-secondary">闲置</span>
+                                    {% elif item.status == 2 %}
+                                        <span class="badge badge-success">在用</span>
+                                    {% elif item.status == 3 %}
+                                        <span class="badge badge-warning">维修</span>
+                                    {% elif item.status == 4 %}
+                                        <span class="badge badge-danger">报废</span>
+                                    {% endif %}
                                 </td>
                                 <td>{{ item.sid }}</td>
                                 <td>{{ item.name }}</td>

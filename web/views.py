@@ -698,7 +698,7 @@ def parts_list(request):
 
 #功能测试路由
 def importdata(request):
-    wb = load_workbook("kkk.xlsx")
+    # wb = load_workbook("kkk.xlsx")
 
     # # 导入设备
     # sheet = wb.get_sheet_by_name("Sheet2")
@@ -774,7 +774,17 @@ def importdata(request):
     #             puid = asset_category.objects.filter(name=up).first()
     #             asset_category.objects.filter(name=namen).update(parentid=puid)
 
-    response = "ok"
+    # # 更新在用
+    # it = asset_property.objects.filter(user__isnull=False).update(status=2)
+
+    it = asset_property.objects.all().annotate(Count("name")).group ('name')
+    print(it.query)
+    for i in it:
+        print(i.name,i.name__count)
+
+    # if request.method == 'POST':
+    #     print(request.POST)
+    response = {"status":"ok"}
     return HttpResponse(response)
 
 def search(request):
