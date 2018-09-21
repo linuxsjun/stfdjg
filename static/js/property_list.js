@@ -1,29 +1,54 @@
 $(document).ready(function () {
     $('tbody tr').click(function () {
          var showsel = $(this).find('td input').val();
+         // alert($(this).find('td').index());
          window.location.href="/property_form?act=display&id="+showsel;
     });
 
     $('button[data-toggle="create"]').on('click',function () {
-        alert("create")
+        // alert("create");
+        $.ajax({
+            url:"/property_list",
+            type:"GET",
+            data:{
+                "act":'sort',
+                "Field":"sn"
+            },
+            success:function (data) {
+                console.log(data)
+            }
+        })
     });
 
     $('button[data-toggle="del"]').on('click',function () {
-        alert("del")
+        if ($(this).hasClass('disabled')) {
+
+        }else{
+            alert("del")
+        }
     });
 
     <!-- sort -->
     $('thead > tr > th').click(function () {
-        var obj =$(this).find('span');
+        var obj =$(this).find('i');
 
-        if (obj.hasClass("caret")){
-            obj.removeClass("caret");
-            console.log("-" + $(this).attr("data-id"));
-        }else{
-            $('thead > tr > th > span').removeClass("caret");
-            obj.addClass("caret");
-            console.log($(this).attr("data-id"));
+        obj.removeClass("fa fa-sort-alpha-asc");
+        obj.removeClass("fa fa-sort-alpha-desc");
+
+        if (obj.attr('data-id') == 0){
+            obj.attr('data-id',1);
+            obj.addClass("fa fa-sort-alpha-asc");
+        }else {
+            if (obj.attr('data-id') == 1) {
+                obj.attr('data-id',2);
+                obj.addClass("fa fa-sort-alpha-desc");
+            }else {
+                obj.attr('data-id',0);
+                obj.removeClass("fa fa-sort-alpha-asc");
+            }
         }
+        console.log(obj.attr('data-id'));
+        console.log($(this).attr("data-id"));
     });
 
     $('input[name="selall"]').click(function () {

@@ -32,24 +32,24 @@
                                 打印
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">信息单</a></li>
-                                <li><a href="#">基本信息</a></li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">信息单</a>
+                                <a class="dropdown-item" href="#">基本信息</a>
+                            </div>
                         </div>
                         <div class="btn-group dropdown">
                             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                 动作
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">复制</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">导入</a></li>
-                                <li><a href="#">导出</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li><a href="#">同步到企业微信</a></li>
-                            </ul>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">复制</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">导入</a>
+                                <a class="dropdown-item" href="#">导出</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">同步到企业微信</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -135,16 +135,16 @@
                         <div class="col-sm-4">
                             <div class="btn-group btn-group-justified" role="group">
                                 <div class="btn-group" role="group">
-                                <button class="btn btn-default"><span class="glyphicon glyphicon-inbox" aria-hidden="true"></span>归档</button>
+                                <button class="btn btn-default"><i class="fa fa-archive fa-1x"></i>归档</button>
                                 </div>
                                 <div class="btn-group" role="group">
-                                <button class="btn btn-default"><span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>维修</button>
+                                <button class="btn btn-default"><i class="fa fa-wrench fa-1x"></i>维修</button>
                                 </div>
                                 <div class="btn-group" role="group">
-                                <button class="btn btn-default"><span class="glyphicon glyphicon-sort-by-attributes" aria-hidden="true"></span>调配</button>
+                                <button class="btn btn-default"><i class="fa fa-truck fa-1x"></i>调配</button>
                                 </div>
                                 <div class="btn-group" role="group">
-                                <button class="btn btn-default"><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>附件</button>
+                                <button class="btn btn-default"><i class="fa fa-paperclip fa-1x"></i>附件</button>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@
                     <!-- 上面是头 -->
 
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label" for="name">名称*</label>
+                        <label class="col-sm-2" for="name">名称*</label>
                         <div class="col-sm-4">
                             <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称">
                         </div>
@@ -166,33 +166,36 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-sm-2" for="model">型号</label>
+                        <label class="col-sm-2 col-form-label" for="model">型号</label>
                         <div class="col-sm-4">
                             <input class="form-control" id="model" type="text" name="model" value="{{ context.model }}"  placeholder="型号">
                         </div>
-                        <label class="control-label col-sm-2">出厂编号*</label>
+                        <label class="col-sm-2 col-form-label">出厂编号*</label>
                         <div class="col-sm-4">
                             <input class="form-control" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-sm-2" for="cate">类型*</label>
+                        <label class="col-sm-2 col-form-label" for="cate">类型*</label>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <select class="custom-select" type="text"name="categoryid">
-                                    {% for hr in hrs %}
-                                        {% if hr.name == context.categoryid.name %}
-                                            <option value="{{ hr.id }}" selected="selected">{{ hr.name }}</option>
+                                <select class="custom-select" type="text" name="categoryid">
+                                    {% if context.categoryid == None %}
+                                        <option value="0"></option>
+                                    {% endif %}
+                                    {% for item in cats %}
+                                        {% if item.name == context.categoryid.name %}
+                                            <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
                                         {% else %}
-                                            <option value="{{ hr.id }}">{{ hr.name }}</option>
+                                            <option value="{{ item.id }}">{{ item.name }}</option>
                                         {% endif %}
                                     {% empty %}
-                                        <option>请先添加员工</option>
+                                        <option>请先添加类型</option>
                                     {% endfor %}
                                 </select>
                                 <div class="input-group-append">
-                                    <button class="btn btn-default" type="button"  id="cateid" ><span class="oi share" aria-hidden="true"></span>$</button>
+                                    <button class="btn btn-default" type="button"  id="cateid" ><i class="fa fa-external-link fa-1x"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -202,7 +205,7 @@
                     <h5 class="page-header"></h5> -->
 
                     <div class="form-group row">
-                        <label class="control-label col-sm-2">用户</label>
+                        <label class="col-sm-2 col-form-label">用户</label>
                         <div class="col-sm-4">
                             <div class="input-group">
                                 <select class="custom-select" type="text" name="user">
@@ -217,22 +220,22 @@
                                     {% endfor %}
                                 </select>
                                 <div class="input-group-append">
-                                    <button class="btn btn-default" type="button"><span class="oi share" aria-hidden="true"></span>$</button>
+                                    <button class="btn btn-default" type="button"><i class="fa fa-external-link fa-1x"></i></button>
                                 </div>
                             </div>
                         </div>
-                        <label class="control-label col-sm-2">位置</label>
+                        <label class="col-sm-2 col-form-label">位置</label>
                         <div class="col-sm-4">
                             <input class="form-control" type="text" name="sn" value="" placeholder="所在位置">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="control-label col-sm-2">部门</label>
+                        <label class="col-sm-2 col-form-label">部门</label>
                         <div class="col-sm-4">
                             <p class="form-control-static">部门</p>
                         </div>
-                        <label class="control-label col-sm-2">职务</label>
+                        <label class="col-sm-2 col-form-label">职务</label>
                         <div class="col-sm-4">
                             <p class="form-control-static">职务</p>
                         </div>
@@ -282,25 +285,25 @@
                                     <div class="col-sm-6">
                                         <h4>信息</h4>
                                         <div class="form-group row">
-                                            <label class="control-label col-sm-4">购买日期</label>
+                                            <label class="col-sm-4 col-form-label">购买日期</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="control-label col-sm-4">价格</label>
+                                            <label class="col-sm-4 col-form-label">价格</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="control-label col-sm-4">出厂日期</label>
+                                            <label class="col-sm-4 col-form-label">出厂日期</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}">
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="control-label col-sm-4">维保到期</label>
+                                            <label class="col-sm-4 col-form-label">维保到期</label>
                                             <div class="col-sm-8">
                                                 <input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}">
                                             </div>
@@ -309,7 +312,7 @@
                                     <div class="col-sm-6">
                                     <h4>供应商</h4>
                                     <div class="row">
-                                        <label class="control-label col-sm-4">名称</label>
+                                        <label class="col-sm-4 col-form-label">名称</label>
                                         <div class="col-sm-8">
                                             <input class="form-control" type="text" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
                                         </div>
@@ -319,7 +322,7 @@
                             </div>
                             <div class="tab-pane" id="other">
                                 <div class="form-group row">
-                                    <label class="control-label col-sm-1">备注</label>
+                                    <label class="col-sm-1 col-form-label">备注</label>
                                     <div class="col-sm-11">
                                         <textarea class="form-control" name="comment" clos=",100" rows="5" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
                                     </div>
@@ -342,16 +345,16 @@
                         </div>
                         <div class="modal-body">
                             <div class="input-group">
-                                <label class="">名称</label>
-                                <input type="text" class="form-control" name="cate" value="{{ context.categoryid }}">
+                                <label class="col-form-label col">名称</label>
+                                <input type="text" class="form-control col" name="cate" value="{{ context.categoryid }}">
                             </div>
                             <div class="input-group">
-                                <label class="">上一级</label>
-                                <input type="text" class="form-control" name="upd">
+                                <label class="col-form-label col">上一级</label>
+                                <input type="text" class="form-control col" name="upd">
                             </div>
                             <div class="input-group">
-                                <label class="">组件</label>
-                                <input type="checkbox">
+                                <label class="col-form-label col">组件</label>
+                                <input type="checkbox" class="col">
                             </div>
                         </div>
                         <div class="modal-footer">

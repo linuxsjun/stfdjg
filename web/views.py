@@ -621,11 +621,13 @@ def property_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    print("%s\n%s" % (request.method,request.GET))
+    # print("%s\n%s" % (request.method,request.GET))
     if request.method == "GET":
         if "act" in request.GET:
             if request.GET['act'] == 'sort':
-                pass
+                sns = request.GET['Field']
+                ps = asset_property.objects.all().order_by(sns)
+                return  HttpResponse(json.dump(ps),content_tye="application/json")
         else:
             ps = asset_property.objects.all().order_by('name','specifications', 'sid')
             context['context'] = ps
@@ -657,6 +659,9 @@ def property_form(request):
 
                 spn = asset_property.objects.filter(active=True).count()
                 context['spk'] = spn
+
+                cats = asset_category.objects.filter(active=True).order_by('name')
+                context['cats'] = cats
 
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
                 context['hrs']= hrs
@@ -698,7 +703,7 @@ def parts_list(request):
 
 #功能测试路由
 def importdata(request):
-    # wb = load_workbook("kkk.xlsx")
+    wb = load_workbook("kkk.xlsx")
 
     # # 导入设备
     # sheet = wb.get_sheet_by_name("Sheet2")
@@ -777,10 +782,27 @@ def importdata(request):
     # # 更新在用
     # it = asset_property.objects.filter(user__isnull=False).update(status=2)
 
-    it = asset_property.objects.all().annotate(Count("name")).group ('name')
-    print(it.query)
-    for i in it:
-        print(i.name,i.name__count)
+    # # 导入类型
+    # sheet1 = wb["Sheet2"]
+    # n = 0
+    # for i in sheet1['A']:
+    #     n += 1
+    #     if n != 1:
+    #         ids = sheet1["B" + str(n)].value
+    #         cat = sheet1["E" + str(n)].value
+    #
+    #         catn = asset_category.objects.filter(name=cat).first()
+    #
+    #         asset_property.objects.filter(sid=ids).update(categoryid=catn)
+    #         print("%s - %s" % (ids,cat))
+
+    # its = asset_property.objects.values_list('categoryid').annotate(Count('id'))
+    # print(its.query)
+    #
+    # for it in its:
+    #     print(it)
+    # print(type(it))
+
 
     # if request.method == 'POST':
     #     print(request.POST)
