@@ -622,15 +622,24 @@ def property_list(request):
         return render(request, 'sign.html', context)
 
     # print("%s\n%s" % (request.method,request.GET))
-    if request.method == "GET":
-        if "act" in request.GET:
-            if request.GET['act'] == 'sort':
-                sns = request.GET['Field']
+    if request.method == "POST":
+        print(request.POST)
+        print(request)
+        if "act" in request.POST:
+            if request.POST['act'] == 'sort':
+                sns = request.POST['Field']
                 ps = asset_property.objects.all().order_by(sns)
-                return  HttpResponse(json.dump(ps),content_tye="application/json")
-        else:
-            ps = asset_property.objects.all().order_by('name','specifications', 'sid')
-            context['context'] = ps
+                print(ps.query)
+                pss={}
+                for i in ps:
+                    print(i.name)
+
+                # return HttpResponse(json.dump(ps))
+                m = request.POST
+                return HttpResponse(m)
+    else:
+        ps = asset_property.objects.all().order_by('name','specifications', 'sid')
+        context['context'] = ps
 
     return render(request, 'property_list.html', context)
 

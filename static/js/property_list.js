@@ -8,8 +8,8 @@ $(document).ready(function () {
     $('button[data-toggle="create"]').on('click',function () {
         // alert("create");
         $.ajax({
-            url:"/property_list",
-            type:"GET",
+            url:"/property_list/",
+            type:"POST",
             data:{
                 "act":'sort',
                 "Field":"sn"
