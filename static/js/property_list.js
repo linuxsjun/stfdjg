@@ -1,8 +1,9 @@
 $(document).ready(function () {
-    $('tbody tr').click(function () {
-         var showsel = $(this).find('td input').val();
-         // alert($(this).find('td').index());
-         window.location.href="/property_form?act=display&id="+showsel;
+    $('tbody tr td').click(function () {
+         if ( $(this).index() > 0 ){
+             var showsel = $(this).siblings().eq(0).find('input').val();
+             window.location.href="/property_form?act=display&id="+showsel;
+         }
     });
 
     $('button[data-toggle="create"]').on('click',function () {
