@@ -628,14 +628,17 @@ def property_list(request):
         if "act" in request.POST:
             if request.POST['act'] == 'sort':
                 sns = request.POST['Field']
-                ps = asset_property.objects.all().order_by(sns)
-                print(ps.query)
-                pss={}
-                for i in ps:
-                    print(i.name)
+                ps = asset_property.objects.all().values('name','sn').order_by(sns)
+                # print(ps.query)
+                # pss={}
+                # pss=''
+                u=list(ps)
+                data=json.dumps(u)
+                print(data)
 
                 # return HttpResponse(json.dump(ps))
-                m = request.POST
+                # print(pss)
+                m = data
                 return HttpResponse(m)
     else:
         ps = asset_property.objects.all().order_by('name','specifications', 'sid')

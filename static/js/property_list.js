@@ -16,6 +16,7 @@ $(document).ready(function () {
                 "Field":"sn"
             },
             success:function (data) {
+                // console.log($(tbody).text())
                 console.log(data)
             }
         })
