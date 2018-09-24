@@ -52,8 +52,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="133">
-              <caret line="636" column="40" lean-forward="false" selection-start-line="636" selection-start-column="40" selection-end-line="636" selection-end-column="40" />
+            <state relative-caret-position="285">
+              <caret line="638" column="76" lean-forward="false" selection-start-line="638" selection-start-column="76" selection-end-line="638" selection-end-column="76" />
               <folding>
                 <element signature="e#549#1018#0" expanded="false" />
                 <element signature="e#1052#1873#0" expanded="false" />
@@ -77,7 +77,7 @@
                 <element signature="e#19738#21014#0" expanded="false" />
                 <element signature="e#21041#21080#0" expanded="false" />
                 <element signature="e#21274#21503#0" expanded="false" />
-                <element signature="e#28478#30253#0" expanded="false" />
+                <element signature="e#28473#30248#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -86,9 +86,12 @@
       <file leaf-file-name="property_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/property_list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="418">
-              <caret line="130" column="48" lean-forward="false" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="48" />
-              <folding />
+            <state relative-caret-position="62">
+              <caret line="117" column="72" lean-forward="false" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="72" />
+              <folding>
+                <element signature="e#4661#5670#0#HTML" expanded="false" />
+                <element signature="e#7196#7223#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -96,9 +99,11 @@
       <file leaf-file-name="property_list.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="380">
+              <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+              <folding>
+                <marker date="1537831074073" expanded="true" signature="1433:1453" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,7 +111,7 @@
       <file leaf-file-name="property_form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/property_form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
+            <state relative-caret-position="1634">
               <caret line="86" column="68" lean-forward="false" selection-start-line="86" selection-start-column="68" selection-end-line="86" selection-end-column="68" />
               <folding />
             </state>
@@ -217,8 +222,8 @@
         <option value="$PROJECT_DIR$/static/css/bootstrap-reboot.css" />
         <option value="$PROJECT_DIR$/templates/property_list.html" />
         <option value="$PROJECT_DIR$/templates/property_form.html" />
-        <option value="$PROJECT_DIR$/static/js/property_list.js" />
         <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/static/js/property_list.js" />
       </list>
     </option>
   </component>
@@ -229,10 +234,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="816" />
-    <option name="y" value="18" />
-    <option name="width" value="856" />
-    <option name="height" value="988" />
+    <option name="x" value="529" />
+    <option name="y" value="52" />
+    <option name="width" value="1140" />
+    <option name="height" value="908" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -389,13 +394,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533705842830</updated>
-    </task>
-    <task id="LOCAL-00015" summary="update hr view">
-      <created>1534340960256</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1534340960256</updated>
     </task>
     <task id="LOCAL-00016" summary="update upload file scoure code">
       <created>1534432575206</created>
@@ -733,7 +731,14 @@
       <option name="project" value="LOCAL" />
       <updated>1537728167508</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="update jquery of json date">
+      <created>1537754795394</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1537754795394</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TodoView">
@@ -746,14 +751,14 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="816" y="18" width="856" height="988" extended-state="0" />
+    <frame x="529" y="52" width="1140" height="908" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29271358" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2212963" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27201784" sideWeight="0.5097466" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2716263" sideWeight="0.5097466" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.45054945" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30857143" sideWeight="0.47880974" order="3" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33962265" sideWeight="0.47880974" order="3" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23428571" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46488294" sideWeight="0.48226163" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944568" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -843,7 +848,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update cookie" />
     <MESSAGE value="update cookie to all pager" />
     <MESSAGE value="update weixin Qcode" />
     <MESSAGE value="update weixin Qcode login" />
@@ -868,7 +872,8 @@
     <MESSAGE value="update input property" />
     <MESSAGE value="update input crot" />
     <MESSAGE value="update bootstap &amp; td select" />
-    <option name="LAST_COMMIT_MESSAGE" value="update bootstap &amp; td select" />
+    <MESSAGE value="update jquery of json date" />
+    <option name="LAST_COMMIT_MESSAGE" value="update jquery of json date" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1146,24 +1151,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/property_form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
+        <state relative-caret-position="1634">
           <caret line="86" column="68" lean-forward="false" selection-start-line="86" selection-start-column="68" selection-end-line="86" selection-end-column="68" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/property_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="130" column="48" lean-forward="false" selection-start-line="130" selection-start-column="44" selection-end-line="130" selection-end-column="48" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="636" column="40" lean-forward="false" selection-start-line="636" selection-start-column="40" selection-end-line="636" selection-end-column="40" />
+        <state relative-caret-position="285">
+          <caret line="638" column="76" lean-forward="false" selection-start-line="638" selection-start-column="76" selection-end-line="638" selection-end-column="76" />
           <folding>
             <element signature="e#549#1018#0" expanded="false" />
             <element signature="e#1052#1873#0" expanded="false" />
@@ -1187,16 +1184,29 @@
             <element signature="e#19738#21014#0" expanded="false" />
             <element signature="e#21041#21080#0" expanded="false" />
             <element signature="e#21274#21503#0" expanded="false" />
-            <element signature="e#28478#30253#0" expanded="false" />
+            <element signature="e#28473#30248#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/property_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="117" column="72" lean-forward="false" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="72" />
+          <folding>
+            <element signature="e#4661#5670#0#HTML" expanded="false" />
+            <element signature="e#7196#7223#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="24" column="41" lean-forward="true" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="380">
+          <caret line="31" column="45" lean-forward="true" selection-start-line="31" selection-start-column="45" selection-end-line="31" selection-end-column="45" />
+          <folding>
+            <marker date="1537831074073" expanded="true" signature="1433:1453" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

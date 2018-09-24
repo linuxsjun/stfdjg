@@ -1,6 +1,7 @@
 $(document).ready(function () {
     $('tbody tr td').click(function () {
          if ( $(this).index() > 0 ){
+             console.log('kkkk')
              var showsel = $(this).siblings().eq(0).find('input').val();
              window.location.href="/property_form?act=display&id="+showsel;
          }
@@ -17,13 +18,19 @@ $(document).ready(function () {
             },
             success:function (data) {
                 // console.log($(tbody).text())
-                $('tbody').empty()
-                var json=[{"id":"1","name":"n1"},{"id":"2","name":"n2"}]
+                // $('tbody').empty()
+                $('tbody').remove();
+                var disdatas="<tbody>";
+                var disdat;
 
                 for (var k in data) {
-                    console.log('llll')
-                    console.log(data[k]);
+                    disdat='<tr><td><input type=\"checkbox\" name=\"selitem\" value=\"'+data[k]["id"]+'\"></td><td><span class=\"badge badge-success\">'+data[k]["status"]+"</span></td><td>"+data[k]["sid"]+"</td><td>"+data[k]["name"]+"</td><td>"+data[k]["specifications"]+"</td><td>"+data[k]["sn"]+"</td><td>"+data[k]["purchase"]+"</td><td>"+data[k]["warranty"]+"</td><td>"+data[k]["user__name"]+"</td></tr>";
+                    disdatas=disdatas+disdat;
+                    // console.log(data[k]);
                 }
+                // $('thead').after("<tbody><tr><td colspan=\"9\" style=\"text-align\: center;\">(暂无数据)</td></tr></tbody>");
+                disdatas=disdatas+"</tbody>";
+                $('thead').after(disdatas);
             }
         })
     });

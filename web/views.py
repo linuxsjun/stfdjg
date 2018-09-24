@@ -636,7 +636,7 @@ def property_list(request):
                                                          'purchase',
                                                          'warranty',
                                                          'user__name',
-                                                         'sn').order_by(sns)[:10]
+                                                         'sn').order_by(sns)
                 s=[]
                 u=list(ps)
                 for t in u:
