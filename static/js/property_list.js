@@ -17,7 +17,13 @@ $(document).ready(function () {
             },
             success:function (data) {
                 // console.log($(tbody).text())
-                console.log(data)
+                $('tbody').empty()
+                var json=[{"id":"1","name":"n1"},{"id":"2","name":"n2"}]
+
+                for (var k in data) {
+                    console.log('llll')
+                    console.log(data[k]);
+                }
             }
         })
     });
