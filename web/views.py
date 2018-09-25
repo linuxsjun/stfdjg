@@ -644,6 +644,7 @@ def property_list(request):
                     t['warranty']=t['warranty'].strftime("%Y-%m-%d")
                     s.append(t)
                 data=json.dumps(s)
+                # print(data)
                 return HttpResponse(data,content_type="application/json")
     else:
         ps = asset_property.objects.all().order_by('name','specifications', 'sid')

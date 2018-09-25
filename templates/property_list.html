@@ -15,7 +15,7 @@
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="搜索...">
                         <div class="input-group-append">
-                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button>
+                            <button class="btn btn-primary" type="button"><i class="fa fa-search-plus fa-1x"></i></button>
                         </div>
                     </div><!-- /input-group -->
                 </div>
@@ -99,7 +99,7 @@
                             <th><input type="checkbox" name="selall"></th>
                             <th data-id="status">状态<i class="" aria-hidden="true" data-id="0"></i></th>
                             <th data-id="sid">编号<i class="" aria-hidden="true" data-id="0"></i></th>
-                            <th data-id="name">名称<i class="" aria-hidden="true" data-id="0"></i></th>
+                            <th data-id="name">名称<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
                             <th data-id="specifications">规格<i class="" aria-hidden="true" data-id="0"></i></th>
                             <th data-id="sn">出厂编号<i class="" aria-hidden="true" data-id="0"></i></th>
                             <th data-id="purchase">购买日期<i class="" aria-hidden="true" data-id="0"></i></th>
@@ -124,11 +124,11 @@
                                 </td>
                                 <td>{{ item.sid }}</td>
                                 <td>{{ item.name }}</td>
-                                <td>{{ item.specifications }}</td>
-                                <td>{{ item.sn }}</td>
+                                <td>{{ item.specifications| default:"" }}</td>
+                                <td>{{ item.sn| default:"" }}</td>
                                 <td>{{ item.purchase|date:'Y-m-d' }}</td>
                                 <td>{{ item.warranty|date:'Y-m-d' }}</td>
-                                <td>{{ item.user.name }}</td>
+                                <td>{{ item.user.name| default:"" }}</td>
                             </tr>
                         {% empty %}
                             <tr>
