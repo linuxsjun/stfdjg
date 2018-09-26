@@ -371,9 +371,9 @@ def getToken(request):
                 d.expirestime = datetime.datetime.fromtimestamp(tt + t['expires_in'])
 
                 d.save()
-                response = "GET Token ID is ok at %s"%d.expirestime
+                response = d.token
             else:
-                response = "No"
+                response = "Error"
 
     return HttpResponse(response)
 
@@ -707,7 +707,9 @@ def property_form(request):
 
                     prs = ps.asset_parts_set.all()
                     context['parts'] = prs
-                    print(context)
+                    context['partsnum'] = prs.count()
+                    print(prs.count())
+
 
                 # print(ps.categoryid.name)
     elif request.method == "POST":

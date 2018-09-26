@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('[data-toggle="gettoken"]').on('click',function () {
-        var $btn = $(this).button('loading')
+        var $btn = $(this).button('loading');
         $.ajax({
             url:"/gettoken",
             type:"GET",
@@ -8,9 +8,9 @@ $(document).ready(function () {
                 "act":'gettoken'
             },
             success:function (data) {
-                console.log(data)
+                $('#token').val(data);
             }
-        })
+        });
         $btn.button('reset')
     })
-})
+});
