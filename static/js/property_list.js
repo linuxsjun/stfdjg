@@ -14,7 +14,12 @@ $(document).ready(function () {
         }
     });
 
-    <!-- sort -->
+    $('#dddd').click(function () {
+        // alert('kkkkk');
+        $('#mymodal').Modal('show');
+    });
+
+    //<!-- sort -->
     $('th').click(function () {
         var obj =$(this).find('i');
         var alli = $('th i');
@@ -109,6 +114,13 @@ $(document).ready(function () {
         })
     });
 
+    $('tbody tr td').click(function () {
+         if ( $(this).index() > 0 ){
+             var showsel = $(this).siblings().eq(0).find('input').val();
+             window.location.href="/property_form?act=display&id="+showsel;
+         }
+    });
+
     $('input[name="selall"]').click(function () {
         var sel = $(this).prop("checked");
         if (sel){
@@ -128,12 +140,6 @@ $(document).ready(function () {
         }
     });
 
-    $('tbody tr td').click(function () {
-         if ( $(this).index() > 0 ){
-             console.log('kkkk')
-             var showsel = $(this).siblings().eq(0).find('input').val();
-             window.location.href="/property_form?act=display&id="+showsel;
-         }
-    });
+
 });
 
