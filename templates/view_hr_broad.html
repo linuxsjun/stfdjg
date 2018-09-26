@@ -116,23 +116,20 @@
                 </div>
             </div>
             <div class="kanban">
-
-
-            <div class="row">
-                {% for item in context %}
-                    <div class="card cardm" style="width: 11rem;">
-{#                        <img class="card-img-top" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap">#}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ item.name }}</h5>
-                            <p><span><i class="fa fa-credit-card fa-1x"></i></span>: {{ item.position }}</p>
-                            <p><span><i class="fa fa-mobile fa-1x"></i></span>: {{ item.mobile }}</p>
-                            <p><span><i class="fa fa-phone fa-1x"></i></span>: {{ item.telephone }}</p>
-                            <button class="btn btn-default" type="button">Go somewhere</button>
+                <div class="card-columns">
+                    {% for item in context %}
+                        <div class="card border-secondary mb-3" style="width: 11rem;">
+                            <div class="card-header">{{ item.name }}</div>
+{#                            <img class="card-img-top" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap">#}
+                            <div class="card-body">
+                                <p class="card-text"><span><i class="fa fa-credit-card fa-1x"></i></span>: {{ item.position }}</p>
+                                <p class="card-text"><span><i class="fa fa-mobile fa-1x"></i></span>: {{ item.mobile }}</p>
+                                <p class="card-text"><span><i class="fa fa-phone fa-1x"></i></span>: {{ item.telephone }}</p>
+                                <button class="btn btn-info btn-sm" type="button">详情</button>
+                            </div>
                         </div>
-                    </div>
-                    <br/>
-                {% endfor %}
-            </div>
+                    {% endfor %}
+                </div>
             </div>
         </context>
         <div class="footbar">

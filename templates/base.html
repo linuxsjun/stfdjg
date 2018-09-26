@@ -27,7 +27,6 @@
                <span class="navbar-toggler-icon"></span>
            </button>
 
-{#           </div>#}
            <div id="navbarSupportedContent" class="collapse navbar-collapse">
                <ul class="navbar-nav mr-auto">
                    <li class="nav-item dropdown">
@@ -41,7 +40,6 @@
                            <a class="dropdown-item" href="#">高级</a>
                        </div>
                    </li>
-
                    <li class="nav-item dropdown">
                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="/pure_list/">设备<span class="caret"></span></a>
                        <div class="dropdown-menu">
@@ -55,14 +53,20 @@
                            <a class="dropdown-item" href="#">高级</a>
                        </div>
                    </li>
-
                    <li class="nav-item active"><a class="nav-link" href="/search/">服务</a></li>
                    <li class="nav-item"><a class="nav-link" href="/conf/">设置</a></li>
                </ul>
                <ul class="navbar-nav navbar-right">
-                   <div class="dropdown-divider"></div>
-                   <li class="nav-item"><a class="nav-link" href="/">{{ userinfo }}<i class="fa fa-user fa-1x"></i></a></li>
-                   <li class="nav-item"><a class="nav-link" href="/signout/">注销<i class="fa fa-sign-out fa-1x"></i></a></li>
+                   <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">
+                           <i class="fa fa-user fa-1x"></i>{{ userinfo }}<span class="caret"></span>
+                       </a>
+                       <div class="dropdown-menu">
+                           <a class="dropdown-item" href="#">个人信息</a>
+                           <div class="dropdown-divider"></div>
+                           <a class="dropdown-item" href="/signout/">注销<i class="fa fa-sign-out fa-1x"></i></a>
+                       </div>
+                   </li>
                </ul>
            </div>
        </div>

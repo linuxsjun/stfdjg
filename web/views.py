@@ -624,11 +624,10 @@ def property_list(request):
     # print("%s\n%s" % (request.method,request.GET))
     if request.method == "POST":
         print(request.POST)
-        print(request)
         if "act" in request.POST:
             if request.POST['act'] == 'sort':
                 sns = request.POST['Field']
-                ps = asset_property.objects.all().values('id',
+                ps = asset_property.objects.filter(active=True).values('id',
                                                          'status',
                                                          'sid',
                                                          'name',
@@ -636,7 +635,9 @@ def property_list(request):
                                                          'purchase',
                                                          'warranty',
                                                          'user__name',
+                                                         'user__active',
                                                          'sn').order_by(sns)
+
                 s=[]
                 u=list(ps)
                 for t in u:
@@ -646,8 +647,20 @@ def property_list(request):
                 data=json.dumps(s)
                 # print(data)
                 return HttpResponse(data,content_type="application/json")
+            if request.POST['act'] == 'filter':
+                pass
     else:
-        ps = asset_property.objects.all().order_by('name','specifications', 'sid')
+        ps = asset_property.objects.filter(active=True).values('id',
+                                                         'status',
+                                                         'sid',
+                                                         'name',
+                                                         'specifications',
+                                                         'purchase',
+                                                         'warranty',
+                                                         'user__name',
+                                                         'user__active',
+                                                         'sn').order_by('name','specifications', 'sid')
+
         context['context'] = ps
 
     return render(request, 'property_list.html', context)
@@ -670,8 +683,8 @@ def property_form(request):
         return render(request, 'sign.html', context)
 
     if request.method == "GET":
+        print(request.GET)
         if "act" in request.GET:
-            print(request.GET)
             if request.GET['act'] == "display":
                 pn = int(request.GET['id'])
 
@@ -694,8 +707,20 @@ def property_form(request):
 
                     prs = ps.asset_parts_set.all()
                     context['parts'] = prs
+                    print(context)
 
                 # print(ps.categoryid.name)
+    elif request.method == "POST":
+        print(request.POST)
+        if "act" in request.POST:
+            if request.POST['act'] == "active":
+                assid = int(request.POST['id'])
+                act = asset_property.objects.filter(id=assid).update(active=True)
+                return HttpResponse(act)
+            if request.POST['act'] == 'unactive':
+                assid = int(request.POST['id'])
+                act = asset_property.objects.filter(id=assid).update(active=False)
+                return HttpResponse(act)
     return render(request, 'property_form.html', context)
 
 def parts_list(request):

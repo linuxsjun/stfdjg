@@ -38,7 +38,7 @@
                             </button>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">导入</a>
-                                <a class="dropdown-item" href="#">导出</a>
+                                <a class="dropdown-item" href="/static/download/222.xlsx">导出xlsx</a>
                             </div>
                         </div>
                         <div class="btn-group dropdown">
@@ -80,6 +80,7 @@
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
+                            <li class="page-item disabled"><a class="page-link"><span id="assetid">{{ pk|default:0 }}-{{ pk|default:0 }}</span>/{{ spk|default:0 }}</a></li>
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
@@ -93,7 +94,7 @@
 
         <article>
             <div>
-                <table class="table table-hover table-condensed table-sm">
+                <table class="table table-hover table-condensed">
                     <thead>
                         <tr>
                             <th><input type="checkbox" name="selall"></th>
@@ -128,7 +129,11 @@
                                 <td>{{ item.sn| default:"" }}</td>
                                 <td>{{ item.purchase|date:'Y-m-d' }}</td>
                                 <td>{{ item.warranty|date:'Y-m-d' }}</td>
-                                <td>{{ item.user.name| default:"" }}</td>
+                                {% if item.user__active %}
+                                    <td>{{ item.user__name| default:"" }}</td>
+                                {% else %}
+                                    <td><span class="badge badge-danger">{{ item.user__name| default:"" }}</span></td>
+                                {% endif %}
                             </tr>
                         {% empty %}
                             <tr>

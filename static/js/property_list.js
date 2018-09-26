@@ -85,7 +85,12 @@ $(document).ready(function () {
                     if ( data[k]["user__name"] == null) {
                         disdat=disdat+"<td></td>";
                     }else{
-                        disdat=disdat+"<td>"+data[k]["user__name"]+"</td>";
+                        if (data[k]["user__active"]){
+                            disdat=disdat+"<td>"+data[k]["user__name"]+"</td>";
+                        }else{
+                            disdat=disdat+"<td><span class=\"badge badge-danger\">"+data[k]["user__name"]+"</span></td>";
+                        }
+
                     };
 
                     disdatas=disdatas + "<tr>" + disdat+"</tr>";
@@ -96,7 +101,6 @@ $(document).ready(function () {
 
                 $('tbody tr td').click(function () {
                     if ( $(this).index() > 0 ){
-                     console.log('kkkk');
                      var showsel = $(this).siblings().eq(0).find('input').val();
                      window.location.href="/property_form?act=display&id="+showsel;
                     }
