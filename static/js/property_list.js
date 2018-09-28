@@ -10,34 +10,37 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         }else{
-            $(this).addClass("disabled");
-
-            $('input[name="selitem"]').each(function () {
-
-                if ($(this).prop("checked")){
-                    console.log($(this).val());
-                    var asid = $(this).val();
-                    $(this).prop("checked", false);
-                    $(this).parents("tr").addClass("sr-only");
-                    $.ajax({
-                        url:"/property_form/",
-                        type:"POST",
-                        data:{
-                            "act":"unactive",
-                            "id":asid
-                        },
-                        success:function (data) {
-                        }
-                    });
-                }
-            });
-
+            var i = $('input[name="selall"]').val();
+            $('#delnum').html(i);
+            $('#sssss').modal('show');
         }
     });
 
+    $('button[data-toggle="surdel"]').click(function () {
+        $('#sssss').modal('hide');
+        $('input[name="selitem"]').each(function () {
+            if ($(this).prop("checked")) {
+                var asid = $(this).val();
+                $.ajax({
+                    url: "/property_form/",
+                    type: "POST",
+                    data: {
+                        "act": "unactive",
+                        "id": asid
+                    },
+                    success: function (data) {
+                        // $(this).parents("tr").empty();
+                    }
+                });
+                $(this).parents("tr").empty();
+            }
+        });
+        $('input[name="selall"]').val(0);
+        $('button[data-toggle="del"]').addClass("disabled");
+    });
+
     $('#dddd').click(function () {
-        // alert('kkkkk');
-        $('#sssss').Modal('show');
+        alert('kkkkk');
     });
 
     //---- 排序 ----
@@ -135,22 +138,45 @@ $(document).ready(function () {
                         }
                     });
 
+                    $('input[name="selitem"]').prop("checked", false);
+                    $('button[data-toggle="del"]').addClass("disabled");
+                    $('input[name="selall"]').val(0);
+
                     $('input[name="selall"]').click(function () {
                         var sel = $(this).prop("checked");
+                        var i =0;
+
                         if (sel){
-                            $('input[name="selitem"]').prop("checked", true)
+                            $('input[name="selitem"]').prop("checked", true);
+                            $('button[data-toggle="del"]').removeClass("disabled");
+
+                            $('input[name="selitem"]').each(function () {
+                                i=i+1;
+                            });
                         }else{
                             $('input[name="selitem"]').prop("checked", false);
+                            $('button[data-toggle="del"]').addClass("disabled");
                         }
+                        $('input[name="selall"]').val(i);
                     });
 
                     $('input[name="selitem"]').click(function () {
-                        var sel = $(this).prop("checked");
+                       var sel = $(this).prop("checked");
+                       var i = $('input[name="selall"]').val();
+                       i=parseInt(i);
+
                         if (sel){
                             $(this).prop("checked", true);
                             $('button[data-toggle="del"]').removeClass("disabled");
+                            i=i+1;
+                            $('input[name="selall"]').val(i);
                         }else{
                             $(this).prop("checked", false);
+                            i=i-1;
+                            $('input[name="selall"]').val(i);
+                            if(!i){
+                                $('button[data-toggle="del"]').addClass("disabled");
+                            }
                         }
                     });
                 }
@@ -168,29 +194,39 @@ $(document).ready(function () {
 
     $('input[name="selall"]').click(function () {
         var sel = $(this).prop("checked");
+        var i =0;
+
         if (sel){
-            $('input[name="selitem"]').prop("checked", true)
+            $('input[name="selitem"]').prop("checked", true);
             $('button[data-toggle="del"]').removeClass("disabled");
+
+            $('input[name="selitem"]').each(function () {
+                i=i+1;
+            });
         }else{
             $('input[name="selitem"]').prop("checked", false);
             $('button[data-toggle="del"]').addClass("disabled");
         }
-
+        $('input[name="selall"]').val(i);
     });
 
     $('input[name="selitem"]').click(function () {
        var sel = $(this).prop("checked");
+       var i = $('input[name="selall"]').val();
+       i=parseInt(i);
+
         if (sel){
             $(this).prop("checked", true);
             $('button[data-toggle="del"]').removeClass("disabled");
+            i=i+1;
+            $('input[name="selall"]').val(i);
         }else{
             $(this).prop("checked", false);
-            $('button[data-toggle="del"]').addClass("disabled");
-            $('input[name="selitem"]').each(function () {
-                if($(this).prop("checked")) {
-                    $('button[data-toggle="del"]').removeClass("disabled");
-                }
-            });
+            i=i-1;
+            $('input[name="selall"]').val(i);
+            if(!i){
+                $('button[data-toggle="del"]').addClass("disabled");
+            }
         }
     });
 });

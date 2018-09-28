@@ -5,8 +5,9 @@ $(document).ready(function () {
 
 
     //----bars----
-    $('#cateid').on('click', function () {
-        $('#myModal').modal("show");
+    // $('#cateid').on('click', function () {
+    $('#cateid').click(function () {
+            $('#myModal').modal("show");
     });
     // ----管理工具条----
     $('button[data-toggle="edit"]').on('click', function () {
@@ -85,7 +86,7 @@ $(document).ready(function () {
 
         if (val == "1") {
             sel.attr("data-val",0);
-            sel.html('<i class="fa fa-archive fa-1x"></i>提档');
+            sel.html('<i class="fa fa-archive fa-1x"></i>取档');
             act = "unactive";
         }else {
             sel.attr("data-val", 1);
@@ -100,7 +101,7 @@ $(document).ready(function () {
                 "id":asid
             },
             success:function (data) {
-                console.log(data)
+
             }
         })
     });
