@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-
+    //-----控制面板----
     $('button[data-toggle="create"]').on('click',function () {
         // alert("create");
 
@@ -10,26 +10,22 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         }else{
-            var i = $('input[name="selall"]').val();
-            $('#delnum').html(i);
-            $('#sssss').modal('show');
+            $('#delnum').html($('input[name="selall"]').val());
+            $('#Mdadel').modal('show');
         }
     });
 
     $('button[data-toggle="surdel"]').click(function () {
-        $('#sssss').modal('hide');
         $('input[name="selitem"]').each(function () {
             if ($(this).prop("checked")) {
                 var asid = $(this).val();
+                var idx = $(this).parents("tr").index();
                 $.ajax({
                     url: "/property_form/",
                     type: "POST",
                     data: {
                         "act": "unactive",
                         "id": asid
-                    },
-                    success: function (data) {
-                        // $(this).parents("tr").empty();
                     }
                 });
                 $(this).parents("tr").empty();
@@ -37,10 +33,51 @@ $(document).ready(function () {
         });
         $('input[name="selall"]').val(0);
         $('button[data-toggle="del"]').addClass("disabled");
+        $('#Mdadel').modal('hide');
     });
 
+    //<!--导入导出条-->
     $('#dddd').click(function () {
-        alert('kkkkk');
+
+        $('.progress-bar').css("width","0%");
+        $('#MdaInput').modal('show');
+    });
+
+    $('#customFile').change(function () {
+        $('.custom-file-label').html($('#customFile').val());
+    });
+
+    $('button[data-toggle="surinput"]').click(function () {
+        function progressBar(evt) {
+            var loaded = evt.loaded; //已经上传大小情况
+            var tot = evt.total; //附件总大小
+            var per = Math.floor(100 * loaded / tot); //已经上传的百分比
+            //绘制经度条
+            var pr = per + '%';
+            $('.progress-bar').css("width",pr);
+            $('.progress-bar').html(pr);
+        }
+        $.ajax({
+            url:"/upload/",
+            type:"post",
+            cache: false,
+            async:true,
+            data:new FormData($('#forminput')[0]),
+            processData: false,
+            contentType: false,
+            xhr: function () {
+                var xhr = $.ajaxSettings.xhr();
+                if (xhr.upload) {
+                    xhr.upload.addEventListener("progress", progressBar, false);
+                    return xhr;
+                }
+            },
+            success: function(req) {
+                //请求成功时处理
+                $('.progress-bar').html('完成');
+                $('#MdaInput').modal('hide');
+            }
+        });
     });
 
     //---- 排序 ----
@@ -193,18 +230,17 @@ $(document).ready(function () {
     });
 
     $('input[name="selall"]').click(function () {
-        var sel = $(this).prop("checked");
         var i =0;
-
-        if (sel){
-            $('input[name="selitem"]').prop("checked", true);
-            $('button[data-toggle="del"]').removeClass("disabled");
-
+        if ($(this).prop("checked")){
             $('input[name="selitem"]').each(function () {
+                $(this).prop("checked", true);
                 i=i+1;
             });
+            $('button[data-toggle="del"]').removeClass("disabled");
         }else{
-            $('input[name="selitem"]').prop("checked", false);
+            $('input[name="selitem"]').each(function () {
+                $(this).prop("checked", false);
+            });
             $('button[data-toggle="del"]').addClass("disabled");
         }
         $('input[name="selall"]').val(i);
@@ -221,6 +257,7 @@ $(document).ready(function () {
             i=i+1;
             $('input[name="selall"]').val(i);
         }else{
+            $('input[name="selall"]').prop("checked", false);
             $(this).prop("checked", false);
             i=i-1;
             $('input[name="selall"]').val(i);

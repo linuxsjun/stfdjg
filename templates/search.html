@@ -6,63 +6,13 @@
 {% endblock styecss %}
 
 {% block jquery %}
-    <script>
-        $(document).ready(function () {
-            $(".kkkk").click(function () {
-                $(this).fadeOut("slow");
-            });
-        });
-    </script>
     <script type="text/javascript">
         $(document).ready(function () {
-            var $divs = $('button');
-            console.log($divs.length);
-            console.log($divs[2].innerHTML);
-
-            $divs.each(function (index, domEle) {
-                console.log(index,domEle.innerHTML,this.innerHTML)
-            });
-
-            console.log($('.x666').index());
-{#            $('button').css('background','blue')#}
-            $('.x666').css('color','red');
-            $('div,p').css('color','green');
-
-            $('button#csrf').css({'color':'red','background':'blue'});
-            $('#csrf').click(function () {
-                var $csrfval = '{{ csrf_token }}';
-                alert($csrfval)
-            });
-
-            $('input.clkall').click(function () {
-                if($(this).prop("checked")){
-                    $('input.clk').prop('checked','True');
-                    $('input.clk').each(function () {
-                        console.log("+" + $(this).val())
-                    })
-                } else{
-                    $('input.clk').prop('checked','');
-                    $('input.clk').each(function () {
-                        console.log("-" + $(this).val())
-                    })
-                }
-            });
-            $('input.clk').click(function () {
-                var $id = $(this).val();
-                if ($(this).prop("checked")) {
-                    console.log("+" + $id)
-                }else{
-                    console.log("-" + $id)
-                }
-                console.log($("[name='item']").val())
-            })
-
             $('.mm').on('click',function () {
                 $.ajax({
                     url:'/importdata/',
                     type:'POST',
                     data:{
-
                         "act":"display",
                         "id":1
                     },
@@ -70,7 +20,7 @@
                         console.log(data)
                     }
                 })
-            })
+            });
         })
     </script>
 {% endblock jquery%}
@@ -78,32 +28,6 @@
 {% block mainbody %}
 
     <p>{{ title }}</p>
-    <br>
-    <button class="kkkk" type="submit" value="1" >kkkkkkkkk</button>
-    <br>
-    <form  action = "/upload/" method = "post" enctype = "multipart/form-data">
-        {% csrf_token %}
-        <label class="file">
-        <input type = "file" name = "file" />
-        <span class="file-custom"></span>
-        </label>
-        <input type = "submit" value = "upload" />
-
-    </form >
-
-    <br/>
-    <button id="csrf">csrf</button>
-    <br/>
-
-    <input class="clkall" type="checkbox" value="0" />
-    <input class="clk" type="checkbox" name="item" value="1" />
-    <input class="clk" type="checkbox" name="item" value="2" />
-    <input class="clk" type="checkbox" name="item" value="3" />
-    <input class="clk" type="checkbox" name="item" value="4" />
-    <div class="container-fluid">
-        <progress class="progress" value="75" max="100">75%</progress>
-        <progress class="progress progress-striped progress-danger" value="100" max="100">100%</progress>
-    </div>
 
 {% endblock %}
 
