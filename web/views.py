@@ -687,7 +687,11 @@ def property_form(request):
         print(request.GET)
         if "act" in request.GET:
             if request.GET['act'] == "display":
+
+
                 pn = int(request.GET['id'])
+                ppn = pn-1
+                npn = pn+1
 
                 spn = asset_property.objects.filter(active=True).count()
                 context['spk'] = spn
@@ -704,6 +708,8 @@ def property_form(request):
                     return redirect('/property_list/')
                 else:
                     context['pk']=pn
+                    context['ppk']=ppn
+                    context['npk']=npn
                     context['context'] = ps
 
                     prs = ps.asset_parts_set.all()
