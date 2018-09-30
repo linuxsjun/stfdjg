@@ -7,10 +7,7 @@
     <list id="f5d9c4a4-8c27-44a4-8d6c-5877907d7103" name="Revert: update input property" comment="" />
     <list id="5d41860e-1907-4c7b-be19-24c2cff566d1" name="Revert: update input property for user" comment="" />
     <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/property_form.html" afterPath="$PROJECT_DIR$/templates/property_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views.py" afterPath="$PROJECT_DIR$/web/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -1239,13 +1236,6 @@
       <option name="presentableId" value="Default" />
       <updated>1533705842830</updated>
     </task>
-    <task id="LOCAL-00022" summary="update rename view">
-      <created>1534571954106</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1534571954106</updated>
-    </task>
     <task id="LOCAL-00023" summary="update cookie">
       <created>1534601390486</created>
       <option name="number" value="00023" />
@@ -1582,7 +1572,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538215326316</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="update form p n">
+      <created>1538290770927</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1538290770928</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1704,7 +1701,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update weixin Qcode login ok" />
     <MESSAGE value="update login page style disgn" />
     <MESSAGE value="update pure update view" />
     <MESSAGE value="update pure chackbox" />
@@ -1729,7 +1725,8 @@
     <MESSAGE value="update form sort" />
     <MESSAGE value="update list del all" />
     <MESSAGE value="update upload file" />
-    <option name="LAST_COMMIT_MESSAGE" value="update upload file" />
+    <MESSAGE value="update form p n" />
+    <option name="LAST_COMMIT_MESSAGE" value="update form p n" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
