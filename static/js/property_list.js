@@ -162,6 +162,11 @@ $(document).ready(function () {
                                 disdat = disdat + "<td><span class=\"badge badge-danger\">" + data[k]["user__name"] + "</span></td>";
                             }
                         }
+                        if (data[k]["position"] == null) {
+                            disdat = disdat + "<td></td>";
+                        } else {
+                            disdat = disdat + "<td>" + data[k]["position"] + "</td>";
+                        }
                         disdatas = disdatas + "<tr>" + disdat + "</tr>";
                     }
                     disdatas = disdatas + "</tbody>";

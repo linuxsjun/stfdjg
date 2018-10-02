@@ -637,6 +637,7 @@ def property_list(request):
                                                          'warranty',
                                                          'user__name',
                                                          'user__active',
+                                                         'position',
                                                          'sn').order_by(sns)
 
                 s=[]
@@ -660,6 +661,7 @@ def property_list(request):
                                                          'warranty',
                                                          'user__name',
                                                          'user__active',
+                                                         'position',
                                                          'sn').order_by('name','specifications', 'sid')
 
         context['context'] = ps

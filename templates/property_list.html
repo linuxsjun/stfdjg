@@ -24,7 +24,7 @@
                 <div class="col-sm-6">
                     <!--工具条-->
                     <div>
-                        <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
+                        <button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">创建</button>
                         <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
                     </div>
                 </div>
@@ -106,6 +106,7 @@
                             <th data-id="purchase">购买日期<i class="" aria-hidden="true" data-id="0"></i></th>
                             <th data-id="warranty">维保到期<i class="" aria-hidden="true" data-id="0"></i></th>
                             <th data-id="user">用户<i class="" aria-hidden="true" data-id="0"></i></th>
+                            <th data-id="position">位置<i class="" aria-hidden="true" data-id="0"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -134,6 +135,7 @@
                                 {% else %}
                                     <td><span class="badge badge-danger">{{ item.user__name| default:"" }}</span></td>
                                 {% endif %}
+                                <td>{{ item.position| default:"" }}</td>
                             </tr>
                         {% empty %}
                             <tr>
