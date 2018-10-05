@@ -112,10 +112,10 @@
                             <div class="media">
                                 <div class="media-left media-middle">
                                     <a href="#">
-                                        <img class="media-object" src="/static/img/asset.png" alt="..." style="width: 100px; height: 100px;">
+                                        <img data-src="holder.js/100x100" class="rounded float-left" alt="headerimg">
                                     </a>
                                 </div>
-                                <div class="media-body">
+                                <div class="media-body align-self-center">
                                     <h1 class="media-heading">{{ context.sid }}</h1>
                                 </div>
                             </div>
@@ -130,7 +130,7 @@
 {#                            </div>#}
 {#                        </div>#}
                         <div class="col-sm-5">
-                            <div class="btn-group btn-group-justified" role="group">
+                            <div class="btn-group but-fills" role="group">
                                 <div class="btn-group" role="group">
                                     {% if context.active == 1 %}
                                         <button type="button" class="btn btn-outline-primary" data-toggle="active" data-val="1">
@@ -281,7 +281,7 @@
                     <!-- 下面是Tabs-->
                     <div>
                         <ul class="nav nav-tabs">
-                            <li class="nav-item"><a class="nav-link  active" href="#parts" data-toggle="tab">配件<span class="badge badge-secondary">{{ partsnum| default:0 }}</span></a></li>
+                            <li class="nav-item"><a class="nav-link  active" href="#parts" data-toggle="tab">配件 <span class="badge badge-secondary">{{ partsnum| default:0 }}</span></a></li>
                             <li class="nav-item"><a class="nav-link" href="#purchase" data-toggle="tab">采购</a></li>
                             <li class="nav-item"><a class="nav-link" href="#other" data-toggle="tab">其它</a></li>
                         </ul>

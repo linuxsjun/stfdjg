@@ -104,23 +104,27 @@
         </div>
     </div>
 
-        <context  class="container">
-            <div class="container-fluid cmd_nav">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <button type="button" data-loading-text="Loading..." class="btn btn-primary" data-toggle="gethr" autocomplete="off">
-                            <span><i class="fa fa-cloud-download fa-1x"></i></span>
-                            获取员工
-                        </button>
-                    </div>
+    <context  class="container">
+        <div class="container-fluid cmd_nav">
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="button" data-loading-text="Loading..." class="btn btn-primary" data-toggle="gethr" autocomplete="off">
+                        <span><i class="fa fa-cloud-download fa-1x"></i></span>
+                        获取员工
+                    </button>
                 </div>
             </div>
-            <div class="kanban">
-                <div class="card-columns">
-                    {% for item in context %}
-                        <div class="card border-secondary mb-3" style="width: 11rem;">
-                            <div class="card-header">{{ item.name }}</div>
-{#                            <img class="card-img-top" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap">#}
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                {% for item in context %}
+                    <div class="col-auto" style="margin-top: 15px;">
+                        <div class="card border-secondary" style="width: 11rem;">
+                            <div class="card-header">
+                            <img class="rounded" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap" style="width:32px;">
+                                {{ item.name }}
+                            </div>
                             <div class="card-body">
                                 <p class="card-text"><span><i class="fa fa-credit-card fa-1x"></i></span>: {{ item.position }}</p>
                                 <p class="card-text"><span><i class="fa fa-mobile fa-1x"></i></span>: {{ item.mobile }}</p>
@@ -128,13 +132,16 @@
                                 <button class="btn btn-info btn-sm" type="button">详情</button>
                             </div>
                         </div>
-                    {% endfor %}
-                </div>
+                    </div>
+                {% endfor %}
             </div>
-        </context>
-        <div class="footbar">
 
         </div>
+    </context>
+
+    <div class="footbar">
+
+    </div>
 {% endblock %}
 
 {% block jquery %}

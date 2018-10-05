@@ -689,8 +689,6 @@ def property_form(request):
         print(request.GET)
         if "act" in request.GET:
             if request.GET['act'] == "display":
-
-
                 pn = int(request.GET['id'])
                 ppn = pn-1
                 npn = pn+1
@@ -719,7 +717,6 @@ def property_form(request):
                     context['partsnum'] = prs.count()
                     print(prs.count())
 
-
                 # print(ps.categoryid.name)
     elif request.method == "POST":
         print(request.POST)
@@ -732,6 +729,7 @@ def property_form(request):
                 assid = int(request.POST['id'])
                 act = asset_property.objects.filter(id=assid).update(active=False)
                 return HttpResponse(act)
+
     return render(request, 'property_form.html', context)
 
 def parts_list(request):

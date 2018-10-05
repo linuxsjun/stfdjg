@@ -21,6 +21,15 @@
                     }
                 })
             });
+
+            $('#kk').click(function () {
+                return $('#in').click();
+            });
+
+            $('#in').change(function () {
+                alert('1')
+            })
+
         })
     </script>
 {% endblock jquery%}
@@ -28,6 +37,8 @@
 {% block mainbody %}
 
     <p>{{ title }}</p>
+    <input type="file" id="in">
+    <button type="button" class="btn btn-success" id="kk" >kkkkk</button>
 
 {% endblock %}
 
