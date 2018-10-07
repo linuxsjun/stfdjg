@@ -501,6 +501,7 @@ def uploadfile(request):
     print(request.POST)
     if request.method == "POST":
         f = request.FILES["file"]
+        # filePath = os.path.join(settings.MDEIA_ROOT, f.name)
         filePath = os.path.join(settings.MDEIA_ROOT, f.name)
         print(filePath)
         with open(filePath,'wb') as fp:
@@ -689,6 +690,8 @@ def property_form(request):
         print(request.GET)
         if "act" in request.GET:
             if request.GET['act'] == "display":
+                context['act'] = "display"
+
                 pn = int(request.GET['id'])
                 ppn = pn-1
                 npn = pn+1
@@ -731,6 +734,19 @@ def property_form(request):
                 return HttpResponse(act)
 
     return render(request, 'property_form.html', context)
+
+def property_upload(request):
+    print(request.POST)
+    if request.method == "POST":
+        f = request.FILES["file"]
+        filePath = os.path.join(settings.MDEIA_ROOT, 'property\img', f.name)
+        print(filePath)
+        with open(filePath,'wb') as fp:
+            for info in f.chunks():
+                fp.write(info)
+        return HttpResponse('ok')
+    else:
+        return HttpResponse('no')
 
 def parts_list(request):
     context={}

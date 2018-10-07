@@ -107,5 +107,37 @@ $(document).ready(function () {
     });
 
     // ----头像----
-    $('')
+    $('#headerimg').click(function () {
+        $('#imglist').modal("show");
+    });
+
+     // ----头像上传----
+    $('#upload').click(function () {
+        return $('#imgupload').click();
+    });
+
+    $('#imgupload').change(function () {
+        // alert($('#headerimgform')[0]);
+
+        $.ajax({
+            url:"/property_upload/",
+            type:"post",
+            cache: false,
+            async:true,
+            data:new FormData($('#headerimgform')[0]),
+            processData: false,
+            contentType: false,
+            success: function(req) {
+                //请求成功时处理
+                // $('.progress-bar').html('完成');
+                // $('#MdaInput').modal('hide');
+            }
+        });
+    });
+
+
+    // $('#imgupload').fileupload(function () {
+    //     // alert($('#imgupload').val());
+    //
+    // });
 });
