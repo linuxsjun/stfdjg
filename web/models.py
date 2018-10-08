@@ -173,10 +173,11 @@ class asset_attachment(models.Model):
     filepath = models.CharField(null=True, blank=True, max_length=256, verbose_name='文件路径')
     oldname = models.CharField(null=True, blank=True, max_length=128, verbose_name='原文件名')
     version = models.IntegerField(default=0, verbose_name='版本号')
-    defver = models.BooleanField(default=False, verbose_name='终稿标记')
+    final = models.BooleanField(default=False, verbose_name='终稿标记')
     category = models.CharField(null=True, blank=True, max_length=64, verbose_name='分类')
     nots = models.TextField(null=True, blank=True, verbose_name='备注')
     active = models.BooleanField(default=True, verbose_name='有效的')
+    md5 = models.CharField(null=True, blank=True, max_length=32, verbose_name='MD5校验')
     file = models.FileField(null=True, blank=True)
 
     class Meta:

@@ -108,6 +108,31 @@ $(document).ready(function () {
 
     // ----头像----
     $('#headerimg').click(function () {
+        var asid = $("#assetid").text();
+        //----请求照片表----
+        $.ajax({
+            url: "/property_form/",
+            type: "GET",
+            data: {
+                "act": 'disheadimg',
+                "id": asid
+            },
+            success: function (data) {
+                $.each(data,function (i,n) {
+                    $('ol[class="carousel-indicators"]').append('<li data-target="#carouselExampleIndicators" data-slide-to="'+ i + '"></li>');
+                    $('div[class="carousel-inner"]').append('<div class="carousel-item"><img class="d-block w-100" src="'+ n['filepath'] +'" data-src="holder.js/400x520" alt="Third slide"></div>')
+                });
+                // $('li[data-target="#carouselExampleIndicators"]').first().addClass('active');
+                // $('li[data-target="#carouselExampleIndicators"]').first().remove();
+                // $('div[class="carousel-item active"]').first().addClass('active');
+                // $('div.carousel-item').first().remove();
+            }
+        });
+
+        //--有-无--
+           //----插入照片表----
+
+           //----空表
         $('#imglist').modal("show");
     });
 
@@ -129,8 +154,7 @@ $(document).ready(function () {
             contentType: false,
             success: function(req) {
                 //请求成功时处理
-                // $('.progress-bar').html('完成');
-                // $('#MdaInput').modal('hide');
+                $('#headerimg img').attr("src",req)
             }
         });
     });

@@ -127,6 +127,11 @@ $(document).ready(function () {
                     var disdat;
 
                     var disdatas = "<tbody>";
+
+                    // $('tbody').empty();
+                    // $.each(data,function (i,n) {
+                    //
+                    // });
                     for (var k in data) {
                         disdat = '<td><input type=\"checkbox\" name=\"selitem\" value=\"' + data[k]["id"] + '\"></td>';
                         if (data[k]["status"] == 1) {

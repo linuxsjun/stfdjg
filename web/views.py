@@ -8,7 +8,7 @@ import os
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
-from web.models import asset_conf, asset_category, asset_parts, asset_property, position
+from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment
 
 from openpyxl import load_workbook
 
@@ -648,7 +648,7 @@ def property_list(request):
                     t['warranty']=t['warranty'].strftime("%Y-%m-%d")
                     s.append(t)
                 data=json.dumps(s)
-                # print(data)
+                print(data)
                 return HttpResponse(data,content_type="application/json")
             if request.POST['act'] == 'filter':
                 pass
@@ -721,6 +721,20 @@ def property_form(request):
                     print(prs.count())
 
                 # print(ps.categoryid.name)
+                # asspic = asset_attachment.objects.filter(property_id=id,active=True).order_by('-defver').first()
+                asspic = asset_attachment.objects.filter(property=pn,active=True).order_by('-final').first()
+                if asspic:
+                    context['headimg'] = asspic.filepath
+                else:
+                    context['headimg'] = None
+            elif request.GET['act'] == "disheadimg":
+                pn = int(request.GET['id'])
+                ps = asset_attachment.objects.filter(property=pn, active=True).values("id","name","filepath")
+                u = list(ps)
+                data = json.dumps(u)
+                # print(data)
+                return HttpResponse(data, content_type="application/json")
+
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
@@ -744,7 +758,25 @@ def property_upload(request):
         with open(filePath,'wb') as fp:
             for info in f.chunks():
                 fp.write(info)
-        return HttpResponse('ok')
+
+        pid = int(request.POST['id'])
+        try:
+            propertyid = asset_property.objects.get(id=pid)
+        except Exception:
+            return HttpResponse('data no')
+
+        asset_attachment.objects.filter(property=pid).update(final=False)
+
+        pth='/static/upfile/property/img/' + f.name
+        k = asset_attachment(property=propertyid,
+                             name=f.name,
+                             filepath=pth,
+                             oldname=f.name,
+                             version=0,
+                             final=True,
+                             category='0')
+        k.save()
+        return HttpResponse(pth)
     else:
         return HttpResponse('no')
 
