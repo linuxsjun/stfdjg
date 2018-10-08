@@ -122,7 +122,7 @@ $(document).ready(function () {
                 $('div.carousel-inner').empty();
                 $.each(data,function (i,n) {
                     $('ol[class="carousel-indicators"]').append('<li data-target="#carouselExampleIndicators" data-slide-to="'+ i + '"></li>');
-                    $('div[class="carousel-inner"]').append('<div class="carousel-item"><img class="d-block w-100" src="'+ n['filepath'] +'" data-src="holder.js/400x520" alt="Third slide"></div>')
+                    $('div[class="carousel-inner"]').append('<div class="carousel-item"><img class="d-block w-100 img-responsive" src="'+ n['filepath'] +'" data-src="holder.js/400x520" alt="Third slide"></div>')
                 });
                 $('li[data-target="#carouselExampleIndicators"]').first().addClass('active');
                 $('div.carousel-item').first().addClass('active');
@@ -161,8 +161,14 @@ $(document).ready(function () {
     });
 
 
-    // $('#imgupload').fileupload(function () {
-    //     // alert($('#imgupload').val());
-    //
-    // });
+    $('#delimg').click(function () {
+        $.post(
+            "/property_form/",
+           {'act':'delimg', 'id':'1'},
+            function (data,status) {
+                alert(data);
+                alert(status);
+            }
+        );
+    });
 });

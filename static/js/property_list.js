@@ -104,7 +104,7 @@ $(document).ready(function () {
                 obj.attr('data-id', 2);
                 obj.addClass("fa fa-sort-alpha-desc");
                 sortitem = "-" + sortitem;
-            } else if (obj.attr('data-id') == 2) {
+            } else if (obj.attr('data-id') === 2) {
                 alli.attr('data-id', 0);
 
                 $('th[data-id="name"] i').addClass("fa fa-sort-alpha-asc");
@@ -122,66 +122,62 @@ $(document).ready(function () {
                 success: function (data) {
                     $('input[name="selall"]').prop("checked", false);
 
-                    $('tbody').remove();
-
-                    var disdat;
-
-                    var disdatas = "<tbody>";
-
-                    // $('tbody').empty();
-                    // $.each(data,function (i,n) {
-                    //
-                    // });
-                    for (var k in data) {
-                        disdat = '<td><input type=\"checkbox\" name=\"selitem\" value=\"' + data[k]["id"] + '\"></td>';
-                        if (data[k]["status"] == 1) {
-                            disdat = disdat + "<td><span class=\"badge badge-secondary\">闲置</span></td>";
-                        } else if (data[k]["status"] == 2) {
-                            disdat = disdat + "<td><span class=\"badge badge-success\">在用</span></td>";
-                        } else if (data[k]["status"] == 3) {
-                            disdat = disdat + "<td><span class=\"badge badge-warning\">维修</span></td>";
-                        } else if (data[k]["status"] == 4) {
-                            disdat = disdat + "<td><span class=\"badge badge-danger\">报废</span></td>";
+                    $('tbody').empty();
+                    $.each(data,function (i,n) {
+                        console.log(n);
+                        $("tbody").append('<tr></tr>');
+                        var rrow =$("tbody tr:last");
+                        rrow.append('<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>');
+                        if (n["status"] === 1) {
+                            rrow.append("<td><span class=\"badge badge-secondary\">闲置</span></td>");
+                        }else if (n["status"] === 2) {
+                            rrow.append("<td><span class=\"badge badge-success\">在用</span></td>");
+                        }else if (n["status"] === 3) {
+                            rrow.append("<td><span class=\"badge badge-warning\">维修</span></td>");
+                        } else if (n["status"] === 4) {
+                            rrow.append("<td><span class=\"badge badge-danger\">报废</span></td>");
                         }
-                        disdat = disdat + "<td>" + data[k]["sid"] + "</td><td>" + data[k]["name"] + "</td>";
+                        rrow.append("<td>" + n["sid"] + "</td>");
+                        rrow.append("<td>" + n["name"] + "</td>");
 
-                        if (data[k]["specifications"] == null) {
-                            disdat = disdat + "<td></td>";
+                        if (n["specifications"] === null) {
+                            rrow.append("<td></td>");
                         } else {
-                            disdat = disdat + "<td>" + data[k]["specifications"] + "</td>";
+                            rrow.append("<td>" + n["specifications"] + "</td>");
                         }
 
-                        if (data[k]["sn"] == null) {
-                            disdat = disdat + "<td></td>";
+                        if (n["sn"] === null) {
+                            rrow.append("<td></td>");
                         } else {
-                            disdat = disdat + "<td>" + data[k]["sn"] + "</td>";
+                            rrow.append("<td>" + n["sn"] + "</td>");
                         }
 
-                        disdat = disdat + "<td>" + data[k]["purchase"] + "</td><td>" + data[k]["warranty"] + "</td>";
-                        if (data[k]["user__name"] == null) {
-                            disdat = disdat + "<td></td>";
+                        rrow.append("<td>" + n["purchase"] + "</td>");
+                        rrow.append("<td>" + n["warranty"] + "</td>");
+
+                        if (n["user__name"] === null) {
+                            rrow.append("<td></td>");
                         } else {
-                            if (data[k]["user__active"]) {
-                                disdat = disdat + "<td>" + data[k]["user__name"] + "</td>";
+                            if (n["user__active"]) {
+                                rrow.append("<td>" + n["user__name"] + "</td>");
                             } else {
-                                disdat = disdat + "<td><span class=\"badge badge-danger\">" + data[k]["user__name"] + "</span></td>";
+                                rrow.append("<td><span class=\"badge badge-danger\">" + n["user__name"] + "</span></td>");
                             }
                         }
-                        if (data[k]["position"] == null) {
-                            disdat = disdat + "<td></td>";
+
+                        if (n["position"] === null) {
+                            rrow.append("<td></td>");
                         } else {
-                            disdat = disdat + "<td>" + data[k]["position"] + "</td>";
+                            rrow.append("<td>" + n["position"] + "</td>");
                         }
-                        disdatas = disdatas + "<tr>" + disdat + "</tr>";
-                    }
-                    disdatas = disdatas + "</tbody>";
 
-                    $('thead').after(disdatas);
+                    });
 
-                    $('tbody tr td').click(function () {
-                        if ($(this).index() > 0) {
-                            var showsel = $(this).siblings().eq(0).find('input').val();
-                            window.location.href = "/property_form?act=display&id=" + showsel;
+
+                    $("td").click(function () {
+                        if ($(this).index()>0){
+                             var showsel = $(this).siblings().eq(0).find('input').val();
+                             window.location.href="/property_form?act=display&id="+showsel;
                         }
                     });
 
@@ -232,11 +228,11 @@ $(document).ready(function () {
     });
 
     //----点选----
-    $('tbody tr td').click(function () {
-         if ( $(this).index() > 0 ){
+    $("td").click(function () {
+        if ($(this).index()>0){
              var showsel = $(this).siblings().eq(0).find('input').val();
              window.location.href="/property_form?act=display&id="+showsel;
-         }
+        }
     });
 
     $('input[name="selall"]').click(function () {

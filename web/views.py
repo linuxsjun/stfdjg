@@ -746,6 +746,8 @@ def property_form(request):
                 assid = int(request.POST['id'])
                 act = asset_property.objects.filter(id=assid).update(active=False)
                 return HttpResponse(act)
+            if request.POST['act'] == 'delimg':
+                return HttpResponse("tttt")
 
     return render(request, 'property_form.html', context)
 

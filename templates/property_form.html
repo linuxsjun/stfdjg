@@ -108,15 +108,15 @@
                 <div class="form_view">
                     <div class="row align-items-center">
                         <div class="col-sm-7">
-                            <div class="media">
+                            <div class="row">
                                 <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
-                                <div class="media-left media-middle">
+                                <div class="col-sm-auto">
                                     <a id="headerimg" href="#">
-                                        <img src="{{ headimg | default_if_none:'holder.js/100x100' }}" class="rounded float-left" alt="headerimg" style="height: 100px; width: 100px;">
+                                        <img src="{{ headimg | default_if_none:'#' }}" data-src="{{ headimg | default_if_none:'holder.js/100x100' }}" class="img-thumbnail float-left" alt="headerimg" style="height: 100px; width: 100px;">
                                     </a>
                                     <input type="file" name="file" class="sr-only" id="imgupload" accept=".png,.gif,.jpg">
                                 </div>
-                                <div class="media-body align-self-center">
+                                <div class="col-sm-auto">
                                     <h1 class="media-heading">{{ context.sid }}</h1>
                                     <button type="button" class="btn btn-outline-secondary" id="upload">上传</button>
                                     <button type="button" class="btn btn-outline-secondary" id="delimg">删除</button>
@@ -134,7 +134,7 @@
 {#                            </div>#}
 {#                        </div>#}
                         <div class="col-sm-5">
-                            <div class="btn-group but-fills" role="group">
+                            <div class="btn-group" role="group">
                                 <div class="btn-group" role="group">
                                     {% if context.active == 1 %}
                                         <button type="button" class="btn btn-outline-primary" data-toggle="active" data-val="1">
@@ -377,8 +377,8 @@
             </div>
 
             <!-- 设备照片对话框 -->
-            <div class="modal fade bd-example-modal-lg" id="imglist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog modal-lg" role="document">
+            <div class="modal fade" id="imglist" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="myModalLabel">照片: 查询</h5>
