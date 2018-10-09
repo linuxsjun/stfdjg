@@ -718,23 +718,20 @@ def property_form(request):
                     prs = ps.asset_parts_set.all()
                     context['parts'] = prs
                     context['partsnum'] = prs.count()
-                    print(prs.count())
 
-                # print(ps.categoryid.name)
-                # asspic = asset_attachment.objects.filter(property_id=id,active=True).order_by('-defver').first()
-                asspic = asset_attachment.objects.filter(property=pn,active=True).order_by('-final').first()
+                asspic = asset_attachment.objects.filter(property=pn,active=True, final=True).first()
                 if asspic:
+                    context['imgid'] = asspic.id
                     context['headimg'] = asspic.filepath
                 else:
+                    context['imgid'] = None
                     context['headimg'] = None
             elif request.GET['act'] == "disheadimg":
                 pn = int(request.GET['id'])
                 ps = asset_attachment.objects.filter(property=pn, active=True).values("id","name","filepath")
                 u = list(ps)
                 data = json.dumps(u)
-                # print(data)
                 return HttpResponse(data, content_type="application/json")
-
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
@@ -747,7 +744,21 @@ def property_form(request):
                 act = asset_property.objects.filter(id=assid).update(active=False)
                 return HttpResponse(act)
             if request.POST['act'] == 'delimg':
-                return HttpResponse("tttt")
+                id = int(request.POST['id'])
+                a = asset_attachment.objects.filter(id=id).update(active=False,final=False)
+                pid = int(request.POST['pid'])
+
+                n = asset_attachment.objects.filter(property=pid,active=True).order_by('-id').first()
+                n.final = True
+                n.save()
+
+                data = {}
+                data['id'] = n.id
+                data['filepath'] = n.filepath
+                # Todo: 返回1.失败 2.成功：无图、有图
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
 
     return render(request, 'property_form.html', context)
 
@@ -778,7 +789,12 @@ def property_upload(request):
                              final=True,
                              category='0')
         k.save()
-        return HttpResponse(pth)
+        data= {}
+        data['id'] = k.id
+        data['filepath'] = k.filepath
+
+        data = json.dumps(data)
+        return HttpResponse(data, content_type="application/json")
     else:
         return HttpResponse('no')
 

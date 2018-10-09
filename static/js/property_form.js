@@ -129,11 +129,6 @@ $(document).ready(function () {
 
             }
         });
-
-        //--有-无--
-           //----插入照片表----
-
-           //----空表
         $('#imglist').modal("show");
     });
 
@@ -153,21 +148,28 @@ $(document).ready(function () {
             data:new FormData($('#headerimgform')[0]),
             processData: false,
             contentType: false,
-            success: function(req) {
+            success: function(context) {
                 //请求成功时处理
-                $('#headerimg img').attr("src",req)
+                $('#headerimg').attr("src",context['filepath']);
+                $('#headerimg').attr("data-id",context['id']);
             }
         });
     });
 
 
     $('#delimg').click(function () {
+        var pid = $("#assetid").text();
+        var id = $('#headerimg').attr('data-id');
         $.post(
             "/property_form/",
-           {'act':'delimg', 'id':'1'},
-            function (data,status) {
-                alert(data);
-                alert(status);
+           {'act':'delimg', 'id':id, 'pid':pid},
+            function (context,status) {
+                $('#headerimg').attr("src",context['filepath']);
+                $('#headerimg').attr("data-id",context['id']);
+                // Todo 根据返回值处理 1.失败 2.成功：无图、有图
+
+                // alert(context);
+                // alert(status);
             }
         );
     });

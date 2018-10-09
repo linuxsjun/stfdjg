@@ -109,17 +109,15 @@
                     <div class="row align-items-center">
                         <div class="col-sm-7">
                             <div class="row">
-                                <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
                                 <div class="col-sm-auto">
-                                    <a id="headerimg" href="#">
-                                        <img src="{{ headimg | default_if_none:'#' }}" data-src="{{ headimg | default_if_none:'holder.js/100x100' }}" class="img-thumbnail float-left" alt="headerimg" style="height: 100px; width: 100px;">
-                                    </a>
+                                    <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
+                                    <img src="{{ headimg | default_if_none:'#' }}" data-id={{ imgid }} data-src="{{ headimg | default_if_none:'holder.js/100x100' }}" class="img-thumbnail float-left" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">
                                     <input type="file" name="file" class="sr-only" id="imgupload" accept=".png,.gif,.jpg">
                                 </div>
                                 <div class="col-sm-auto">
                                     <h1 class="media-heading">{{ context.sid }}</h1>
-                                    <button type="button" class="btn btn-outline-secondary" id="upload">上传</button>
-                                    <button type="button" class="btn btn-outline-secondary" id="delimg">删除</button>
+                                    <button type="button" class="btn btn-outline-secondary" id="upload"><i class="fa fa-pencil fa-1x"></i></button>
+                                    <button type="button" class="btn btn-outline-secondary" id="delimg"><i class="fa fa-trash fa-1x"></i></button>
                                 </div>
 
                             </div>
@@ -180,13 +178,13 @@
                         <div class="form-group col-sm form-row">
                             <label class="col-sm-2 col-form-label" for="name">名称*</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称">
+                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称" data-toggle="tooltip" data-placement="right" title="(必填)">
                             </div>
                         </div>
                         <div class="form-group col-sm form-row">
                             <label class="col-sm-2 col-form-label" for="spec">规格</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格">
+                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
                             </div>
                         </div>
                     </div>
@@ -213,7 +211,7 @@
                                 <div class="input-group">
                                     <select class="custom-select" name="categoryid">
                                         {% if context.categoryid == None %}
-                                            <option value="0"></option>
+                                            <option value="0" selected="selected">选择或新建类型...</option>
                                         {% endif %}
                                         {% for item in cats %}
                                             {% if item.name == context.categoryid.name %}
@@ -226,7 +224,7 @@
                                         {% endfor %}
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button"  id="cateid" ><i class="fa fa-external-link fa-1x"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button"  id="cateid" ><i class="fa fa-external-link fa-1x"></i></button>
                                     </div>
                                 </div>
                             </div>
@@ -237,10 +235,13 @@
 
                     <div class="row text-right">
                         <div class="form-group col-sm form-row">
-                            <label class="col-sm-2 col-form-label">用户</label>
+                            <label class="col-sm-2 col-form-label">用户{{ context.user_name }}</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <select class="custom-select" name="user">
+                                        {% if context.user.name == None %}
+                                            <option value="0" selected="selected">请选择...</option>
+                                        {% endif %}
                                         {% for hr in hrs %}
                                             {% if hr.name == context.user.name %}
                                                 <option value="{{ hr.id }}" selected="selected">{{ hr.name }}</option>
@@ -252,7 +253,7 @@
                                         {% endfor %}
                                     </select>
                                     <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button"><i class="fa fa-external-link fa-1x"></i></button>
+                                        <button class="btn btn-outline-secondary" type="button"><i class="fa fa-external-link fa-1x"></i></button>
                                     </div>
                                 </div>
                             </div>
