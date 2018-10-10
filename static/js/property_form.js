@@ -1,8 +1,11 @@
 $(document).ready(function () {
     //----页面初始化----
-    $('.form-control, .custom-select').attr('readonly', true);
-
-
+    if ($('#act').val() === "create") {
+        $('button[data-toggle="save"]').removeClass("disabled");
+    }else {
+        $('.form-control').attr('readonly', true);
+        $('.custom-select').attr('disabled', true);
+    }
 
     //----bars----
     // $('#cateid').on('click', function () {
@@ -14,7 +17,8 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            $('.form-control, .custom-select').removeAttr('readonly', true);
+            $('.form-control').removeAttr('readonly', true);
+            $('.custom-select').removeAttr('disabled', true);
             $('button[data-toggle="save"]').removeClass("disabled");
         }
     });
@@ -23,7 +27,8 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            alert("create");
+            // "http://127.0.0.1:8000/property_form/?act=create"
+            $(location).attr('href', '//127.0.0.1:8000/property_form/?act=create');
         }
     });
 
@@ -61,9 +66,11 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            alert("提交中,请等待...");
-            $('.form-control, .custom-select').attr('readonly', true);
+            // alert("提交中,请等待...");
+            $('.form-control').attr('readonly', true);
+            $('.custom-select').attr('disabled', true);
             $('button[data-toggle="save"]').addClass("disabled");
+            $('form').submit();
         }
     });
 

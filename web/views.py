@@ -732,6 +732,16 @@ def property_form(request):
                 u = list(ps)
                 data = json.dumps(u)
                 return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "create":
+                context['act'] = "create"
+
+                cats = asset_category.objects.filter(active=True).order_by('name')
+                context['cats'] = cats
+
+                hrs = hr_hr.objects.filter(active=True).order_by('name')
+                context['hrs']= hrs
+                return render(request, 'property_form.html', context)
+
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
