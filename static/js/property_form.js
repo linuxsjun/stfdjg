@@ -69,8 +69,15 @@ $(document).ready(function () {
             // alert("提交中,请等待...");
             $('.form-control').attr('readonly', true);
             $('.custom-select').attr('disabled', true);
-            $('button[data-toggle="save"]').addClass("disabled");
-            $('form').submit();
+            // $('button[data-toggle="save"]').addClass("disabled");
+            $.post(
+                "/property_form/",
+                $('form').serialize(),
+                function(context,status){
+
+                }
+            )
+
         }
     });
 

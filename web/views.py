@@ -769,6 +769,9 @@ def property_form(request):
 
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
+            if request.POST['act'] == 'create':
+                act='ok'
+                return HttpResponse(act)
 
     return render(request, 'property_form.html', context)
 
