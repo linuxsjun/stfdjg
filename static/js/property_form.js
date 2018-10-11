@@ -2,6 +2,7 @@ $(document).ready(function () {
     //----页面初始化----
     if ($('#act').val() === "create") {
         $('button[data-toggle="save"]').removeClass("disabled");
+        $('[data-toggle="tooltip"]').tooltip();
     }else {
         $('.form-control').attr('readonly', true);
         $('.custom-select').attr('disabled', true);
@@ -19,6 +20,7 @@ $(document).ready(function () {
         } else {
             $('.form-control').removeAttr('readonly', true);
             $('.custom-select').removeAttr('disabled', true);
+            $('[data-toggle="tooltip"]').tooltip('enable');
             $('button[data-toggle="save"]').removeClass("disabled");
         }
     });
@@ -67,17 +69,16 @@ $(document).ready(function () {
 
         } else {
             // alert("提交中,请等待...");
-            $('.form-control').attr('readonly', true);
-            $('.custom-select').attr('disabled', true);
+            // $('.form-control').attr('readonly', true);
+            // $('.custom-select').attr('disabled', true);
+            // $('[data-toggle="tooltip"]').tooltip('disable');
             // $('button[data-toggle="save"]').addClass("disabled");
             $.post(
                 "/property_form/",
                 $('form').serialize(),
                 function(context,status){
-
                 }
-            )
-
+            );
         }
     });
 

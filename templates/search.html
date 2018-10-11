@@ -8,58 +8,23 @@
 {% block jquery %}
     <script type="text/javascript">
         $(document).ready(function () {
-            $('.mm').on('click',function () {
-                $.ajax({
-                    url:'/importdata/',
-                    type:'POST',
-                    data:{
-                        "act":"display",
-                        "id":1
-                    },
-                    success:function (data) {
-                        console.log(data)
-                    }
-                })
-            });
-
-            $('#kk').click(function () {
-                return $('#in').click();
-            });
-
-            $('#in').change(function () {
-                alert('1')
-            })
-
+            console.log($('form').serialize())
         })
     </script>
 {% endblock jquery%}
 
 {% block mainbody %}
 
-    <p>{{ title }}</p>
-    <input type="file" id="in">
-    <button type="button" class="btn btn-success" id="kk" >kkkkk</button>
+    <h3>{{ title }}</h3>
 
+    <form id="ttt">
+        <select name="sel">
+            <option value="0" selected="selected">0</option>
+            <option value="1" selected="selected">1</option>
+            <option value="2" selected="selected">2</option>
+        </select>
+    </form>
 
-    <input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
-
-{#    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>#}
-    <script src="js/vendor/jquery.ui.widget.js"></script>
-    <script src="js/jquery.iframe-transport.js"></script>
-    <script src="js/jquery.fileupload.js"></script>
-
-    <script>
-        $(function () {
-            $('#fileupload').fileupload({
-                dataType: 'json',
-                done: function (e, data) {
-                    $.each(data.result.files, function (index, file) {
-                        $('<p/>').text(file.name).appendTo(document.body);
-                    });
-                }
-            });
-        });
-        </script>
 
 {% endblock %}
 
