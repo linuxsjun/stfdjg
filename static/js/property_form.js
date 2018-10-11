@@ -69,10 +69,10 @@ $(document).ready(function () {
 
         } else {
             // alert("提交中,请等待...");
-            // $('.form-control').attr('readonly', true);
-            // $('.custom-select').attr('disabled', true);
-            // $('[data-toggle="tooltip"]').tooltip('disable');
-            // $('button[data-toggle="save"]').addClass("disabled");
+            $('.form-control').attr('readonly', true);
+            $('.custom-select').attr('disabled', true);
+            $('[data-toggle="tooltip"]').tooltip('disable');
+            $('button[data-toggle="save"]').addClass("disabled");
             $.post(
                 "/property_form/",
                 $('form').serialize(),
