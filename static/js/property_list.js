@@ -1,9 +1,13 @@
 $(document).ready(function () {
 
     //-----控制面板----
-    $('button[data-toggle="create"]').on('click',function () {
-        // alert("create");
+    $('button[data-toggle="create"]').click(function () {
+        if ($(this).hasClass('disabled')) {
 
+        } else {
+            // "http://127.0.0.1:8000/property_form/?act=create"
+            $(location).attr('href', '//127.0.0.1:8000/property_form/?act=create&id=0');
+        }
     });
 
     $('button[data-toggle="del"]').on('click',function () {
@@ -92,13 +96,13 @@ $(document).ready(function () {
             alli.removeClass("fa fa-sort-alpha-asc");
             alli.removeClass("fa fa-sort-alpha-desc");
 
-            if (obj.attr('data-id') == 0) {
+            if (obj.attr('data-id') === 0) {
                 alli.attr('data-id', 0);
 
                 obj.attr('data-id', 1);
                 obj.addClass("fa fa-sort-alpha-asc");
                 sortitem = sortitem;
-            } else if (obj.attr('data-id') == 1) {
+            } else if (obj.attr('data-id') === 1) {
                 alli.attr('data-id', 0);
 
                 obj.attr('data-id', 2);

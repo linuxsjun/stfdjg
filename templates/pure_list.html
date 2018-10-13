@@ -32,71 +32,91 @@
         <div class="sub_menu_foot"></div>
     </div>
     <div class="view_form">
-        <div class="header">
-            <h1>{{ title }}</h1>
-        </div>
-        <div class="cmd_nav">
-            <ul class="but_cmd">
-                <li><a href="/pure_form?act=0">新建</a></li>
-                <li>
-                    <a href="#">删除</a>
-                </li>
-            </ul>
-            <div class="flowlist"></div>
-        </div>
-        <article>
-    {#        <header class="">#}
-    {##}
-    {#        </header>#}
-            <div class="listview">
-                <table class="table table-striped table-hover table-condensed">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th>状态</th>
-                            <th>用途</th>
-                            <th>上行带宽</th>
-                            <th>下行带宽</th>
-                            <th>访问IP</th>
-                            <th>空间大小</th>
-                            <th>创建日期</th>
-                            <th>最后登录日期</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for item in context %}
-                            <tr>
-                                <td><input type="checkbox" name="selitem"></td>
-                                <td>
-                                    {% if  item.status %}
-                                        <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>
-                                    {% else %}
-                                        <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>
-                                    {% endif %}
-                                </td>
-                                <td>{{ item.comment }}</td>
-                                <td>{{ item.ulbandwidth }}</td>
-                                <td>{{ item.dlbandwidth }}</td>
-                                <td>{{ item.ipaccess }}</td>
-                                <td>{{ item.quotasize }}</td>
-                                <td>{{ item.createdate|date:'Y-m-d' }}</td>
-                                <td>{{ item.lastedate|date:'Y-m-d' }}</td>
-                                <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
-                                <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
-                                <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
-                            </tr>
-                        {% empty %}
-                            <tr>
-                                <td  colspan="14" style="text-align: center;">(暂无数据)</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+        <div class="container-fluid">
+            <div class="row mt-2">
+                <h3 class="col-sm-6">{{ title }}</h3>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="搜索...">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="button"><i class="fa fa-search-plus fa-1x"></i></button>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <div class="row mt-2">
+                <div class="col-sm-6">
+                    <a href="/pure_form?act=0" class="btn btn-primary">新建</a></li>
+                    <a href="#" class="btn btn-primary">删除</a>
+                </div>
+                <div class="col-sm-4"></div>
+                <div class="col-sm-2">
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-end">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li class="page-item disabled"><a class="page-link"><span id="assetid">{{ pk|default:0 }}-{{ pk|default:0 }}</span>/{{ spk|default:0 }}</a></li>
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <article>
+            <table class="table table-striped table-hover table-responsive-sm">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox"></th>
+                        <th>状态</th>
+                        <th>用途</th>
+                        <th>上行带宽</th>
+                        <th>下行带宽</th>
+                        <th>访问IP</th>
+                        <th>空间大小</th>
+                        <th>创建日期</th>
+                        <th>最后登录日期</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in context %}
+                        <tr>
+                            <td><input type="checkbox" name="selitem"></td>
+                            <td>
+                                {% if  item.status %}
+                                    <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>
+                                {% else %}
+                                    <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>
+                                {% endif %}
+                            </td>
+                            <td>{{ item.comment }}</td>
+                            <td>{{ item.ulbandwidth }}</td>
+                            <td>{{ item.dlbandwidth }}</td>
+                            <td>{{ item.ipaccess }}</td>
+                            <td>{{ item.quotasize }}</td>
+                            <td>{{ item.createdate|date:'Y-m-d' }}</td>
+                            <td>{{ item.lastedate|date:'Y-m-d' }}</td>
+                            <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
+                            <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
+                            <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td  colspan="14" style="text-align: center;">(暂无数据)</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </article>
-        <div class="footbar"></div>
     </div>
 {% endblock %}

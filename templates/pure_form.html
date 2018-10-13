@@ -17,18 +17,49 @@
         <div class="sub_menu_foot"></div>
     </div>
     <div class="view_form">
-        <div class="header">
-            <h1>{{ title }}</h1>
+        <div class="container-fluid">
+            <div class="row mt-2">
+                <h3 class="col-sm-6">{{ title }}</h3>
+            </div>
+            <div class="row mt-2 mb-3">
+                <div class="col-sm-6">
+                    <!--工具条-->
+                </div>
+                <div class="col-sm-4">
+                    <!--导入导出条-->
+                    <div class="btn-group">
+                        <div class="btn-group dropdown">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                打印
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">基本信息</a>
+                            </div>
+                        </div>
+                        <div class="btn-group dropdown">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                动作
+                                <span class="caret"></span>
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">复制</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <article>
             <div class="formview">
-                <div class="cmd_nav">
-                    <ul class="but_cmd">
-                        <li><button class="btn" type="submit" form="cccc">保存</button></li>
-                    </ul>
-                    <div class="flowlist"></div>
+                <div class="container-fluid shadow border py-2">
+                    <div class="row justify-content-between align-items-center clearfix">
+                        <div class="col-auto">
+                            <button type="submit" form="cccc" class="btn btn-primary" data-toggle="save">保存</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="form_view">
+                <div class="container shadow border p-3 rounded my-3">
                     <div class="formtitle">
                         <h1>{{ context.user }}</h1>
                         <div class="smarttools"></div>
