@@ -125,7 +125,12 @@ $(document).ready(function () {
                     $('tbody').empty();
                     $.each(data,function (i,n) {
                         console.log(n);
-                        $("tbody").append('<tr></tr>');
+                        if((n['user__name'] != null) && (n["user__active"] == 0)) {
+                            $("tbody").append('<tr class="text-danger"></tr>');
+                        } else {
+                            $("tbody").append('<tr></tr>');
+                        }
+
                         var rrow =$("tbody tr:last");
                         rrow.append('<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>');
                         if (n["status"] === 1) {
@@ -158,11 +163,7 @@ $(document).ready(function () {
                         if (n["user__name"] === null) {
                             rrow.append("<td></td>");
                         } else {
-                            if (n["user__active"]) {
-                                rrow.append("<td>" + n["user__name"] + "</td>");
-                            } else {
-                                rrow.append("<td><span class=\"badge badge-danger\">" + n["user__name"] + "</span></td>");
-                            }
+                            rrow.append("<td>" + n["user__name"] + "</td>");
                         }
 
                         if (n["position"] === null) {

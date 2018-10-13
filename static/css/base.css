@@ -5,10 +5,11 @@
 	/*font-size: 12px;*/
 }
 
+body{padding-top:4rem;}
+
+
 .clearfix:after{content:"";height:0;line-height:0;display:block;visibility:hidden;clear:both;}
 .clearfix{zoom:1;}
-
-body{padding-top:56px;}
 
 .appbox{
 	float:left;

@@ -9,7 +9,6 @@ $(document).ready(function () {
     }
 
     //----bars----
-    // $('#cateid').on('click', function () {
     $('#cateid').click(function () {
             $('#myModal').modal("show");
     });
@@ -22,6 +21,8 @@ $(document).ready(function () {
             $('.custom-select').removeAttr('disabled', true);
             $('[data-toggle="tooltip"]').tooltip('enable');
             $('button[data-toggle="save"]').removeClass("disabled");
+
+            $('#act').val('edit')
         }
     });
 
@@ -30,7 +31,7 @@ $(document).ready(function () {
 
         } else {
             // "http://127.0.0.1:8000/property_form/?act=create"
-            $(location).attr('href', '//127.0.0.1:8000/property_form/?act=create');
+            $(location).attr('href', '//127.0.0.1:8000/property_form/?act=create&id=0');
         }
     });
 
@@ -86,8 +87,8 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            $('.form-control, .custom-select').attr('readonly', true);
-            $('button[data-toggle="save"]').addClass("disabled");
+            // $('.form-control, .custom-select').attr('readonly', true);
+            // $('button[data-toggle="save"]').addClass("disabled");
             window.location.href = "/property_list/";
         }
     });
