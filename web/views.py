@@ -648,7 +648,6 @@ def property_list(request):
                     t['warranty']=t['warranty'].strftime("%Y-%m-%d")
                     s.append(t)
                 data=json.dumps(s)
-                print(data)
                 return HttpResponse(data,content_type="application/json")
             if request.POST['act'] == 'filter':
                 pass
@@ -734,6 +733,7 @@ def property_form(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "create":
                 context['act'] = "create"
+                context['pk'] = 0
 
                 cats = asset_category.objects.filter(active=True).order_by('name')
                 context['cats'] = cats
