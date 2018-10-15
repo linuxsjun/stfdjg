@@ -1,9 +1,16 @@
 $(document).ready(function () {
     //----页面初始化----
     if ($('#act').val() === "create") {
-        $('button[data-toggle="save"]').removeClass("disabled");
+        $('[data-dis="display"]').addClass("sr-only");
+        $('[data-dis="edit"]').removeClass("sr-only");
+
+        // $('button[data-toggle="save"]').removeClass("disabled");
+
         $('[data-toggle="tooltip"]').tooltip();
     }else {
+        $('[data-dis="display"]').removeClass("sr-only");
+        $('[data-dis="edit"]').addClass("sr-only");
+
         $('.form-control').attr('readonly', true);
         $('.custom-select').attr('disabled', true);
     }
@@ -17,6 +24,9 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
+            $('[data-dis="display"]').addClass("sr-only");
+            $('[data-dis="edit"]').removeClass("sr-only");
+
             $('.form-control').removeAttr('readonly', true);
             $('.custom-select').removeAttr('disabled', true);
             $('[data-toggle="tooltip"]').tooltip('enable');
@@ -69,17 +79,18 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            // alert("提交中,请等待...");
             $('.form-control').attr('readonly', true);
             $('.custom-select').attr('disabled', true);
             $('[data-toggle="tooltip"]').tooltip('disable');
-            $('button[data-toggle="save"]').addClass("disabled");
+            // $('button[data-toggle="save"]').addClass("disabled");
             $.post(
                 "/property_form/",
                 $('form').serialize(),
                 function(context,status){
                 }
             );
+            $('[data-dis="display"]').removeClass("sr-only");
+            $('[data-dis="edit"]').addClass("sr-only");
         }
     });
 
@@ -189,4 +200,12 @@ $(document).ready(function () {
             }
         );
     });
+    
+    // ----编辑模式----
+    $('#sid').change(function () {
+        // if $('#sid').val() == 1{
+        //
+        // }
+        $('#siddis').text($('#sid').val());
+    })
 });
