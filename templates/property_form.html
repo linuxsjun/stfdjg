@@ -240,6 +240,10 @@
                                     <select class="custom-select" id="user" name="user">
                                         {% if context.user.name == None %}
                                             <option value="0" selected="selected"></option>
+                                        {% else %}
+                                            {% if not context.user.actiev %}
+                                                <option value="0" selected="selected">{{ context.user.name }}(离职)</option>
+                                            {% endif %}
                                         {% endif %}
                                         {% for hr in hrs %}
                                             {% if hr.name == context.user.name %}

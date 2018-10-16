@@ -108,6 +108,7 @@ class asset_category(models.Model):
     parentid = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
     bom = models.BooleanField(default=False, verbose_name='组件')
     active = models.BooleanField(default=True, verbose_name='有效的')
+    notes = models.TextField(null=True, blank=True, verbose_name='备注')
 
     class Meta:
         db_table = 'asset_category'

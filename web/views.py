@@ -4,6 +4,8 @@ from django.db.models import Count
 from django.shortcuts import render_to_response
 import requests, json, time, datetime, hashlib, random
 
+# from data.test import *
+
 import os
 from django.conf import settings
 
@@ -12,8 +14,17 @@ from web.models import asset_conf, asset_category, asset_parts, asset_property, 
 
 from openpyxl import load_workbook
 
-# Create your views here.
 
+def partt(id):
+    #这是一个定义函数，返回父级关系
+    tid = asset_category.objects.filter(id=id).first()
+    if tid.parentid:
+        disname = partt(tid.parentid.id) + ' / ' +  tid.name
+        return disname
+    else:
+        return tid.name
+
+# Create your views here.
 
 def index(request):
     context={}
@@ -933,10 +944,24 @@ def importdata(request):
     # its = asset_property.objects.values_list('categoryid').annotate(Count('id'))
     # print(its.query)
     #
-    # for it in its:
+    # for it in its:.
     #     print(it)
     # print(type(it))
 
+    # # 导入位置、使用状态
+    # sheet1 = wb["Sheet2"]
+    # n = 0
+    # for i in sheet1['A']:
+    #     n += 1
+    #     if n != 1:
+    #         ids = sheet1["B" + str(n)].value
+    #         s = sheet1["Q" + str(n)].value
+    #         p = sheet1["R" + str(n)].value
+    #
+    #         # sidn = asset_property.objects.filter(sid=ids).first()
+    #
+    #         asset_property.objects.filter(sid=ids).update(position=p,status=s)
+    #         print("%s - %s-%s" % (ids,p,s))
 
     # if request.method == 'POST':
     #     print(request.POST)
@@ -947,18 +972,18 @@ def search(request):
     context={}
     context['title']='pure list'
 
-    username = request.COOKIES.get('usercookie', None)
-    if username:
-        try:
-            signuser = hr_hr.objects.get(session=username)
-        except Exception:
-            context['userinfo'] = '用户'
-            return render(request, 'sign.html', context)
-        context['userinfo'] = signuser.name
-    else:
-        context['userinfo'] = '用户'
-        return render(request, 'sign.html', context)
-    print(signuser.id)
+    # username = request.COOKIES.get('usercookie', None)
+    # if username:
+    #     try:
+    #         signuser = hr_hr.objects.get(session=username)
+    #     except Exception:
+    #         context['userinfo'] = '用户'
+    #         return render(request, 'sign.html', context)
+    #     context['userinfo'] = signuser.name
+    # else:
+    #     context['userinfo'] = '用户'
+    #     return render(request, 'sign.html', context)
+    # print(signuser.id)
 
     # depid = 8
     # hre = hr_hr.objects.get(id=depid)
@@ -1003,6 +1028,10 @@ def search(request):
     #       pr.user.name,
     #       pr.user.employee_department_set.all().values('departmentid__name'))
 
+    # q = asset_category.objects.all().values('name')
+    # print(q)
+    # for iq in q:
+    #     print(iq)
 
-
+    print(partt(4))
     return render(request, 'search.html',context)

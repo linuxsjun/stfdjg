@@ -88,7 +88,6 @@ $(document).ready(function () {
     $('th').click(function () {
         if ( $(this).index() > 0 ) {
 
-
             var obj = $(this).find('i');
             var alli = $('th i');
             var sortitem = $(this).attr("data-id");
@@ -96,19 +95,19 @@ $(document).ready(function () {
             alli.removeClass("fa fa-sort-alpha-asc");
             alli.removeClass("fa fa-sort-alpha-desc");
 
-            if (obj.attr('data-id') === 0) {
+            if (obj.attr('data-id') == 0) {
                 alli.attr('data-id', 0);
 
                 obj.attr('data-id', 1);
                 obj.addClass("fa fa-sort-alpha-asc");
                 sortitem = sortitem;
-            } else if (obj.attr('data-id') === 1) {
+            } else if (obj.attr('data-id') == 1) {
                 alli.attr('data-id', 0);
 
                 obj.attr('data-id', 2);
                 obj.addClass("fa fa-sort-alpha-desc");
                 sortitem = "-" + sortitem;
-            } else if (obj.attr('data-id') === 2) {
+            } else if (obj.attr('data-id') == 2) {
                 alli.attr('data-id', 0);
 
                 $('th[data-id="name"] i').addClass("fa fa-sort-alpha-asc");
@@ -137,25 +136,25 @@ $(document).ready(function () {
 
                         var rrow =$("tbody tr:last");
                         rrow.append('<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>');
-                        if (n["status"] === 1) {
+                        if (n["status"] == 1) {
                             rrow.append("<td><span class=\"badge badge-secondary\">闲置</span></td>");
-                        }else if (n["status"] === 2) {
+                        }else if (n["status"] == 2) {
                             rrow.append("<td><span class=\"badge badge-success\">在用</span></td>");
-                        }else if (n["status"] === 3) {
+                        }else if (n["status"] == 3) {
                             rrow.append("<td><span class=\"badge badge-warning\">维修</span></td>");
-                        } else if (n["status"] === 4) {
+                        } else if (n["status"] == 4) {
                             rrow.append("<td><span class=\"badge badge-danger\">报废</span></td>");
                         }
                         rrow.append("<td>" + n["sid"] + "</td>");
                         rrow.append("<td>" + n["name"] + "</td>");
 
-                        if (n["specifications"] === null) {
+                        if (n["specifications"] == null) {
                             rrow.append("<td></td>");
                         } else {
                             rrow.append("<td>" + n["specifications"] + "</td>");
                         }
 
-                        if (n["sn"] === null) {
+                        if (n["sn"] == null) {
                             rrow.append("<td></td>");
                         } else {
                             rrow.append("<td>" + n["sn"] + "</td>");
@@ -164,13 +163,13 @@ $(document).ready(function () {
                         rrow.append("<td>" + n["purchase"] + "</td>");
                         rrow.append("<td>" + n["warranty"] + "</td>");
 
-                        if (n["user__name"] === null) {
+                        if (n["user__name"] == null) {
                             rrow.append("<td></td>");
                         } else {
                             rrow.append("<td>" + n["user__name"] + "</td>");
                         }
 
-                        if (n["position"] === null) {
+                        if (n["position"] == null) {
                             rrow.append("<td></td>");
                         } else {
                             rrow.append("<td>" + n["position"] + "</td>");
