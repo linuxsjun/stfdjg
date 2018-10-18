@@ -4,8 +4,12 @@
     <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
 {% endblock styecss %}
 
+{% block jquery %}
+        <script src="/static/js/pure_form.js"></script>
+{% endblock jquery%}
+
 {% block mainbody %}
-    <div class="view_menu sr-only">
+    <div class="col-sm-2 sr-only">
         <div class="limg"></div>
         <div class="sub_menu">
             <ul>
@@ -56,6 +60,7 @@
                     <div class="row justify-content-between align-items-center clearfix">
                         <div class="col-auto">
                             <button type="submit" form="cccc" class="btn btn-primary" data-toggle="save">保存</button>
+                            <button type="button" class="btn btn-outline-secondary" id="goback" data-toggle="goback">返回</button>
                         </div>
                     </div>
                 </div>

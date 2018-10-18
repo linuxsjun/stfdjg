@@ -20,9 +20,8 @@
                     <!--工具条-->
                     <div>
                         <button type="button" class="btn btn-primary sr-only" data-dis="display" data-toggle="edit">编辑</button>
-{#                        <button type="button" class="btn btn-outline-secondary sr-only" data-dis="display" data-toggle="create">创建</button>#}
                         <button type="button" class="btn btn-outline-secondary sr-only" data-dis="display" data-toggle="del">删除</button>
-                        <button type="submit" class="btn btn-primary sr-only" data-dis="edit" data-toggle="save">保存</button>
+                        <button type="button" class="btn btn-outline-primary sr-only" data-dis="edit" data-toggle="save">保存</button>
                         <button type="button" class="btn btn-outline-secondary" data-toggle="goback">返回</button>
                     </div>
                 </div>
@@ -83,6 +82,13 @@
 
                 <div class="container-fluid shadow border py-2">
                     <div class="row">
+                        <div class="col-auto sr-only">
+                            <button type="button" class="btn btn-outline-primary" disabled="True">领用</button>
+                            <button type="button" class="btn btn-outline-primary" disabled="True">借用</button>
+                            <button type="button" class="btn btn-outline-primary" disabled="True">退还</button>
+                            <button type="button" class="btn btn-outline-primary" disabled="True">维修</button>
+                            <button type="button" class="btn btn-outline-primary" disabled="True">报废</button>
+                        </div>
                         <h5 class="col">
                             <span>
                                 {% if context.status  %}
@@ -109,8 +115,9 @@
                     <div class="row justify-content-between align-items-center">
                         <div class="col-sm-6 mb-3">
                             <div class="media">
-                                <a class="pr-3" href="#">
-                                    <img src="{{ headimg | default_if_none:'#' }}" data-id={{ imgid }} data-src="{{ headimg | default_if_none:'holder.js/100x100' }}" class="img-thumbnail float-left mr-3" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">
+                                <a class="pr-3 mr-3" href="#">
+{#                                    <img src='{{ headimg | default_if_none:"holder.js/100x100\" }}' data-id={{ imgid }}  class="img-thumbnail flort-left mr-3" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">#}
+                                    <img src="holder.js/100x100" data-id={{ imgid }}  class="img-thumbnail" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">
                                 </a>
                                 <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
                                 <input type="file" name="file" class="sr-only" id="imgupload" accept=".png,.gif,.jpg">
@@ -118,8 +125,8 @@
                                     <div class="form-group sr-only" data-dis="edit">
                                         <label class="col col-form-label-lg" for="sid">编号</label>
                                         <div class="col mb-3">
-                                            <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="编号"
-                                                   data-toggle="tooltip" data-placement="right" title="必填:0-9,A-Z,中划线,改o为0,32位以内,"/>
+                                            <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="(必填,不可重复)"
+                                                   data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"'/>
                                         </div>
                                         <div class="w-100"></div>
                                         <button type="button" class="btn btn-outline-secondary ml-3" id="upload"><i class="fa fa-pencil fa-1x"></i></button>
@@ -177,7 +184,7 @@
                         <div class="form-group row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="name">名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="名称" data-toggle="tooltip" data-placement="right" title="必填">
+                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填">
                             </div>
                             <div class="invalid-feedback">
                                 Please choose a username.
@@ -186,7 +193,7 @@
                         <div class="form-group row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="sn">出厂编号</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="出厂编号" data-toggle="tooltip" data-placement="right" title="必填:字母大写,改o为0">
+                                <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:字母大写,改o为0">
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -194,13 +201,13 @@
                         <div class="form-group row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="model">型号</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="model" type="text" name="model" value="{{ context.model }}"  placeholder="型号" data-container="body" data-toggle="tooltip" data-placement="right" title="Model/PN">
+                                <input class="form-control" id="model" type="text" name="model" value="{{ context.model| default_if_none:"" }}"  placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="Model/PN">
                             </div>
                         </div>
                         <div class="form-group row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="spec">规格</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications }}" placeholder="规格" data-container="body" data-toggle="tooltip" data-placement="right" title="">
+                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications| default_if_none:"" }}" placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="">
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -215,9 +222,9 @@
                                         {% endif %}
                                         {% for item in cats %}
                                             {% if item.name == context.categoryid.name %}
-                                                <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                                                <option value="{{ item.id }}" selected="selected">{{ item.displayname }}</option>
                                             {% else %}
-                                                <option value="{{ item.id }}">{{ item.name }}</option>
+                                                <option value="{{ item.id }}">{{ item.displayname }}</option>
                                             {% endif %}
                                         {% empty %}
                                             <option>请先添加类型</option>
@@ -355,7 +362,7 @@
                                             <label class="col-sm-2 col-form-label text-left text-sm-right border-right">名称</label>
                                             <div class="col-sm-10">
                                                 <div class="input-group">
-                                                    <select class="custom-select" id="supplier" name="supplierrrrrrrrrrrrrrr">
+                                                    <select class="custom-select" id="supplier" name="supplier">
     {#                                                    {% if context.user.name == None %}#}
     {#                                                        <option value="0" selected="selected"></option>#}
     {#                                                    {% endif %}#}
@@ -474,9 +481,9 @@
                                             {% endif %}
                                             {% for item in cats %}
                                                 {% if item.name == context.categoryid.name %}
-                                                    <option value="{{ item.id }}" selected="selected">{{ item.name }}</option>
+                                                    <option value="{{ item.id }}" selected="selected">{{ item.displayname }}</option>
                                                 {% else %}
-                                                    <option value="{{ item.id }}">{{ item.name }}</option>
+                                                    <option value="{{ item.id }}">{{ item.displayname }}</option>
                                                 {% endif %}
                                             {% empty %}
                                                 <option>请先添加类型</option>

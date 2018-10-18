@@ -5,8 +5,7 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            // "http://127.0.0.1:8000/property_form/?act=create"
-            $(location).attr('href', '//127.0.0.1:8000/property_form/?act=create&id=0');
+            $(location).attr('href', '/property_form/?act=create&id=0');
         }
     });
 

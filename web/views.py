@@ -67,7 +67,18 @@ def category_list(request):
                 pass
         else:
             ps = asset_category.objects.all().order_by('parentid')
-            context['context'] = ps
+            lcats = []
+            for cat in ps:
+                ncat = {}
+                ncat["id"] = cat.id
+                ncat["name"] = cat.name
+                ncat["bom"] = cat.bom
+                if cat.parentid:
+                    ncat["displayname"] = partt(cat.parentid.id)
+                else:
+                    ncat["displayname"] =" "
+                lcats.append(ncat)
+            context['context'] = lcats
 
     return render(request, 'category_list.html', context)
 
@@ -709,8 +720,15 @@ def property_form(request):
                 spn = asset_property.objects.filter(active=True).count()
                 context['spk'] = spn
 
-                cats = asset_category.objects.filter(active=True).order_by('name')
-                context['cats'] = cats
+                cats = asset_category.objects.filter(active=True).order_by('parentid','name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] =partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
 
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
                 context['hrs']= hrs
@@ -746,8 +764,15 @@ def property_form(request):
                 context['act'] = "create"
                 context['pk'] = 0
 
-                cats = asset_category.objects.filter(active=True).order_by('name')
-                context['cats'] = cats
+                cats = asset_category.objects.filter(active=True).order_by('parentid','name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] =partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
 
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
                 context['hrs']= hrs
@@ -782,10 +807,41 @@ def property_form(request):
                 return HttpResponse(data, content_type="application/json")
             if request.POST['act'] == 'create':
                 act='create'
-                return HttpResponse(act)
+
+                ugcatid = int(request.POST['categoryid'])
+                if ugcatid == 0:
+                    catid = None
+                else:
+                    catid = asset_category.objects.filter(id=ugcatid).first()
+
+                item = asset_property(
+                    sid = request.POST['sid'],
+                    name = request.POST['name'],
+                    sn=request.POST['sn'],
+
+                    specifications = request.POST['specifications'],
+                    model = request.POST['model'],
+                    categoryid = catid,
+                    # purchase = request.POST['purchase'],
+                    price = int(request.POST['price']),
+                    # manufacture = request.POST['manufacture'],
+                    # warranty = request.POST['warranty'],
+                    # user = request.POST[''],
+                    # partlist = request.POST[''],
+                    position = request.POST['position'],
+                    status = 1,
+                    nots = request.POST['comment'],
+                    active = True
+                )
+
+                item.save()
+                id = item.id
+                print("this %s" % item)
+                return HttpResponse(id)
             if request.POST['act'] == 'edit':
                 act='edit'
-                return HttpResponse(act)
+                id = int(request.POST['id'])
+                return HttpResponse(id)
 
     return render(request, 'property_form.html', context)
 

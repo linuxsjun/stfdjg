@@ -7,7 +7,7 @@
 {% block mainbody %}
     <div class="view_menu">
         <div class="limg"></div>
-         <div>
+        <div>
             <ul class="sub_menu">
                 <li><a href="#">设备</a>
                 <ul class="thr_menu">
@@ -29,7 +29,7 @@
                 </li>
             </ul>
         </div>
-        <div class="sub_menu_foot"></div>
+        <div class="sub_menu_foot">sss</div>
     </div>
     <div class="view_form">
         <div class="container-fluid">
@@ -107,8 +107,16 @@
                             <td>{{ item.createdate|date:'Y-m-d' }}</td>
                             <td>{{ item.lastedate|date:'Y-m-d' }}</td>
                             <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
+
                             <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
                             <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
+                            <td>
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-light"><i class="fa fa-edit fa-1x"></i></button>
+                                    <button type="button" class="btn btn-light"><i class="fa fa-remove fa-1x"></i></button>
+                                    <button type="button" class="btn btn-light"><i class="fa fa-send fa-1x"></i></button>
+                                </div>
+                            </td>
                         </tr>
                     {% empty %}
                         <tr>

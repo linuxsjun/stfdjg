@@ -36,15 +36,6 @@ $(document).ready(function () {
         }
     });
 
-    $('button[data-toggle="create"]').on('click', function () {
-        if ($(this).hasClass('disabled')) {
-
-        } else {
-            // "http://127.0.0.1:8000/property_form/?act=create"
-            $(location).attr('href', '//127.0.0.1:8000/property_form/?act=create&id=0');
-        }
-    });
-
     $('button[data-toggle="del"]').click(function () {
         if ($(this).hasClass('disabled')) {
 
@@ -79,18 +70,17 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            $('.form-control').attr('readonly', true);
-            $('.custom-select').attr('disabled', true);
-            $('[data-toggle="tooltip"]').tooltip('disable');
+            // $('.form-control').attr('readonly', true);
+            // $('.custom-select').attr('disabled', true);
+            // $('[data-toggle="tooltip"]').tooltip('disable');
             // $('button[data-toggle="save"]').addClass("disabled");
             $.post(
                 "/property_form/",
                 $('form').serialize(),
                 function(context,status){
+                    window.location.href="/property_form?act=display&id="+context;
                 }
             );
-            $('[data-dis="display"]').removeClass("sr-only");
-            $('[data-dis="edit"]').addClass("sr-only");
         }
     });
 

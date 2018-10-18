@@ -87,13 +87,10 @@
                             <tr>
                                 <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                                 <td>{{ item.name }}</td>
-                                <td>{{ item.parentid.name }}</td>
+                                <td>{{ item.displayname }}</td>
                                 <td>
                                     {% if item.bom %}
-{#                                        <input type="checkbox" name="bom" value="{{ item.bom }}" checked>#}
-                                        <span class="glyphicon glyphicon-link" aria-hidden="true"></span>
-                                    {% else %}
-{#                                        <input type="checkbox" name="bom" value="{{ item.bom }}">#}
+                                        <i class="fa fa-link fa-1x"></i>
                                     {% endif %}
                                 </td>
                             </tr>
