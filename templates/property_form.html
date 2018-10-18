@@ -89,26 +89,34 @@
                             <button type="button" class="btn btn-outline-primary" disabled="True">维修</button>
                             <button type="button" class="btn btn-outline-primary" disabled="True">报废</button>
                         </div>
-                        <h5 class="col">
+                        <nav  class="col  sr-only" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-secondary"><h6>闲置</h6></a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-success"><h6>在用</h6></a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-warning"><h6>维修</h6></a></li>
+                                <li class="breadcrumb-item active" aria-current="page"><a href="#" class="badge badge-danger"><h6>报废</h6></a></li>
+                            </ol>
+                        </nav>
+                        <div class="col">
                             <span>
                                 {% if context.status  %}
                                     {% if context.status == 1 %}
-                                    <a href="#" class="badge badge-secondary">闲置</a>
+                                    <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
                                     {% endif %}
                                     {% if context.status == 2 %}
-                                    <a href="#" class="badge badge-success">在用</a>
+                                    <a href="#" class="badge badge-success"><h6>在用</h6></a>
                                     {% endif %}
                                     {% if context.status == 3 %}
-                                    <a href="#" class="badge badge-warning">维修</a>
+                                    <a href="#" class="badge badge-warning"><h6>维修</h6></a>
                                     {% endif %}
                                     {% if context.status == 4 %}
-                                    <a href="#" class="badge badge-danger">报废</a>
+                                    <a href="#" class="badge badge-danger"><h6>报废</h6></a>
                                     {% endif %}
                                 {% else %}
-                                    <a href="#" class="badge badge-secondary">闲置</a>
+                                    <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
                                 {% endif %}
                             </span>
-                        </h5>
+                        </div>
                     </div>
                 </div>
                 <div class="container shadow border p-3 rounded my-3">

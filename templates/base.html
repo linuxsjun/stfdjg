@@ -118,6 +118,17 @@
 
    <script src="/static/js/holder.min.js"></script>
 
+
+   <script src="/static/js/metisMenu.min.js"></script>
+
+<script>
+    // 此处一定记得初始化metisMenu
+    $(function () {
+        $('#menu1').metisMenu();
+    });
+</script>
+
+
 <script type="text/javascript">
     $.ajaxSetup({
         data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
