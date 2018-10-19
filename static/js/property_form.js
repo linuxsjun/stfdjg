@@ -181,12 +181,18 @@ $(document).ready(function () {
             "/property_form/",
            {'act':'delimg', 'id':id, 'pid':pid},
             function (context,status) {
-                $('#headerimg').attr("src",context['filepath']);
-                $('#headerimg').attr("data-id",context['id']);
-                // Todo 根据返回值处理 1.失败 2.成功：无图、有图
-
-                // alert(context);
-                // alert(status);
+                // 根据返回值处理 1.失败 2.成功：无图、有图
+                if (context['code'] == 0) {
+                    $('#headerimg').attr("src",context['filepath']);
+                    $('#headerimg').attr("data-id",context['id']);
+                }
+                if (context['code'] == 1){
+                    alert('删除错误');
+                }
+                if (context['code'] == 2){
+                    $('#headerimg').attr("src","holder.js/100x100");
+                    $('#headerimg').attr("data-id",context['id']);
+                }
             }
         );
     });

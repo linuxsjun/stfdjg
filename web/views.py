@@ -802,6 +802,7 @@ def property_form(request):
 
                 ps={}
                 # 默认编号
+                # Todo 这编号在建立规则后，可以根据规则生成
                 # ps['sid'] = 0
 
                 # 默认价格
@@ -833,19 +834,21 @@ def property_form(request):
                 pid = int(request.POST['pid'])
 
                 n = asset_attachment.objects.filter(property=pid,active=True).order_by('-id').first()
-                n.final = True
-                n.save()
-
                 data = {}
-                data['code'] = 0
-                data['msg'] = "OK"
-
-                data['id'] = n.id
-                data['filepath'] = n.filepath
-                # Todo: 返回1.失败 2.成功：无图、有图
+                # 返回1.失败1 2.成功：无图2、有图0
+                if n:
+                    n.final = True
+                    n.save()
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['id'] = n.id
+                    data['filepath'] = n.filepath
+                else:
+                    data['code'] = 2
+                    data['msg'] = "OK"
+                    data['id'] = 0
 
                 data = json.dumps(data)
-                print(data)
                 return HttpResponse(data, content_type="application/json")
             if request.POST['act'] == 'create':
                 act='create'
