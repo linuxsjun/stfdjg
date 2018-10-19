@@ -666,8 +666,10 @@ def property_list(request):
                 s=[]
                 u=list(ps)
                 for t in u:
-                    t['purchase']=t['purchase'].strftime("%Y-%m-%d")
-                    t['warranty']=t['warranty'].strftime("%Y-%m-%d")
+                    if t['purchase']:
+                        t['purchase']=t['purchase'].strftime("%Y-%m-%d")
+                    if t['warranty']:
+                        t['warranty']=t['warranty'].strftime("%Y-%m-%d")
                     s.append(t)
                 data=json.dumps(s)
                 return HttpResponse(data,content_type="application/json")
@@ -713,13 +715,19 @@ def property_form(request):
             if request.GET['act'] == "display":
                 context['act'] = "display"
 
+                # 当前设备id、前后id
                 pn = int(request.GET['id'])
                 ppn = pn-1
                 npn = pn+1
+                context['pk'] = pn
+                context['ppk'] = ppn
+                context['npk'] = npn
 
+                #设备总数
                 spn = asset_property.objects.filter(active=True).count()
                 context['spk'] = spn
 
+                # 设备类型DisplayName计算
                 cats = asset_category.objects.filter(active=True).order_by('parentid','name')
                 lcats = []
                 for cat in cats:
@@ -730,40 +738,55 @@ def property_form(request):
                     lcats.append(ncat)
                 context['cats'] = lcats
 
+                # 可用人员查询
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
                 context['hrs']= hrs
 
                 try:
+                    # 当前设备信息
                     ps = asset_property.objects.get(id=pn)
                 except Exception:
                     return redirect('/property_list/')
                 else:
-                    context['pk']=pn
-                    context['ppk']=ppn
-                    context['npk']=npn
+                    print(ps.purchase)
+                    print(type(ps.purchase))
                     context['context'] = ps
 
+                    # 设备配件获取
                     prs = ps.asset_parts_set.all()
                     context['parts'] = prs
                     context['partsnum'] = prs.count()
 
+                # 设备照片信息
                 asspic = asset_attachment.objects.filter(property=pn,active=True, final=True).first()
                 if asspic:
                     context['imgid'] = asspic.id
                     context['headimg'] = asspic.filepath
                 else:
-                    context['imgid'] = None
-                    context['headimg'] = None
+                    # 如果无图则传占位符
+                    context['imgid'] = 0
+                    context['headimg'] = 'holder.js/100x100'
             elif request.GET['act'] == "disheadimg":
                 pn = int(request.GET['id'])
                 ps = asset_attachment.objects.filter(property=pn, active=True).values("id","name","filepath")
-                u = list(ps)
-                data = json.dumps(u)
+
+                # 返回JSON数据格式 0:为正常
+                # {"code": 0, "msg": "OK", "data": [1,2,3,]}
+                msg = {}
+                msg['code'] = 0
+                msg['msg'] = "OK"
+
+                # 附加数据
+                ldata = list(ps)
+                msg['data'] = ldata
+                data = json.dumps(msg)
+
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "create":
                 context['act'] = "create"
                 context['pk'] = 0
 
+                # 新建设置默认值
                 cats = asset_category.objects.filter(active=True).order_by('parentid','name')
                 lcats = []
                 for cat in cats:
@@ -776,7 +799,22 @@ def property_form(request):
 
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
                 context['hrs']= hrs
+
+                ps={}
+                # 默认编号
+                # ps['sid'] = 0
+
+                # 默认价格
+                ps["price"] = 0
+
+                # 默认出厂、维保、报废日期
+                t =datetime.datetime.now()
+                ps["manufacture"] = ps["purchase"] = ps["warranty"] = t
+                context['context'] = ps
+
                 return render(request, 'property_form.html', context)
+            elif request.GET['act'] == "edit":
+                pass
 
     elif request.method == "POST":
         print(request.POST)
@@ -799,11 +837,15 @@ def property_form(request):
                 n.save()
 
                 data = {}
+                data['code'] = 0
+                data['msg'] = "OK"
+
                 data['id'] = n.id
                 data['filepath'] = n.filepath
                 # Todo: 返回1.失败 2.成功：无图、有图
 
                 data = json.dumps(data)
+                print(data)
                 return HttpResponse(data, content_type="application/json")
             if request.POST['act'] == 'create':
                 act='create'
@@ -813,6 +855,12 @@ def property_form(request):
                     catid = None
                 else:
                     catid = asset_category.objects.filter(id=ugcatid).first()
+
+                guserid = int(request.POST['user'])
+                if guserid == 0:
+                    userid = None
+                else:
+                    userid = hr_hr.objects.filter(id=guserid).first()
 
                 item = asset_property(
                     sid = request.POST['sid'],
@@ -826,7 +874,7 @@ def property_form(request):
                     price = int(request.POST['price']),
                     # manufacture = request.POST['manufacture'],
                     # warranty = request.POST['warranty'],
-                    # user = request.POST[''],
+                    user = userid,
                     # partlist = request.POST[''],
                     position = request.POST['position'],
                     status = 1,
@@ -836,7 +884,6 @@ def property_form(request):
 
                 item.save()
                 id = item.id
-                print("this %s" % item)
                 return HttpResponse(id)
             if request.POST['act'] == 'edit':
                 act='edit'

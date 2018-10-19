@@ -124,8 +124,7 @@
                         <div class="col-sm-6 mb-3">
                             <div class="media">
                                 <a class="pr-3 mr-3" href="#">
-{#                                    <img src='{{ headimg | default_if_none:"holder.js/100x100\" }}' data-id={{ imgid }}  class="img-thumbnail flort-left mr-3" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">#}
-                                    <img src="holder.js/100x100" data-id={{ imgid }}  class="img-thumbnail" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">
+                                    <img src={{ headimg }} data-id={{ imgid }}  class="img-thumbnail" id="headerimg" alt="headerimg" style="height: 100px; width: 100px;">
                                 </a>
                                 <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
                                 <input type="file" name="file" class="sr-only" id="imgupload" accept=".png,.gif,.jpg">
@@ -187,12 +186,11 @@
                     </div>
 
                     <!-- 上面是头 -->
-
                     <div class="row mt-3">
                         <div class="form-group row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="name">名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填">
+                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
                             </div>
                             <div class="invalid-feedback">
                                 Please choose a username.
@@ -245,6 +243,13 @@
                             </div>
                         </div>
                         <div class="form-group row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">配件</label>
+                            <div class="col-sm-10 align-self-center">
+                                <div class="form-check">
+                                    <input class="form-check-input" id="bom" type="checkbox" val=""/>
+                                    <label class="form-check-label" for="bom">配件</label>
+                                </div>
+                            </div>
                         </div>
                         <div class="w-100"></div>
 

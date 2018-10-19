@@ -137,7 +137,7 @@ $(document).ready(function () {
             success: function (data) {
                 $('ol[class="carousel-indicators"]').empty();
                 $('div.carousel-inner').empty();
-                $.each(data,function (i,n) {
+                $.each(data['data'],function (i,n) {
                     $('ol[class="carousel-indicators"]').append('<li data-target="#carouselExampleIndicators" data-slide-to="'+ i + '"></li>');
                     $('div[class="carousel-inner"]').append('<div class="carousel-item"><img class="d-block w-100 img-responsive" src="'+ n['filepath'] +'" data-src="holder.js/400x520" alt="Third slide"></div>')
                 });
