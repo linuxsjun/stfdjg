@@ -10,10 +10,16 @@
 
 {% block mainbody %}
     <!--<div class="view_form"> -->
-    <div>
-        <div class="container-fluid">
+    <div class="container-fluid">
+        <div>
             <div class="row mt-2">
-                <h3 class="col-sm-6">{{ title }}</h3>
+                <nav class="col" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item" aria-current="page">{{ title }}</li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
+                    </ol>
+                </nav>
+{#                <h3 class="col-sm-6">{{ title }}</h3>#}
             </div>
             <div class="row mt-2">
                 <div class="col-sm-6">
@@ -80,43 +86,41 @@
                 {% csrf_token %}
                 <input name="act" id="act" value="{{ act }}" type="hidden">
 
-                <div class="container-fluid shadow border py-2">
-                    <div class="row">
-                        <div class="col-auto sr-only">
-                            <button type="button" class="btn btn-outline-primary" disabled="True">领用</button>
-                            <button type="button" class="btn btn-outline-primary" disabled="True">借用</button>
-                            <button type="button" class="btn btn-outline-primary" disabled="True">退还</button>
-                            <button type="button" class="btn btn-outline-primary" disabled="True">维修</button>
-                            <button type="button" class="btn btn-outline-primary" disabled="True">报废</button>
-                        </div>
-                        <nav  class="col  sr-only" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-secondary"><h6>闲置</h6></a></li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-success"><h6>在用</h6></a></li>
-                                <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-warning"><h6>维修</h6></a></li>
-                                <li class="breadcrumb-item active" aria-current="page"><a href="#" class="badge badge-danger"><h6>报废</h6></a></li>
-                            </ol>
-                        </nav>
-                        <div class="col">
-                            <span>
-                                {% if context.status  %}
-                                    {% if context.status == 1 %}
-                                    <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
-                                    {% endif %}
-                                    {% if context.status == 2 %}
-                                    <a href="#" class="badge badge-success"><h6>在用</h6></a>
-                                    {% endif %}
-                                    {% if context.status == 3 %}
-                                    <a href="#" class="badge badge-warning"><h6>维修</h6></a>
-                                    {% endif %}
-                                    {% if context.status == 4 %}
-                                    <a href="#" class="badge badge-danger"><h6>报废</h6></a>
-                                    {% endif %}
-                                {% else %}
-                                    <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
+                <div class="row shadow border-top border-bottom py-2">
+                    <div class="col-auto sr-only">
+                        <button type="button" class="btn btn-outline-primary" disabled="True">领用</button>
+                        <button type="button" class="btn btn-outline-primary" disabled="True">借用</button>
+                        <button type="button" class="btn btn-outline-primary" disabled="True">退还</button>
+                        <button type="button" class="btn btn-outline-primary" disabled="True">维修</button>
+                        <button type="button" class="btn btn-outline-primary" disabled="True">报废</button>
+                    </div>
+                    <nav class="col sr-only" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-secondary"><h6>闲置</h6></a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-success"><h6>在用</h6></a></li>
+                            <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-warning"><h6>维修</h6></a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a href="#" class="badge badge-danger"><h6>报废</h6></a></li>
+                        </ol>
+                    </nav>
+                    <div class="col">
+                        <span>
+                            {% if context.status  %}
+                                {% if context.status == 1 %}
+                                <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
                                 {% endif %}
-                            </span>
-                        </div>
+                                {% if context.status == 2 %}
+                                <a href="#" class="badge badge-success"><h6>在用</h6></a>
+                                {% endif %}
+                                {% if context.status == 3 %}
+                                <a href="#" class="badge badge-warning"><h6>维修</h6></a>
+                                {% endif %}
+                                {% if context.status == 4 %}
+                                <a href="#" class="badge badge-danger"><h6>报废</h6></a>
+                                {% endif %}
+                            {% else %}
+                                <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
+                            {% endif %}
+                        </span>
                     </div>
                 </div>
                 <div class="container shadow border p-3 rounded my-3">
@@ -186,9 +190,9 @@
                     </div>
 
                     <!-- 上面是头 -->
-                    <div class="row mt-3">
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="name">名称</label>
+                    <div class="form-row mt-3">
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="name">名称</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
                             </div>
@@ -196,30 +200,30 @@
                                 Please choose a username.
                             </div>
                         </div>
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="sn">出厂编号</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="sn">出厂编号</label>
                             <div class="col-sm-10">
                                 <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:字母大写,改o为0">
                             </div>
                         </div>
                         <div class="w-100"></div>
 
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="model">型号</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="model">型号</label>
                             <div class="col-sm-10">
                                 <input class="form-control" id="model" type="text" name="model" value="{{ context.model| default_if_none:"" }}"  placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="Model/PN">
                             </div>
                         </div>
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="spec">规格</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="spec">规格</label>
                             <div class="col-sm-10">
                                 <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications| default_if_none:"" }}" placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="">
                             </div>
                         </div>
                         <div class="w-100"></div>
 
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="categoryid">类型</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="categoryid">类型</label>
                             <div class="col-sm-10">
                                 <div class="input-group" >
                                     <select class="custom-select" id="categoryid" name="categoryid" data-toggle="tooltip" data-placement="right" title="必填">
@@ -242,8 +246,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">配件</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right">配件</label>
                             <div class="col-sm-10 align-self-center">
                                 <div class="form-check">
                                     <input class="form-check-input" id="bom" type="checkbox" val=""/>
@@ -253,8 +257,8 @@
                         </div>
                         <div class="w-100"></div>
 
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="user">用户{{ context.user_name }}</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="user">用户{{ context.user_name }}</label>
                             <div class="col-sm-10">
                                 <div class="input-group">
                                     <select class="custom-select" id="user" name="user">
@@ -281,22 +285,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="position">位置</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="position">位置</label>
                             <div class="col-sm-10">
                                 <input class="form-control" type="text" name="position" value="{{ context.position|default:"" }}" id="position" placeholder="">
                             </div>
                         </div>
                         <div class="w-100"></div>
 
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">部门</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right">部门</label>
                             <div class="col-sm-10">
                                 <p>部门</p>
                             </div>
                         </div>
-                        <div class="form-group row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">职务</label>
+                        <div class="form-group form-row col-sm">
+                            <label class="col-sm-2 col-form-label text-left text-sm-right">职务</label>
                             <div class="col-sm-10">
                                 <p>职务</p>
                             </div>
@@ -348,22 +352,22 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <h5>信息</h5>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">价格</label>
+                                        <div class="form-group form-row">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right">价格</label>
                                             <div class="col-sm-4">
                                                 <input class="form-control" type="number" name="price" value="{{ context.price|default:'0' }}">
                                             </div>
-                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">出厂日期</label>
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right">出厂日期</label>
                                             <div class="col-sm-4">
                                                 <input class="form-control" type="date" name="manufacture" value="{{ context.manufacture|date:'Y-m-d' }}">
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">购买日期</label>
+                                        <div class="form-group form-row">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right">购买日期</label>
                                             <div class="col-sm-4">
                                                 <input class="form-control" type="date" name="purchase" value="{{ context.purchase|date:'Y-m-d' }}">
                                             </div>
-                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">维保到期</label>
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right">维保到期</label>
                                             <div class="col-sm-4">
                                                 <input class="form-control" type="date" name="warranty" value="{{ context.warranty|date:'Y-m-d' }}">
                                             </div>
@@ -371,8 +375,8 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <h5>供应商</h5>
-                                        <div class="row">
-                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">名称</label>
+                                        <div class="form-row">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right">名称</label>
                                             <div class="col-sm-10">
                                                 <div class="input-group">
                                                     <select class="custom-select" id="supplier" name="supplier">
@@ -409,11 +413,10 @@
                         </div>
                     </div>
                 </div>
-
             </form>
-            <div class="mt-3 border-top">
-                <div class="container">
-                    <p class="text-center">分配记录form_foot</p>
+            <div class="row justify-content-center mt-3 border-top">
+                <div class="col-sm-8">
+                    <p class="text-center">分配记录</p>
                     <div class="media mt-2">
                         <img src="" alt="" data-src="holder.js/48x48" class="mr-3">
                         <div class="media-body bg-light">
