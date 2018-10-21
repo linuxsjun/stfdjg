@@ -694,7 +694,7 @@ def property_list(request):
 def property_form(request):
     request.encoding = 'utf-8'
     context={}
-    context['title']='property_form'
+    context['title']='设备单'
 
     username = request.COOKIES.get('usercookie', None)
     if username:

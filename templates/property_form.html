@@ -15,7 +15,7 @@
             <div class="row mt-2">
                 <nav class="col" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item" aria-current="page">{{ title }}</li>
+                        <li class="breadcrumb-item" aria-current="page"><a href="#">{{ title }}</a></li>
                         <li class="breadcrumb-item active" aria-current="page">{{ title }}</li>
                     </ol>
                 </nav>
@@ -134,7 +134,7 @@
                                 <input type="file" name="file" class="sr-only" id="imgupload" accept=".png,.gif,.jpg">
                                 <div class="media-body">
                                     <div class="form-group sr-only" data-dis="edit">
-                                        <label class="col col-form-label-lg" for="sid">编号</label>
+                                        <label class="col col-form-label" for="sid">编号</label>
                                         <div class="col mb-3">
                                             <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="(必填,不可重复)"
                                                    data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"' required/>
