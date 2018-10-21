@@ -14,7 +14,6 @@ from web.models import asset_conf, asset_category, asset_parts, asset_property, 
 
 from openpyxl import load_workbook
 
-
 def partt(id):
     #这是一个定义函数，返回父级关系
     tid = asset_category.objects.filter(id=id).first()

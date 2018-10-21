@@ -204,4 +204,18 @@ $(document).ready(function () {
         // }
         $('#siddis').text($('#sid').val());
     })
+
+    // ---- 表单验证 ----
+    $('#name').focusout(function () {
+        if ($(this).val() != None) {
+            $(this).addClass("is-valid");
+            $(this).removeClass("is-invalid");
+                        message: 'This value is not valid'
+        }
+    })
+
+    $('#add').click(function () {
+        message: 'This value is not valid'
+        alert('kk')
+    })
 });

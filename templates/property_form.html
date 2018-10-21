@@ -137,7 +137,7 @@
                                         <label class="col col-form-label-lg" for="sid">编号</label>
                                         <div class="col mb-3">
                                             <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="(必填,不可重复)"
-                                                   data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"'/>
+                                                   data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"' required/>
                                         </div>
                                         <div class="w-100"></div>
                                         <button type="button" class="btn btn-outline-secondary ml-3" id="upload"><i class="fa fa-pencil fa-1x"></i></button>
@@ -194,16 +194,16 @@
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="name">名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
+                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填" required>
                             </div>
                             <div class="invalid-feedback">
-                                Please choose a username.
+                                必填
                             </div>
                         </div>
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="sn">出厂编号</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:字母大写,改o为0">
+                                <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:字母大写,改o为0" required>
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -318,7 +318,7 @@
                             <div class="tab-pane active" id="parts">
                                 <div class="row px-3">
                                     <div class="col-12">
-                                        <button class="btn btn-primary disabled" type="submit" form="cccc">添加</button>
+                                        <button class="btn btn-primary disabled" type="submit" form="cccc" id="add">添加</button>
                                     </div>
                                     <table class="table table-striped table-sm mt-3">
                                     <thead>
