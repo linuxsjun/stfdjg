@@ -7,6 +7,7 @@ import requests, json, time, datetime, hashlib, random
 # from data.test import *
 
 import os
+import re
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
@@ -781,6 +782,32 @@ def property_form(request):
                 data = json.dumps(msg)
 
                 return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "chacksid":
+                val = request.GET['sid']
+                t = asset_property.objects.filter(sid=val).first()
+                data = {}
+                if t:
+                    data['code'] = 1
+                    data['msg'] = "fail"
+                    data['data'] = "输入值已存在"
+                else:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "chacksn":
+                val = request.GET['sn']
+                t = asset_property.objects.filter(sn=val).first()
+                data = {}
+                if t:
+                    data['code'] = 1
+                    data['msg'] = "fail"
+                    data['data'] = "输入值已存在"
+                else:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "create":
                 context['act'] = "create"
                 context['pk'] = 0
@@ -864,18 +891,36 @@ def property_form(request):
                 else:
                     userid = hr_hr.objects.filter(id=guserid).first()
 
+                # 获取默认日期，当天日期
+                pdate = request.POST['purchase']
+                if pdate == '':
+                    purchase = datetime.datetime.today()
+                else:
+                    purchase = datetime.datetime.strptime(pdate, "%Y-%m-%d")
+
+                wdat = request.POST['warranty']
+                if wdat == '':
+                    warranty = datetime.datetime.today()
+                else:
+                    warranty = datetime.datetime.strptime(wdat, "%Y-%m-%d")
+
+                rdat = request.POST['manufacture']
+                if rdat == '':
+                    manufacture = datetime.datetime.today()
+                else:
+                    manufacture = datetime.datetime.strptime(rdat, "%Y-%m-%d")
+
                 item = asset_property(
                     sid = request.POST['sid'],
                     name = request.POST['name'],
                     sn=request.POST['sn'],
-
                     specifications = request.POST['specifications'],
                     model = request.POST['model'],
                     categoryid = catid,
-                    # purchase = request.POST['purchase'],
+                    purchase = purchase,
                     price = int(request.POST['price']),
-                    # manufacture = request.POST['manufacture'],
-                    # warranty = request.POST['warranty'],
+                    manufacture = manufacture,
+                    warranty = warranty,
                     user = userid,
                     # partlist = request.POST[''],
                     position = request.POST['position'],

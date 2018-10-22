@@ -206,12 +206,74 @@ $(document).ready(function () {
     });
 
     // ---- 表单验证 ----
-    $('#name').keyup(function () {
-        // if ($(this).val() != None) {
-        //     $(this).addClass("is-valid");
-        //     $(this).removeClass("is-invalid");
-        //
-        // }
-        console.log($(this).val());
+    // 转大写
+    $('#sid').keyup(function () {
+        $(this).val($(this).val().toUpperCase());
     });
+
+    // --- name必填 ---
+    $('#name').blur(function () {
+        if($(this).val() == "") {
+            $(this).addClass('is-invalid');
+            $('button[data-toggle="save"]').addClass("disabled");
+        }else{
+            $(this).removeClass('is-invalid');
+            $('button[data-toggle="save"]').removeClass("disabled");
+        }
+    });
+
+    // sid 必填、不重复
+    $('#sid').blur(function () {
+        if($(this).val() == "") {
+            $(this).addClass('is-invalid');
+            $('button[data-toggle="save"]').addClass("disabled");
+        }else{
+             $.get(
+                 "/property_form",
+                 {act:'chacksid',sid:$(this).val()},
+                 function (data) {
+                     if (data.code == "0") {
+                         $('button[data-toggle="save"]').removeClass("disabled");
+                         $('#sid').removeClass('is-invalid');
+                     } else {
+                         $('button[data-toggle="save"]').addClass("disabled");
+                         $('#sid').addClass('is-invalid');
+                     }
+                 });
+        }
+    });
+
+    // sn 必填、不重复、改o为0
+    // Todo 查询时不验证，修改时当前记录不与本记录重复
+    $('#sn').blur(function () {
+        // if($(this).att('readonly') != True) {
+            if ($(this).val() == "") {
+                $(this).addClass('is-invalid');
+                $('button[data-toggle="save"]').addClass("disabled");
+            } else {
+                $.get(
+                    "/property_form",
+                    {act: 'chacksn', sn: $(this).val()},
+                    function (data) {
+                        if (data.code == "0") {
+                            $('button[data-toggle="save"]').removeClass("disabled");
+                            $('#sn').removeClass('is-invalid');
+                        } else {
+                            $('button[data-toggle="save"]').addClass("disabled");
+                            $('#sn').addClass('is-invalid');
+                        }
+                    });
+            }
+        // }
+    });
+
+    $('#categoryid').change(function () {
+        if($(this).val() == 0) {
+            $(this).addClass('is-invalid');
+            $('button[data-toggle="save"]').addClass("disabled");
+        }else{
+            $(this).removeClass('is-invalid');
+            $('button[data-toggle="save"]').removeClass("disabled");
+        }
+    })
 });

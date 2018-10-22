@@ -134,7 +134,7 @@ class asset_parts(models.Model):
 
 class asset_property(models.Model):
     #设备表
-    sid = models.CharField(max_length=32, unique=True, verbose_name='编号')
+    sid = models.CharField(max_length=16, unique=True, verbose_name='编号')
     name = models.CharField(max_length=64, verbose_name='名称')
     specifications = models.CharField(null=True, blank=True, max_length=64, verbose_name='规格')
     model = models.CharField(null=True, blank=True, max_length=64, verbose_name='型号')

@@ -133,11 +133,12 @@
                                 <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
                                 <input type="file" name="file" class="sr-only" id="imgupload" accept=".png,.gif,.jpg">
                                 <div class="media-body">
+                                    <!-- 做表单验证：必填、不重复、转大写 -->
                                     <div class="form-group sr-only" data-dis="edit">
                                         <label class="col col-form-label" for="sid">编号</label>
                                         <div class="col mb-3">
                                             <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="(必填,不可重复)"
-                                                   data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"' required/>
+                                                   data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"'/>
                                         </div>
                                         <div class="w-100"></div>
                                         <button type="button" class="btn btn-outline-secondary ml-3" id="upload"><i class="fa fa-pencil fa-1x"></i></button>
@@ -194,7 +195,8 @@
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="name">名称</label>
                             <div class="col-sm-10">
-                                <input class="form-control" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填" required>
+                                <!-- 做表单验证:必填 -->
+                                <input class="form-control required repeat" type="text" name="name" id="name" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
                             </div>
                             <div class="invalid-feedback">
                                 必填
@@ -203,7 +205,8 @@
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="sn">出厂编号</label>
                             <div class="col-sm-10">
-                                <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:字母大写,改o为0" required>
+                                <!-- 做表单验证：必填、不重复 -->
+                                <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:改o为0">
                             </div>
                         </div>
                         <div class="w-100"></div>
