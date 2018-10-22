@@ -810,35 +810,40 @@ def property_form(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "create":
                 context['act'] = "create"
-                context['pk'] = 0
+                context['pk'] = id = int(request.GET['id'])
 
-                # 新建设置默认值
-                cats = asset_category.objects.filter(active=True).order_by('parentid','name')
-                lcats = []
-                for cat in cats:
-                    ncat = {}
-                    ncat["id"] = cat.id
-                    ncat["name"] = cat.name
-                    ncat["displayname"] =partt(cat.id)
-                    lcats.append(ncat)
-                context['cats'] = lcats
+                # Todo  id = 0 为新建 其它 为 复制
+                if id:
+                    # Todo 取现有值进行复制
+                    ps = asset_property.objects.filter(id=id).first()
+                else:
+                    # 新建设置默认值
+                    cats = asset_category.objects.filter(active=True).order_by('parentid','name')
+                    lcats = []
+                    for cat in cats:
+                        ncat = {}
+                        ncat["id"] = cat.id
+                        ncat["name"] = cat.name
+                        ncat["displayname"] =partt(cat.id)
+                        lcats.append(ncat)
+                    context['cats'] = lcats
 
-                hrs = hr_hr.objects.filter(active=True).order_by('name')
-                context['hrs']= hrs
+                    hrs = hr_hr.objects.filter(active=True).order_by('name')
+                    context['hrs']= hrs
 
-                ps={}
-                # 默认编号
-                # Todo 这编号在建立规则后，可以根据规则生成
-                # ps['sid'] = 0
+                    ps={}
+                    # 默认编号
+                    # Todo 这编号在建立规则后，可以根据规则生成
+                    # ps['sid'] = 0
 
-                # 默认价格
-                ps["price"] = 0
+                    # 默认价格
+                    ps["price"] = 0
 
-                # 默认出厂、维保、报废日期
-                t =datetime.datetime.now()
-                ps["manufacture"] = ps["purchase"] = ps["warranty"] = t
+                    # 默认出厂、维保、报废日期
+                    t =datetime.datetime.now()
+                    ps["manufacture"] = ps["purchase"] = ps["warranty"] = t
+
                 context['context'] = ps
-
                 return render(request, 'property_form.html', context)
             elif request.GET['act'] == "edit":
                 pass
