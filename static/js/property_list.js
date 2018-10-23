@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     //-----控制面板----
     $('button[data-toggle="create"]').click(function () {
         if ($(this).hasClass('disabled')) {
@@ -124,118 +123,118 @@ $(document).ready(function () {
                 success: function (data) {
                     $('input[name="selall"]').prop("checked", false);
 
-                    $('tbody').empty();
+                    var htxt = "";
                     $.each(data,function (i,n) {
-                        console.log(n);
+                        // if((n['user__name'] != null) && (n["user__active"] == 0)) {
+                        //     $("tbody").append('<tr class="text-danger"></tr>');
+                        // } else {
+                        //     $("tbody").append('<tr></tr>');
+                        // }
+                        //
+                        // var rrow =$("tbody tr:last");
+                        // rrow.append('<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>');
+                        // if (n["status"] == 1) {
+                        //     rrow.append("<td><span class=\"badge badge-secondary\">闲置</span></td>");
+                        // }else if (n["status"] == 2) {
+                        //     rrow.append("<td><span class=\"badge badge-success\">在用</span></td>");
+                        // }else if (n["status"] == 3) {
+                        //     rrow.append("<td><span class=\"badge badge-warning\">维修</span></td>");
+                        // } else if (n["status"] == 4) {
+                        //     rrow.append("<td><span class=\"badge badge-danger\">报废</span></td>");
+                        // }
+                        // rrow.append("<td>" + n["sid"] + "</td>");
+                        // rrow.append("<td>" + n["name"] + "</td>");
+                        //
+                        // if (n["specifications"] == null) {
+                        //     rrow.append("<td></td>");
+                        // } else {
+                        //     rrow.append("<td>" + n["specifications"] + "</td>");
+                        // }
+                        //
+                        // if (n["sn"] == null) {
+                        //     rrow.append("<td></td>");
+                        // } else {
+                        //     rrow.append("<td>" + n["sn"] + "</td>");
+                        // }
+                        //
+                        // rrow.append("<td>" + n["purchase"] + "</td>");
+                        // rrow.append("<td>" + n["warranty"] + "</td>");
+                        //
+                        // if (n["user__name"] == null) {
+                        //     rrow.append("<td></td>");
+                        // } else {
+                        //     rrow.append("<td>" + n["user__name"] + "</td>");
+                        // }
+                        //
+                        // if (n["position"] == null) {
+                        //     rrow.append("<td></td>");
+                        // } else {
+                        //     rrow.append("<td>" + n["position"] + "</td>");
+                        // }
+
                         if((n['user__name'] != null) && (n["user__active"] == 0)) {
-                            $("tbody").append('<tr class="text-danger"></tr>');
+                            htxt += '<tr class="text-danger">';
                         } else {
-                            $("tbody").append('<tr></tr>');
+                            htxt += '<tr>';
                         }
-
-                        var rrow =$("tbody tr:last");
-                        rrow.append('<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>');
-                        if (n["status"] == 1) {
-                            rrow.append("<td><span class=\"badge badge-secondary\">闲置</span></td>");
-                        }else if (n["status"] == 2) {
-                            rrow.append("<td><span class=\"badge badge-success\">在用</span></td>");
-                        }else if (n["status"] == 3) {
-                            rrow.append("<td><span class=\"badge badge-warning\">维修</span></td>");
-                        } else if (n["status"] == 4) {
-                            rrow.append("<td><span class=\"badge badge-danger\">报废</span></td>");
+                        htxt += '<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>';
+                        if (n["status"] === 1) {
+                            htxt += "<td><span class=\"badge badge-secondary\">闲置</span></td>";
+                        }else if (n["status"] === 2) {
+                             htxt += "<td><span class=\"badge badge-success\">在用</span></td>";
+                        }else if (n["status"] === 3) {
+                             htxt += "<td><span class=\"badge badge-warning\">维修</span></td>";
+                        } else if (n["status"] === 4) {
+                             htxt += "<td><span class=\"badge badge-danger\">报废</span></td>";
                         }
-                        rrow.append("<td>" + n["sid"] + "</td>");
-                        rrow.append("<td>" + n["name"] + "</td>");
+                        htxt += "<td>" + n["sid"] + "</td>";
+                        htxt += "<td>" + n["name"] + "</td>";
 
-                        if (n["specifications"] == null) {
-                            rrow.append("<td></td>");
+                        if (n["specifications"] === null) {
+                            htxt += "<td></td>";
                         } else {
-                            rrow.append("<td>" + n["specifications"] + "</td>");
+                            htxt += "<td>" + n["specifications"] + "</td>";
                         }
-
-                        if (n["sn"] == null) {
-                            rrow.append("<td></td>");
+                        if (n["sn"] === null) {
+                            htxt += "<td></td>";
                         } else {
-                            rrow.append("<td>" + n["sn"] + "</td>");
+                            htxt += "<td>" + n["sn"] + "</td>";
                         }
 
-                        rrow.append("<td>" + n["purchase"] + "</td>");
-                        rrow.append("<td>" + n["warranty"] + "</td>");
+                        htxt += "<td>" + n["purchase"] + "</td>";
+                        htxt += "<td>" + n["warranty"] + "</td>";
 
-                        if (n["user__name"] == null) {
-                            rrow.append("<td></td>");
+                        if (n["user__name"] === null) {
+                            htxt += "<td></td>";
                         } else {
-                            rrow.append("<td>" + n["user__name"] + "</td>");
+                            htxt += "<td>" + n["user__name"] + "</td>";
                         }
-
-                        if (n["position"] == null) {
-                            rrow.append("<td></td>");
+                        if (n["position"] === null) {
+                            htxt += "<td></td>";
                         } else {
-                            rrow.append("<td>" + n["position"] + "</td>");
+                            htxt += "<td>" + n["position"] + "</td>";
                         }
 
+                        htxt += '</tr>';
                     });
-
-
-                    $("td").click(function () {
-                        if ($(this).index()>0){
-                             var showsel = $(this).siblings().eq(0).find('input').val();
-                             window.location.href="/property_form?act=display&id="+showsel;
-                        }
-                    });
+                    $('tbody').empty();
+                    $("tbody").append(htxt);
 
                     $('input[name="selitem"]').prop("checked", false);
                     $('button[data-toggle="del"]').addClass("disabled");
                     $('input[name="selall"]').val(0);
-
-                    $('input[name="selall"]').click(function () {
-                        var sel = $(this).prop("checked");
-                        var i =0;
-
-                        if (sel){
-                            $('input[name="selitem"]').prop("checked", true);
-                            $('button[data-toggle="del"]').removeClass("disabled");
-
-                            $('input[name="selitem"]').each(function () {
-                                i=i+1;
-                            });
-                        }else{
-                            $('input[name="selitem"]').prop("checked", false);
-                            $('button[data-toggle="del"]').addClass("disabled");
-                        }
-                        $('input[name="selall"]').val(i);
-                    });
-
-                    $('input[name="selitem"]').click(function () {
-                       var sel = $(this).prop("checked");
-                       var i = $('input[name="selall"]').val();
-                       i=parseInt(i);
-
-                        if (sel){
-                            $(this).prop("checked", true);
-                            $('button[data-toggle="del"]').removeClass("disabled");
-                            i=i+1;
-                            $('input[name="selall"]').val(i);
-                        }else{
-                            $(this).prop("checked", false);
-                            i=i-1;
-                            $('input[name="selall"]').val(i);
-                            if(!i){
-                                $('button[data-toggle="del"]').addClass("disabled");
-                            }
-                        }
-                    });
                 }
             });
         }
     });
 
     //----点选----
-    $("td").click(function () {
-        if ($(this).index()>0){
-             var showsel = $(this).siblings().eq(0).find('input').val();
-             window.location.href="/property_form?act=display&id="+showsel;
-        }
+    // $("tbody tr td:first-child").nextAll().css('background','blue');
+    // $("tbody tr td:not(:first-child)").css('background','blue');
+
+    $("tbody").on("click","tr td:not(:first-child)",function () {
+        var showsel = $(this).siblings().eq(0).find('input').val();
+        window.location.href="/property_form?act=display&id="+showsel;
     });
 
     $('input[name="selall"]').click(function () {
@@ -255,7 +254,8 @@ $(document).ready(function () {
         $('input[name="selall"]').val(i);
     });
 
-    $('input[name="selitem"]').click(function () {
+    $('tbody').on("click","tr td input",function () {
+                $(this).css("background","blue");
        var sel = $(this).prop("checked");
        var i = $('input[name="selall"]').val();
        i=parseInt(i);
