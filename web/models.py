@@ -59,7 +59,8 @@ class hr_department(models.Model):
     pid = models.IntegerField(unique=True)
     name = models.CharField(max_length=32, null=False, verbose_name='名称')
     parentid = models.IntegerField(default=0, verbose_name='上级部门')
-    order = models.IntegerField(null=True)
+    order = models.IntegerField(null=True, verbose_name="次序")
+    type = models.IntegerField(default=0, verbose_name='组织类型:0行政/1项目/2团队')
 
     class Meta:
         db_table = 'hr_department'
@@ -68,21 +69,22 @@ class hr_hr(models.Model):
     #员工表employee
     userid = models.CharField(unique=True, max_length=32,verbose_name='用户ID')
     name =  models.CharField(max_length=64,verbose_name='姓名')
+    alias =  models.CharField(null=True, blank=True, max_length=32,verbose_name='别名')
     department = models.CharField(null=True, max_length=256,verbose_name='部门')
-    position = models.CharField(null=True, max_length=32)
+    position = models.CharField(null=True, max_length=32, verbose_name='职务信息')
     mobile = models.CharField(null=True, max_length=16,verbose_name='手机')
     gender = models.CharField(null=True, max_length=16,verbose_name='姓别')
     email = models.EmailField(null=True, verbose_name='邮箱')
     avatar = models.CharField(null=True, max_length=256,verbose_name='头像')
-    status = models.IntegerField(default=1, verbose_name="状态")
+    status = models.IntegerField(default=1, verbose_name="激活状态:1已激活2已禁用4未激活")
     enable = models.IntegerField(default=1, verbose_name="有效")
     isleader = models.IntegerField(default=0,verbose_name='主管')
     extattr = models.CharField(null=True, max_length=256, verbose_name='扩展属性')
     hide_mobile = models.BooleanField(default=0,verbose_name='隐蔽手机')
     english_name = models.CharField(null=True, max_length=64,verbose_name='英文名')
     telephone = models.CharField(null=True, max_length=16,verbose_name='座机')
-    order = models.CharField(null=True, max_length=256)
-    external_profile = models.CharField(null=True, max_length=256)
+    order = models.CharField(null=True, max_length=256,verbose_name='部门内的排序值')
+    external_profile = models.CharField(null=True, max_length=256,verbose_name='成员对外属性')
     qr_code = models.CharField(null=True, max_length=256,verbose_name='个人二维码')
     passwd = models.CharField(max_length=256,null=True,verbose_name='密码')
     session = models.CharField(max_length=32,null=True,verbose_name='Cookice_session')
@@ -109,6 +111,7 @@ class asset_category(models.Model):
     bom = models.BooleanField(default=False, verbose_name='组件')
     active = models.BooleanField(default=True, verbose_name='有效的')
     notes = models.TextField(null=True, blank=True, verbose_name='备注')
+    autosid = models.CharField(max_length=8, null=True, blank=True, verbose_name='自动编号方案')
 
     class Meta:
         db_table = 'asset_category'

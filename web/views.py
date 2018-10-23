@@ -748,8 +748,6 @@ def property_form(request):
                 except Exception:
                     return redirect('/property_list/')
                 else:
-                    print(ps.purchase)
-                    print(type(ps.purchase))
                     context['context'] = ps
 
                     # 设备配件获取
@@ -782,6 +780,20 @@ def property_form(request):
                 data = json.dumps(msg)
 
                 return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "dishrinfo":
+                ghrid = int(request.GET['hrid'])
+                hrdeppos = employee_department.objects.filter(employeeid__id=ghrid).values('employeeid__id','employeeid__name','employeeid__position','departmentid__name').first()
+                data = {}
+                if hrdeppos:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = hrdeppos
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = "None"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "chacksid":
                 val = request.GET['sid']
                 t = asset_property.objects.filter(sid=val).first()
@@ -812,30 +824,33 @@ def property_form(request):
                 context['act'] = "create"
                 context['pk'] = id = int(request.GET['id'])
 
-                # Todo  id = 0 为新建 其它 为 复制
+                # 新建设置默认值
+                #
+                cats = asset_category.objects.filter(active=True).order_by('parentid', 'name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] = partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
+
+                hrs = hr_hr.objects.filter(active=True).order_by('name')
+                context['hrs'] = hrs
+
+                ps = {}
+                # 默认编号
+                # Todo 这编号在建立规则后，可以根据规则生成
+                # ps['sid'] = 0
+
+
+                # Todo  id = 0 为新建 其它为复制
+                # ======================================
                 if id:
-                    # Todo 取现有值进行复制
+                    # 取现有值进行复制
                     ps = asset_property.objects.filter(id=id).first()
                 else:
-                    # 新建设置默认值
-                    cats = asset_category.objects.filter(active=True).order_by('parentid','name')
-                    lcats = []
-                    for cat in cats:
-                        ncat = {}
-                        ncat["id"] = cat.id
-                        ncat["name"] = cat.name
-                        ncat["displayname"] =partt(cat.id)
-                        lcats.append(ncat)
-                    context['cats'] = lcats
-
-                    hrs = hr_hr.objects.filter(active=True).order_by('name')
-                    context['hrs']= hrs
-
-                    ps={}
-                    # 默认编号
-                    # Todo 这编号在建立规则后，可以根据规则生成
-                    # ps['sid'] = 0
-
                     # 默认价格
                     ps["price"] = 0
 
@@ -923,7 +938,7 @@ def property_form(request):
                     model = request.POST['model'],
                     categoryid = catid,
                     purchase = purchase,
-                    price = int(request.POST['price']),
+                    price = float(request.POST['price']),
                     manufacture = manufacture,
                     warranty = warranty,
                     user = userid,

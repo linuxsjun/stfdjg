@@ -268,6 +268,7 @@ $(document).ready(function () {
     });
 
     $('#categoryid').change(function () {
+        //Todo 同时修改配件的继承性
         if($(this).val() == 0) {
             $(this).addClass('is-invalid');
             $('button[data-toggle="save"]').addClass("disabled");
@@ -275,5 +276,28 @@ $(document).ready(function () {
             $(this).removeClass('is-invalid');
             $('button[data-toggle="save"]').removeClass("disabled");
         }
-    })
+    });
+
+    $('#user').change(function () {
+        if($(this).val() == 0) {
+            // $(this).addClass('is-invalid');
+            // $('button[data-toggle="save"]').addClass("disabled");
+        }else{
+            $.get(
+                '/property_form/',
+                {act:'dishrinfo', hrid:$(this).val()},
+                function(data) {
+                    if(data.code == 0){
+                        $("#department").html(data.data.departmentid__name);
+                        $("#hrposition").html(data.data.employeeid__position);
+                    } else{
+                        $("#department").html("");
+                        $("#hrposition").html("");
+                    }
+                }
+            );
+            // $(this).removeClass('is-invalid');
+            // $('button[data-toggle="save"]').removeClass("disabled");
+        }
+    });
 });
