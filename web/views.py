@@ -790,7 +790,7 @@ def property_form(request):
                 else:
                     # 如果无图则传占位符
                     context['imgid'] = 0
-                    context['headimg'] = 'holder.js/100x100'
+                    context['headimg'] = 'holder.js/64x64'
 
                 # 单据标题
                 context['title'] = '设备单'
