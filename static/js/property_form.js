@@ -280,6 +280,8 @@ $(document).ready(function () {
 
     $('#user').change(function () {
         if($(this).val() == 0) {
+            $("#department").html("");
+            $("#hrposition").html("");
             // $(this).addClass('is-invalid');
             // $('button[data-toggle="save"]').addClass("disabled");
         }else{
