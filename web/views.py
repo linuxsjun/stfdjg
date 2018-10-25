@@ -14,7 +14,7 @@ from web.models import pureftp, base_conf, hr_department, hr_hr, employee_depart
 from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment
 
 from openpyxl import load_workbook
-
+# https://www.qqxiuzi.cn/zh/pinyin/
 def partt(id):
     #这是一个定义函数，返回父级关系
     tid = asset_category.objects.filter(id=id).first()
@@ -46,7 +46,7 @@ def index(request):
 def category_list(request):
     request.encoding = 'utf-8'
     context={}
-    context['title']='category_list'
+    context['title']='类型列表'
 
     username = request.COOKIES.get('usercookie', None)
     if username:
@@ -631,7 +631,7 @@ def wxtext(request):
 def property_list(request):
     request.encoding = 'utf-8'
     context={}
-    context['title']='property_list'
+    context['title']='设备列表'
 
     username = request.COOKIES.get('usercookie', None)
     if username:
@@ -646,7 +646,50 @@ def property_list(request):
         return render(request, 'sign.html', context)
 
     # print("%s\n%s" % (request.method,request.GET))
-    if request.method == "POST":
+    if request.method == "GET":
+        print(request.GET)
+        if "act" in request.GET:
+            if request.GET['act'] == 'filter':
+                data = {}
+                data['field'] = request.GET['field']
+                data['search'] = request.GET['search']
+
+                ps = asset_property.objects.filter(user__name__icontains="孙", active=True).values('id',
+                                                         'status',
+                                                         'sid',
+                                                         'name',
+                                                         'specifications',
+                                                         'purchase',
+                                                         'warranty',
+                                                         'user__name',
+                                                         'user__active',
+                                                         'position',
+                                                         'sn')
+                s=[]
+                u=list(ps)
+                for t in u:
+                    if t['purchase']:
+                        t['purchase']=t['purchase'].strftime("%Y-%m-%d")
+                    if t['warranty']:
+                        t['warranty']=t['warranty'].strftime("%Y-%m-%d")
+                    s.append(t)
+                data=json.dumps(s)
+                return HttpResponse(data, content_type="application/json")
+        else:
+            # 没有动作,输出默认列表
+            ps = asset_property.objects.filter(active=True).values('id',
+                                                                   'status',
+                                                                   'sid',
+                                                                   'name',
+                                                                   'specifications',
+                                                                   'purchase',
+                                                                   'warranty',
+                                                                   'user__name',
+                                                                   'user__active',
+                                                                   'position',
+                                                                   'sn').order_by('name', 'specifications', 'sid')
+            context['context'] = ps
+    elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
             if request.POST['act'] == 'sort':
@@ -673,22 +716,6 @@ def property_list(request):
                     s.append(t)
                 data=json.dumps(s)
                 return HttpResponse(data,content_type="application/json")
-            if request.POST['act'] == 'filter':
-                pass
-    else:
-        ps = asset_property.objects.filter(active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn').order_by('name','specifications', 'sid')
-
-        context['context'] = ps
 
     return render(request, 'property_list.html', context)
 
@@ -764,6 +791,9 @@ def property_form(request):
                     # 如果无图则传占位符
                     context['imgid'] = 0
                     context['headimg'] = 'holder.js/100x100'
+
+                # 单据标题
+                context['title'] = '设备单'
             elif request.GET['act'] == "disheadimg":
                 pn = int(request.GET['id'])
                 ps = asset_attachment.objects.filter(property=pn, active=True).values("id","name","filepath")
@@ -849,8 +879,10 @@ def property_form(request):
                 # ======================================
                 if id:
                     # 取现有值进行复制
+                    context['title'] = '设备单 / 复制'
                     ps = asset_property.objects.filter(id=id).first()
                 else:
+                    context['title'] = '设备单 / 新建'
                     # 默认价格
                     ps["price"] = 0
 
@@ -997,7 +1029,7 @@ def property_upload(request):
 
 def parts_list(request):
     context={}
-    context['title']='parts_list'
+    context['title']='配件列表'
 
     username = request.COOKIES.get('usercookie', None)
     if username:

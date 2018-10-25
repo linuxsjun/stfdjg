@@ -11,7 +11,16 @@
                 <h3 class="col-sm-6">{{ title }}</h3>
                 <div class="col-sm-6">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索...">
+                        <input type="text" list="typesch" class="form-control" placeholder="搜索...">
+                        <datalist id="typesch">
+                            <option value="编号">sssss</option>
+                            <option value="规格"/>
+                            <option value="出厂编号"/>
+                            <option value="购买日期"/>
+                            <option value="维保日期"/>
+                            <option value="用户"/>
+                            <option value="位置"/>
+                        </datalist>
                         <div class="input-group-append">
                             <button class="btn btn-primary" type="button"><i class="fa fa-search-plus fa-1x"></i></button>
                         </div>

@@ -4,7 +4,7 @@ $(document).ready(function () {
         if ($(this).hasClass('disabled')) {
 
         } else {
-            $(location).attr('href', '/property_form/?act=create&id=0');
+            $(location).attr('href', '/property_form?act=create&id=0');
         }
     });
 
