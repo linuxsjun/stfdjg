@@ -156,7 +156,6 @@ $(document).ready(function () {
 
     $('#imgupload').change(function () {
         // alert($('#headerimgform')[0]);
-
         $.ajax({
             url:"/property_upload/",
             type:"post",
@@ -205,12 +204,160 @@ $(document).ready(function () {
         $('#siddis').text($('#sid').val());
     });
 
-    // ---- 表单验证 ----
-    // 转大写
+    // ---- 输入修正 ----
     $('#sid').keyup(function () {
+        // 转大写
         $(this).val($(this).val().toUpperCase());
     });
 
+    // 输入建议
+    $('#name').keyup(function () {
+        // 只读时不产生后面的代码
+        if ($(this).attr('readonly')) {
+        } else {
+            if($(this).val()) {
+                var sch = $(this).val();
+                var dlist = $('#indexname');
+                $.get(
+                    '/property_form/',
+                    {act:'indexname', ilike:sch},
+                    function(data) {
+                        if(data.code === 0){
+                            dlist.empty();
+                            $.each(data.data,function (i,n) {
+                                dlist.append('<option value="' + n['name'] + '"/>');
+                            });
+                        } else{
+                            dlist.empty();
+                        }
+                    }
+                    );
+                $(this).removeClass('sr-only');
+            }else{
+                $('#indexname').addClass('sr-only');
+            }
+        }
+    });
+
+    $('#model').keyup(function () {
+        if ($(this).attr('readonly')) {
+        } else {
+            var sch = $(this).val();
+            var dlist = $('#indexmodel');
+            if($(this).val()) {
+                $.get(
+                    '/property_form/',
+                    {act:'indexmodel', ilike:sch},
+                    function(data) {
+                        if(data.code === 0){
+                            dlist.empty();
+                            $.each(data.data,function (i,n) {
+                                dlist.append('<option value="' + n['model'] + '"/>');
+                            });
+                        } else{
+                            dlist.empty();
+                        }
+                    }
+                    );
+                dlist.removeClass('sr-only');
+            }else{
+                dlist.addClass('sr-only');
+            }
+        }
+    });
+
+    $('#spec').keyup(function () {
+        if ($(this).attr('readonly')) {
+        } else {
+            var sch = $(this).val();
+            var dlist = $('#indexspec');
+            if($(this).val()) {
+                $.get(
+                    '/property_form/',
+                    {act:'indexspec', ilike:sch},
+                    function(data) {
+                        if(data.code === 0){
+                            dlist.empty();
+                            $.each(data.data,function (i,n) {
+                                dlist.append('<option value="' + n['specifications'] + '"/>');
+                            });
+                        } else{
+                            dlist.empty();
+                        }
+                    }
+                    );
+                dlist.removeClass('sr-only');
+            }else{
+                dlist.addClass('sr-only');
+            }
+        }
+    });
+
+    $('#position').keyup(function () {
+        if ($(this).attr('readonly')) {
+        } else {
+            var sch = $(this).val();
+            var dlist = $('#indexposition');
+            if($(this).val()) {
+                $.get(
+                    '/property_form/',
+                    {act:'indexposition', ilike:sch},
+                    function(data) {
+                        if(data.code === 0){
+                            dlist.empty();
+                            $.each(data.data,function (i,n) {
+                                dlist.append('<option value="' + n['position'] + '"/>');
+                            });
+                        } else{
+                            dlist.empty();
+                        }
+                    }
+                    );
+                dlist.removeClass('sr-only');
+            }else{
+                dlist.addClass('sr-only');
+            }
+        }
+    });
+
+    $('#categoryid').change(function () {
+        //Todo 同时修改配件的继承性
+        if($(this).val() == 0) {
+            $(this).addClass('is-invalid');
+            $('button[data-toggle="save"]').addClass("disabled");
+        }else{
+            $(this).removeClass('is-invalid');
+            $('button[data-toggle="save"]').removeClass("disabled");
+        }
+    });
+
+    $('#user').change(function () {
+        // 用户的部门职务信息
+        if($(this).val() == 0) {
+            $("#department").html("");
+            $("#hrposition").html("");
+            // $(this).addClass('is-invalid');
+            // $('button[data-toggle="save"]').addClass("disabled");
+        }else{
+            $.get(
+                '/property_form/',
+                {act:'dishrinfo', hrid:$(this).val()},
+                function(data) {
+                    if(data.code == 0){
+                        $("#department").html(data.data.departmentid__name);
+                        $("#hrposition").html(data.data.employeeid__position);
+                    } else{
+                        $("#department").html("");
+                        $("#hrposition").html("");
+                    }
+                }
+            );
+            // $(this).removeClass('is-invalid');
+            // $('button[data-toggle="save"]').removeClass("disabled");
+        }
+    });
+
+    // ---- 表单验证 ----
     // --- name必填 ---
     $('#name').blur(function () {
         if($(this).val() == "") {
@@ -244,9 +391,11 @@ $(document).ready(function () {
     });
 
     // sn 必填、不重复、改o为0
-    // Todo 查询时不验证，修改时当前记录不与本记录重复
+    // 只读不验证
+    //  Todo 修改时当前记录不与本记录重复
     $('#sn').blur(function () {
-        // if($(this).att('readonly') != True) {
+        if ($(this).attr('readonly')) {
+        } else {
             if ($(this).val() == "") {
                 $(this).addClass('is-invalid');
                 $('button[data-toggle="save"]').addClass("disabled");
@@ -264,42 +413,6 @@ $(document).ready(function () {
                         }
                     });
             }
-        // }
-    });
-
-    $('#categoryid').change(function () {
-        //Todo 同时修改配件的继承性
-        if($(this).val() == 0) {
-            $(this).addClass('is-invalid');
-            $('button[data-toggle="save"]').addClass("disabled");
-        }else{
-            $(this).removeClass('is-invalid');
-            $('button[data-toggle="save"]').removeClass("disabled");
-        }
-    });
-
-    $('#user').change(function () {
-        if($(this).val() == 0) {
-            $("#department").html("");
-            $("#hrposition").html("");
-            // $(this).addClass('is-invalid');
-            // $('button[data-toggle="save"]').addClass("disabled");
-        }else{
-            $.get(
-                '/property_form/',
-                {act:'dishrinfo', hrid:$(this).val()},
-                function(data) {
-                    if(data.code == 0){
-                        $("#department").html(data.data.departmentid__name);
-                        $("#hrposition").html(data.data.employeeid__position);
-                    } else{
-                        $("#department").html("");
-                        $("#hrposition").html("");
-                    }
-                }
-            );
-            // $(this).removeClass('is-invalid');
-            // $('button[data-toggle="save"]').removeClass("disabled");
         }
     });
 });

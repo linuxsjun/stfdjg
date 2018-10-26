@@ -647,7 +647,7 @@ def property_list(request):
 
     # print("%s\n%s" % (request.method,request.GET))
     if request.method == "GET":
-        print(request.GET)
+        # print(request.GET)
         if "act" in request.GET:
             if request.GET['act'] == 'filter':
                 data = {}
@@ -822,6 +822,62 @@ def property_form(request):
                     data['code'] = 1
                     data['msg'] = "FAIL"
                     data['data'] = "None"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexname":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(name__icontains=val,active=True).values('name').distinct()
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexmodel":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(model__icontains=val,active=True).values('model').distinct()
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexspec":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(specifications__icontains=val,active=True).values('specifications').distinct()
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexposition":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(position__icontains=val,active=True).values('position').distinct().order_by('position')
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "chacksid":

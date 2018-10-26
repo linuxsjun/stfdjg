@@ -191,13 +191,10 @@
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="name">名称</label>
                             <div class="col-sm-10">
                                 <!-- 做表单验证:必填 -->
-                                <!-- Todo 添加输入选择 -->
-                                <!-- asset_property.objects.filter(name__icontains="手").values('name').distinct() -->
-                                <input class="form-control required repeat" type="text" name="name" id="name" list="nameindex" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
-                                <datalist id="nameindex">
-                                    <option value="Brackets" />
-                                    <option value="Coda" />
-                                    <option value="Dreamweaver" />
+                                <!-- name添加输入选择 -->
+                                <input class="form-control required repeat" type="text" name="name" id="name" list="indexname" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
+                                <datalist id="indexname">
+                                    <option value="电脑" />
                                 </datalist>
                             </div>
                             <div class="invalid-feedback">
@@ -216,15 +213,19 @@
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="model">型号</label>
                             <div class="col-sm-10">
-                                <!-- Todo 添加输入选择 -->
-                                <input class="form-control" id="model" type="text" name="model" value="{{ context.model| default_if_none:"" }}"  placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="Model/PN">
+                                <input class="form-control" id="model" list="indexmodel" type="text" name="model" value="{{ context.model| default_if_none:"" }}"  placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="Model/PN">
+                                <datalist id="indexmodel">
+                                    <option value="" />
+                                </datalist>
                             </div>
                         </div>
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="spec">规格</label>
                             <div class="col-sm-10">
-                                <!-- Todo 添加输入选择 -->
-                                <input class="form-control" id="spec" type="text" name="specifications" value="{{ context.specifications| default_if_none:"" }}" placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="">
+                                <input class="form-control" id="spec" list="indexspec" type="text" name="specifications" value="{{ context.specifications| default_if_none:"" }}" placeholder="" data-container="body" data-toggle="tooltip" data-placement="right" title="">
+                                <datalist id="indexspec">
+                                    <option value="" />
+                                </datalist>
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -295,8 +296,10 @@
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="position">位置</label>
                             <div class="col-sm-10">
-                                <!-- Todo 添加输入选择 -->
-                                <input class="form-control" type="text" name="position" value="{{ context.position|default:"" }}" id="position" placeholder="">
+                                <input class="form-control" type="text" name="position" value="{{ context.position|default:"" }}" id="position" list="indexposition" placeholder="">
+                                <datalist id="indexposition">
+                                    <option value="" />
+                                </datalist>
                             </div>
                         </div>
                         <div class="w-100"></div>
