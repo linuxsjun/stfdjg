@@ -1,5 +1,84 @@
 $(document).ready(function () {
     //-----控制面板----
+    $('#search-btn').click(function () {
+        var val= $('#search-input').val();
+        $.get(
+            '/property_list/',
+            {
+                act:'filter',
+                field:'name',
+                ilike:val
+            },
+            function (data) {
+                var htxt = "";
+                if(data.code === 0) {
+                    $.each(data.data, function (i, n) {
+                        if ((n['user__name'] != null) && (n["user__active"] == 0)) {
+                            htxt += '<tr class="text-danger">';
+                        } else {
+                            htxt += '<tr>';
+                        }
+                        htxt += '<td><input type="checkbox" name="selitem" value="' + n["id"] + '"></td>';
+                        if (n["status"] === 1) {
+                            htxt += "<td><span class=\"badge badge-secondary\">闲置</span></td>";
+                        } else if (n["status"] === 2) {
+                            htxt += "<td><span class=\"badge badge-success\">在用</span></td>";
+                        } else if (n["status"] === 3) {
+                            htxt += "<td><span class=\"badge badge-warning\">维修</span></td>";
+                        } else if (n["status"] === 4) {
+                            htxt += "<td><span class=\"badge badge-danger\">报废</span></td>";
+                        }
+                        htxt += "<td>" + n["sid"] + "</td>";
+                        htxt += "<td>" + n["name"] + "</td>";
+
+                        if (n["specifications"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["specifications"] + "</td>";
+                        }
+                        if (n["sn"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["sn"] + "</td>";
+                        }
+                        if (n["purchase"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["purchase"] + "</td>";
+                        }
+                        if (n["warranty"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["warranty"] + "</td>";
+                        }
+                        if (n["user__name"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["user__name"] + "</td>";
+                        }
+                        if (n["position"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["position"] + "</td>";
+                        }
+
+                        htxt += '</tr>';
+                    });
+                }else{
+                    htxt = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                }
+                console.log(htxt);
+                $('tbody').empty();
+                $("tbody").append(htxt);
+            }
+        );
+    });
+
+    // $('#search-input').input(function () {
+    //     var val= $('#search-input').val();
+    //     console.log(val);
+    // });
+
     $('button[data-toggle="create"]').click(function () {
         if ($(this).hasClass('disabled')) {
 
@@ -200,10 +279,16 @@ $(document).ready(function () {
                         } else {
                             htxt += "<td>" + n["sn"] + "</td>";
                         }
-
-                        htxt += "<td>" + n["purchase"] + "</td>";
-                        htxt += "<td>" + n["warranty"] + "</td>";
-
+                        if (n["purchase"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["purchase"] + "</td>";
+                        }
+                        if (n["warranty"] === null) {
+                            htxt += "<td></td>";
+                        } else {
+                            htxt += "<td>" + n["warranty"] + "</td>";
+                        }
                         if (n["user__name"] === null) {
                             htxt += "<td></td>";
                         } else {

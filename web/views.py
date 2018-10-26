@@ -651,10 +651,11 @@ def property_list(request):
         if "act" in request.GET:
             if request.GET['act'] == 'filter':
                 data = {}
-                data['field'] = request.GET['field']
-                data['search'] = request.GET['search']
+                search = {}
+                search['field'] = request.GET['field']
+                search['ilike'] = request.GET['ilike']
 
-                ps = asset_property.objects.filter(user__name__icontains="孙", active=True).values('id',
+                ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
                                                          'status',
                                                          'sid',
                                                          'name',
@@ -665,15 +666,37 @@ def property_list(request):
                                                          'user__active',
                                                          'position',
                                                          'sn')
+                u = list(ps)
+                ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True).values('id',
+                                                         'status',
+                                                         'sid',
+                                                         'name',
+                                                         'specifications',
+                                                         'purchase',
+                                                         'warranty',
+                                                         'user__name',
+                                                         'user__active',
+                                                         'position',
+                                                         'sn')
+                for i in list(ps):
+                    u.append(i)
                 s=[]
-                u=list(ps)
                 for t in u:
                     if t['purchase']:
                         t['purchase']=t['purchase'].strftime("%Y-%m-%d")
                     if t['warranty']:
                         t['warranty']=t['warranty'].strftime("%Y-%m-%d")
                     s.append(t)
-                data=json.dumps(s)
+                if len(s):
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = s
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                print(data)
+                data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
         else:
             # 没有动作,输出默认列表
@@ -705,7 +728,6 @@ def property_list(request):
                                                          'user__active',
                                                          'position',
                                                          'sn').order_by(sns)
-
                 s=[]
                 u=list(ps)
                 for t in u:

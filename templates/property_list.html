@@ -10,22 +10,25 @@
             <div class="row mt-2">
                 <h3 class="col-sm-6">{{ title }}</h3>
                 <div class="col-sm-6">
-                    <div class="input-group">
-                        <input type="text" list="typesch" class="form-control" placeholder="搜索...">
-                        <datalist id="typesch">
-                            <!-- Todo 搜索-->
-                            <option value="编号">sssss</option>
-                            <option value="规格"></option>
-                            <option value="出厂编号"></option>
-                            <option value="购买日期"></option>
-                            <option value="维保日期"></option>
-                            <option value="用户"></option>
-                            <option value="位置"></option>
-                        </datalist>
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button"><i class="fa fa-search-plus fa-1x"></i></button>
+                    <form id="search">
+{#                        {% csrf_token %}#}
+                        <div class="input-group">
+                            <input type="text" list="typesch" class="form-control" id="search-input" name="search-input" placeholder="搜索...">
+                            <datalist id="typesch">
+                                <!-- Todo 搜索-->
+                                <option value="编号"></option>
+                                <option value="规格"></option>
+                                <option value="出厂编号"></option>
+                                <option value="购买日期"></option>
+                                <option value="维保日期"></option>
+                                <option value="用户"></option>
+                                <option value="位置"></option>
+                            </datalist>
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" id="search-btn"><i class="fa fa-search-plus fa-1x"></i></button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="row mt-2">
