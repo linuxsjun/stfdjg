@@ -1,7 +1,17 @@
 $(document).ready(function () {
     //-----控制面板----
+    $('#search-input').bind('keypress',function(event){
+        if(event.keyCode === 13)
+        {
+            return $('#search-btn').click();
+        }
+    });
+
     $('#search-btn').click(function () {
         var val= $('#search-input').val();
+        // if (val ===  ""){
+        //     return;
+        // }
         $.get(
             '/property_list/',
             {

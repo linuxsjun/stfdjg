@@ -667,6 +667,18 @@ def property_list(request):
                                                          'position',
                                                          'sn')
                 u = list(ps)
+                ps = asset_property.objects.filter(sn__icontains=search['ilike'], active=True).values('id',
+                                                         'status',
+                                                         'sid',
+                                                         'name',
+                                                         'specifications',
+                                                         'purchase',
+                                                         'warranty',
+                                                         'user__name',
+                                                         'user__active',
+                                                         'position',
+                                                         'sn')
+                u = list(ps)
                 ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True).values('id',
                                                          'status',
                                                          'sid',
@@ -695,7 +707,6 @@ def property_list(request):
                     data['code'] = 1
                     data['msg'] = "Fail"
                     data['data'] = "无返回值"
-                print(data)
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
         else:

@@ -55,7 +55,7 @@ $(document).ready(function () {
                 "act":"unactive",
                 "id":asid
             },
-            success:function (data) {
+            success:function () {
                 window.location.href="/property_list/";
             },
             fail:function(){
@@ -77,7 +77,7 @@ $(document).ready(function () {
             $.post(
                 "/property_form/",
                 $('form').serialize(),
-                function(context,status){
+                function(context){
                     window.location.href="/property_form?act=display&id="+context;
                 }
             );
@@ -101,7 +101,7 @@ $(document).ready(function () {
         var asid = $("#assetid").text();
         var act = "";
 
-        if (val == "1") {
+        if (val === "1") {
             sel.attr("data-val",0);
             sel.html('<i class="fa fa-archive fa-1x"></i>取档');
             act = "unactive";
