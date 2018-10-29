@@ -104,6 +104,14 @@ class hr_conf(models.Model):
     corpsecret = models.CharField(max_length=64,null=True, verbose_name='企业微信密钥')
 
 #==================设备表==================
+class asset_application(models.Model):
+    appdate = models.DateTimeField(auto_created=True, verbose_name="申请时间")
+    applicant = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='申请人')
+    Explain = models.TextField(null=True, blank=True, verbose_name='说明')
+    type = models.IntegerField(null=True, blank=True, verbose_name='借用/领用')
+
+    class Meta:
+        db_table = 'asset_application'
 class asset_category(models.Model):
     #设备分类
     name = models.CharField(unique=True, max_length=32, verbose_name='名称')

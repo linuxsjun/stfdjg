@@ -647,7 +647,7 @@ def property_list(request):
 
     # print("%s\n%s" % (request.method,request.GET))
     if request.method == "GET":
-        # print(request.GET)
+        print(request.GET)
         if "act" in request.GET:
             if request.GET['act'] == 'filter':
                 data = {}
@@ -678,7 +678,21 @@ def property_list(request):
                                                          'user__active',
                                                          'position',
                                                          'sn')
-                u = list(ps)
+                for i in list(ps):
+                    u.append(i)
+                ps = asset_property.objects.filter(name__icontains=search['ilike'], active=True).values('id',
+                                                         'status',
+                                                         'sid',
+                                                         'name',
+                                                         'specifications',
+                                                         'purchase',
+                                                         'warranty',
+                                                         'user__name',
+                                                         'user__active',
+                                                         'position',
+                                                         'sn')
+                for i in list(ps):
+                    u.append(i)
                 ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True).values('id',
                                                          'status',
                                                          'sid',
@@ -692,16 +706,44 @@ def property_list(request):
                                                          'sn')
                 for i in list(ps):
                     u.append(i)
-                s=[]
+                ps = asset_property.objects.filter(position__icontains=search['ilike'], active=True).values('id',
+                                                         'status',
+                                                         'sid',
+                                                         'name',
+                                                         'specifications',
+                                                         'purchase',
+                                                         'warranty',
+                                                         'user__name',
+                                                         'user__active',
+                                                         'position',
+                                                         'sn')
+                for i in list(ps):
+                    u.append(i)
+
+                # 去重
+                repid=[]
+                calid=[]
+                k = 0
+                for i in u:
+                    if (i['id'] in repid):
+                        pass
+                    else:
+                        repid.append(i['id'])
+                        calid.append(i)
+                u = calid
+
+                s = []
                 for t in u:
                     if t['purchase']:
-                        t['purchase']=t['purchase'].strftime("%Y-%m-%d")
+                        t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
                     if t['warranty']:
-                        t['warranty']=t['warranty'].strftime("%Y-%m-%d")
+                        t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
                     s.append(t)
+
                 if len(s):
                     data['code'] = 0
                     data['msg'] = "OK"
+                    data['spk'] = len(s)
                     data['data'] = s
                 else:
                     data['code'] = 1
@@ -722,6 +764,7 @@ def property_list(request):
                                                                    'user__active',
                                                                    'position',
                                                                    'sn').order_by('name', 'specifications', 'sid')
+            context['spk'] = ps.count()
             context['context'] = ps
     elif request.method == "POST":
         print(request.POST)
@@ -1032,6 +1075,11 @@ def property_form(request):
                 else:
                     userid = hr_hr.objects.filter(id=guserid).first()
 
+                if (request.POST.get('bom', False)):
+                    bom = False
+                else:
+                    bom = True
+
                 # 获取默认日期，当天日期
                 pdate = request.POST['purchase']
                 if pdate == '':
@@ -1058,6 +1106,7 @@ def property_form(request):
                     specifications = request.POST['specifications'],
                     model = request.POST['model'],
                     categoryid = catid,
+                    bom = bom,
                     purchase = purchase,
                     price = float(request.POST['price']),
                     manufacture = manufacture,
@@ -1076,6 +1125,13 @@ def property_form(request):
             if request.POST['act'] == 'edit':
                 act='edit'
                 id = int(request.POST['id'])
+
+                wdat = request.POST['warranty']
+                if wdat == '':
+                    warranty = datetime.datetime.today()
+                else:
+                    warranty = datetime.datetime.strptime(wdat, "%Y-%m-%d")
+
                 return HttpResponse(id)
 
     return render(request, 'property_form.html', context)

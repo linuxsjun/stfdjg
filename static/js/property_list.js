@@ -22,6 +22,7 @@ $(document).ready(function () {
             function (data) {
                 var htxt = "";
                 if(data.code === 0) {
+                    $('#assetid').text("0-0/"+data.spk);
                     $.each(data.data, function (i, n) {
                         if ((n['user__name'] != null) && (n["user__active"] == 0)) {
                             htxt += '<tr class="text-danger">';
@@ -182,19 +183,19 @@ $(document).ready(function () {
             alli.removeClass("fa fa-sort-alpha-asc");
             alli.removeClass("fa fa-sort-alpha-desc");
 
-            if (obj.attr('data-id') == 0) {
+            if (obj.attr('data-id') === "0") {
                 alli.attr('data-id', 0);
 
                 obj.attr('data-id', 1);
                 obj.addClass("fa fa-sort-alpha-asc");
                 sortitem = sortitem;
-            } else if (obj.attr('data-id') == 1) {
+            } else if (obj.attr('data-id') === "1") {
                 alli.attr('data-id', 0);
 
                 obj.attr('data-id', 2);
                 obj.addClass("fa fa-sort-alpha-desc");
                 sortitem = "-" + sortitem;
-            } else if (obj.attr('data-id') == 2) {
+            } else if (obj.attr('data-id') === "2") {
                 alli.attr('data-id', 0);
 
                 $('th[data-id="name"] i').addClass("fa fa-sort-alpha-asc");
@@ -326,7 +327,6 @@ $(document).ready(function () {
     //----点选----
     // $("tbody tr td:first-child").nextAll().css('background','blue');
     // $("tbody tr td:not(:first-child)").css('background','blue');
-
     $("tbody").on("click","tr td:not(:first-child)",function () {
         var showsel = $(this).siblings().eq(0).find('input').val();
         window.location.href="/property_form?act=display&id="+showsel;

@@ -16,7 +16,7 @@
                             <input type="text" list="typesch" class="form-control" id="search-input" name="search-input" placeholder="搜索...">
                             <datalist id="typesch">
                                 <!-- Todo 搜索-->
-                                <option value="编号"></option>
+                                <option value="编号">sid</option>
                                 <option value="规格"></option>
                                 <option value="出厂编号"></option>
                                 <option value="购买日期"></option>
@@ -88,7 +88,7 @@
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="page-item disabled"><a class="page-link"><span id="assetid">{{ pk|default:0 }}-{{ pk|default:0 }}</span>/{{ spk|default:0 }}</a></li>
+                            <li class="page-item disabled"><a class="page-link"><span id="assetid">{{ fpk|default:0 }}-{{ tpk|default:0 }}/{{ spk|default:0 }}</span></a></li>
                             <li class="page-item disabled">
                                 <a class="page-link" href="#" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>

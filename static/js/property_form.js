@@ -67,6 +67,7 @@ $(document).ready(function () {
 
     // ----编辑工具条----
     $('button[data-toggle="save"]').on('click', function () {
+        // Todo 保存之前要做表单验证
         if ($(this).hasClass('disabled')) {
 
         } else {
@@ -360,31 +361,40 @@ $(document).ready(function () {
     // ---- 表单验证 ----
     // --- name必填 ---
     $('#name').blur(function () {
-        if($(this).val() == "") {
-            $(this).addClass('is-invalid');
-            $('button[data-toggle="save"]').addClass("disabled");
-        }else{
-            $(this).removeClass('is-invalid');
-            $('button[data-toggle="save"]').removeClass("disabled");
+        var me = $('#name');
+        var pop = $('#popname');
+        if (me.attr('readonly')) {
+        } else {
+            if($(this).val() == "") {
+                me.addClass('is-invalid');
+                $('button[data-toggle="save"]').addClass("disabled");
+            }else{
+                me.removeClass('is-invalid');
+                $('button[data-toggle="save"]').removeClass("disabled");
+            }
         }
     });
 
     // sid 必填、不重复
     $('#sid').blur(function () {
-        if($(this).val() == "") {
-            $(this).addClass('is-invalid');
+        var me = $('#sid');
+        var pop = $('#popsid');
+        if(me.val() === "") {
+            pop.text('必填');
+            me.addClass('is-invalid');
             $('button[data-toggle="save"]').addClass("disabled");
         }else{
              $.get(
                  "/property_form",
                  {act:'chacksid',sid:$(this).val()},
                  function (data) {
-                     if (data.code == "0") {
+                     if (data.code === 0) {
                          $('button[data-toggle="save"]').removeClass("disabled");
-                         $('#sid').removeClass('is-invalid');
+                         me.removeClass('is-invalid');
                      } else {
                          $('button[data-toggle="save"]').addClass("disabled");
-                         $('#sid').addClass('is-invalid');
+                         pop.text('此编号已存在');
+                         me.addClass('is-invalid');
                      }
                  });
         }
@@ -394,25 +404,31 @@ $(document).ready(function () {
     // 只读不验证
     //  Todo 修改时当前记录不与本记录重复
     $('#sn').blur(function () {
-        if ($(this).attr('readonly')) {
+        var me = $('#sn');
+        var pop = $('#popsn');
+        if (me.attr('readonly')) {
         } else {
-            if ($(this).val() == "") {
-                $(this).addClass('is-invalid');
+            if (me.val() === "") {
+                pop.text('必填');
+                me.addClass('is-invalid');
                 $('button[data-toggle="save"]').addClass("disabled");
             } else {
                 $.get(
                     "/property_form",
                     {act: 'chacksn', sn: $(this).val()},
                     function (data) {
-                        if (data.code == "0") {
+                        if (data.code === 0) {
                             $('button[data-toggle="save"]').removeClass("disabled");
-                            $('#sn').removeClass('is-invalid');
+                            me.removeClass('is-invalid');
                         } else {
                             $('button[data-toggle="save"]').addClass("disabled");
-                            $('#sn').addClass('is-invalid');
+                            pop.text('此编号已存在');
+                            me.addClass('is-invalid');
                         }
                     });
             }
         }
     });
+
+
 });

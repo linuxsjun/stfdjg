@@ -134,6 +134,9 @@
                                         <div class="col mb-3">
                                             <input class="form-control" type="text" name="sid" id="sid" value="{{ context.sid }}" placeholder="(必填,不可重复)"
                                                    data-toggle="tooltip" data-placement="right" title='设备编号A-Z、0-9、"-_"'/>
+                                            <div class="invalid-tooltip" id="popsid">
+                                                必填
+                                            </div>
                                         </div>
                                         <div class="w-100"></div>
                                         <button type="button" class="btn btn-outline-secondary ml-3" id="upload"><i class="fa fa-pencil fa-1x"></i></button>
@@ -193,19 +196,23 @@
                                 <!-- 做表单验证:必填 -->
                                 <!-- name添加输入选择 -->
                                 <input class="form-control required repeat" type="text" name="name" id="name" list="indexname" value="{{ context.name }}" placeholder="(必填)" data-toggle="tooltip" data-placement="right" title="必填">
+                                <div class="invalid-tooltip" id="popname">
+                                    必填
+                                </div>
                                 <datalist id="indexname">
                                     <option value="电脑" />
                                 </datalist>
                             </div>
-                            <div class="invalid-feedback">
-                                必填
-                            </div>
+
                         </div>
                         <div class="form-group form-row col-sm">
                             <label class="col-sm-2 col-form-label text-left text-sm-right" for="sn">出厂编号</label>
                             <div class="col-sm-10">
                                 <!-- 做表单验证：必填、不重复 -->
                                 <input class="form-control" id="sn" type="text" name="sn" value="{{ context.sn }}" placeholder="(必填,不可重复)" data-toggle="tooltip" data-placement="right" title="必填:改o为0">
+                                <div class="invalid-tooltip" id="popsn">
+                                    必填
+                                </div>
                             </div>
                         </div>
                         <div class="w-100"></div>
@@ -258,8 +265,8 @@
                             <label class="col-sm-2 col-form-label text-left text-sm-right">配件</label>
                             <div class="col-sm-10 align-self-center">
                                 <div class="form-check">
-                                    <input class="form-check-input" id="bom" type="checkbox" name="bom" val=""/>
-                                    <label class="form-check-label" for="bom">配件</label>
+                                    <input class="form-check-input" id="bom" type="checkbox" name="bom" {% if context.bom %} checked="checked" {% endif %} val="False"/>
+                                    <label class="form-check-label" for="bom">配件/组合件</label>
                                 </div>
                             </div>
                         </div>
