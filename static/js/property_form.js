@@ -327,8 +327,23 @@ $(document).ready(function () {
             $(this).addClass('is-invalid');
             $('button[data-toggle="save"]').addClass("disabled");
         }else{
-            $(this).removeClass('is-invalid');
-            $('button[data-toggle="save"]').removeClass("disabled");
+            $.get(
+                '/property_form/',
+                {act:'discategory', categoryid:$(this).val()},
+                function(data) {
+                    if(data.code === 0){
+                        $('#categoryid').removeClass('is-invalid');
+                        $('button[data-toggle="save"]').removeClass("disabled");
+                        // console.log(data.data['bom']);
+                        if( data.data['bom']){
+                            $('#bom').prop("checked", true);
+                        }else {
+                            $('#bom').prop("checked", false);
+                        }
+                    }else{
+                    }
+                }
+            );
         }
     });
 

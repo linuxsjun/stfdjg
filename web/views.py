@@ -900,6 +900,20 @@ def property_form(request):
                     data['data'] = "None"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "discategory":
+                gcategoryid = int(request.GET['categoryid'])
+                categorydeppos = asset_category.objects.filter(id=gcategoryid).values('id', 'name', 'bom').first()
+                data = {}
+                if categorydeppos:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = categorydeppos
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = "None"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "indexname":
                 val = request.GET['ilike']
                 t = asset_property.objects.filter(name__icontains=val,active=True).values('name').distinct()
