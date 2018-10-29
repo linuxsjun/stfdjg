@@ -1140,11 +1140,51 @@ def property_form(request):
                 act='edit'
                 id = int(request.POST['id'])
 
+                pid = asset_property.objects.get(id=id)
+
+                ugcatid = int(request.POST['categoryid'])
+                pid.categoryid = asset_category.objects.filter(id=ugcatid).first()
+
+                guserid = int(request.POST['user'])
+                pid.user = hr_hr.objects.filter(id=guserid).first()
+
+                if (request.POST.get('bom', False)):
+                    pid.bom = True
+                else:
+                    pid.bom = False
+
+                # # 获取默认日期，当天日期
+                pdate = request.POST['purchase']
+                if pdate == '':
+                    pid.purchase = datetime.datetime.today()
+                else:
+                    pid.purchase = datetime.datetime.strptime(pdate, "%Y-%m-%d")
+
                 wdat = request.POST['warranty']
                 if wdat == '':
-                    warranty = datetime.datetime.today()
+                    pid.warranty = datetime.datetime.today()
                 else:
-                    warranty = datetime.datetime.strptime(wdat, "%Y-%m-%d")
+                    pid.warranty = datetime.datetime.strptime(wdat, "%Y-%m-%d")
+
+                rdat = request.POST['manufacture']
+                if rdat == '':
+                    pid.manufacture = datetime.datetime.today()
+                else:
+                    pid.manufacture = datetime.datetime.strptime(rdat, "%Y-%m-%d")
+
+                pid.sid = request.POST.get('sid')
+                pid.name = request.POST['name']
+                pid.sn = request.POST['sn']
+                pid.specifications = request.POST['specifications']
+                pid.model = request.POST['model']
+                pid.price = float(request.POST['price'])
+                # # partlist = request.POST[''],
+                pid.position = request.POST['position']
+                pid.status = 1
+                pid.nots = request.POST['comment']
+                pid.active = True
+
+                pid.save()
 
                 return HttpResponse(id)
 
