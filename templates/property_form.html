@@ -81,7 +81,7 @@
                 <input name="act" id="act" value="{{ act }}" type="hidden">
 
                 <div class="row shadow border-top border-bottom py-2">
-                    <div class="col-auto mr-auto">
+                    <div class="col-auto mr-auto  sr-only">
                         <button type="button" class="btn btn-outline-primary" disabled="True">领用</button>
                         <button type="button" class="btn btn-outline-info" disabled="True">借用</button>
                         <button type="button" class="btn btn-outline-dark" disabled="True">退还</button>
@@ -163,21 +163,21 @@
                                         </button>
                                     {% endif %}
                                 </div>
-                                <div class="btn-group" role="group">
+                                <div class="btn-group sr-only" role="group">
                                     <button type="button" class="btn btn-outline-primary">
                                         <i class="fa fa-wrench fa-1x"></i>
                                         维修
                                         <span class="badge badge-secondary">15</span>
                                     </button>
                                 </div>
-                                <div class="btn-group" role="group">
+                                <div class="btn-group sr-only" role="group">
                                     <button type="button" class="btn btn-outline-primary">
                                         <i class="fa fa-truck fa-1x"></i>
                                         调配
                                         <span class="badge badge-secondary">9</span>
                                     </button>
                                 </div>
-                                <div class="btn-group" role="group">
+                                <div class="btn-group sr-only" role="group">
                                     <button type="button" class="btn btn-outline-primary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                                         <i class="fa fa-paperclip fa-1x"></i>
                                         附件
@@ -499,10 +499,7 @@
                                 <div class="form-group form-row">
                                     <label class="col-form-label text-left text-sm-right col-sm-2">名称</label>
                                     <div class="col-sm-10">
-                                        <input type="text" class="form-control" name="categoryname" value="{{ context.categoryid }}" aria-describedby="passwordHelpBlock">
-                                        <small id="passwordHelpBlock" class="form-text text-muted">
-                                            Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces, special characters, or emoji.
-                                        </small>
+                                        <input type="text" class="form-control" name="categoryname" value="{{ context.categoryid.name }}" aria-describedby="passwordHelpBlock">
                                         <div class="invalid-feedback">
                                             Please provide a valid city.
                                         </div>
@@ -532,7 +529,8 @@
                                     <label class="form-check-label col-sm-2">组件</label>
                                     <div class="col-sm-10">
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input">
+                                            <input class="form-check-input" id="bom" type="checkbox" name="bom" {% if context.bom %} checked="checked" {% endif %} val="False"/>
+                                            <label class="form-check-label" for="bom">配件/组合件</label>
                                         </div>
                                     </div>
                                 </div>

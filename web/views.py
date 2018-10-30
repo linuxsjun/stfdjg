@@ -1029,6 +1029,10 @@ def property_form(request):
                     ps = asset_property.objects.filter(id=id).first()
                 else:
                     context['title'] = '设备单 / 新建'
+
+                    # 默认类型
+                    ps['categoryid'] = 1
+
                     # 默认价格
                     ps["price"] = 0
 
