@@ -531,13 +531,12 @@ def uploadfile(request):
                 fp.write(info)
 
         wb = load_workbook(filePath)
-        e = wb.sheetnames()
+        e = wb.sheetnames
         print(e)
         sheet = wb["Sheet2"]
-        print(sheet["C1"].value)
-        print(sheet.rows)
-        print(sheet.columns)
-        wb.close()
+        for row in sheet.rows:
+            for cell in row:
+                print(cell.value)
 
         return HttpResponse('ok')
     else:
