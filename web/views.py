@@ -654,83 +654,96 @@ def property_list(request):
                 search = {}
                 search['field'] = request.GET['field']
                 search['ilike'] = request.GET['ilike']
+                if search['field'] == "unactive":
+                    ps = asset_property.objects.filter(active=False).values('id',
+                                                                            'status',
+                                                                            'sid',
+                                                                            'name',
+                                                                            'specifications',
+                                                                            'purchase',
+                                                                            'warranty',
+                                                                            'user__name',
+                                                                            'user__active',
+                                                                            'position',
+                                                                            'sn')
+                    u = list(ps)
+                else:
+                    ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
+                                                             'status',
+                                                             'sid',
+                                                             'name',
+                                                             'specifications',
+                                                             'purchase',
+                                                             'warranty',
+                                                             'user__name',
+                                                             'user__active',
+                                                             'position',
+                                                             'sn')
+                    u = list(ps)
+                    ps = asset_property.objects.filter(sn__icontains=search['ilike'], active=True).values('id',
+                                                             'status',
+                                                             'sid',
+                                                             'name',
+                                                             'specifications',
+                                                             'purchase',
+                                                             'warranty',
+                                                             'user__name',
+                                                             'user__active',
+                                                             'position',
+                                                             'sn')
+                    for i in list(ps):
+                        u.append(i)
+                    ps = asset_property.objects.filter(name__icontains=search['ilike'], active=True).values('id',
+                                                             'status',
+                                                             'sid',
+                                                             'name',
+                                                             'specifications',
+                                                             'purchase',
+                                                             'warranty',
+                                                             'user__name',
+                                                             'user__active',
+                                                             'position',
+                                                             'sn')
+                    for i in list(ps):
+                        u.append(i)
+                    ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True).values('id',
+                                                             'status',
+                                                             'sid',
+                                                             'name',
+                                                             'specifications',
+                                                             'purchase',
+                                                             'warranty',
+                                                             'user__name',
+                                                             'user__active',
+                                                             'position',
+                                                             'sn')
+                    for i in list(ps):
+                        u.append(i)
+                    ps = asset_property.objects.filter(position__icontains=search['ilike'], active=True).values('id',
+                                                             'status',
+                                                             'sid',
+                                                             'name',
+                                                             'specifications',
+                                                             'purchase',
+                                                             'warranty',
+                                                             'user__name',
+                                                             'user__active',
+                                                             'position',
+                                                             'sn')
+                    for i in list(ps):
+                        u.append(i)
 
-                ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn')
-                u = list(ps)
-                ps = asset_property.objects.filter(sn__icontains=search['ilike'], active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn')
-                for i in list(ps):
-                    u.append(i)
-                ps = asset_property.objects.filter(name__icontains=search['ilike'], active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn')
-                for i in list(ps):
-                    u.append(i)
-                ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn')
-                for i in list(ps):
-                    u.append(i)
-                ps = asset_property.objects.filter(position__icontains=search['ilike'], active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn')
-                for i in list(ps):
-                    u.append(i)
-
-                # 去重
-                repid=[]
-                calid=[]
-                k = 0
-                for i in u:
-                    if (i['id'] in repid):
-                        pass
-                    else:
-                        repid.append(i['id'])
-                        calid.append(i)
-                u = calid
+                    # 去重
+                    repid=[]
+                    calid=[]
+                    k = 0
+                    for i in u:
+                        if (i['id'] in repid):
+                            pass
+                        else:
+                            repid.append(i['id'])
+                            calid.append(i)
+                    u = calid
 
                 s = []
                 for t in u:
@@ -748,7 +761,44 @@ def property_list(request):
                 else:
                     data['code'] = 1
                     data['msg'] = "Fail"
+                    data['spk'] = 0
                     data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == 'sort':
+                data = {}
+                sns = request.GET['Field']
+                ps = asset_property.objects.filter(active=True).values('id',
+                                                                       'status',
+                                                                       'sid',
+                                                                       'name',
+                                                                       'specifications',
+                                                                       'purchase',
+                                                                       'warranty',
+                                                                       'user__name',
+                                                                       'user__active',
+                                                                       'position',
+                                                                       'sn').order_by(sns)
+                s = []
+                u = list(ps)
+                for t in u:
+                    if t['purchase']:
+                        t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
+                    if t['warranty']:
+                        t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+                    s.append(t)
+
+                if len(s):
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['spk'] = len(s)
+                    data['data'] = s
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['spk'] = 0
+                    data['data'] = "无返回值"
+
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
         else:
@@ -763,35 +813,13 @@ def property_list(request):
                                                                    'user__name',
                                                                    'user__active',
                                                                    'position',
-                                                                   'sn').order_by('name', 'specifications', 'sid')
+                                                                   'sn').order_by('name', 'specifications', 'sid')[:100]
             context['spk'] = ps.count()
             context['context'] = ps
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
-            if request.POST['act'] == 'sort':
-                sns = request.POST['Field']
-                ps = asset_property.objects.filter(active=True).values('id',
-                                                         'status',
-                                                         'sid',
-                                                         'name',
-                                                         'specifications',
-                                                         'purchase',
-                                                         'warranty',
-                                                         'user__name',
-                                                         'user__active',
-                                                         'position',
-                                                         'sn').order_by(sns)
-                s=[]
-                u=list(ps)
-                for t in u:
-                    if t['purchase']:
-                        t['purchase']=t['purchase'].strftime("%Y-%m-%d")
-                    if t['warranty']:
-                        t['warranty']=t['warranty'].strftime("%Y-%m-%d")
-                    s.append(t)
-                data=json.dumps(s)
-                return HttpResponse(data,content_type="application/json")
+            pass
 
     return render(request, 'property_list.html', context)
 

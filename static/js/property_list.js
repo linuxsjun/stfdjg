@@ -1,4 +1,64 @@
 $(document).ready(function () {
+    // ----扩展函数----
+    $.extend(
+        {
+            'listitem':function (data) {
+            var htxt = "";
+            $.each(data,function (i,n) {
+                if((n['user__name'] != null) && (n["user__active"] == 0)) {
+                    htxt += '<tr class="text-danger">';
+                } else {
+                    htxt += '<tr>';
+                }
+                htxt += '<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>';
+                if (n["status"] === 1) {
+                    htxt += "<td><span class=\"badge badge-secondary\">闲置</span></td>";
+                }else if (n["status"] === 2) {
+                     htxt += "<td><span class=\"badge badge-success\">在用</span></td>";
+                }else if (n["status"] === 3) {
+                     htxt += "<td><span class=\"badge badge-warning\">维修</span></td>";
+                } else if (n["status"] === 4) {
+                     htxt += "<td><span class=\"badge badge-danger\">报废</span></td>";
+                }
+                htxt += "<td>" + n["sid"] + "</td>";
+                htxt += "<td>" + n["name"] + "</td>";
+
+                if (n["specifications"] === null) {
+                    htxt += "<td></td>";
+                } else {
+                    htxt += "<td>" + n["specifications"] + "</td>";
+                }
+                if (n["sn"] === null) {
+                    htxt += "<td></td>";
+                } else {
+                    htxt += "<td>" + n["sn"] + "</td>";
+                }
+                if (n["purchase"] === null) {
+                    htxt += "<td></td>";
+                } else {
+                    htxt += "<td>" + n["purchase"] + "</td>";
+                }
+                if (n["warranty"] === null) {
+                    htxt += "<td></td>";
+                } else {
+                    htxt += "<td>" + n["warranty"] + "</td>";
+                }
+                if (n["user__name"] === null) {
+                    htxt += "<td></td>";
+                } else {
+                    htxt += "<td>" + n["user__name"] + "</td>";
+                }
+                if (n["position"] === null) {
+                    htxt += "<td></td>";
+                } else {
+                    htxt += "<td>" + n["position"] + "</td>";
+                }
+                htxt += '</tr>';
+            });
+            return htxt;}
+        }
+    );
+
     //-----控制面板----
     $('#search-input').bind('keypress',function(event){
         if(event.keyCode === 13)
@@ -20,75 +80,48 @@ $(document).ready(function () {
                 ilike:val
             },
             function (data) {
-                var htxt = "";
                 if(data.code === 0) {
                     $('#assetid').text("0-0/"+data.spk);
-                    $.each(data.data, function (i, n) {
-                        if ((n['user__name'] != null) && (n["user__active"] == 0)) {
-                            htxt += '<tr class="text-danger">';
-                        } else {
-                            htxt += '<tr>';
-                        }
-                        htxt += '<td><input type="checkbox" name="selitem" value="' + n["id"] + '"></td>';
-                        if (n["status"] === 1) {
-                            htxt += "<td><span class=\"badge badge-secondary\">闲置</span></td>";
-                        } else if (n["status"] === 2) {
-                            htxt += "<td><span class=\"badge badge-success\">在用</span></td>";
-                        } else if (n["status"] === 3) {
-                            htxt += "<td><span class=\"badge badge-warning\">维修</span></td>";
-                        } else if (n["status"] === 4) {
-                            htxt += "<td><span class=\"badge badge-danger\">报废</span></td>";
-                        }
-                        htxt += "<td>" + n["sid"] + "</td>";
-                        htxt += "<td>" + n["name"] + "</td>";
-
-                        if (n["specifications"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["specifications"] + "</td>";
-                        }
-                        if (n["sn"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["sn"] + "</td>";
-                        }
-                        if (n["purchase"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["purchase"] + "</td>";
-                        }
-                        if (n["warranty"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["warranty"] + "</td>";
-                        }
-                        if (n["user__name"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["user__name"] + "</td>";
-                        }
-                        if (n["position"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["position"] + "</td>";
-                        }
-
-                        htxt += '</tr>';
-                    });
+                    var htext= $.listitem(data.data);
                 }else{
-                    htxt = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                    $('#assetid').text("0-0/0");
+                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
                 }
-                console.log(htxt);
                 $('tbody').empty();
-                $("tbody").append(htxt);
+                $("tbody").append(htext);
             }
         );
     });
 
-    // $('#search-input').input(function () {
-    //     var val= $('#search-input').val();
-    //     console.log(val);
-    // });
+    $('#unactive').click(function (e) {
+        var _this = $(this);
+        var subHref = _this.attr('href');
+        e.preventDefault();
+        $.get(
+            "/property_list/",
+            {
+                act:"filter",
+                field:"unactive",
+                ilike:''
+            },
+            function (data) {
+                if(data.code === 0) {
+                    $('#assetid').text("0-0/"+data.spk);
+                    var htext= $.listitem(data.data);
+                }else{
+                    $('#assetid').text("0-0/0");
+                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                }
+                $('tbody').empty();
+                $("tbody").append(htext);
+
+                $('input[name="selitem"]').prop("checked", false);
+                $('button[data-toggle="del"]').addClass("disabled");
+                $('input[name="selall"]').val(0);
+            }
+        );
+        // return false;
+    });
 
     $('button[data-toggle="create"]').click(function () {
         if ($(this).hasClass('disabled')) {
@@ -205,7 +238,7 @@ $(document).ready(function () {
 
             $.ajax({
                 url: "/property_list/",
-                type: "POST",
+                type: "GET",
                 data: {
                     "act": 'sort',
                     "Field": sortitem
@@ -213,108 +246,10 @@ $(document).ready(function () {
                 success: function (data) {
                     $('input[name="selall"]').prop("checked", false);
 
-                    var htxt = "";
-                    $.each(data,function (i,n) {
-                        // if((n['user__name'] != null) && (n["user__active"] == 0)) {
-                        //     $("tbody").append('<tr class="text-danger"></tr>');
-                        // } else {
-                        //     $("tbody").append('<tr></tr>');
-                        // }
-                        //
-                        // var rrow =$("tbody tr:last");
-                        // rrow.append('<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>');
-                        // if (n["status"] == 1) {
-                        //     rrow.append("<td><span class=\"badge badge-secondary\">闲置</span></td>");
-                        // }else if (n["status"] == 2) {
-                        //     rrow.append("<td><span class=\"badge badge-success\">在用</span></td>");
-                        // }else if (n["status"] == 3) {
-                        //     rrow.append("<td><span class=\"badge badge-warning\">维修</span></td>");
-                        // } else if (n["status"] == 4) {
-                        //     rrow.append("<td><span class=\"badge badge-danger\">报废</span></td>");
-                        // }
-                        // rrow.append("<td>" + n["sid"] + "</td>");
-                        // rrow.append("<td>" + n["name"] + "</td>");
-                        //
-                        // if (n["specifications"] == null) {
-                        //     rrow.append("<td></td>");
-                        // } else {
-                        //     rrow.append("<td>" + n["specifications"] + "</td>");
-                        // }
-                        //
-                        // if (n["sn"] == null) {
-                        //     rrow.append("<td></td>");
-                        // } else {
-                        //     rrow.append("<td>" + n["sn"] + "</td>");
-                        // }
-                        //
-                        // rrow.append("<td>" + n["purchase"] + "</td>");
-                        // rrow.append("<td>" + n["warranty"] + "</td>");
-                        //
-                        // if (n["user__name"] == null) {
-                        //     rrow.append("<td></td>");
-                        // } else {
-                        //     rrow.append("<td>" + n["user__name"] + "</td>");
-                        // }
-                        //
-                        // if (n["position"] == null) {
-                        //     rrow.append("<td></td>");
-                        // } else {
-                        //     rrow.append("<td>" + n["position"] + "</td>");
-                        // }
-
-                        if((n['user__name'] != null) && (n["user__active"] == 0)) {
-                            htxt += '<tr class="text-danger">';
-                        } else {
-                            htxt += '<tr>';
-                        }
-                        htxt += '<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>';
-                        if (n["status"] === 1) {
-                            htxt += "<td><span class=\"badge badge-secondary\">闲置</span></td>";
-                        }else if (n["status"] === 2) {
-                             htxt += "<td><span class=\"badge badge-success\">在用</span></td>";
-                        }else if (n["status"] === 3) {
-                             htxt += "<td><span class=\"badge badge-warning\">维修</span></td>";
-                        } else if (n["status"] === 4) {
-                             htxt += "<td><span class=\"badge badge-danger\">报废</span></td>";
-                        }
-                        htxt += "<td>" + n["sid"] + "</td>";
-                        htxt += "<td>" + n["name"] + "</td>";
-
-                        if (n["specifications"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["specifications"] + "</td>";
-                        }
-                        if (n["sn"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["sn"] + "</td>";
-                        }
-                        if (n["purchase"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["purchase"] + "</td>";
-                        }
-                        if (n["warranty"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["warranty"] + "</td>";
-                        }
-                        if (n["user__name"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["user__name"] + "</td>";
-                        }
-                        if (n["position"] === null) {
-                            htxt += "<td></td>";
-                        } else {
-                            htxt += "<td>" + n["position"] + "</td>";
-                        }
-
-                        htxt += '</tr>';
-                    });
+                     $('#assetid').text("0-0/"+data.spk);
+                    var htext= $.listitem(data.data);
                     $('tbody').empty();
-                    $("tbody").append(htxt);
+                    $("tbody").append(htext);
 
                     $('input[name="selitem"]').prop("checked", false);
                     $('button[data-toggle="del"]').addClass("disabled");

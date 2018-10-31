@@ -125,6 +125,10 @@ $(document).ready(function () {
     });
 
     // ----头像----
+    $('.media').children('a').click(function (e) {
+        e.preventDefault();
+    });
+
     $('#headerimg').click(function () {
         var asid = $("#assetid").text();
         //----请求照片表----
@@ -144,7 +148,6 @@ $(document).ready(function () {
                 });
                 $('li[data-target="#carouselExampleIndicators"]').first().addClass('active');
                 $('div.carousel-item').first().addClass('active');
-
             }
         });
         $('#imglist').modal("show");
@@ -334,7 +337,6 @@ $(document).ready(function () {
                     if(data.code === 0){
                         $('#categoryid').removeClass('is-invalid');
                         $('button[data-toggle="save"]').removeClass("disabled");
-                        // console.log(data.data['bom']);
                         if( data.data['bom']){
                             $('#bom').prop("checked", true);
                         }else {
