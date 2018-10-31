@@ -529,6 +529,16 @@ def uploadfile(request):
         with open(filePath,'wb') as fp:
             for info in f.chunks():
                 fp.write(info)
+
+        wb = load_workbook(filePath)
+        e = wb.sheetnames()
+        print(e)
+        sheet = wb["Sheet2"]
+        print(sheet["C1"].value)
+        print(sheet.rows)
+        print(sheet.columns)
+        wb.close()
+
         return HttpResponse('ok')
     else:
         return HttpResponse('no')
