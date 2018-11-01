@@ -1,14 +1,13 @@
 $(document).ready(function () {
     // ----扩展函数----
-    $.extend(
-        {
-            'listitem':function (data) {
+    $.fn.extend({
+        'listitem':function (data) {
             var htxt = "";
             $.each(data,function (i,n) {
                 if((n['user__name'] != null) && (n["user__active"] == 0)) {
-                    htxt += '<tr class="text-danger">';
+                    htxt += '<tr class="text-danger listitem">';
                 } else {
-                    htxt += '<tr>';
+                    htxt += '<tr class="listitem">';
                 }
                 htxt += '<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>';
                 if (n["status"] === 1) {
@@ -55,9 +54,20 @@ $(document).ready(function () {
                 }
                 htxt += '</tr>';
             });
-            return htxt;}
+            return htxt;
+        },
+        'groupitem':function (data) {
+            var htxt = "";
+            $.each(data,function (i,n) {
+                htxt += '<tr class="groupitem text-primary bg-white shadow">';
+                htxt += '<td><i class="fa fa-caret-right fa-1x"></i> <span data-groupby="' + n["field"] + '">'+ n["name"] + '</span> <b>('+ n["number"] + ') </b></td><td colspan="9"></td>';
+                htxt += '</tr>';
+            });
+            $(this).empty();
+            $(this).append(htxt);
+            return htxt;
         }
-    );
+    });
 
     //-----控制面板----
     $('#search-input').bind('keypress',function(event){
@@ -69,60 +79,32 @@ $(document).ready(function () {
 
     $('#search-btn').click(function () {
         var val= $('#search-input').val();
-        // if (val ===  ""){
-        //     return;
-        // }
         $.get(
             '/property_list/',
             {
                 act:'filter',
-                field:'name',
+                field:'all',
                 ilike:val
             },
             function (data) {
                 if(data.code === 0) {
                     $('#assetid').text("0-0/"+data.spk);
-                    var htext= $.listitem(data.data);
+                    var htext= $(this).listitem(data.data);
+                    $('tbody').empty();
+                    $("tbody").append(htext);
                 }else{
                     $('#assetid').text("0-0/0");
                     var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                    $('tbody').empty();
+                    $("tbody").append(htext);
                 }
-                $('tbody').empty();
-                $("tbody").append(htext);
+
             }
         );
     });
 
-    $('#unactive').click(function (e) {
-        var _this = $(this);
-        var subHref = _this.attr('href');
-        e.preventDefault();
-        $.get(
-            "/property_list/",
-            {
-                act:"filter",
-                field:"unactive",
-                ilike:''
-            },
-            function (data) {
-                if(data.code === 0) {
-                    $('#assetid').text("0-0/"+data.spk);
-                    var htext= $.listitem(data.data);
-                }else{
-                    $('#assetid').text("0-0/0");
-                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
-                }
-                $('tbody').empty();
-                $("tbody").append(htext);
 
-                $('input[name="selitem"]').prop("checked", false);
-                $('button[data-toggle="del"]').addClass("disabled");
-                $('input[name="selall"]').val(0);
-            }
-        );
-        // return false;
-    });
-
+    // -----命令按键----
     $('button[data-toggle="create"]').click(function () {
         if ($(this).hasClass('disabled')) {
 
@@ -205,6 +187,66 @@ $(document).ready(function () {
         });
     });
 
+    // ----筛选----
+    $('#unactive').click(function (e) {
+        e.preventDefault();
+        $.get(
+            "/property_list/",
+            {
+                act:"filter",
+                field:"active",
+                ilike:0
+            },
+            function (data) {
+                if(data.code === 0) {
+                    $('#assetid').text("0-0/"+data.spk);
+                    var htext= $(this).listitem(data.data);
+                    $('tbody').empty();
+                    $("tbody").append(htext);
+                }else{
+                    $('#assetid').text("0-0/0");
+                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                    $('tbody').empty();
+                    $("tbody").append(htext);
+                }
+
+                $('input[name="selitem"]').prop("checked", false);
+                $('button[data-toggle="del"]').addClass("disabled");
+                $('input[name="selall"]').val(0);
+            }
+        );
+    });
+
+    //----分组----
+    $('[data-act="group"]').click(function (e) {
+        var byf = $(this).attr("data-groupby");
+        e.preventDefault();
+        $.get(
+            "/property_list/",
+            {
+                act:"groupby",
+                field:byf
+            },
+            function (data) {
+                if(data.code === 0) {
+                    $('#assetid').text("0-0/"+data.spk);
+                    // var htext= $.groupitem(data.data);
+                    $('tbody').groupitem(data.data);
+                }else{
+                    $('#assetid').text("0-0/0");
+                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                    $('tbody').empty();
+                    $("tbody").append(htext);
+                }
+
+                //
+                // $('input[name="selitem"]').prop("checked", false);
+                // $('button[data-toggle="del"]').addClass("disabled");
+                // $('input[name="selall"]').val(0);
+            }
+        );
+    });
+
     //---- 排序 ----
     $('th').click(function () {
         if ( $(this).index() > 0 ) {
@@ -241,13 +283,13 @@ $(document).ready(function () {
                 type: "GET",
                 data: {
                     "act": 'sort',
-                    "Field": sortitem
+                    "field": sortitem
                 },
                 success: function (data) {
                     $('input[name="selall"]').prop("checked", false);
 
-                     $('#assetid').text("0-0/"+data.spk);
-                    var htext= $.listitem(data.data);
+                    $('#assetid').text("0-0/"+data.spk);
+                    var htext= $(this).listitem(data.data);
                     $('tbody').empty();
                     $("tbody").append(htext);
 
@@ -260,10 +302,35 @@ $(document).ready(function () {
     });
 
     //----点选----
+    $("tbody").on("click","tr.groupitem td",function () {
+        var tritem = $(this).parent();
+        var ilike = tritem.find('span').html();
+        var field = tritem.find('span').attr("data-groupby");
+        $.get(
+            "/property_list/",
+            {
+                act:"filter",
+                field:field,
+                ilike:ilike
+            },
+            function (data) {
+                if(data.code === 0) {
+                    $('#assetid').text("0-0/0");
+                    var trlist = $('tbody').listitem(data.data);
+                    tritem.after(trlist);
+                }else{
+                    $('#assetid').text("0-0/0");
+                    var trlist = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
+                    tritem.after(trlist);
+                }
+            }
+        );
+    });
+
     // $("tbody tr td:first-child").nextAll().css('background','blue');
     // $("tbody tr td:not(:first-child)").css('background','blue');
-    $("tbody").on("click","tr td:not(:first-child)",function () {
-        var showsel = $(this).siblings().eq(0).find('input').val();
+    $("tbody").on("click","tr.listitem td:not(:first-child)",function () {
+        var showsel = $(this).parent().find('[name="selitem"]').val();
         window.location.href="/property_form?act=display&id="+showsel;
     });
 
@@ -285,7 +352,6 @@ $(document).ready(function () {
     });
 
     $('tbody').on("click","tr td input",function () {
-                $(this).css("background","blue");
        var sel = $(this).prop("checked");
        var i = $('input[name="selall"]').val();
        i=parseInt(i);
@@ -306,4 +372,3 @@ $(document).ready(function () {
         }
     });
 });
-

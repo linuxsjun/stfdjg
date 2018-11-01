@@ -65,10 +65,11 @@
                                 <span class="caret"></span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">名称</a>
-                                <a class="dropdown-item" href="#">规格</a>
-                                <a class="dropdown-item" href="#">部门</a>
-                                <a class="dropdown-item" href="#">状态</a>
+                                <a class="dropdown-item" href="#" data-act="group" data-groupby="name">名称</a>
+                                <a class="dropdown-item" href="#" data-act="group" data-groupby="specifications">规格</a>
+                                <a class="dropdown-item" href="#" data-act="group" data-groupby="name">部门</a>
+                                <a class="dropdown-item" href="#" data-act="group" data-groupby="status">状态</a>
+                                <a class="dropdown-item" href="#" data-act="group" data-groupby="position">位置</a>
                             </div>
                         </div>
                     </div>
@@ -115,7 +116,7 @@
                         {% if item.user__name and item.user__active == 0 %}
                         <tr class="text-danger">
                         {% else %}
-                        <tr>
+                        <tr class="listitem">
                         {% endif %}
                             <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                             <td>

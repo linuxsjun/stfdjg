@@ -1,8 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, render_to_response
 from django.http import HttpResponse
+
 from django.db.models import Count
-from django.shortcuts import render_to_response
+
 import requests, json, time, datetime, hashlib, random
+
+# from django.db.models import Sum,Count
 
 # from data.test import *
 
@@ -663,8 +666,9 @@ def property_list(request):
                 search = {}
                 search['field'] = request.GET['field']
                 search['ilike'] = request.GET['ilike']
-                if search['field'] == "unactive":
-                    ps = asset_property.objects.filter(active=False).values('id',
+                if search['field'] == "active":
+                    search['ilike'] = int(search['ilike'])
+                    ps = asset_property.objects.filter(active=search['ilike']).values('id',
                                                                             'status',
                                                                             'sid',
                                                                             'name',
@@ -676,6 +680,25 @@ def property_list(request):
                                                                             'position',
                                                                             'sn')
                     u = list(ps)
+                elif search['field'] != "all":
+                    kwargs={}
+                    kwargs['active'] = True
+                    kwargs[search['field']]=search['ilike']
+                    print(kwargs)
+                    ps = asset_property.objects.filter(**kwargs).values('id',
+                                                                                      'status',
+                                                                                      'sid',
+                                                                                      'name',
+                                                                                      'specifications',
+                                                                                      'purchase',
+                                                                                      'warranty',
+                                                                                      'user__name',
+                                                                                      'user__active',
+                                                                                      'position',
+                                                                                      'sn')
+
+                    u = list(ps)
+                    # print(u)
                 else:
                     ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
                                                              'status',
@@ -776,7 +799,7 @@ def property_list(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == 'sort':
                 data = {}
-                sns = request.GET['Field']
+                sns = request.GET['field']
                 ps = asset_property.objects.filter(active=True).values('id',
                                                                        'status',
                                                                        'sid',
@@ -795,6 +818,31 @@ def property_list(request):
                         t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
                     if t['warranty']:
                         t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+                    s.append(t)
+
+                if len(s):
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['spk'] = len(s)
+                    data['data'] = s
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['spk'] = 0
+                    data['data'] = "无返回值"
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == 'groupby':
+                data = {}
+                groupby = request.GET['field']
+                ps = asset_property.objects.filter(active=True).values(groupby).annotate(number=Count('id')).order_by(groupby)
+
+                s = []
+                u = list(ps)
+                for t in u:
+                    t['name'] = t[groupby]
+                    t['field'] = groupby
                     s.append(t)
 
                 if len(s):
