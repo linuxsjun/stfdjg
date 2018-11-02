@@ -61,8 +61,7 @@ $(document).ready(function () {
             $.each(data,function (i,n) {
                 htxt += '<tr class="groupitem text-primary bg-white bg-gradient-warning shadow" data-dropdown="0" data-val="' + n["val"] + '">';
                 // htxt += '<tr class="groupitem text-primary bg-white bg-gradient-warning shadow" data-dropdown="0" data-disn="' + n["disn"] + '" data-val="' + n["val"] + '">';
-                htxt += '<td><i class="fa fa-caret-right fa-1x"></i> <span data-groupby="' + n["field"] + '">'+ n["disn"] + '</span> <b>('+ n["number"] + ') </b></td>'
-                htxt += '<td colspan="9"></td>';
+                htxt += '<td colspan="10"><i class="fa fa-caret-right fa-1x"></i> <span data-groupby="' + n["field"] + '">'+ n["disn"] + '</span> <b>('+ n["number"] + ') </b></td>'
                 htxt += '</tr>';
             });
             $(this).empty();
@@ -331,11 +330,15 @@ $(document).ready(function () {
                     }
                 }
             );
-
+            $(this).children("i").addClass("fa-caret-down");
+            $(this).children("i").removeClass("fa-caret-right");
         }else {
             for (var i = 0; i < chitem; i++) {
-                console.log(tritem.next().attr('data-dropdown'));
+                tritem.next().remove();
+                tritem.attr("data-dropdown",0);
             }
+            $(this).children("i").addClass("fa-caret-right");
+            $(this).children("i").removeClass("fa-caret-down");
         }
 
     });
