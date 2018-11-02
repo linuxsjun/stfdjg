@@ -59,8 +59,10 @@ $(document).ready(function () {
         'groupitem':function (data) {
             var htxt = "";
             $.each(data,function (i,n) {
-                htxt += '<tr class="groupitem text-primary bg-white shadow">';
-                htxt += '<td><i class="fa fa-caret-right fa-1x"></i> <span data-groupby="' + n["field"] + '">'+ n["name"] + '</span> <b>('+ n["number"] + ') </b></td><td colspan="9"></td>';
+                htxt += '<tr class="groupitem text-primary bg-white bg-gradient-warning shadow" data-dropdown="0" data-val="' + n["val"] + '">';
+                // htxt += '<tr class="groupitem text-primary bg-white bg-gradient-warning shadow" data-dropdown="0" data-disn="' + n["disn"] + '" data-val="' + n["val"] + '">';
+                htxt += '<td><i class="fa fa-caret-right fa-1x"></i> <span data-groupby="' + n["field"] + '">'+ n["disn"] + '</span> <b>('+ n["number"] + ') </b></td>'
+                htxt += '<td colspan="9"></td>';
                 htxt += '</tr>';
             });
             $(this).empty();
@@ -304,27 +306,38 @@ $(document).ready(function () {
     //----点选----
     $("tbody").on("click","tr.groupitem td",function () {
         var tritem = $(this).parent();
-        var ilike = tritem.find('span').html();
+        var ilike = tritem.attr("data-val");
         var field = tritem.find('span').attr("data-groupby");
-        $.get(
-            "/property_list/",
-            {
-                act:"filter",
-                field:field,
-                ilike:ilike
-            },
-            function (data) {
-                if(data.code === 0) {
-                    $('#assetid').text("0-0/0");
-                    var trlist = $('tbody').listitem(data.data);
-                    tritem.after(trlist);
-                }else{
-                    $('#assetid').text("0-0/0");
-                    var trlist = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
-                    tritem.after(trlist);
+        var chitem = tritem.attr("data-dropdown");
+        if(chitem === "0"){
+            $.get(
+                "/property_list/",
+                {
+                    act:"filter",
+                    field:field,
+                    ilike:ilike
+                },
+                function (data) {
+                    if(data.code === 0) {
+                        $('#assetid').text("0-0/0");
+                        var trlist = $('tbody').listitem(data.data);
+                        tritem.after(trlist);
+                        tritem.attr("data-dropdown",data.spk)
+                    }else{
+                        $('#assetid').text("0-0/0");
+                        var trlist = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
+                        tritem.after(trlist);
+                        tritem.attr("data-dropdown",1)
+                    }
                 }
+            );
+
+        }else {
+            for (var i = 0; i < chitem; i++) {
+                console.log(tritem.next().attr('data-dropdown'));
             }
-        );
+        }
+
     });
 
     // $("tbody tr td:first-child").nextAll().css('background','blue');

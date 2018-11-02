@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect, render_to_response
+from django.shortcuts import render, redirect
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
 from django.db.models import Count
+# from django.db.models import Sum,Count
 
 import requests, json, time, datetime, hashlib, random
-
-# from django.db.models import Sum,Count
 
 # from data.test import *
 
@@ -26,6 +26,10 @@ def partt(id):
         return disname
     else:
         return tid.name
+
+def status(id):
+    statusname=['', '闲置', '在用', '维修', '报废']
+    return statusname[id]
 
 # Create your views here.
 
@@ -681,10 +685,12 @@ def property_list(request):
                                                                             'sn')
                     u = list(ps)
                 elif search['field'] != "all":
+                    if(search['ilike'] == 'null'):
+                        search['ilike'] = None
+
                     kwargs={}
                     kwargs['active'] = True
                     kwargs[search['field']]=search['ilike']
-                    print(kwargs)
                     ps = asset_property.objects.filter(**kwargs).values('id',
                                                                                       'status',
                                                                                       'sid',
@@ -698,7 +704,6 @@ def property_list(request):
                                                                                       'sn')
 
                     u = list(ps)
-                    # print(u)
                 else:
                     ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
                                                              'status',
@@ -837,12 +842,24 @@ def property_list(request):
                 data = {}
                 groupby = request.GET['field']
                 ps = asset_property.objects.filter(active=True).values(groupby).annotate(number=Count('id')).order_by(groupby)
+                # lks = asset_property.objects.filter(active=True).values('categoryid__name','categoryid').annotate(number=Count('id'))
+                # print(lks)
 
                 s = []
                 u = list(ps)
                 for t in u:
                     t['name'] = t[groupby]
+                    t['disn'] = t[groupby]
+                    if t[groupby] == '':
+                        t['name'] = "未定义"
+                        t['disn'] = "未定义"
+                    t['val'] = t[groupby]
+
                     t['field'] = groupby
+                    if t['field'] == "categoryid":
+                        t['disn'] = partt(t[groupby])
+                    if t['field'] == "status":
+                        t['disn'] = status(t[groupby])
                     s.append(t)
 
                 if len(s):
@@ -870,7 +887,7 @@ def property_list(request):
                                                                    'user__name',
                                                                    'user__active',
                                                                    'position',
-                                                                   'sn').order_by('name', 'specifications', 'sid')[:100]
+                                                                   'sn').order_by('name', 'specifications', 'sid')
             context['spk'] = ps.count()
             context['context'] = ps
     elif request.method == "POST":
