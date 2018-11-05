@@ -308,6 +308,7 @@ $(document).ready(function () {
         var ilike = tritem.attr("data-val");
         var field = tritem.find('span').attr("data-groupby");
         var chitem = tritem.attr("data-dropdown");
+        // print(ilike);
         if(chitem === "0"){
             $.get(
                 "/property_list/",

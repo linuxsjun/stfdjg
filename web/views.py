@@ -530,7 +530,6 @@ def uploadfile(request):
     print(request.POST)
     if request.method == "POST":
         f = request.FILES["file"]
-        # filePath = os.path.join(settings.MDEIA_ROOT, f.name)
         filePath = os.path.join(settings.MDEIA_ROOT, f.name)
         print(filePath)
         with open(filePath,'wb') as fp:
@@ -1300,7 +1299,15 @@ def property_upload(request):
     print(request.POST)
     if request.method == "POST":
         f = request.FILES["file"]
-        filePath = os.path.join(settings.MDEIA_ROOT, 'property\img', f.name)
+        # 生成新的文件名
+        fext = os.path.splitext(f.name)[1]
+        assetsn = request.POST["sn"]
+        assetid = request.POST["id"]
+        assetnum = asset_attachment.objects.filter(property_id=assetid).count()
+        assetnum += 1
+        nname = "%s-%02d%s" % (assetsn, assetnum, fext)
+
+        filePath = os.path.join(settings.MDEIA_ROOT, 'property\img', nname)
         print(filePath)
         with open(filePath,'wb') as fp:
             for info in f.chunks():
@@ -1314,9 +1321,10 @@ def property_upload(request):
 
         asset_attachment.objects.filter(property=pid).update(final=False)
 
-        pth='/static/upfile/property/img/' + f.name
+        # 网站中的相对文件
+        pth='/static/upfile/property/img/' + nname
         k = asset_attachment(property=propertyid,
-                             name=f.name,
+                             name=nname,
                              filepath=pth,
                              oldname=f.name,
                              version=0,
