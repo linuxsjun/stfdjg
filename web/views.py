@@ -1015,6 +1015,21 @@ def property_form(request):
                     data['data'] = "None"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "disparts":
+                parts = asset_property.objects.filter(active=True,bom=True).values("id", "categoryid", "name", "model", "specifications", "sn")
+
+                data = {}
+                if parts:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(parts)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = "None"
+                print(data)
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "indexname":
                 val = request.GET['ilike']
                 t = asset_property.objects.filter(name__icontains=val,active=True).values('name').distinct()

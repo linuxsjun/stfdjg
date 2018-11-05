@@ -447,5 +447,9 @@ $(document).ready(function () {
         }
     });
 
+    //----配件添加----
+    $('#addpart').click(function () {
+        alert("kkkk")
 
+    })
 });
