@@ -701,7 +701,7 @@ def property_list(request):
                                                                                       'user__active',
                                                                                       'position',
                                                                                       'sn')
-
+                    print(ps.query)
                     u = list(ps)
                 else:
                     ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
@@ -1015,19 +1015,22 @@ def property_form(request):
                     data['data'] = "None"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
-            elif request.GET['act'] == "disparts":
-                parts = asset_property.objects.filter(active=True,bom=True).values("id", "categoryid", "name", "model", "specifications", "sn")
+            elif request.GET['act'] == "indexpartscategoryid":
+                parts = asset_category.objects.filter(active=True,bom=True).values("id", "name")
+                s = []
+                for t in list(parts):
+                    t['disn'] = partt(t['id'])
+                    s.append(t)
 
                 data = {}
                 if parts:
                     data['code'] = 0
                     data['msg'] = "OK"
-                    data['data'] = list(parts)
+                    data['data'] = s
                 else:
                     data['code'] = 1
                     data['msg'] = "FAIL"
                     data['data'] = "None"
-                print(data)
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "indexname":

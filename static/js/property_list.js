@@ -231,11 +231,10 @@ $(document).ready(function () {
             function (data) {
                 if(data.code === 0) {
                     $('#assetid').text("0-0/"+data.spk);
-                    // var htext= $.groupitem(data.data);
                     $('tbody').groupitem(data.data);
                 }else{
                     $('#assetid').text("0-0/0");
-                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
                     $('tbody').empty();
                     $("tbody").append(htext);
                 }
@@ -351,6 +350,7 @@ $(document).ready(function () {
         window.location.href="/property_form?act=display&id="+showsel;
     });
 
+    // ----勾选----
     $('input[name="selall"]').click(function () {
         var i =0;
         if ($(this).prop("checked")){

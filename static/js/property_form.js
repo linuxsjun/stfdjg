@@ -1,4 +1,39 @@
 $(document).ready(function () {
+    // ----扩展函数----
+    $.fn.extend({
+        'selpartscategoryid':function (data) {
+            var htxt = "";
+            $.each(data,function (i,items) {
+                htxt +='<option value=' + items['id'] + '>' + items['disn'] + '</option>';
+            });
+            return htxt;
+        },
+        'tabpartsadd':function (data) {
+            var htxt = "";
+            //     <tr>
+            //     <td scope="col"><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
+            //     <td scope="col">电源</td>
+            //     <td scope="col">山特 CASTLE 2K</td>
+            //     <td scope="col">SANTAK UPS</td>
+            //     <td scope="col">9103-7339-02P</td>
+            //     <td scope="col"><i class="fa fa-exclamation-triangle fa-1x text-warning"></i></td>
+            //      <td scope="col"><i class="fa fa-minus-square fa-1x text-danger"></i></td>
+            //     <td scope="col"><i class="fa fa-check-square fa-1x text-success"></i></td>
+            // </tr>
+            $.each(data,function (i,items) {
+                htxt +='<tr>';
+                htxt +='<td scope="col"><input type="checkbox" name="selitem" value="' + items['id'] + '"></td>';
+                htxt +='<td scope="col">' + items['name'] + '</td>';
+                // htxt +='<td scope="col">' + items['model'] + '</td>';
+                htxt +='<td scope="col">' + items['specifications'] + '</td>';
+                htxt +='<td scope="col">' + items['sn'] + '</td>';
+                // Todo 配件的状态用彩色图标来显示
+                htxt +='<td scope="col">' + items['status'] + '</td>';
+                htxt +='</tr>';
+            });
+            return htxt;
+        }
+    });
     //----页面初始化----
     if ($('#act').val() === "create") {
         $('[data-dis="display"]').addClass("sr-only");
@@ -31,6 +66,7 @@ $(document).ready(function () {
             $('.custom-select').removeAttr('disabled', true);
             $('[data-toggle="tooltip"]').tooltip('enable');
             $('button[data-toggle="save"]').removeClass("disabled");
+            $('#addpart').removeClass("disabled");
 
             $('#act').val('edit')
         }
@@ -449,7 +485,86 @@ $(document).ready(function () {
 
     //----配件添加----
     $('#addpart').click(function () {
-        alert("kkkk")
+        if ($(this).hasClass('disabled')) {
+        } else {
+            $('#Modalparts').modal("show");
+            $.get("/property_form/",
+                {act:"indexpartscategoryid"},
+                function (data) {
+                    if(data.code === 0){
+                        var seloptl = $('#partscategoryid').selpartscategoryid(data.data);
+                        $('#partscategoryid').empty();
+                        $('#partscategoryid').append(seloptl);
+                        }else {
+                        var seloptl = '<option value="0">(请先指定哪些类型为配件)</option>';
+                        $('#partscategoryid').empty();
+                        $('#partscategoryid').append(seloptl);
+                    }
+                }
+            );
+        }
+    });
 
-    })
+    $('#partscategoryid').change(function () {
+        //----重置添加按键----
+        $('#partnum').html("0");
+        $('#btnpartadd').addClass("disabled");
+
+        var tabpartslist = $('#tabpartssel');
+        var categoryid = $('#partscategoryid');
+        var val = categoryid.val();
+
+        $.get("/property_list/",
+            {
+                act:"filter",
+                field:"categoryid",
+                ilike:val
+            },
+            function (data) {
+                var seloptl = "";
+                if(data.code === 0){
+                    seloptl = tabpartslist.tabpartsadd(data.data);
+                }else {
+                    seloptl = '<tr><td  colspan="5" style="text-align: center;">(暂无数据)</td></tr>';
+                }
+                tabpartslist.empty();
+                tabpartslist.append(seloptl);
+            }
+        );
+    });
+
+    // ----勾选----
+    $('#tabpartssel').on("click","tr td input",function () {
+        var tabpartslist = $('#tabpartssel');
+        var sel = $(this).prop("checked");
+        var i = $('#partnum').html();
+        i=parseInt(i);
+
+        if (sel){
+            $(this).prop("checked", true);
+            $('#btnpartadd').removeClass("disabled");
+            i=i+1;
+            $('#partnum').html(i);
+        }else{
+            $(this).prop("checked", false);
+            i=i-1;
+            $('#partnum').html(i);
+            if(!i){
+                $('#btnpartadd').addClass("disabled");
+            }
+        }
+    });
+
+    $('#btnpartadd').click(function () {
+        if ($(this).hasClass('disabled')) {
+        } else {
+            $('#tabpartssel tr td input').each(function(){
+                if( $(this).prop("checked")){
+                    // Todo 向设备添加配件，1.改配件的父级 2.此配件归档 3.修改配件状态为使用中 4.刷新对应设备的配件列表
+                    console.log($(this).val());
+                }
+            });
+            $('#Modalparts').modal('hide');
+        }
+    });
 });
