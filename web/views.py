@@ -701,7 +701,6 @@ def property_list(request):
                                                                                       'user__active',
                                                                                       'position',
                                                                                       'sn')
-                    print(ps.query)
                     u = list(ps)
                 else:
                     ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
@@ -955,7 +954,7 @@ def property_form(request):
                     context['context'] = ps
 
                     # 设备配件获取
-                    prs = ps.asset_parts_set.all()
+                    prs = ps.asset_property_set.all()
                     context['parts'] = prs
                     context['partsnum'] = prs.count()
 
@@ -1016,10 +1015,17 @@ def property_form(request):
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "indexpartscategoryid":
-                parts = asset_category.objects.filter(active=True,bom=True).values("id", "name")
+                # parts = asset_property.objects.filter(categoryid__active=True, categoryid__bom=True,active=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
+                parts = asset_property.objects.filter(categoryid__active=True, categoryid__bom=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
+
+                # parts = asset_category.objects.filter(active=True,bom=True).values("id", "name")
+
+                # 改名，校正数据格式
                 s = []
                 for t in list(parts):
-                    t['disn'] = partt(t['id'])
+                    t['disn'] = partt(t['categoryid__id'])
+                    t['id'] = t['categoryid__id']
+                    t['num'] = t['id__count']
                     s.append(t)
 
                 data = {}
@@ -1276,6 +1282,8 @@ def property_form(request):
                 else:
                     pid.bom = False
 
+                print(pid.bom)
+
                 # # 获取默认日期，当天日期
                 pdate = request.POST['purchase']
                 if pdate == '':
@@ -1303,14 +1311,49 @@ def property_form(request):
                 pid.price = float(request.POST['price'])
                 # # partlist = request.POST[''],
                 pid.position = request.POST['position']
-                pid.status = 1
+                # pid.status = 1
                 pid.nots = request.POST['comment']
                 pid.active = True
 
                 pid.save()
 
                 return HttpResponse(id)
+            if request.POST['act'] == 'addparts':
+                assetid= int(request.POST['id'])
+                parentid = int(request.POST['parentid'])
 
+                # Todo 向设备添加配件，1.改配件的父级 2.此配件归档 3.修改配件状态为使用中 4. 刷新对应设备的配件列表
+                pps= asset_property.objects.get(id=parentid)
+                ps = asset_property.objects.get(id=assetid)
+
+                ps.parentid = pps
+                ps.active = False
+                ps.status = 2
+
+                ps.save()
+
+                data={}
+
+                data['code'] = 0
+                data['msg'] = "ok"
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            if request.POST['act'] == 'delparts':
+                assetid = int(request.POST['id'])
+
+                ps = asset_property.objects.get(id=assetid)
+                ps.parentid = None
+                ps.active = True
+                ps.status = 1
+                ps.save()
+
+                data = {}
+                data['code'] = 0
+                data['msg'] = "ok"
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
     return render(request, 'property_form.html', context)
 
 def property_upload(request):

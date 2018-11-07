@@ -34,3 +34,4 @@ admin.site.register(asset_parts)
 class asset_property_Admin(admin.ModelAdmin):
     list_display = ('sid', 'name', 'specifications', 'model', 'categoryid', 'purchase', 'price', 'sn', 'status')
 admin.site.register(asset_property, asset_property_Admin)
+# admin.site.register(asset_property)

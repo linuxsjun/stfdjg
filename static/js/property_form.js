@@ -4,7 +4,7 @@ $(document).ready(function () {
         'selpartscategoryid':function (data) {
             var htxt = "";
             $.each(data,function (i,items) {
-                htxt +='<option value=' + items['id'] + '>' + items['disn'] + '</option>';
+                htxt +='<option value=' + items['id'] + '>' + items['disn'] + ' (' + items['num'] + ')</option>';
             });
             return htxt;
         },
@@ -111,13 +111,16 @@ $(document).ready(function () {
             // $('.custom-select').attr('disabled', true);
             // $('[data-toggle="tooltip"]').tooltip('disable');
             // $('button[data-toggle="save"]').addClass("disabled");
+            // console.log($('form').serializeArray());
             $.post(
                 "/property_form/",
                 $('form').serialize(),
                 function(context){
-                    window.location.href="/property_form?act=display&id="+context;
+                    // window.location.href="/property_form?act=display&id="+context;
+                    window.location.reload()
                 }
             );
+
         }
     });
 
@@ -505,6 +508,19 @@ $(document).ready(function () {
         }
     });
 
+    $('#tabpartlst').on('click','tr td button',function () {
+        $.post("/property_form/",
+            {
+                act:"delparts",
+                id:$(this).parent().parent().attr('data-id')
+            },
+            function (data) {
+                // console.log(data);
+                window.location.reload()
+            }
+        )
+    });
+
     $('#partscategoryid').change(function () {
         //----重置添加按键----
         $('#partnum').html("0");
@@ -560,11 +576,21 @@ $(document).ready(function () {
         } else {
             $('#tabpartssel tr td input').each(function(){
                 if( $(this).prop("checked")){
-                    // Todo 向设备添加配件，1.改配件的父级 2.此配件归档 3.修改配件状态为使用中 4.刷新对应设备的配件列表
-                    console.log($(this).val());
+                    $.post("/property_form/",
+                        {
+                            act:"addparts",
+                            id:$(this).val(),
+                            parentid:$("#id").val()
+                        },
+                        function (data) {console.log(data)
+                        }
+                    );
                 }
             });
             $('#Modalparts').modal('hide');
+            window.location.reload()
         }
     });
+
+
 });

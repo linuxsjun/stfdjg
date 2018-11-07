@@ -349,14 +349,14 @@
                                             <th>取出</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="tabpartlst">
                                         {% for item in parts %}
-                                            <tr>
+                                            <tr data-id="{{ item.id }}">
                                                 <td></td>
-                                                <td><a href="#">{{ item.name }}</a></td>
+                                                <td><a href="/property_form/?act=display&id={{ item.id }}">{{ item.name }}</a></td>
                                                 <td>{{ item.specifications }}</td>
                                                 <td>{{ item.sn }}</td>
-                                                <td><a class="but_min" href="#" title="删除"><i class="fa fa-unlink fa-1x"></i></a></td>
+                                                <td><button class="btn btn-light" type="button" id="delpart"><i class="fa fa-unlink fa-1x"></i></button></td>
                                             </tr>
                                         {% empty %}
                                             <tr>
@@ -529,7 +529,7 @@
                                     <label class="form-check-label col-sm-2">组件</label>
                                     <div class="col-sm-10">
                                         <div class="form-check">
-                                            <input class="form-check-input" id="bom" type="checkbox" name="bom" {% if context.bom %} checked="checked" {% endif %} val="False"/>
+                                            <input class="form-check-input" id="bom" type="checkbox" name="newbom" {% if context.bom %} checked="checked" {% endif %} val="False"/>
                                             <label class="form-check-label" for="bom">配件/组合件</label>
                                         </div>
                                     </div>
@@ -577,14 +577,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody id="tabpartssel">
-                                                <tr>
-                                                    <td scope="col"><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                                                    <td scope="col">电源</td>
-{#                                                    <td scope="col">山特 CASTLE 2K</td>#}
-                                                    <td scope="col">SANTAK UPS</td>
-                                                    <td scope="col">9103-7339-02P</td>
-                                                    <td scope="col"><i class="fa fa-check-square fa-1x text-success"></i></td>
-                                                </tr>
+                                                <tr><td  colspan="5" style="text-align: center;">(选择分类刷新配件)</td></tr>
                                             </tbody>
                                         </table>
                                     </div>
