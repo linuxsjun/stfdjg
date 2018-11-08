@@ -86,7 +86,7 @@
                         {% for item in context %}
                             <tr>
                                 <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                                <td>{{ item.name }}</td>
+                                <td><a href="/category_form/?act=display&id={{ item.id }}">{{ item.name }}</a></td>
                                 <td>{{ item.displayname }}</td>
                                 <td>
                                     {% if item.bom %}

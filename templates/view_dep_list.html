@@ -5,25 +5,25 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-    <div class="view_menu">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar"><div class="sidebar-sticky">
         <div class="limg"></div>
         <div>
-            <ul class="sub_menu">
-                <li><a href="#">员工</a>
-                <ul class="thr_menu">
-                    <li><a href="/hr/">员工</a></li>
+            <ul class="nav flex-column">
+                <li class="nav-item"><a class="nav-link active" href="#">员工</a>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active"  href="/hr/">员工</a></li>
                 </ul>
                 </li>
-                <li><a href="#">部门</a>
-                <ul class="thr_menu">
-                    <li><a href="/dep/">部门</a></li>
+                <li class="nav-item"><a class="nav-link active"  href="#">部门</a>
+                <ul class="nav flex-column">
+                    <li class="nav-item"><a class="nav-link active"  href="/dep/">部门</a></li>
                 </ul>
                 </li>
             </ul>
         </div>
         <div class="sub_menu_foot"></div>
-    </div>
-    <div class="view_form">
+    </div> </nav>
+    <div class="col-md-9 ml-sm-auto col-lg-10 px-4">
         <div class="header">
             <h1>{{ title }}</h1>
         </div>

@@ -89,6 +89,60 @@ def category_list(request):
 
     return render(request, 'category_list.html', context)
 
+def category_form(request):
+    request.encoding = 'utf-8'
+    context={}
+    context['title']='类型表单'
+
+    username = request.COOKIES.get('usercookie', None)
+    # if username:
+    #     try:
+    #         signuser = hr_hr.objects.get(session=username)
+    #     except Exception:
+    #         context['userinfo'] = '用户'
+    #         return render(request, 'sign.html', context)
+    #     context['userinfo'] = signuser.name
+    # else:
+    #     context['userinfo'] = '用户'
+    #     return render(request, 'sign.html', context)
+
+    if request.method == "GET":
+        print(request.GET)
+        if "act" in request.GET:
+            if request.GET['act'] == 'display':
+                context['act'] = "display"
+
+                pn = int(request.GET['id'])
+                ppn = pn-1
+                npn = pn+1
+                context['pk'] = pn
+                context['ppk'] = ppn
+                context['npk'] = npn
+
+                cats = asset_category.objects.filter(active=True).order_by('parentid', 'name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] = partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
+
+                try:
+                    # 当前设备信息
+                    ps = asset_category.objects.get(id=pn)
+                except Exception:
+                    return redirect('/category_list/')
+                else:
+                    context['context'] = ps
+
+    elif request.method == "POST":
+        print(request.POST)
+        pass
+
+    return render(request, 'category_form.html', context)
+
 def dep_view(request):
     context={}
     context['title']='部门'
@@ -1608,6 +1662,5 @@ def search(request):
     # print(q)
     # for iq in q:
     #     print(iq)
-
 
     return render(request, 'search.html',context)
