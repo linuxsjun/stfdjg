@@ -142,6 +142,8 @@
                                 <select class="custom-select" id="parentid" name="parentid">
                                     {% if context.parentid.id == None %}
                                         <option value="0" selected="selected"></option>
+                                    {% else %}
+                                        <option value="0"></option>
                                     {% endif %}
                                     {% for item in cats %}
                                         {% if item.id == context.parentid.id %}

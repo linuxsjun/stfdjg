@@ -9,9 +9,7 @@
     <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base_conf.html" afterPath="$PROJECT_DIR$/templates/base_conf.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/category_form.html" afterPath="$PROJECT_DIR$/templates/category_form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views.py" afterPath="$PROJECT_DIR$/web/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,11 +57,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/web/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="145">
-              <caret line="901" column="28" lean-forward="true" selection-start-line="901" selection-start-column="28" selection-end-line="901" selection-end-column="28" />
+              <caret line="901" column="28" lean-forward="false" selection-start-line="901" selection-start-column="28" selection-end-line="901" selection-end-column="28" />
               <folding>
                 <element signature="e#649#859#0" expanded="false" />
                 <element signature="e#881#946#0" expanded="false" />
@@ -118,6 +116,16 @@
                 <element signature="e#57906#61599#0" expanded="false" />
                 <element signature="e#61626#63569#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="category_form.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/category_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="307">
+              <caret line="148" column="79" lean-forward="true" selection-start-line="148" selection-start-column="79" selection-end-line="148" selection-end-column="79" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -231,8 +239,8 @@
         <option value="$PROJECT_DIR$/templates/category_list.html" />
         <option value="$PROJECT_DIR$/web/models.py" />
         <option value="$PROJECT_DIR$/templates/base_conf.html" />
-        <option value="$PROJECT_DIR$/templates/category_form.html" />
         <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/templates/category_form.html" />
       </list>
     </option>
   </component>
@@ -404,13 +412,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533705842830</updated>
-    </task>
-    <task id="LOCAL-00051" summary="update view property form list">
-      <created>1536055421103</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1536055421104</updated>
     </task>
     <task id="LOCAL-00052" summary="update view bootstrap">
       <created>1536509734532</created>
@@ -748,7 +749,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541661562914</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="update update type bygroup">
+      <created>1541668537366</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1541668537366</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TodoView">
@@ -764,13 +772,13 @@
     <frame x="241" y="0" width="1130" height="735" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2931677" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29252335" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23153943" sideWeight="0.5303186" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22134832" sideWeight="0.5199637" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26592356" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22984356" sideWeight="0.5" order="18" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29241878" sideWeight="0.475856" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43364486" sideWeight="0.4696814" order="8" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
+      <window_info id="Run" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43364486" sideWeight="0.4696814" order="8" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944568" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32545933" sideWeight="0.5" order="16" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -860,7 +868,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
-    <MESSAGE value="test jQuery css" />
     <MESSAGE value="test jQuery test" />
     <MESSAGE value="test wx Oauth is wxdoor" />
     <MESSAGE value="update mysql" />
@@ -885,7 +892,8 @@
     <MESSAGE value="update add parts list btn" />
     <MESSAGE value="update rebuild data" />
     <MESSAGE value="update add cats form" />
-    <option name="LAST_COMMIT_MESSAGE" value="update add cats form" />
+    <MESSAGE value="update update type bygroup" />
+    <option name="LAST_COMMIT_MESSAGE" value="update update type bygroup" />
     <option name="UPDATE_GROUP_BY_PACKAGES" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1139,14 +1147,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/category_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="80" column="22" lean-forward="true" selection-start-line="80" selection-start-column="22" selection-end-line="80" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/property_form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1444">
@@ -1158,7 +1158,7 @@
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
-          <caret line="901" column="28" lean-forward="true" selection-start-line="901" selection-start-column="28" selection-end-line="901" selection-end-column="28" />
+          <caret line="901" column="28" lean-forward="false" selection-start-line="901" selection-start-column="28" selection-end-line="901" selection-end-column="28" />
           <folding>
             <element signature="e#649#859#0" expanded="false" />
             <element signature="e#881#946#0" expanded="false" />
@@ -1213,6 +1213,14 @@
             <element signature="e#57906#61599#0" expanded="false" />
             <element signature="e#61626#63569#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/category_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="148" column="79" lean-forward="true" selection-start-line="148" selection-start-column="79" selection-end-line="148" selection-end-column="79" />
+          <folding />
         </state>
       </provider>
     </entry>
