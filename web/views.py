@@ -845,8 +845,10 @@ def property_list(request):
 
                 s = []
                 u = list(ps)
+                print(u)
                 for t in u:
                     t['name'] = t[groupby]
+                    print(t[groupby])
                     t['disn'] = t[groupby]
                     if t[groupby] == '':
                         t['name'] = "未定义"
@@ -1313,7 +1315,7 @@ def property_form(request):
                 pid.position = request.POST['position']
                 # pid.status = 1
                 pid.nots = request.POST['comment']
-                pid.active = True
+                # pid.active = True
 
                 pid.save()
 
@@ -1427,32 +1429,44 @@ def importdata(request):
     wb = load_workbook("kkk.xlsx")
 
     # # 导入设备
-    # sheet = wb.get_sheet_by_name("Sheet2")
-    # print(sheet["C1"].value)
+    # sheet = wb["Sheet1"]
+    # print(sheet["G1"].value)
     #
     # p = list()
     # x = 0
     # for i in sheet["A"]:
     #     x += 1
     #     if x != 1:
-    #         u = sheet["F"+str(x)].value
-    #         m = sheet["I"+str(x)].value
-    #         w = sheet["J"+str(x)].value
+    #         u = sheet["G"+str(x)].value
+    #         m = sheet["J"+str(x)].value
+    #         w = sheet["K"+str(x)].value
+    #
+    #         cat = sheet["E" + str(x)].value
+    #         catn = asset_category.objects.filter(name=cat).first()
+    #
+    #         c = sheet["S" + str(x)].value
+    #         cou = hr_hr.objects.filter(name=c).first()
+    #
     #         p.append(asset_property(
     #             sid=sheet["B"+str(x)].value,
     #             name=sheet["C"+str(x)].value,
-    #             specifications=sheet["E"+str(x)].value,
-    #             model=sheet["T"+str(x)].value,
+    #             specifications=sheet["F"+str(x)].value,
+    #             model=sheet["U"+str(x)].value,
     #             # categoryid=sheet["E"+str(x)].value,
+    #             categoryid=catn,
     #             purchase=u.date(),
-    #             price=sheet["N"+str(x)].value,
+    #             price=sheet["O"+str(x)].value,
     #             manufacture=m.date(),
     #             warranty=w.date(),
-    #             sn=sheet["H"+str(x)].value,
+    #             sn=sheet["I"+str(x)].value,
+    #             status=sheet["Q" + str(x)].value,
+    #             position=sheet["R" + str(x)].value,
     #             # user=sheet["Q"+str(x)].value,
-    #             partlist=1,
+    #             user=cou,
+    #             # partlist=1,
     #         ))
-    # # asset_property.objects.bulk_create(p)
+    # # print(p)
+    # asset_property.objects.bulk_create(p)
 
 
     # # 导入设备使用人
@@ -1464,7 +1478,7 @@ def importdata(request):
     #     x += 1
     #     if x != 1:
     #         s = sheet["B" + str(x)].value
-    #         c =sheet["Q"+str(x)].value
+    #         c =sheet["S"+str(x)].value
     #
     #         cou = hr_hr.objects.filter(name=c).first()
     #         if c:
@@ -1478,7 +1492,7 @@ def importdata(request):
     # print("空=%s   无=%s   写=%s"% (n,m,w))
 
     # # 导入类型
-    # sheet1 = wb["Sheet1"]
+    # sheet1 = wb["Sheet2"]
     # n = 0
     # for i in sheet1['A']:
     #     n += 1
@@ -1523,21 +1537,6 @@ def importdata(request):
     # for it in its:.
     #     print(it)
     # print(type(it))
-
-    # # 导入位置、使用状态
-    # sheet1 = wb["Sheet2"]
-    # n = 0
-    # for i in sheet1['A']:
-    #     n += 1
-    #     if n != 1:
-    #         ids = sheet1["B" + str(n)].value
-    #         s = sheet1["Q" + str(n)].value
-    #         p = sheet1["R" + str(n)].value
-    #
-    #         # sidn = asset_property.objects.filter(sid=ids).first()
-    #
-    #         asset_property.objects.filter(sid=ids).update(position=p,status=s)
-    #         print("%s - %s-%s" % (ids,p,s))
 
     # if request.method == 'POST':
     #     print(request.POST)
@@ -1609,5 +1608,5 @@ def search(request):
     # for iq in q:
     #     print(iq)
 
-    print(partt(4))
+
     return render(request, 'search.html',context)
