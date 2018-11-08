@@ -1464,6 +1464,7 @@ def importdata(request):
     #             # user=sheet["Q"+str(x)].value,
     #             user=cou,
     #             # partlist=1,
+    #             # nots=sheet["V" + str(x)].value,
     #         ))
     # # print(p)
     # asset_property.objects.bulk_create(p)
