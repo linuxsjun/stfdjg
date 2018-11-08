@@ -118,8 +118,9 @@ def category_form(request):
                 context['pk'] = pn
                 context['ppk'] = ppn
                 context['npk'] = npn
+                context['spk'] = asset_category.objects.filter(active=True).count()
 
-                cats = asset_category.objects.filter(active=True).order_by('parentid', 'name')
+                cats = asset_category.objects.exclude(id=pn).filter(active=True).order_by('parentid', 'name')
                 lcats = []
                 for cat in cats:
                     ncat = {}
@@ -899,10 +900,8 @@ def property_list(request):
 
                 s = []
                 u = list(ps)
-                print(u)
                 for t in u:
                     t['name'] = t[groupby]
-                    print(t[groupby])
                     t['disn'] = t[groupby]
                     if t[groupby] == '':
                         t['name'] = "未定义"
@@ -911,7 +910,10 @@ def property_list(request):
 
                     t['field'] = groupby
                     if t['field'] == "categoryid":
-                        t['disn'] = partt(t[groupby])
+                        if t[groupby]:
+                            t['disn'] = partt(t[groupby])
+                        else:
+                            t['disn'] = "未定义"
                     if t['field'] == "status":
                         t['disn'] = status(t[groupby])
                     s.append(t)

@@ -75,40 +75,8 @@
                 <input name="act" id="act" value="{{ act }}" type="hidden">
 
                 <div class="row shadow border-top border-bottom py-2">
-                    <div class="col-auto mr-auto  sr-only">
-                        <button type="button" class="btn btn-outline-primary" disabled="True">领用</button>
-                        <button type="button" class="btn btn-outline-info" disabled="True">借用</button>
-                        <button type="button" class="btn btn-outline-dark" disabled="True">退还</button>
-                        <button type="button" class="btn btn-outline-warning" disabled="True">维修</button>
-                        <button type="button" class="btn btn-outline-danger" disabled="True">报废</button>
-                    </div>
-                    <nav class="col-auto mr-auto sr-only" aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-secondary"><h6>闲置</h6></a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-success"><h6>在用</h6></a></li>
-                            <li class="breadcrumb-item" aria-current="page"><a href="#" class="badge badge-warning"><h6>维修</h6></a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a href="#" class="badge badge-danger"><h6>报废</h6></a></li>
-                        </ol>
-                    </nav>
-                    <div class="col col-auto">
-                        <span>
-                            {% if context.status  %}
-                                {% if context.status == 1 %}
-                                <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
-                                {% endif %}
-                                {% if context.status == 2 %}
-                                <a href="#" class="badge badge-success"><h6>在用</h6></a>
-                                {% endif %}
-                                {% if context.status == 3 %}
-                                <a href="#" class="badge badge-warning"><h6>维修</h6></a>
-                                {% endif %}
-                                {% if context.status == 4 %}
-                                <a href="#" class="badge badge-danger"><h6>报废</h6></a>
-                                {% endif %}
-                            {% else %}
-                                <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
-                            {% endif %}
-                        </span>
+                    <div class="col-auto mr-auto">
+                        <button type="button" class="btn btn-outline-primary" disabled="True">应用到设备</button>
                     </div>
                 </div>
                 <div class="row justify-content-center">
@@ -155,11 +123,11 @@
                             </div>
                         </div>
                         <div class="form-group form-row col-sm">
-                            <label class="col-sm-3 col-form-label text-left text-sm-right" for="name">自动编号规则</label>
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="name">自动编号</label>
                             <div class="col-sm-3">
                                 <input class="form-control" type="text" name="bname" id="bname" value="" placeholder="前缀">
                             </div>
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <input class="form-control" type="text" name="nnum" id="nnum" value="" placeholder="序号(数字#,位数)">
                             </div>
                             <div class="col-sm-3">

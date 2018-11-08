@@ -41,32 +41,51 @@
             <form  class="form-horizontal" action="/conf" method="get" value=1>
                 <div class="container-fluid cmd_nav">
                     <div class="row">
-                        <div class="col-sm-6">
-                            <button type="button" data-loading-text="Loading..." class="btn btn-primary" data-toggle="gettoken" autocomplete="off">
-                                <span><i class="fa fa-cloud-download fa-1x"></i></span>
-                                Token
-                            </button>
-                        </div>
+
                     </div>
                 </div>
                 <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="form-group col-sm form-row">
-                                <label class="col-form-label" for="corpid">CORPID:</label>
-                                <input class="form-control" type="text" name="corpid" id="corpid" value="{{ context.corpid }}">
+                    <div class="card-deck mb-3 text-center my-3">
+                        <div class="card mb-4 shadow-sm">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col">
+                                    <h4 class="my-0 font-weight-normal">
+                                        企业微信设置
+                                    </h4>
+                                        </div>
+                                    <div class="col-auto">
+                                    <button type="button" class="btn btn-outline-primary" value="提交">保存</button>
+                                        </div>
+                                </div>
                             </div>
-                            <div class="form-group col-sm form-row">
-                                <label class="col-form-label" for="corpsecret">CORPSECRET:</label>
-                                <input class="form-control" type="text" name="corpsecret" id="corpsecret" value="{{ context.corpsecret }}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group col-sm form-row">
+                                            <label class="col-form-label" for="corpid">CORPID:</label>
+                                            <input class="form-control" type="text" name="corpid" id="corpid" value="{{ context.corpid }}">
+                                        </div>
+                                        <div class="form-group col-sm form-row">
+                                            <label class="col-form-label" for="corpsecret">CORPSECRET:</label>
+                                            <input class="form-control" type="text" name="corpsecret" id="corpsecret" value="{{ context.corpsecret }}">
+                                        </div>
+                                        <div class="form-group col-sm form-row">
+                                            <label class="col-form-label" for="token">Token:</label>
+                                            <input class="form-control" type="text" name="token" id="token" value="{{ context.token }}" readonly>
+                                        </div>
+                                        <button type="button" data-loading-text="Loading..." class="btn btn-outline-primary" data-toggle="gettoken" autocomplete="off">
+                                            <span><i class="fa fa-cloud-download fa-1x"></i></span>
+                                            GetToken
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-group col-sm form-row">
-                                <label class="col-form-label" for="token">Token:</label>
-                                <input class="form-control" type="text" name="token" id="token" value="{{ context.token }}" readonly>
-                            </div>
-                            <button type="button" class="btn btn-default" value="提交">提交</button>
                         </div>
+                        <div class="card mb-4 shadow-sm"><div class="card-header"></div><div class="card-body"></div></div>
+                        <div class="card mb-4 shadow-sm"><div class="card-header"></div><div class="card-body"></div></div>
                     </div>
+
                 </div>
             </form>
         </article>
