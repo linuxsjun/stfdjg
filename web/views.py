@@ -73,20 +73,20 @@ def category_list(request):
             if request.GET['act'] == 'sort':
                 pass
         else:
-            ps = asset_category.objects.all().order_by('parentid')
+            ps = asset_category.objects.filter(active=True).order_by('parentid')
             lcats = []
             for cat in ps:
                 ncat = {}
                 ncat["id"] = cat.id
                 ncat["name"] = cat.name
                 ncat["bom"] = cat.bom
+                ncat["autosid"] = cat.autosid
                 if cat.parentid:
                     ncat["displayname"] = partt(cat.parentid.id)
                 else:
                     ncat["displayname"] =" "
                 lcats.append(ncat)
             context['context'] = lcats
-
     return render(request, 'category_list.html', context)
 
 def category_form(request):
@@ -95,16 +95,16 @@ def category_form(request):
     context['title']='类型表单'
 
     username = request.COOKIES.get('usercookie', None)
-    # if username:
-    #     try:
-    #         signuser = hr_hr.objects.get(session=username)
-    #     except Exception:
-    #         context['userinfo'] = '用户'
-    #         return render(request, 'sign.html', context)
-    #     context['userinfo'] = signuser.name
-    # else:
-    #     context['userinfo'] = '用户'
-    #     return render(request, 'sign.html', context)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
 
     if request.method == "GET":
         print(request.GET)
@@ -137,10 +137,88 @@ def category_form(request):
                     return redirect('/category_list/')
                 else:
                     context['context'] = ps
+            elif request.GET['act'] == 'create':
+                # Todo 新建和复制
+                context['act'] = "create"
+                context['pk'] = id = int(request.GET['id'])
+
+                cats = asset_category.objects.exclude(id=id).filter(active=True).order_by('parentid', 'name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] = partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
+
+                if id:
+                    pass
+                else:
+                    pass
 
     elif request.method == "POST":
         print(request.POST)
-        pass
+        if "act" in request.POST:
+            if request.POST['act'] == "active":
+                putid = int(request.POST['id'])
+                act = asset_category.objects.filter(id=putid).update(active=True)
+                return HttpResponse(act)
+            if request.POST['act'] == 'unactive':
+                putid = int(request.POST['id'])
+                act = asset_category.objects.filter(id=putid).update(active=False)
+                return HttpResponse(act)
+            if request.POST['act'] == "edit":
+                act='edit'
+
+                id = int(request.POST['id'])
+                catsid = asset_category.objects.get(id=id)
+
+                parentid = int(request.POST['parentid'])
+                if parentid:
+                    catsid.parentid = asset_category.objects.filter(id=parentid).first()
+                else:
+                    catsid.parentid = None
+
+                if (request.POST.get('bom', False)):
+                    catsid.bom = True
+                else:
+                    catsid.bom = False
+
+                catsid.name = request.POST['name']
+                catsid.autosid = request.POST['bname']
+                catsid.notes = request.POST['notes']
+
+                k = catsid.save()
+
+                data = {}
+                if True:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = None
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = None
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            if request.POST['act'] == "aplsub":
+                id = int(request.POST['id'])
+                item = asset_category.objects.get(id=id)
+                bomnew = item.bom
+
+                item_u =asset_property.objects.filter(categoryid=item).update(bom=bomnew)
+                data = {}
+                if item_u:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = item_u
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = None
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
 
     return render(request, 'category_form.html', context)
 
@@ -1227,7 +1305,6 @@ def property_form(request):
                 return render(request, 'property_form.html', context)
             elif request.GET['act'] == "edit":
                 pass
-
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
@@ -1475,7 +1552,7 @@ def parts_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_parts.objects.all().order_by('name')
+    ps = asset_property.objects.filter(bom=True,active=True).order_by('name')
     context['context'] = ps
 
     return render(request, 'parts_list.html', context)

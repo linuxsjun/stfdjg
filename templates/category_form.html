@@ -5,7 +5,7 @@
 {% endblock styecss %}
 
 {% block jquery %}
-{#        <script src="/static/js/property_form.js"></script>#}
+        <script src="/static/js/category_form.js"></script>
 {% endblock jquery%}
 
 {% block mainbody %}
@@ -22,7 +22,8 @@
                         <button type="button" class="btn btn-primary sr-only" data-dis="display" data-toggle="edit">编辑</button>
                         <button type="button" class="btn btn-outline-secondary sr-only" data-dis="display" data-toggle="del">删除</button>
                         <button type="button" class="btn btn-primary sr-only" data-dis="edit" data-toggle="save">保存</button>
-                        <button type="button" class="btn btn-outline-secondary" data-toggle="goback">返回</button>
+                        <button type="button" class="btn btn-outline-secondary sr-only" data-dis="edit" data-toggle="cancel">取消</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dis="display" data-toggle="goback">返回</button>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -43,7 +44,7 @@
                                 <span class="caret"></span>
                             </button>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/property_form/?act=create&id={{ pk }}">复制</a>
+                                <a class="dropdown-item" href="/category_form/?act=create&id={{ pk }}">复制</a>
                             </div>
                         </div>
                     </div>
@@ -57,7 +58,7 @@
                                     <span aria-hidden="true">&laquo;</span>
                                 </a>
                             </li>
-                            <li class="page-item disabled"><a class="page-link"><span id="assetid">{{ pk|default:0 }}</span>/{{ spk|default:0 }}</a></li>
+                            <li class="page-item disabled"><a class="page-link"><span id="itemid">{{ pk|default:0 }}</span>/{{ spk|default:0 }}</a></li>
                             <li class="page-item">
                                 <a class="page-link" href="/category_form/?act=display&id={{ npk }}" aria-label="Next">
                                     <span aria-hidden="true">&raquo;</span>
@@ -76,34 +77,34 @@
 
                 <div class="row shadow border-top border-bottom py-2">
                     <div class="col-auto mr-auto">
-                        <button type="button" class="btn btn-outline-primary" disabled="True">应用到设备</button>
+                        <button type="button" class="btn btn-outline-primary" id="btnaplsub">应用到设备</button>
                     </div>
                 </div>
                 <div class="row justify-content-center">
                 <div class="col-10 shadow border p-3 rounded my-3">
                     <div class="row justify-content-between align-items-center">
                         <div class="col-sm-6 mb-3">
+                            <!-- id -->
+                            <input class="form-control sr-only" type="text" name="id" id="id" value="{{ context.id }}">
                         </div>
                         <div class="col-sm-5 mb-3">
                             <div class="btn-group" role="group">
                                 <div class="btn-group" role="group">
                                     {% if context.active == 1 %}
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="active" data-val="1">
-                                            <i class="fa fa-archive fa-1x"></i>
-                                            归档
+                                        <button type="button" class="btn btn-outline-secondary" data-toggle="active" data-val="1">
+                                            <i class="fa fa-archive fa-1x"></i> 归档
                                         </button>
                                     {% else %}
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="active" data-val="0">
-                                            <i class="fa fa-archive fa-1x"></i>
-                                            取档
+                                        <button type="button" class="btn btn-outline-secondary" data-toggle="active" data-val="0">
+                                            <i class="fa fa-archive fa-1x"></i> 取档
                                         </button>
                                     {% endif %}
                                 </div>
                                 <div class="btn-group" role="group">
-                                    <button type="button" class="btn btn-outline-primary">
-                                        <i class="fa fa-wrench fa-1x"></i>
-                                        配件属性下发
-                                        <span class="badge badge-secondary">15</span>
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        <i class="fa fa-cubes fa-1x"></i>
+                                        配件
+                                        <span class="badge badge-secondary">0</span>
                                     </button>
                                 </div>
 
@@ -123,9 +124,9 @@
                             </div>
                         </div>
                         <div class="form-group form-row col-sm">
-                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="name">自动编号</label>
+                            <label class="col-sm-2 col-form-label text-left text-sm-right" for="bname">自动编号</label>
                             <div class="col-sm-3">
-                                <input class="form-control" type="text" name="bname" id="bname" value="" placeholder="前缀">
+                                <input class="form-control" type="text" name="bname" id="bname" value="{{ context.autosid }}" placeholder="前缀">
                             </div>
                             <div class="col-sm-4">
                                 <input class="form-control" type="text" name="nnum" id="nnum" value="" placeholder="序号(数字#,位数)">
@@ -190,7 +191,7 @@
                         </div>
                         <div class="modal-body">
                             <div class="content">
-                                <p>请确认是否删除编号:<b>{{ context.sid }}</b>的记录？</p>
+                                <p>请确认是否删除此记录？</p>
                             </div>
                         </div>
                         <div class="modal-footer">

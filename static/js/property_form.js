@@ -143,11 +143,11 @@ $(document).ready(function () {
 
         if (val === "1") {
             sel.attr("data-val",0);
-            sel.html('<i class="fa fa-archive fa-1x"></i>取档');
+            sel.html('<i class="fa fa-archive fa-1x"></i> 取档');
             act = "unactive";
         }else {
             sel.attr("data-val", 1);
-            sel.html('<i class="fa fa-archive fa-1x"></i>归档');
+            sel.html('<i class="fa fa-archive fa-1x"></i> 归档');
             act = "active";
         }
         $.ajax({
@@ -582,7 +582,9 @@ $(document).ready(function () {
                             id:$(this).val(),
                             parentid:$("#id").val()
                         },
-                        function (data) {console.log(data)
+                        function (data) {
+                        console.log(data);
+
                         }
                     );
                 }
