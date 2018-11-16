@@ -1022,7 +1022,7 @@ def property_list(request):
                                                                    'user__name',
                                                                    'user__active',
                                                                    'position',
-                                                                   'sn').order_by('name', 'specifications', 'sid')[:100]
+                                                                   'sn').order_by('name', 'specifications', 'sid')
             context['spk'] = ps.count()
             context['context'] = ps
     elif request.method == "POST":
