@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $('[data-toggle="gethr"]').on('click',function () {
-        var $btn = $(this).button('loading')
+        var $btn = $(this).button('loading');
         $.ajax({
             url:"/gethr",
             type:"GET",
@@ -10,7 +10,7 @@ $(document).ready(function () {
             success:function (data) {
                 console.log(data)
             }
-        })
+        });
         $btn.button('reset')
     })
-})
+});

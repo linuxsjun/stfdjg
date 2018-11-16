@@ -774,7 +774,8 @@ def wxcode(request):
     return HttpResponse('wxcode')
 
 def wxtext(request):
-    return HttpResponse('xtT9JTstqSGD5Lu2')
+    # return HttpResponse('xtT9JTstqSGD5Lu2')
+    return HttpResponse('nHQMbL9kxBaRLdjd')
 
 def property_list(request):
     request.encoding = 'utf-8'
@@ -1021,7 +1022,7 @@ def property_list(request):
                                                                    'user__name',
                                                                    'user__active',
                                                                    'position',
-                                                                   'sn').order_by('name', 'specifications', 'sid')
+                                                                   'sn').order_by('name', 'specifications', 'sid')[:100]
             context['spk'] = ps.count()
             context['context'] = ps
     elif request.method == "POST":

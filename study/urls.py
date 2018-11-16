@@ -23,6 +23,7 @@ urlpatterns = [
 
     path('', views.index),
     path('WW_verify_xtT9JTstqSGD5Lu2.txt', views.wxtext),
+    path('WW_verify_nHQMbL9kxBaRLdjd.txt', views.wxtext),
 
     path('pure_list/', views.view_pure_list),
     path('pure_form/', views.pure_form),

@@ -9,180 +9,199 @@
 {% endblock jquery%}
 
 {% block mainbody %}
-    <div class="col-sm-2 sr-only">
-        <div class="limg"></div>
-        <div class="sub_menu">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="sub_menu_foot"></div>
-    </div>
-    <div>
-        <div class="container-fluid">
-            <div class="row mt-2">
-                <h3 class="col-sm-6">{{ title }}</h3>
+    <!--<div class="view_form"> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 border-right">
+                <div class="limg"></div>
+                <ul class="nav flex-column nav-pills">
+                    <li class="nav-item list-group-item sr-only">
+                        <h5><i class="fa fa-tachometer fa-1x"></i> 看板</h5>
+                        <a class="nav-link" href="#"><i class="fa fa-pie-chart fa-1x"></i> 看板</a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <h5><i class="fa fa-users fa-1x"></i> 设备</h5>
+                        <a class="nav-link" href="/property_list/"><i class="fa  fa-cube fa-1x"></i> 设备</a>
+                        <a class="nav-link" href="/parts_list/">配件</a>
+                        <a class="nav-link" href="/category_list/">类型</a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <h5><i class="fa fa-code-fork fa-1x"></i> 服务</h5>
+                        <a class="nav-link" href="#">域名</a>
+                        <a class="nav-link" href="#"><i class="fa fa-envelope-open fa-1x"></i> Email账号</a>
+                        <a class="nav-link active" href="/pure_list/"><i class="fa fa-server fa-1x"></i> FTP服务</a>
+                        <a class="nav-link" href="#"><i class="fa fa-exchange fa-1x"></i> T-transfer服务</a>
+                        <a class="nav-link" href="#"><i class="fa fa-share-alt fa-1x"></i> Share分享</a>
+                    </li>
+                    <li class="nav-item list-group-item">
+                        <h5><i class="fa fa-wrench fa-1x"></i> 设置</h5>
+                        <a class="nav-link"  href="#">常规</a>
+                        <a class="nav-link"  href="#">高级</a>
+                    </li>
+                </ul>
             </div>
-            <div class="row mt-2 mb-3">
-                <div class="col-sm-6">
-                    <!--工具条-->
-                </div>
-                <div class="col-sm-4">
-                    <!--导入导出条-->
-                    <div class="btn-group">
-                        <div class="btn-group dropdown">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                打印
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">基本信息</a>
+            <div class="col-10">
+                <div class="container-fluid">
+                    <div class="row mt-2">
+                        <h3 class="col-sm-6">{{ title }}</h3>
+                    </div>
+                    <div class="row mt-2 mb-3">
+                        <div class="col-sm-6">
+                            <!--工具条-->
+                        </div>
+                        <div class="col-sm-4">
+                            <!--导入导出条-->
+                            <div class="btn-group">
+                                <div class="btn-group dropdown">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        打印
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">基本信息</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                        动作
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">复制</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="btn-group dropdown">
-                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                                动作
-                                <span class="caret"></span>
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">复制</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row shadow border-top border-bottom py-2">
+                            <div class="col-auto mr-auto">
+                                <button type="submit" form="cccc" class="btn btn-primary" data-toggle="save">保存</button>
+                                <button type="button" class="btn btn-outline-secondary" id="goback" data-toggle="goback">返回</button>
+                            </div>
+                        </div>
+                        <div class="row justify-content-center">
+                            <div class="container shadow border p-3 rounded my-3">
+                                <div class="row">
+                                    <h1 class="col">{{ context.user }}</h1>
+                                </div>
+                                <form action="/pure_add/" method="post" id="cccc" name="pure">
+                                    {% csrf_token %}
+                                    <input name="acte" value="{{ act }}" type="hidden">
+                                    <div class="row mt-3">
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">状态</label>
+                                            <div class="col-sm-10">
+                                                {% if context.status %}
+                                                <input class="form-control" type="checkbox" name="status" value="true" checked="">
+                                                {% else %}
+                                                <input class="form-control" type="checkbox" name="status" value="false">
+                                                {% endif %}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="sn">账号</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" name="user" value="{{ context.user }}" placeholder="登录名">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">密码</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="password" name="password" value="{{ context.password }}" placeholder="密码">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">ipaccess</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" name="ipaccess" value="{{ context.ipaccess|default:'0.0.0.0' }}">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">目录</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" name="dir" value="{{ context.dir }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm"></div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">用户ID</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" name="uid" value="{{ context.uid|default:'1001' }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">组ID</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="text" name="gid" value="{{ context.gid|default:'1001' }}">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">上传带宽</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" name="ulbandwidth" value="{{ context.ulbandwidth|default:'0' }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">下载带宽</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" name="dlbandwidth" value="{{ context.dlbandwidth|default:'0' }}">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">空间配额</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" name="quotasize" value="{{ context.quotasize|default:'0' }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">文件配额</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">创建日期</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="date" name="createdate" value="{{ context.createdate|date:'Y-m-d' }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right border-right">最后登录日期</label>
+                                            <div class="col-sm-10">
+                                                <input class="form-control" type="date" name="lastedate" value="{{ context.lastedate|date:'Y-m-d' }}">
+                                            </div>
+                                        </div>
+                                        <div class="w-100"></div>
+
+                                        <div class="form-group row col-sm">
+                                            <label class="col-sm-2 col-form-label text-left text-sm-right">用途</label>
+                                            <div class="col-sm-10">
+                                                <textarea class="form-control" name="comment" clos=",100" rows="3" warp="soft" placeholder="使用说明">{{ context.comment }}</textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row col-sm"></div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <article>
-            <div class="formview">
-                <div class="container-fluid shadow border py-2">
-                    <div class="row justify-content-between align-items-center clearfix">
-                        <div class="col-auto">
-                            <button type="submit" form="cccc" class="btn btn-primary" data-toggle="save">保存</button>
-                            <button type="button" class="btn btn-outline-secondary" id="goback" data-toggle="goback">返回</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container shadow border p-3 rounded my-3">
-                    <div class="row">
-                        <h1 class="col">{{ context.user }}</h1>
-                    </div>
-                    <form action="/pure_add/" method="post" id="cccc" name="pure">
-                        {% csrf_token %}
-                        <input name="acte" value="{{ act }}" type="hidden">
-                        <div class="row mt-3">
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">状态</label>
-                                <div class="col-sm-10">
-                                    {% if context.status %}
-                                    <input class="form-control" type="checkbox" name="status" value="true" checked="">
-                                    {% else %}
-                                    <input class="form-control" type="checkbox" name="status" value="false">
-                                    {% endif %}
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right" for="sn">账号</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="user" value="{{ context.user }}" placeholder="登录名">
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">密码</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="password" name="password" value="{{ context.password }}" placeholder="密码">
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">ipaccess</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="ipaccess" value="{{ context.ipaccess|default:'0.0.0.0' }}">
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">目录</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="dir" value="{{ context.dir }}">
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm"></div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">用户ID</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="uid" value="{{ context.uid|default:'1001' }}">
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">组ID</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" name="gid" value="{{ context.gid|default:'1001' }}">
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">上传带宽</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="number" name="ulbandwidth" value="{{ context.ulbandwidth|default:'0' }}">
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">下载带宽</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="number" name="dlbandwidth" value="{{ context.dlbandwidth|default:'0' }}">
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">空间配额</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="number" name="quotasize" value="{{ context.quotasize|default:'0' }}">
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">文件配额</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="number" name="quotafiles" value="{{ context.quotafiles|default:'0' }}">
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">创建日期</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="date" name="createdate" value="{{ context.createdate|date:'Y-m-d' }}">
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right border-right">最后登录日期</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="date" name="lastedate" value="{{ context.lastedate|date:'Y-m-d' }}">
-                                </div>
-                            </div>
-                            <div class="w-100"></div>
-
-                            <div class="form-group row col-sm">
-                                <label class="col-sm-2 col-form-label text-left text-sm-right">用途</label>
-                                <div class="col-sm-10">
-                                    <textarea class="form-control" name="comment" clos=",100" rows="3" warp="soft" placeholder="使用说明">{{ context.comment }}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row col-sm"></div>
-                        </div>
-                    </form>
-                </div>
-                <div class="form_foot"></div>
-            </div>
-        </article>
-        <div class="footbar"></div>
     </div>
 {% endblock %}

@@ -5,124 +5,121 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-
-    <div class="view_menu sr-only">
-        <div class="limg"></div>
-        <div>
-            <ul class="sub_menu">
-                <li><a href="#">员工</a>
-                <ul class="thr_menu">
-                    <li><a href="/hr/">员工</a></li>
-                </ul>
-                </li>
-                <li><a href="#">部门</a>
-                <ul class="thr_menu">
-                    <li><a href="/dep/">部门</a></li>
-                </ul>
-                </li>
-            </ul>
-        </div>
-        <div class="sub_menu_foot"></div>
-    </div>
-
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-6">
-                <h3>{{ title }}</h3>
-            </div>
-            <div class="col-sm-6 sr-only">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="搜索...">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button>
-                    </span>
-                </div><!-- /input-group -->
-            </div>
-        </div>
-        <div class="row sr-only">
-            <div class="col-sm-6">
-                <!--工具条-->
-                <div>
-                    <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
-                    <button type="button" class="btn btn-default disabled" data-toggle="del">删除</button>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 border-right">
+                    <div class="limg"></div>
+                    <ul class="nav flex-column nav-pills">
+                        <li class="nav-item list-group-item">
+                            <h5><i class="fa fa-users fa-1x"></i> 员工</h5>
+                            <a class="nav-link active" href="/hr/"><i class="fa fa-user fa-1x"></i> 员工</a>
+                        </li>
+                        <li class="nav-item list-group-item">
+                            <h5><i class="fa  fa-sitemap fa-1x"></i> 部门</h5>
+                            <a class="nav-link" href="/dep/">部门</a>
+                        </li>
+                        <li class="nav-item list-group-item">
+                            <h5><i class="fa fa-wrench fa-1x"></i> 设置</h5>
+                            <a class="nav-link"  href="#">常规</a>
+                            <a class="nav-link"  href="#">高级</a>
+                        </li>
+                    </ul>
                 </div>
-            </div>
-            <div class="col-sm-4">
-                <!--导入导出条-->
-                <div class="btn-group">
-                    <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            动作
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">导入</a></li>
-                            <li><a href="#">导出</a></li>
-                        </ul>
+        <div class="col-10">
+            <div class="row shadow border-bottom">
+                <div class="col">
+                    <div class="container-fluid">
+                        <div class="row mt-2">
+                            <h3 class="col-sm-6">{{ title }}</h3>
+                            <div class="col-sm-6 sr-only">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="搜索...">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-zoom-in" aria-hidden="true"></span></button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-sm-6">
+                                <!--工具条-->
+                                <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
+                                <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
+                                <button type="button" data-loading-text="Loading..." class="btn btn-outline-primary" data-toggle="gethr" autocomplete="off">
+                                    <span><i class="fa fa-cloud-download fa-1x"></i></span>获取员工
+                                </button>
+                            </div>
+                            <div class="col-sm-4">
+                                <!--导入导出条-->
+                                <div class="btn-group">
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            动作
+                                            <span class="caret"></span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" id="dddd">导入</a>
+                                            <a class="dropdown-item" href="/static/download/property_list.xlsx">导出xlsx</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            筛选
+                                            <span class="caret"></span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" id="unactive">已归档</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">资产</a>
+                                            <a class="dropdown-item" href="#">配件</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                            分组
+                                            <span class="caret"></span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" data-act="group" data-groupby="name">名称</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-act="group" data-groupby="categoryid">类型</a>
+                                            <a class="dropdown-item" href="#" data-act="group" data-groupby="model">型号</a>
+                                            <a class="dropdown-item" href="#" data-act="group" data-groupby="specifications">规格</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#" data-act="group" data-groupby="status">状态</a>
+                                            <a class="dropdown-item" href="#" data-act="group" data-groupby="position">位置</a>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                            <div class="col-sm-2">
+                                <!--导航条-->
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-end">
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item disabled"><a class="page-link"><span id="assetid">{{ fpk|default:0 }}-{{ tpk|default:0 }}/{{ spk|default:0 }}</span></a></li>
+                                        <li class="page-item disabled">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
-                    <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            筛选
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#filter=unactive">归档</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">规格</a></li>
-                            <li><a href="#">用户</a></li>
-                            <li><a href="#">部门</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">自定义</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group dropdown">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                            分组
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">名称</a></li>
-                            <li><a href="#">规格</a></li>
-                            <li><a href="#">部门</a></li>
-                            <li><a href="#">状态</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-        </div>
-            <div class="col-sm-2">
-                <!--导航条-->
-                <div class="btn-group pull-right">
-                    <span class="btn-group">
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span></button>
-                    </span>
-                    <span class="btn-group">
-                        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-                    </span>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <context  class="container">
-        <div class="container-fluid cmd_nav">
-            <div class="row">
-                <div class="col-sm-6">
-                    <button type="button" data-loading-text="Loading..." class="btn btn-primary" data-toggle="gethr" autocomplete="off">
-                        <span><i class="fa fa-cloud-download fa-1x"></i></span>
-                        获取员工
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="container-fluid">
             <div class="row">
                 {% for item in context %}
-                    <div class="col-auto" style="margin-top: 15px;">
-                        <div class="card border-secondary" style="width: 11rem;">
+                    <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2" style="margin-top: 15px;">
+                        <div class="card border-secondary">
                             <div class="card-header">
-                            <img class="rounded" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap" style="width:32px;">
+{#                                    <img class="rounded" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap" style="width:32px;">#}
                                 {{ item.name }}
                             </div>
                             <div class="card-body">
@@ -135,13 +132,9 @@
                     </div>
                 {% endfor %}
             </div>
-
         </div>
-    </context>
-
-    <div class="footbar">
-
     </div>
+</div>
 {% endblock %}
 
 {% block jquery %}
