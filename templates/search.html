@@ -15,6 +15,15 @@
 {#                e.preventDefault();#}
 {#            });#}
 
+            $('#sub').click(function () {
+                $.get(
+                    '/sub/',
+                    function (data) {
+                        $('#linksub').append(data)
+                    }
+                )
+            });
+
             $('form').submit(function (e) {
 {#                e.preventDefault();#}
                  $('#ttt').addClass("was-validated")
@@ -78,13 +87,15 @@ elt.tagsinput('add', { "value": 4 , "text": "Washington"  , "continent": "Americ
 elt.tagsinput('add', { "value": 7 , "text": "Sydney"      , "continent": "Australia" });
 elt.tagsinput('add', { "value": 10, "text": "Beijing"     , "continent": "Asia"      });
 elt.tagsinput('add', { "value": 13, "text": "Cairo"       , "continent": "Africa"    });
+
+
 </script>
 {% endblock jquery%}
+
 
 {% block mainbody %}
 
     <h3>{{ title }}</h3>
-
 
     <input class="bootstrap-tagsinput" type="text" id="tage" data-role="tagsinput"/>
 
@@ -118,6 +129,11 @@ elt.tagsinput('add', { "value": 13, "text": "Cairo"       , "continent": "Africa
         </div>
         <button class="btn btn-primary" type="submit">submit</button>
     </form>
+
+    <div>
+    <button class="btn btn-primary" id="sub">sub</button>
+    <div id="linksub"></div>
+    </div>
     
     
 

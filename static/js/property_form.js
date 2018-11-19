@@ -572,25 +572,29 @@ $(document).ready(function () {
     });
 
     $('#btnpartadd').click(function () {
+        var chkbox = $('#tabpartssel tr td input');
+        var addid = "";
         if ($(this).hasClass('disabled')) {
         } else {
-            $('#tabpartssel tr td input').each(function(){
+            chkbox.each(function(){
                 if( $(this).prop("checked")){
-                    $.post("/property_form/",
-                        {
-                            act:"addparts",
-                            id:$(this).val(),
-                            parentid:$("#id").val()
-                        },
-                        function (data) {
-                        console.log(data);
-
-                        }
-                    );
+                    console.log($(this).val());
+                    addid = addid + $(this).val() + ","
                 }
             });
-            $('#Modalparts').modal('hide');
-            window.location.reload()
+            $.post("/property_form/",
+                {
+                    act:"addparts",
+                    id:addid,
+                    parentid:$("#id").val()
+                },
+                function (data) {
+                console.log(data);
+                $('#Modalparts').modal('hide');
+                window.location.reload();
+                }
+            );
+
         }
     });
 

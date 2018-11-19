@@ -31,6 +31,7 @@ urlpatterns = [
     path('pure_del/', views.pure_del),
 
     path('search/', views.search),
+    path('sub/', views.sub),
 
     path('sign/', views.sign_view),
     path('signout/', views.signout),

@@ -1455,18 +1455,21 @@ def property_form(request):
 
                 return HttpResponse(id)
             if request.POST['act'] == 'addparts':
-                assetid= int(request.POST['id'])
+                assetidlist= request.POST['id']
                 parentid = int(request.POST['parentid'])
 
                 # Todo 向设备添加配件，1.改配件的父级 2.此配件归档 3.修改配件状态为使用中 4. 刷新对应设备的配件列表
                 pps= asset_property.objects.get(id=parentid)
-                ps = asset_property.objects.get(id=assetid)
 
-                ps.parentid = pps
-                ps.active = False
-                ps.status = 2
+                for assetid in assetidlist.split(",")[0:-1]:
+                    print(assetid)
+                    ps = asset_property.objects.get(id=int(assetid))
 
-                ps.save()
+                    ps.parentid = pps
+                    ps.active = False
+                    ps.status = 2
+
+                    ps.save()
 
                 data={}
 
@@ -1744,3 +1747,14 @@ def search(request):
     #     print(iq)
 
     return render(request, 'search.html',context)
+    # return render(request, 'view_hr_list.html',context)
+
+def sub(request):
+    context={}
+    context['title']='sub list'
+    ps = hr_hr.objects.filter(active=True).order_by('name')
+    kk = hr_hr.objects.first()
+    # kk.employee_department_set.all()
+    print(kk)
+    context['context'] = ps
+    return render(request, 'hr_list_sub.html', context)

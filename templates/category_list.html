@@ -8,32 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 border-right">
-                <div class="limg"></div>
-                <ul class="nav flex-column nav-pills">
-                    <li class="nav-item list-group-item sr-only">
-                        <h5><i class="fa fa-tachometer fa-1x"></i> 看板</h5>
-                        <a class="nav-link" href="#"><i class="fa fa-pie-chart fa-1x"></i> 看板</a>
-                    </li>
-                    <li class="nav-item list-group-item">
-                        <h5><i class="fa fa-users fa-1x"></i> 设备</h5>
-                        <a class="nav-link" href="/property_list/"><i class="fa  fa-cube fa-1x"></i> 设备</a>
-                        <a class="nav-link" href="/parts_list/">配件</a>
-                        <a class="nav-link active" href="/category_list/">类型</a>
-                    </li>
-                    <li class="nav-item list-group-item">
-                        <h5><i class="fa fa-code-fork fa-1x"></i> 服务</h5>
-                        <a class="nav-link" href="#">域名</a>
-                        <a class="nav-link" href="#"><i class="fa fa-envelope-open fa-1x"></i> Email账号</a>
-                        <a class="nav-link" href="/pure_list/"><i class="fa fa-server fa-1x"></i> FTP服务</a>
-                        <a class="nav-link" href="#"><i class="fa fa-exchange fa-1x"></i> T-transfer服务</a>
-                        <a class="nav-link" href="#"><i class="fa fa-share-alt fa-1x"></i> Share分享</a>
-                    </li>
-                    <li class="nav-item list-group-item">
-                        <h5><i class="fa fa-wrench fa-1x"></i> 设置</h5>
-                        <a class="nav-link"  href="#">常规</a>
-                        <a class="nav-link"  href="#">高级</a>
-                    </li>
-                </ul>
+                {% include 'aest_sub_sidemenu.html' %}
             </div>
             <div class="col-10">
                 <div class="container-fluid">
@@ -54,11 +29,11 @@
                             <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
                             <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
                         </div>
-                        <div class="col-sm-4">
+                        <div class="col-sm-3">
                             <!--导入导出条-->
                             <div class="btn-group">
                                 <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
                                         动作
                                         <span class="caret"></span>
                                     </button>
@@ -68,7 +43,7 @@
                                     </div>
                                 </div>
                                 <div class="btn-group dropdown">
-                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
                                         筛选
                                         <span class="caret"></span>
                                     </button>
@@ -79,8 +54,8 @@
                                     </div>
                                 </div>
                             </div>
-                    </div>
-                        <div class="col-sm-2">
+                        </div>
+                        <div class="col-3">
                             <!--导航条-->
                             <nav aria-label="Page navigation example">
                                 <ul class="pagination justify-content-end">

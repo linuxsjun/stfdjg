@@ -1,0 +1,34 @@
+<div class="row">
+    <table class="table table-hover table-responsive-sm">
+        <thead>
+            <tr>
+                <th><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
+                <th data-id="status">姓名</th>
+                <th data-id="status">手机</th>
+                <th data-id="status">邮箱</th>
+                <th data-id="status">座机</th>
+                <th data-id="status">职务信息</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in context %}
+                {% if item.user__name and item.user__active == 0 %}
+                <tr class="listitem text-danger">
+                {% else %}
+                <tr class="listitem">
+                {% endif %}
+                    <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
+                    <td><a href="#">{{ item.name }}</a></td>
+                    <td>{{ item.mobile }}</td>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.telephone }}</td>
+                    <td>{{ item.position }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td  colspan="10" style="text-align: center;">(暂无数据)</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>

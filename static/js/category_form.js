@@ -132,13 +132,16 @@ $(document).ready(function () {
 
     $('#btnaplsub').click(function () {
         var itemid = $('#id').val();
+        var app = this;
+        app.addClass('text-danger');
         $.post('/category_form/',
             {
                 act:"aplsub",
                 id:itemid
             },
             function (data) {
-                console.log(data)
+                console.log(data);
+                app.removeClass('fa-pulse');
             }
         )
     });
