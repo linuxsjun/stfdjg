@@ -157,7 +157,7 @@ class asset_property(models.Model):
     price = models.FloatField(default=0, verbose_name='价格')
     manufacture = models.DateField(null=True, blank=True, verbose_name='出厂日期')
     warranty = models.DateField(null=True, blank=True, verbose_name='维保到期')
-    sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
+    sn = models.CharField(max_length=32, null=True, blank=True, verbose_name='出厂编号')
     user = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='用户')
     # partlist = models.CharField(max_length=32, null=True, blank=True, verbose_name='配件-多个')
     parentid = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='隶属主机')

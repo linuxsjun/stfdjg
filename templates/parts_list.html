@@ -104,13 +104,7 @@
                             {% for item in context %}
                                 <tr>
                                     <td><input type="checkbox" name="selitem"></td>
-                                    <td>
-                                        {% if  item.status %}
-                                            <span style="color: green;"><i class="fa fa-toggle-on fa-1x"></i></span>
-                                        {% else %}
-                                            <span style="color: red;"><i class="fa fa-toggle-off fa-1x"></i></span>
-                                        {% endif %}
-                                    </td>
+                                    <td>{{ item.statusstr | safe }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.specifications }}</td>
                                     <td>{{ item.sn }}</td>

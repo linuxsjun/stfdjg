@@ -28,7 +28,7 @@ $(document).ready(function () {
                 htxt +='<td scope="col">' + items['specifications'] + '</td>';
                 htxt +='<td scope="col">' + items['sn'] + '</td>';
                 // Todo 配件的状态用彩色图标来显示
-                htxt +='<td scope="col">' + items['status'] + '</td>';
+                htxt +='<td scope="col">' + items['statusstr'] + '</td>';
                 htxt +='</tr>';
             });
             return htxt;
@@ -597,6 +597,4 @@ $(document).ready(function () {
 
         }
     });
-
-
 });

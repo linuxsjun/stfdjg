@@ -60,6 +60,10 @@ urlpatterns = [
     path('category_list/', views.category_list),
     path('category_form/', views.category_form),
 
+    path('asset_kanban_board/', views.asset_kanban_board),
+
+
+
     path('importdata/', views.importdata),
 ]
 

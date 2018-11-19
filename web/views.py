@@ -27,8 +27,21 @@ def partt(id):
     else:
         return tid.name
 
-def status(id):
-    statusname=['', '闲置', '在用', '维修', '报废']
+def status(id,show):
+    if show == 0:
+        statusname=['', '闲置', '在用', '维修', '报废']
+    elif show == 1:
+        statusname=['',
+                    '<span class="text-secondary"><i class="fa fa-circle-o" aria-hidden="true"></i></span>',
+                    '<span class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>',
+                    '<span class="text-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>',
+                    '<span class="text-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>']
+    elif show == 2:
+        statusname=['',
+                    '<span class="badge badge-secondary">闲置</span>',
+                    '<span class="badge badge-success">在用</span>',
+                    '<span class="badge badge-warning">维修</span>',
+                    '<span class="badge badge-danger">报废</span>']
     return statusname[id]
 
 # Create your views here.
@@ -49,6 +62,24 @@ def index(request):
         return render(request, 'sign.html', context)
 
     return render(request, 'base.html', context)
+
+
+def asset_kanban_board(request):
+    context={}
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    return render(request, 'asset_kanban_board.html', context)
 
 def category_list(request):
     request.encoding = 'utf-8'
@@ -920,8 +951,9 @@ def property_list(request):
                         t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
                     if t['warranty']:
                         t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+                    if t['status']:
+                        t['statusstr'] = status(t['status'] ,2)
                     s.append(t)
-
                 if len(s):
                     data['code'] = 0
                     data['msg'] = "OK"
@@ -994,7 +1026,7 @@ def property_list(request):
                         else:
                             t['disn'] = "未定义"
                     if t['field'] == "status":
-                        t['disn'] = status(t[groupby])
+                        t['disn'] = status(t[groupby],0)
                     s.append(t)
 
                 if len(s):
@@ -1556,8 +1588,19 @@ def parts_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.filter(bom=True,active=True).order_by('name')
-    context['context'] = ps
+    ps = asset_property.objects.filter(bom=True,active=True).values().order_by('name')
+
+    u = list(ps)
+    s = []
+    for t in u:
+        if t['purchase']:
+            t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
+        if t['warranty']:
+            t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+        if t['status']:
+            t['statusstr'] = status(t['status'], 1)
+        s.append(t)
+    context['context'] = s
 
     return render(request, 'parts_list.html', context)
 
