@@ -391,16 +391,16 @@ def asset_property_sub_board(request):
                                                            'asset_attachment__filepath',
                                                            'asset_attachment__final',
                                                            'position',
-                                                           'sn').order_by('name', 'specifications', 'sid')
-
-    mm = asset_property.objects.filter(active=True).values('id',
-                                                           'asset_attachment__filepath',
-                                                           'asset_attachment__final'
-                                                           ).order_by('name', 'specifications', 'sid')
-    print(list(mm))
-    print(mm.count())
-    print(ps.count())
+                                                           'sn').order_by('name', 'specifications', 'sid')[:100]
     context['spk'] = ps.count()
+
+    ssss = asset_property.objects.filter(active=True,asset_attachment__final=True).values('id',
+                                                           'user__name',
+                                                           'user__employee_department__departmentid_id',
+                                                           'user__active',
+                                                           'asset_attachment__filepath',
+                                                           'asset_attachment__final').order_by('name', 'specifications', 'sid')
+    print(ssss)
 
     s = []
     for t in list(ps):
@@ -410,6 +410,8 @@ def asset_property_sub_board(request):
             t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
         if t['status']:
             t['statusstr'] = status(t['status'], 2)
+        # if t['asset_attachment__filepath'] == None:
+        #     t['asset_attachment__filepath'] = 'holder.js/64x64'
         s.append(t)
     context['context'] = s
     return render(request, 'asset_property_sub_board.html', context)
