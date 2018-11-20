@@ -388,8 +388,18 @@ def asset_property_sub_board(request):
                                                            'warranty',
                                                            'user__name',
                                                            'user__active',
+                                                           'asset_attachment__filepath',
+                                                           'asset_attachment__final',
                                                            'position',
                                                            'sn').order_by('name', 'specifications', 'sid')
+
+    mm = asset_property.objects.filter(active=True).values('id',
+                                                           'asset_attachment__filepath',
+                                                           'asset_attachment__final'
+                                                           ).order_by('name', 'specifications', 'sid')
+    print(list(mm))
+    print(mm.count())
+    print(ps.count())
     context['spk'] = ps.count()
 
     s = []

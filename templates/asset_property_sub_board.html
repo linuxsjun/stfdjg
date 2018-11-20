@@ -3,7 +3,7 @@
         <div class="col-sm-3 p-2">
             <div class="media border p-3 shadow">
                  <a href="/property_form/?act=display&id={{ item.id }}">
-                     <img class="mr-4" src="/static/img/asset.png" alt="img" style="width:48px;">
+                     <img class="mr-4" src="{{ item.asset_attachment__filepath }}" alt="img" style="width:48px;">
                  </a>
                 <div class="media-body">
                     <h5>[{{ item.sid }}]</h5>

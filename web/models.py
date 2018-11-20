@@ -184,6 +184,7 @@ class position(models.Model):
         db_table = 'base_position'
 
 class asset_attachment(models.Model):
+    #设备附件
     property = models.ForeignKey('asset_property', null=True, blank=True, on_delete=models.CASCADE, verbose_name='设备号')
     name = models.CharField(max_length=128, verbose_name='名称')
     filepath = models.CharField(null=True, blank=True, max_length=256, verbose_name='文件路径')
