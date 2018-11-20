@@ -8,7 +8,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 border-right">
-                {% include 'aest_sub_sidemenu.html' %}
+                {% include 'asset_menu_side_sub.html' %}
             </div>
             <div class="col-10">
                 <div class="row">
@@ -30,6 +30,12 @@
                                         <lable class="col-2 col-form-label">每页条目数</lable>
                                         <div class="col-2">
                                             <input type="text" class="form-control" name="listnum" value="50">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-row">
+                                        <lable class="col-2 col-form-label">默认显示</lable>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" name="listnum" value="展板/列表/表单">
                                         </div>
                                     </div>
                                 </form>
@@ -54,6 +60,37 @@
                                         <lable class="col-2 col-form-label">消息发送</lable>
                                         <div class="col-6">
                                             <input type="text" class="form-control" name="listnum" value="立刻发送/不发送">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h5>财务预测</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <span><i class="fa fa-save fa-1x fa-fw"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form>
+                                    <div class="form-group form-row">
+                                        <lable class="col-2 col-form-label">默认使用年限</lable>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="useyear" value="5">
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-row">
+                                        <lable class="col-2 col-form-label">计账科目</lable>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="countname" value="固定资产">
                                         </div>
                                     </div>
                                 </form>

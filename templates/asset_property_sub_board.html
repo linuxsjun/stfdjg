@@ -1,0 +1,17 @@
+<div class="row border-top p-2">
+    {% for item in context %}
+        <div class="col-sm-3 p-2">
+            <div class="media border p-3 shadow">
+                 <a href="/property_form/?act=display&id={{ item.id }}">
+                     <img class="mr-4" src="/static/img/asset.png" alt="img" style="width:48px;">
+                 </a>
+                <div class="media-body">
+                    <h5>[{{ item.sid }}]</h5>
+                    <div> {{ item.name }} {{ item.statusstr| safe }}</div>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        (暂无数据)
+    {% endfor %}
+</div>

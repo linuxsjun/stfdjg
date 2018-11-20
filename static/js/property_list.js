@@ -140,6 +140,15 @@ $(document).ready(function () {
         $('#Mdadel').modal('hide');
     });
 
+    $('#subboard').click(function () {
+        $.get(
+            '/asset_property_sub_board/',
+            function (data) {
+                $('#panl').next().remove();
+                $('#panl').after(data);
+            }
+        );
+    });
     //<!--导入导出条-->
     $('#dddd').click(function () {
 

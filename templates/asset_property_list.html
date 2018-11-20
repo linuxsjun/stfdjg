@@ -8,10 +8,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-2 border-right">
-                {% include 'aest_sub_sidemenu.html' %}
+                {% include 'asset_menu_side_sub.html' %}
             </div>
             <div class="col-10">
-                <div class="container-fluid">
+                <div class="container-fluid" id="panl">
                     <div class="row mt-2">
                         <h3 class="col-sm-6">{{ title }}</h3>
                         <div class="col-sm-6">
@@ -38,6 +38,7 @@
                             <!--工具条-->
                             <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
                             <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
+                            <button type="button" class="btn btn-outline-secondary disabled" id="subboard">llll</button>
                         </div>
                         <div class="col-sm-3">
                             <!--导入导出条-->
