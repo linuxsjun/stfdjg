@@ -32,11 +32,7 @@ $(document).ready(function () {
                 } else {
                     htxt += "<td>" + n["sn"] + "</td>";
                 }
-                if (n["purchase"] === null) {
-                    htxt += "<td></td>";
-                } else {
-                    htxt += "<td>" + n["purchase"] + "</td>";
-                }
+
                 if (n["warranty"] === null) {
                     htxt += "<td></td>";
                 } else {

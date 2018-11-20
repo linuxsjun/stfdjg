@@ -47,6 +47,7 @@ $(document).ready(function () {
         $('[data-dis="edit"]').addClass("sr-only");
 
         $('.form-control').attr('readonly', true);
+        $('.form-check-input').attr('disabled', true);
         $('.custom-select').attr('disabled', true);
     }
 
@@ -63,6 +64,7 @@ $(document).ready(function () {
             $('[data-dis="edit"]').removeClass("sr-only");
 
             $('.form-control').removeAttr('readonly', true);
+            $('.form-check-input').removeAttr('disabled', true);
             $('.custom-select').removeAttr('disabled', true);
             $('[data-toggle="tooltip"]').tooltip('enable');
             $('button[data-toggle="save"]').removeClass("disabled");

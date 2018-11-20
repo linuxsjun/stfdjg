@@ -12,37 +12,51 @@
             </div>
             <div class="col-10">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-10">
-                                        <h5>可用设备</h5>
+                                        <h5>列表/展板/表单</h5>
                                     </div>
                                     <div class="col-2">
-                                        <span><i class="fa fa-refresh fa-1x fa-fw"></i></span>
+                                        <span><i class="fa fa-save fa-1x fa-fw"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="chartContainer" style="height: 180px; max-width: 920px; margin: 0px auto;"></div>
+                                <form>
+                                    <div class="form-group form-row">
+                                        <lable class="col-2 col-form-label">每页条目数</lable>
+                                        <div class="col-2">
+                                            <input type="text" class="form-control" name="listnum" value="50">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <div class="card">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-10">
-                                        <h5>年采购量(近10年)</h5>
+                                        <h5>通知</h5>
                                     </div>
                                     <div class="col-2">
-                                        <span><i class="fa fa-refresh fa-1x fa-fw"></i></span>
+                                        <span><i class="fa fa-save fa-1x fa-fw"></i></span>
                                     </div>
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div id="secend" style="height: 180px; max-width: 920px; margin: 0px auto;"></div>
+                                <form>
+                                    <div class="form-group form-row">
+                                        <lable class="col-2 col-form-label">消息发送</lable>
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="listnum" value="立刻发送/不发送">
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -53,5 +67,5 @@
 {% endblock %}
 
 {% block jquery %}
-    <script src="/static/js/asset_kanban_board.js"></script>
+
 {% endblock jquery%}

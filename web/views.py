@@ -63,6 +63,22 @@ def index(request):
 
     return render(request, 'base.html', context)
 
+def asset_config(request):
+    context={}
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    return render(request, 'asset_conf.html', context)
 
 def asset_kanban_board(request):
     context={}
@@ -851,7 +867,6 @@ def property_list(request):
                 elif search['field'] != "all":
                     if(search['ilike'] == 'null'):
                         search['ilike'] = None
-
                     kwargs={}
                     kwargs['active'] = True
                     kwargs[search['field']]=search['ilike']
@@ -1056,7 +1071,17 @@ def property_list(request):
                                                                    'position',
                                                                    'sn').order_by('name', 'specifications', 'sid')
             context['spk'] = ps.count()
-            context['context'] = ps
+
+            s = []
+            for t in list(ps):
+                if t['purchase']:
+                    t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
+                if t['warranty']:
+                    t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+                if t['status']:
+                    t['statusstr'] = status(t['status'], 2)
+                s.append(t)
+            context['context'] = s
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:

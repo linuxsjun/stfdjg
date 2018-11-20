@@ -25,6 +25,9 @@ urlpatterns = [
     path('WW_verify_xtT9JTstqSGD5Lu2.txt', views.wxtext),
     path('WW_verify_nHQMbL9kxBaRLdjd.txt', views.wxtext),
 
+    path('asset_kanban_board/', views.asset_kanban_board),
+    path('asset_config/', views.asset_config),
+
     path('pure_list/', views.view_pure_list),
     path('pure_form/', views.pure_form),
     path('pure_add/', views.pure_add),
@@ -60,7 +63,7 @@ urlpatterns = [
     path('category_list/', views.category_list),
     path('category_form/', views.category_form),
 
-    path('asset_kanban_board/', views.asset_kanban_board),
+
 
 
 

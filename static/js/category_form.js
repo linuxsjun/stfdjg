@@ -82,15 +82,17 @@ $(document).ready(function () {
             // $('.custom-select').attr('disabled', true);
             // $('[data-toggle="tooltip"]').tooltip('disable');
             // $('button[data-toggle="save"]').addClass("disabled");
-            // console.log($('form').serializeArray());
             $.post(
                 "/category_form/",
                 $('form').serialize(),
-                function(context){
-                    window.location.reload()
+                function(data){
+                    if (data.code === 0){
+                        window.location.reload();
+                    } else {
+                        alert("数据提交失败")
+                    }
                 }
             );
-
         }
     });
 

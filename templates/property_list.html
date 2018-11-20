@@ -122,7 +122,6 @@
                                 <th data-id="name">名称<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
                                 <th data-id="specifications">规格<i class="" aria-hidden="true" data-id="0"></i></th>
                                 <th data-id="sn">出厂编号<i class="" aria-hidden="true" data-id="0"></i></th>
-                                <th data-id="purchase">购买日期<i class="" aria-hidden="true" data-id="0"></i></th>
                                 <th data-id="warranty">维保到期<i class="" aria-hidden="true" data-id="0"></i></th>
                                 <th data-id="user">用户<i class="" aria-hidden="true" data-id="0"></i></th>
                                 <th data-id="position">位置<i class="" aria-hidden="true" data-id="0"></i></th>
@@ -136,23 +135,12 @@
                                 <tr class="listitem">
                                 {% endif %}
                                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                                    <td>
-                                        {% if  item.status == 1 %}
-                                            <span class="badge badge-secondary">闲置</span>
-                                        {% elif item.status == 2 %}
-                                            <span class="badge badge-success">在用</span>
-                                        {% elif item.status == 3 %}
-                                            <span class="badge badge-warning">维修</span>
-                                        {% elif item.status == 4 %}
-                                            <span class="badge badge-danger">报废</span>
-                                        {% endif %}
-                                    </td>
+                                    <td>{{ item.statusstr| safe }}</td>
                                     <td>{{ item.sid }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.specifications| default:"" }}</td>
                                     <td>{{ item.sn| default:"" }}</td>
-                                    <td>{{ item.purchase|date:'Y-m-d' }}</td>
-                                    <td>{{ item.warranty|date:'Y-m-d' }}</td>
+                                    <td>{{ item.warranty }}</td>
                                     <td>{{ item.user__name| default:"" }}</td>
                                     <td>{{ item.position| default:"" }}</td>
                                 </tr>
