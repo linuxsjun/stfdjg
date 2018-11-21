@@ -100,7 +100,6 @@ $(document).ready(function () {
         );
     });
 
-
     // -----命令按键----
     $('button[data-toggle="create"]').click(function () {
         if ($(this).hasClass('disabled')) {
@@ -140,15 +139,6 @@ $(document).ready(function () {
         $('#Mdadel').modal('hide');
     });
 
-    $('#subboard').click(function () {
-        $.get(
-            '/asset_property_sub_board/',
-            function (data) {
-                $('#panl').next().remove();
-                $('#panl').after(data);
-            }
-        );
-    });
     //<!--导入导出条-->
     $('#dddd').click(function () {
 
@@ -250,6 +240,21 @@ $(document).ready(function () {
                 // $('input[name="selall"]').val(0);
             }
         );
+    });
+
+    //----视图类型----
+    $('#subboard').click(function () {
+        $.get(
+            '/asset_property_sub_board/',
+            function (data) {
+                $('#panl').next().remove();
+                $('#panl').after(data);
+            }
+        );
+    });
+
+    $('radio[name="listoptions"]').click(function (e) {
+        $(this).addClass("text-primary")
     });
 
     //---- 排序 ----

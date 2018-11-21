@@ -1,7 +1,7 @@
-<div class="row border-top p-2">
+<div class="row border-top">
     {% for item in context %}
         <div class="col-sm-3 p-2">
-            <div class="media border p-3 shadow">
+            <div class="media border p-2 shadow">
                  <a href="/property_form/?act=display&id={{ item.id }}">
                      <img class="img-thumbnail mr-3" src="{{ item.asset_attachment__filepath }}" alt="img" style="height: 64px; width: 64px;">
                  </a>

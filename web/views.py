@@ -16,6 +16,8 @@ from django.conf import settings
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
 from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from openpyxl import load_workbook
 # https://www.qqxiuzi.cn/zh/pinyin/
 def partt(id):
@@ -135,7 +137,7 @@ def asset_property_list(request):
                                                                             'user__name',
                                                                             'user__active',
                                                                             'position',
-                                                                            'sn')
+                                                                            'sn').order_by('name')
                     u = list(ps)
                 elif search['field'] != "all":
                     if(search['ilike'] == 'null'):
@@ -144,19 +146,19 @@ def asset_property_list(request):
                     kwargs['active'] = True
                     kwargs[search['field']]=search['ilike']
                     ps = asset_property.objects.filter(**kwargs).values('id',
-                                                                                      'status',
-                                                                                      'sid',
-                                                                                      'name',
-                                                                                      'specifications',
-                                                                                      'purchase',
-                                                                                      'warranty',
-                                                                                      'user__name',
-                                                                                      'user__active',
-                                                                                      'position',
-                                                                                      'sn')
+                                                                        'status',
+                                                                        'sid',
+                                                                        'name',
+                                                                        'specifications',
+                                                                        'purchase',
+                                                                        'warranty',
+                                                                        'user__name',
+                                                                        'user__active',
+                                                                        'position',
+                                                                        'sn').order_by('name')
                     u = list(ps)
                 else:
-                    ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True).values('id',
+                    ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True,bom=False).values('id',
                                                              'status',
                                                              'sid',
                                                              'name',
@@ -168,7 +170,7 @@ def asset_property_list(request):
                                                              'position',
                                                              'sn')
                     u = list(ps)
-                    ps = asset_property.objects.filter(sn__icontains=search['ilike'], active=True).values('id',
+                    ps = asset_property.objects.filter(sn__icontains=search['ilike'], active=True,bom=False).values('id',
                                                              'status',
                                                              'sid',
                                                              'name',
@@ -181,7 +183,7 @@ def asset_property_list(request):
                                                              'sn')
                     for i in list(ps):
                         u.append(i)
-                    ps = asset_property.objects.filter(name__icontains=search['ilike'], active=True).values('id',
+                    ps = asset_property.objects.filter(name__icontains=search['ilike'], active=True,bom=False).values('id',
                                                              'status',
                                                              'sid',
                                                              'name',
@@ -194,7 +196,7 @@ def asset_property_list(request):
                                                              'sn')
                     for i in list(ps):
                         u.append(i)
-                    ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True).values('id',
+                    ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True,bom=False).values('id',
                                                              'status',
                                                              'sid',
                                                              'name',
@@ -207,7 +209,7 @@ def asset_property_list(request):
                                                              'sn')
                     for i in list(ps):
                         u.append(i)
-                    ps = asset_property.objects.filter(position__icontains=search['ilike'], active=True).values('id',
+                    ps = asset_property.objects.filter(position__icontains=search['ilike'], active=True,bom=False).values('id',
                                                              'status',
                                                              'sid',
                                                              'name',
@@ -332,7 +334,7 @@ def asset_property_list(request):
                 return HttpResponse(data, content_type="application/json")
         else:
             # 没有动作,输出默认列表
-            ps = asset_property.objects.filter(active=True).values('id',
+            ps = asset_property.objects.filter(bom=False,active=True).values('id',
                                                                    'status',
                                                                    'sid',
                                                                    'name',
@@ -344,6 +346,17 @@ def asset_property_list(request):
                                                                    'position',
                                                                    'sn').order_by('name', 'specifications', 'sid')
             context['spk'] = ps.count()
+
+            paginator = Paginator(ps, 100)
+            data = paginator.page(2)
+            ps = data
+
+            # print(data.next_page_number())
+            context['fpk'] = data.start_index()
+            context['tpk'] = data.end_index()
+
+            context['pagprevious'] = data.previous_page_number()
+            context['pagnext'] = data.next_page_number()
 
             s = []
             for t in list(ps):
@@ -379,7 +392,7 @@ def asset_property_sub_board(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.filter(active=True).values('id',
+    ps = asset_property.objects.filter(bom=False,active=True).values('id',
                                                            'status',
                                                            'sid',
                                                            'name',
@@ -391,28 +404,33 @@ def asset_property_sub_board(request):
                                                            'asset_attachment__filepath',
                                                            'asset_attachment__final',
                                                            'position',
-                                                           'sn').order_by('name', 'specifications', 'sid')[:100]
+                                                           'sn').order_by('name', 'specifications', 'sid')
     context['spk'] = ps.count()
+    print(context['spk'])
 
-    ssss = asset_property.objects.filter(active=True,asset_attachment__final=True).values('id',
+    ssss = asset_property.objects.filter(bom=False,active=True).values('id',
                                                            'user__name',
                                                            'user__employee_department__departmentid_id',
                                                            'user__active',
                                                            'asset_attachment__filepath',
                                                            'asset_attachment__final').order_by('name', 'specifications', 'sid')
-    print(ssss)
+    paginator = Paginator(ps,50)
+    data=paginator.page(6)
+    print(ssss.count())
+    # print(ttt)
 
     s = []
-    for t in list(ps):
+    for t in list(data):
         if t['purchase']:
             t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
         if t['warranty']:
             t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
         if t['status']:
             t['statusstr'] = status(t['status'], 2)
-        # if t['asset_attachment__filepath'] == None:
-        #     t['asset_attachment__filepath'] = 'holder.js/64x64'
+        if t['asset_attachment__filepath'] == None:
+            t['asset_attachment__filepath'] = '/static/img/asset.png'
         s.append(t)
+    print(len(s))
     context['context'] = s
     return render(request, 'asset_property_sub_board.html', context)
 
