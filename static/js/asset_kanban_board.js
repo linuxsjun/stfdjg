@@ -10,13 +10,16 @@ window.onload = function() {
             yValueFormatString: "0",
             indexLabel: "{label} {y}",
             dataPoints: [
-                {y: 312, label: "闲置"},
+                {y: 321, label: "闲置"},
                 {y: 506, label: "在用"},
                 {y: 6, label: "维修"},
                 {y: 77, label: "报废"}
             ]
         }]
     });
+    var datachart = [{y: 22, label: "闲置"},{y: 22, label: "在用"},{y: 22, label: "维修"},{y: 22, label: "报废"}];
+    chart.options.data.dataPoints += datachart;
+    chart.options.title.text += ": Updated";
     chart.render();
 
     var linechart = new CanvasJS.Chart("secend", {

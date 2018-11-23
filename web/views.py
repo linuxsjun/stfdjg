@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
-from django.db.models import Count
+from django.db.models import Count, Sum
 # from django.db.models import Sum,Count
 
 import requests, json, time, datetime, hashlib, random
@@ -295,12 +295,11 @@ def asset_property_list(request):
             elif request.GET['act'] == 'groupby':
                 data = {}
                 groupby = request.GET['field']
-                ps = asset_property.objects.filter(active=True).values(groupby).annotate(number=Count('id')).order_by(groupby)
-                # lks = asset_property.objects.filter(active=True).values('categoryid__name','categoryid').annotate(number=Count('id'))
-                # print(lks)
+                ps = asset_property.objects.filter(bom=False,active=True).values(groupby).annotate(number=Count('id'),pice=Sum('price')).order_by(groupby)
 
                 s = []
                 u = list(ps)
+                print(u)
                 for t in u:
                     t['name'] = t[groupby]
                     t['disn'] = t[groupby]
@@ -555,8 +554,9 @@ def asset_property_form(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "indexpartscategoryid":
                 # parts = asset_property.objects.filter(categoryid__active=True, categoryid__bom=True,active=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
-                parts = asset_property.objects.filter(categoryid__active=True, categoryid__bom=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
-
+                parts = asset_property.objects.filter(active=True,categoryid__active=True, categoryid__bom=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
+                pp = asset_category.objects.filter(bom=True,active=True,asset_property__active=True).values("id", "name","asset_property__active").annotate(Count('asset_property__id'))
+                print(pp)
                 # parts = asset_category.objects.filter(active=True,bom=True).values("id", "name")
 
                 # 改名，校正数据格式
@@ -566,6 +566,7 @@ def asset_property_form(request):
                     t['id'] = t['categoryid__id']
                     t['num'] = t['id__count']
                     s.append(t)
+
 
                 data = {}
                 if parts:
@@ -897,7 +898,7 @@ def asset_property_form(request):
                 return HttpResponse(data, content_type="application/json")
     return render(request, 'asset_property_form.html', context)
 
-def category_list(request):
+def asset_category_list(request):
     request.encoding = 'utf-8'
     context={}
     context['title']='类型列表'
@@ -936,7 +937,7 @@ def category_list(request):
             context['context'] = lcats
     return render(request, 'category_list.html', context)
 
-def category_form(request):
+def asset_category_form(request):
     request.encoding = 'utf-8'
     context={}
     context['title']='类型表单'
@@ -984,6 +985,11 @@ def category_form(request):
                     return redirect('/category_list/')
                 else:
                     context['context'] = ps
+
+                assetsub = asset_property.objects.filter(categoryid=ps,active=True).values()
+                print(assetsub)
+                context['subnum'] = assetsub.count()
+
             elif request.GET['act'] == 'create':
                 # Todo 新建和复制
                 context['act'] = "create"

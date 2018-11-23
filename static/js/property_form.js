@@ -217,7 +217,6 @@ $(document).ready(function () {
         });
     });
 
-
     $('#delimg').click(function () {
         var pid = $("#assetid").text();
         var id = $('#headerimg').attr('data-id');
@@ -492,7 +491,7 @@ $(document).ready(function () {
     $('#addpart').click(function () {
         if ($(this).hasClass('disabled')) {
         } else {
-            $('#Modalparts').modal("show");
+
             $.get("/property_form/",
                 {act:"indexpartscategoryid"},
                 function (data) {
@@ -500,6 +499,29 @@ $(document).ready(function () {
                         var seloptl = $('#partscategoryid').selpartscategoryid(data.data);
                         $('#partscategoryid').empty();
                         $('#partscategoryid').append(seloptl);
+
+                        var tabpartslist = $('#tabpartssel');
+                        var categoryid = $('#partscategoryid');
+                        var val = categoryid.val();
+
+                        $.get("/property_list/",
+                            {
+                                act:"filter",
+                                field:"categoryid",
+                                ilike:val
+                            },
+                            function (data) {
+                                var seloptl = "";
+                                if(data.code === 0){
+                                    seloptl = tabpartslist.tabpartsadd(data.data);
+                                }else {
+                                    seloptl = '<tr><td  colspan="5" style="text-align: center;">(暂无数据)</td></tr>';
+                                }
+                                tabpartslist.empty();
+                                tabpartslist.append(seloptl);
+                            }
+                        );
+
                         }else {
                         var seloptl = '<option value="0">(请先指定哪些类型为配件)</option>';
                         $('#partscategoryid').empty();
@@ -507,6 +529,7 @@ $(document).ready(function () {
                     }
                 }
             );
+            $('#Modalparts').modal("show");
         }
     });
 

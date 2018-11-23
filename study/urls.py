@@ -61,12 +61,8 @@ urlpatterns = [
 
     path('parts_list/', views.parts_list),
 
-    path('category_list/', views.category_list),
-    path('category_form/', views.category_form),
-
-
-
-
+    path('category_list/', views.asset_category_list),
+    path('category_form/', views.asset_category_form),
 
     path('importdata/', views.importdata),
 ]

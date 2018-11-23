@@ -66,7 +66,6 @@
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,16 +87,8 @@
                                     <td>{{ item.createdate|date:'Y-m-d' }}</td>
                                     <td>{{ item.lastedate|date:'Y-m-d' }}</td>
                                     <td><a class="but_min" href="/pure_form?act={{ item.id }}" title="编辑"><i class="fa fa-edit fa-1x"></i></a></td>
-
                                     <td><a class="but_min" href="/pure_del?act=del&id={{ item.id }}" title="删除"><i class="fa fa-remove fa-1x"></i></a></td>
-                                    <td><a class="but_min" href="resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
-                                    <td>
-                                        <div class="btn-group" role="group" aria-label="Basic example">
-                                            <button type="button" class="btn btn-light"><i class="fa fa-edit fa-1x"></i></button>
-                                            <button type="button" class="btn btn-light"><i class="fa fa-remove fa-1x"></i></button>
-                                            <button type="button" class="btn btn-light"><i class="fa fa-send fa-1x"></i></button>
-                                        </div>
-                                    </td>
+                                    <td><a class="but_min" href="/resend/{{ item.id }}" title="发送信息给创建者"><i class="fa fa-send fa-1x"></i></a></td>
                                 </tr>
                             {% empty %}
                                 <tr>

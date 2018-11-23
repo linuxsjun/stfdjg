@@ -134,8 +134,8 @@ $(document).ready(function () {
 
     $('#btnaplsub').click(function () {
         var itemid = $('#id').val();
-        var app = this;
-        app.addClass('text-danger');
+        var app = $(this);
+        // app.addClass('text-danger');
         $.post('/category_form/',
             {
                 act:"aplsub",
@@ -143,7 +143,6 @@ $(document).ready(function () {
             },
             function (data) {
                 console.log(data);
-                app.removeClass('fa-pulse');
             }
         )
     });
