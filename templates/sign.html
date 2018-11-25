@@ -7,60 +7,34 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>登录</title>
 
-    <link rel="stylesheet" type="text/css" href="/static/css/base.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/sign.css">
-
     <!-- font-awesome -->
     <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
     <!-- Bootstrap -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 
+    <link rel="stylesheet" type="text/css" href="/static/css/sign.css">
 
     <script src="/static/js/wwLogin-1.0.0.js"></script>
-
 </head>
-<body>
-   <header class="navbar navbar-inverse navbar-fixed-top">
-       <div class="container">
-           <div class="navbar-header">
-                <a class="navbar-brand" href="/"><i class="fa fa-windows fa-1x"></i></a>
-           </div>
-           <div id="navbar" class="navbar-collapse collapse" aria-expanded="false" style="height: 1px;">
-               <ul class="nav navbar-nav navbar-right">
-                   <li><a href="/">注册<i class="fa fa-user fa-1x"></i></a></li>
-               </ul>
-            </div>
-       </div>
-   </header>
 
-   <div class="container">
-      <div class="signstyle sheet">
-          <ul class="nav navbar-nav" role="tablist">
-              <li class="active" role="presentation"><a href="#parts">密码</a></li>
-              <li role="presentation"><a href="#purchase">扫码</a></li>
-          </ul>
-          <div>
-              <div>
-                  <form class="form-signin" action="/sign/" method="post" name="sign">
-                      {% csrf_token %}
-                      <h2 class="form-signin-heading text-center"><i class="fa fa-user fa-2x"></i></h2>
-                      <div class="form-group">
-                          <label class="sr-only" for="user">用户</label>
-                          <input class="form-control" type="text" name="user" id="user" placeholder="用户名(拼音 首字母大写)">
-                      </div>
-                      <div class="form-group">
-                          <label class="sr-only" for="pwd">密码</label>
-                          <input class="form-control" type="password" name="passwd" id="pwd" placeholder="密码">
-                      </div>
-                      <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录">
-                  </form>
-              </div>
-{#              <div id="wx_reg">#}
-{#              </div>#}
-          </div>
-
-      </div>
-       <script src="/static/js/sign.js"></script>
-   </div>
+<body class="text-center">
+    <form class="form-signin" action="/sign/" method="post" name="sign">
+        {% csrf_token %}
+        <h2 class="form-signin-heading text-center text-secondary"><i class="fa fa-jsfiddle fa-2x"></i></h2>
+{#        <h1 class="h3 mb-3 font-weight-normal">登  录</h1>#}
+        <label class="sr-only" for="user">用户</label>
+        <input class="form-control" type="text" name="user" id="user" placeholder="用户名(拼音 首字母大写)" required="" autofocus="">
+        <label class="sr-only" for="pwd">密码</label>
+        <input class="form-control" type="password" name="passwd" id="pwd" placeholder="密码">
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> 记住密码
+            </label>
+        </div>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="登录">
+        <p class="mt-5 mb-3 text-muted">© Company 2018-2019</p>
+    </form>
+{#    <div class="form-signin" id="wx_reg"></div>#}
+    <script src="/static/js/sign.js"></script>
 </body>
 </html>

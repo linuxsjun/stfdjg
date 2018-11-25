@@ -100,6 +100,7 @@ def asset_kanban_board(request):
     return render(request, 'asset_kanban_board.html', context)
 
 def asset_property_list(request):
+    # http://127.0.0.1:8069/web#view_type=kanban&model=product.template&menu_id=305&action=435
     request.encoding = 'utf-8'
     context={}
     context['title']='设备列表'
