@@ -19,7 +19,7 @@ window.onload = function() {
     });
     var datachart = [{y: 22, label: "闲置"},{y: 22, label: "在用"},{y: 22, label: "维修"},{y: 22, label: "报废"}];
     chart.options.data.dataPoints += datachart;
-    chart.options.title.text += ": Updated";
+    // chart.options.title.text += ": Updated";
     chart.render();
 
     var linechart = new CanvasJS.Chart("secend", {

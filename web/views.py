@@ -1753,6 +1753,7 @@ def importdata(request):
     # asset_property.objects.bulk_create(p)
 
 
+
     # # 导入设备使用人
     # x = 0
     # m = 0
@@ -1824,6 +1825,55 @@ def importdata(request):
 
     # if request.method == 'POST':
     #     print(request.POST)
+
+    # 导入配件
+    sheet = wb["Sheet3"]
+    print(sheet["G2"].value)
+
+    p = list()
+    x = 0
+    for i in sheet["A"]:
+        x += 1
+        if x != 1:
+
+            u = sheet["D"+str(x)].value
+            m = sheet["D"+str(x)].value
+            w = sheet["L"+str(x)].value
+
+            # print(type(u))
+            print(sheet["A"+str(x)].value)
+            # print(type(datetime.datetime.strptime(u, '%Y/%m/%d %H:%M:%S')))
+
+            cat = sheet["H" + str(x)].value
+            catn = asset_category.objects.filter(name=cat).first()
+
+            # c = sheet["S" + str(x)].value
+            # cou = hr_hr.objects.filter(name=c).first()
+            p = list()
+
+            p.append(asset_property(
+                sid=sheet["AA"+str(x)].value,
+                name=sheet["E"+str(x)].value,
+                specifications=sheet["F"+str(x)].value,
+                # model=sheet["U"+str(x)].value,
+                # categoryid=sheet["E"+str(x)].value,
+                categoryid=catn,
+                purchase=u.date(),
+                price=sheet["Q"+str(x)].value,
+                manufacture=m.date(),
+                warranty=w.date(),
+                sn=sheet["Z"+str(x)].value,
+                status=sheet["C" + str(x)].value,
+                position="18F技术部",
+                # user=sheet["Q"+str(x)].value,
+                # user=cou,
+                # partlist=1,
+                nots=sheet["K" + str(x)].value,
+            ))
+            asset_property.objects.bulk_create(p)
+    # print(p)
+    # asset_property.objects.bulk_create(p)
+
     response = {"status":"ok"}
     return HttpResponse(response)
 
