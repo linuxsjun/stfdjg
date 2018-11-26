@@ -300,7 +300,6 @@ def asset_property_list(request):
 
                 s = []
                 u = list(ps)
-                print(u)
                 for t in u:
                     t['name'] = t[groupby]
                     t['disn'] = t[groupby]
@@ -347,7 +346,7 @@ def asset_property_list(request):
                                                                    'sn').order_by('name', 'specifications', 'sid')
             context['spk'] = ps.count()
 
-            paginator = Paginator(ps, 100)
+            paginator = Paginator(ps, 200)
             data = paginator.page(2)
             ps = data
 
@@ -414,8 +413,8 @@ def asset_property_sub_board(request):
                                                            'user__active',
                                                            'asset_attachment__filepath',
                                                            'asset_attachment__final').order_by('name', 'specifications', 'sid')
-    paginator = Paginator(ps,50)
-    data=paginator.page(6)
+    paginator = Paginator(ps,200)
+    data=paginator.page(2)
     print(ssss.count())
     # print(ttt)
 
@@ -1704,7 +1703,7 @@ def parts_list(request):
         if t['status']:
             t['statusstr'] = status(t['status'], 1)
         s.append(t)
-        print(s)
+        # print(s)
     context['context'] = s
 
     return render(request, 'parts_list.html', context)
