@@ -71,13 +71,18 @@ class hr_hr(models.Model):
     name =  models.CharField(max_length=64,verbose_name='姓名')
     alias =  models.CharField(null=True, blank=True, max_length=32,verbose_name='别名')
     department = models.CharField(null=True, max_length=256,verbose_name='部门')
-    position = models.CharField(null=True, max_length=32, verbose_name='职务信息')
+    position = models.CharField(null=True, max_length=64, verbose_name='职务信息')
     mobile = models.CharField(null=True, max_length=16,verbose_name='手机')
+    # 性别，1    表示男性，2    表示女性
     gender = models.CharField(null=True, max_length=16,verbose_name='姓别')
     email = models.EmailField(null=True, verbose_name='邮箱')
+    # 头像url。注：如果要获取小图将url最后的”/0”改成”/100”即可。
     avatar = models.CharField(null=True, max_length=256,verbose_name='头像')
-    status = models.IntegerField(default=1, verbose_name="激活状态:1已激活2已禁用4未激活")
+    # 激活状态：1 = 已激活    2 = 已禁用    4 = 未激活    已激活代表已激活企业微信或已关注微工作台（原企业号）
+    status = models.IntegerField(default=1, verbose_name="激活状态")
+    # 成员启用状态。1表示启用的成员，0表示被禁用。服务商调用接口不会返回此字段
     enable = models.IntegerField(default=1, verbose_name="有效")
+    # 上级字段，标识是否为上级。0表示普通成员，1表示上级
     isleader = models.IntegerField(default=0,verbose_name='主管')
     extattr = models.CharField(null=True, max_length=256, verbose_name='扩展属性')
     hide_mobile = models.BooleanField(default=0,verbose_name='隐蔽手机')

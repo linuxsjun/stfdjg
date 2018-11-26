@@ -88,15 +88,24 @@
             <div class="row border-top">
                 {% for item in context %}
                     <div class="col-sm-6 col-md-4 col-lg-3 p-2">
-                        <div class="media border p-3 shadow">
-                            <a href="#">
-                            <img class="rounded  mr-3" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap" style="width:64px;">
-                            </a>
-                            <div class="media-body">
-                                <h5 class="mt-0">{{ item.name }} <sapn class="text-success"><i class="fa fa-weixin" aria-hidden="true"></i></sapn></h5>
-                                <p class="my-0"><span><i class="fa fa-credit-card fa-1x"></i></span>: {{ item.position }}</p>
-                                <p class="my-0"><span><i class="fa fa-mobile fa-1x"></i></span>: {{ item.mobile }}</p>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="media">
+                                    <img class="rounded  mr-3" src="{{ item.avatar| default:'/static/img/ftp-icon.jpg' }}" alt="Card image cap" style="width:64px;">
+                                    <div class="media-body">
+                                        <h5 class="mt-0">{{ item.name }} <sapn class="text-success"><i class="fa fa-weixin" aria-hidden="true"></i></sapn></h5>
+                                        <p class="my-0"><span><i class="fa fa-credit-card fa-1x"></i></span>: {{ item.position }}</p>
+                                        <p class="my-0"><span><i class="fa fa-mobile fa-1x"></i></span>: {{ item.mobile }}</p>
+                                    </div>
+                                </div>
                             </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">
+                                    <a class="btn btn-outline-link" href="{{ item.id }}"><i class="fa fa-edit fa-1x"></i></a>
+                                    <a class="btn btn-outline-link" href="11"><i class="fa fa-edit fa-1x"></i></a>
+                                    <a class="btn btn-outline-link" href="11"><i class="fa fa-edit fa-1x"></i></a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 {% endfor %}

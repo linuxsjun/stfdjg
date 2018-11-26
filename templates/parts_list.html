@@ -96,7 +96,6 @@
                                 <th>名称<span class="caret"></span></th>
                                 <th>规格<span class="caret"></span></th>
                                 <th>出厂编号<span class="caret"></span></th>
-                                <th>组件<span class="caret"></span></th>
                                 <th>购买日期<span class="caret"></span></th>
                             </tr>
                         </thead>
@@ -105,18 +104,10 @@
                                 <tr>
                                     <td><input type="checkbox" name="selitem"></td>
                                     <td>{{ item.statusstr | safe }}</td>
-                                    <td>{{ item.name }}</td>
+                                    <td><a href="{{ item.id }}">{{ item.name }}</a></td>
                                     <td>{{ item.specifications }}</td>
                                     <td>{{ item.sn }}</td>
-                                    <td>
-                                        {% if item.bom %}
-    {#                                        <input type="checkbox" name="bom" value="{{ item.bom }}" checked>#}
-                                            <i class="fa fa-link fa-1x"></i>
-                                        {% else %}
-    {#                                        <input type="checkbox" name="bom" value="{{ item.bom }}">#}
-                                        {% endif %}
-                                    </td>
-                                    <td>{{ item.purchase|date:'Y-m-d' }}</td>
+                                    <td>{{ item.purchase }}</td>
                                 </tr>
                             {% empty %}
                                 <tr>

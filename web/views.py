@@ -870,7 +870,7 @@ def asset_property_form(request):
                     ps = asset_property.objects.get(id=int(assetid))
 
                     ps.parentid = pps
-                    ps.active = False
+                    # ps.active = False
                     ps.status = 2
 
                     ps.save()
@@ -887,7 +887,7 @@ def asset_property_form(request):
 
                 ps = asset_property.objects.get(id=assetid)
                 ps.parentid = None
-                ps.active = True
+                # ps.active = True
                 ps.status = 1
                 ps.save()
 
@@ -1704,6 +1704,7 @@ def parts_list(request):
         if t['status']:
             t['statusstr'] = status(t['status'], 1)
         s.append(t)
+        print(s)
     context['context'] = s
 
     return render(request, 'parts_list.html', context)
@@ -1848,31 +1849,32 @@ def importdata(request):
             cat = sheet["H" + str(x)].value
             catn = asset_category.objects.filter(name=cat).first()
 
+            print(catn)
+
             # c = sheet["S" + str(x)].value
             # cou = hr_hr.objects.filter(name=c).first()
-            p = list()
 
-            p.append(asset_property(
-                sid=sheet["AA"+str(x)].value,
-                name=sheet["E"+str(x)].value,
-                specifications=sheet["F"+str(x)].value,
-                # model=sheet["U"+str(x)].value,
-                # categoryid=sheet["E"+str(x)].value,
-                categoryid=catn,
-                purchase=u.date(),
-                price=sheet["Q"+str(x)].value,
-                manufacture=m.date(),
-                warranty=w.date(),
-                sn=sheet["Z"+str(x)].value,
-                status=sheet["C" + str(x)].value,
-                position="18F技术部",
-                # user=sheet["Q"+str(x)].value,
-                # user=cou,
-                # partlist=1,
-                nots=sheet["K" + str(x)].value,
-            ))
-            asset_property.objects.bulk_create(p)
-    # print(p)
+            # p = list()
+            # p.append(asset_property(
+            #     sid=sheet["AA"+str(x)].value,
+            #     name=sheet["E"+str(x)].value,
+            #     specifications=sheet["F"+str(x)].value,
+            #     # model=sheet["U"+str(x)].value,
+            #     # categoryid=sheet["E"+str(x)].value,
+            #     categoryid=catn,
+            #     purchase=u.date(),
+            #     price=sheet["Q"+str(x)].value,
+            #     manufacture=m.date(),
+            #     warranty=w.date(),
+            #     sn=sheet["Z"+str(x)].value,
+            #     status=sheet["C" + str(x)].value,
+            #     position="18F技术部",
+            #     # user=sheet["Q"+str(x)].value,
+            #     # user=cou,
+            #     # partlist=1,
+            #     nots=sheet["K" + str(x)].value,
+            # ))
+            # asset_property.objects.bulk_create(p)
     # asset_property.objects.bulk_create(p)
 
     response = {"status":"ok"}
