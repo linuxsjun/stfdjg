@@ -6,10 +6,10 @@ window.onload = function() {
     var chartCanvas = new Chart(chartCanvas, {
         type: 'pie',
         data: {
-            labels: ["闲置(352)", "在用(505)", "维修(7)", "报废(5)"],
+            labels: ["闲置(352)", "在用(505)", "维修(7)", "报废(76)"],
             datasets: [{
                 // label: '',
-                data: [362, 505, 7, 5],
+                data: [362, 505, 7, 76],
                 backgroundColor: [
                     'rgba(200, 200, 200, 0.6)',
                     'rgba(75, 192, 75, 0.6)',

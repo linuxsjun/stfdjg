@@ -413,8 +413,8 @@ def asset_property_sub_board(request):
                                                            'user__active',
                                                            'asset_attachment__filepath',
                                                            'asset_attachment__final').order_by('name', 'specifications', 'sid')
-    paginator = Paginator(ps,200)
-    data=paginator.page(2)
+    paginator = Paginator(ps,1000)
+    data=paginator.page(1)
     print(ssss.count())
     # print(ttt)
 
@@ -935,7 +935,7 @@ def asset_category_list(request):
                     ncat["displayname"] =" "
                 lcats.append(ncat)
             context['context'] = lcats
-    return render(request, 'category_list.html', context)
+    return render(request, 'asset_category_list.html', context)
 
 def asset_category_form(request):
     request.encoding = 'utf-8'
@@ -1073,7 +1073,7 @@ def asset_category_form(request):
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
 
-    return render(request, 'category_form.html', context)
+    return render(request, 'asset_category_form.html', context)
 
 def dep_view(request):
     context={}
