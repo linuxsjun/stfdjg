@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 
 from django.db.models import Count, Sum
+from django.db.models import F, Q
 # from django.db.models import Sum,Count
 
 import requests, json, time, datetime, hashlib, random
@@ -145,6 +146,7 @@ def asset_property_list(request):
                         search['ilike'] = None
                     kwargs={}
                     kwargs['active'] = True
+                    # kwargs['bom'] = False
                     kwargs[search['field']]=search['ilike']
                     ps = asset_property.objects.filter(**kwargs).values('id',
                                                                         'status',
@@ -158,83 +160,27 @@ def asset_property_list(request):
                                                                         'position',
                                                                         'sn').order_by('name')
                     u = list(ps)
+                    print(ps.query)
+                    print(ps.count())
                 else:
-                    ps = asset_property.objects.filter(user__name__icontains=search['ilike'], active=True,bom=False).values('id',
-                                                             'status',
-                                                             'sid',
-                                                             'name',
-                                                             'specifications',
-                                                             'purchase',
-                                                             'warranty',
-                                                             'user__name',
-                                                             'user__active',
-                                                             'position',
-                                                             'sn')
+                    ps = asset_property.objects.filter(active=True,bom=False).filter(Q(user__name__icontains=search['ilike'])
+                                                                                     | Q(sid__icontains=search['ilike'])
+                                                                                     | Q(sn__icontains=search['ilike'])
+                                                                                     | Q(name__icontains=search['ilike'])
+                                                                                     | Q(specifications__icontains=search['ilike'])
+                                                                                     | Q(position__icontains=search['ilike'])).values('id',
+                                                                                                                                      'status',
+                                                                                                                                      'sid',
+                                                                                                                                      'name',
+                                                                                                                                      'specifications',
+                                                                                                                                      'purchase',
+                                                                                                                                      'warranty',
+                                                                                                                                      'user__name',
+                                                                                                                                      'user__active',
+                                                                                                                                      'position',
+                                                                                                                                      'sn')
+                    print(ps.count())
                     u = list(ps)
-                    ps = asset_property.objects.filter(sn__icontains=search['ilike'], active=True,bom=False).values('id',
-                                                             'status',
-                                                             'sid',
-                                                             'name',
-                                                             'specifications',
-                                                             'purchase',
-                                                             'warranty',
-                                                             'user__name',
-                                                             'user__active',
-                                                             'position',
-                                                             'sn')
-                    for i in list(ps):
-                        u.append(i)
-                    ps = asset_property.objects.filter(name__icontains=search['ilike'], active=True,bom=False).values('id',
-                                                             'status',
-                                                             'sid',
-                                                             'name',
-                                                             'specifications',
-                                                             'purchase',
-                                                             'warranty',
-                                                             'user__name',
-                                                             'user__active',
-                                                             'position',
-                                                             'sn')
-                    for i in list(ps):
-                        u.append(i)
-                    ps = asset_property.objects.filter(specifications__icontains=search['ilike'], active=True,bom=False).values('id',
-                                                             'status',
-                                                             'sid',
-                                                             'name',
-                                                             'specifications',
-                                                             'purchase',
-                                                             'warranty',
-                                                             'user__name',
-                                                             'user__active',
-                                                             'position',
-                                                             'sn')
-                    for i in list(ps):
-                        u.append(i)
-                    ps = asset_property.objects.filter(position__icontains=search['ilike'], active=True,bom=False).values('id',
-                                                             'status',
-                                                             'sid',
-                                                             'name',
-                                                             'specifications',
-                                                             'purchase',
-                                                             'warranty',
-                                                             'user__name',
-                                                             'user__active',
-                                                             'position',
-                                                             'sn')
-                    for i in list(ps):
-                        u.append(i)
-
-                    # 去重
-                    repid=[]
-                    calid=[]
-                    k = 0
-                    for i in u:
-                        if (i['id'] in repid):
-                            pass
-                        else:
-                            repid.append(i['id'])
-                            calid.append(i)
-                    u = calid
 
                 s = []
                 for t in u:
@@ -260,7 +206,7 @@ def asset_property_list(request):
             elif request.GET['act'] == 'sort':
                 data = {}
                 sns = request.GET['field']
-                ps = asset_property.objects.filter(active=True).values('id',
+                ps = asset_property.objects.filter(bom=False,active=True).values('id',
                                                                        'status',
                                                                        'sid',
                                                                        'name',
@@ -333,38 +279,65 @@ def asset_property_list(request):
                 return HttpResponse(data, content_type="application/json")
         else:
             # 没有动作,输出默认列表
-            ps = asset_property.objects.filter(bom=False,active=True).values('id',
-                                                                   'status',
-                                                                   'sid',
-                                                                   'name',
-                                                                   'specifications',
-                                                                   'purchase',
-                                                                   'warranty',
-                                                                   'user__name',
-                                                                   'user__active',
-                                                                   'position',
-                                                                   'sn').order_by('name', 'specifications', 'sid')
+            ps = asset_property.objects.filter(bom=False, active=True).filter(Q(asset_attachment__final=True)
+                                                                              | Q(asset_attachment__final=None)).values('id',
+                                                                                                                        'status',
+                                                                                                                        'sid',
+                                                                                                                        'name',
+                                                                                                                        'specifications',
+                                                                                                                        'warranty',
+                                                                                                                        'user__name',
+                                                                                                                        'user__active',
+                                                                                                                        'asset_attachment__filepath',
+                                                                                                                        'asset_attachment__final',
+                                                                                                                        'position',
+                                                                                                                        'sn').order_by('name', 'sid')
             context['spk'] = ps.count()
 
-            paginator = Paginator(ps, 200)
-            data = paginator.page(2)
+            #每页条目数
+            baseconfig = asset_conf.objects.get(pk=1)
+            lpnum = baseconfig.boardnum
+            #显示方式 board、list
+            typeviewlist = ["list","board","singo"]
+
+            page = request.GET.get('p',1)
+            tview = request.GET.get('v',typeviewlist[baseconfig.viewtype-1])
+            print(tview)
+            context['tview'] = tview
+
+            paginator = Paginator(ps, lpnum)
+
+            try:
+                data = paginator.page(page)
+            except PageNotAnInteger:
+                data = paginator.page(1)
+            except EmptyPage:
+                data = paginator.page(paginator.num_pages)
             ps = data
 
             # print(data.next_page_number())
             context['fpk'] = data.start_index()
             context['tpk'] = data.end_index()
 
-            context['pagprevious'] = data.previous_page_number()
-            context['pagnext'] = data.next_page_number()
+            try:
+                context['pagprevious'] = data.previous_page_number()
+            except EmptyPage:
+                context['pagprevious'] = 0
 
+            try:
+                context['pagnext'] = data.next_page_number()
+            except EmptyPage:
+                context['pagnext'] = 0
+
+            print(context)
             s = []
             for t in list(ps):
-                if t['purchase']:
-                    t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
                 if t['warranty']:
                     t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
                 if t['status']:
                     t['statusstr'] = status(t['status'], 2)
+                if t['asset_attachment__filepath'] == None:
+                        t['asset_attachment__filepath'] = '/static/img/asset.png'
                 s.append(t)
             context['context'] = s
     elif request.method == "POST":
@@ -391,12 +364,12 @@ def asset_property_sub_board(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_property.objects.filter(bom=False,active=True).values('id',
+    ps = asset_property.objects.filter(bom=False,active=True).filter(Q(asset_attachment__final=True)
+                                                                     |Q(asset_attachment__final=None)).values('id',
                                                            'status',
                                                            'sid',
                                                            'name',
                                                            'specifications',
-                                                           'purchase',
                                                            'warranty',
                                                            'user__name',
                                                            'user__active',
@@ -407,21 +380,13 @@ def asset_property_sub_board(request):
     context['spk'] = ps.count()
     print(context['spk'])
 
-    ssss = asset_property.objects.filter(bom=False,active=True).values('id',
-                                                           'user__name',
-                                                           'user__employee_department__departmentid_id',
-                                                           'user__active',
-                                                           'asset_attachment__filepath',
-                                                           'asset_attachment__final').order_by('name', 'specifications', 'sid')
-    paginator = Paginator(ps,1000)
+    lpnum = 200
+
+    paginator = Paginator(ps,lpnum)
     data=paginator.page(1)
-    print(ssss.count())
-    # print(ttt)
 
     s = []
     for t in list(data):
-        if t['purchase']:
-            t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
         if t['warranty']:
             t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
         if t['status']:
@@ -429,7 +394,6 @@ def asset_property_sub_board(request):
         if t['asset_attachment__filepath'] == None:
             t['asset_attachment__filepath'] = '/static/img/asset.png'
         s.append(t)
-    print(len(s))
     context['context'] = s
     return render(request, 'asset_property_sub_board.html', context)
 
@@ -637,7 +601,8 @@ def asset_property_form(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "chacksid":
                 val = request.GET['sid']
-                t = asset_property.objects.filter(sid=val).first()
+                cid = request.GET['id']
+                t = asset_property.objects.filter(sid=val).exclude(pk=cid).first()
                 data = {}
                 if t:
                     data['code'] = 1
@@ -650,7 +615,8 @@ def asset_property_form(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "chacksn":
                 val = request.GET['sn']
-                t = asset_property.objects.filter(sn=val).first()
+                cid = request.GET['id']
+                t = asset_property.objects.filter(sn=val).exclude(pk=cid).first()
                 data = {}
                 if t:
                     data['code'] = 1
@@ -987,9 +953,8 @@ def asset_category_form(request):
                     context['context'] = ps
 
                 assetsub = asset_property.objects.filter(categoryid=ps,active=True).values()
-                print(assetsub)
+                # print(assetsub)
                 context['subnum'] = assetsub.count()
-
             elif request.GET['act'] == 'create':
                 # Todo 新建和复制
                 context['act'] = "create"

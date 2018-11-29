@@ -11,42 +11,42 @@ $(document).ready(function () {
                 }
                 htxt += '<td><input type="checkbox" name="selitem" value="'+ n["id"] +'"></td>';
                 if (n["status"] === 1) {
-                    htxt += "<td><span class=\"badge badge-secondary\">闲置</span></td>";
+                    htxt += '<td><span class=\"badge badge-secondary\">闲置</span></td>';
                 }else if (n["status"] === 2) {
-                     htxt += "<td><span class=\"badge badge-success\">在用</span></td>";
+                     htxt += '<td><span class=\"badge badge-success\">在用</span></td>';
                 }else if (n["status"] === 3) {
-                     htxt += "<td><span class=\"badge badge-warning\">维修</span></td>";
+                     htxt += '<td><span class=\"badge badge-warning\">维修</span></td>';
                 } else if (n["status"] === 4) {
-                     htxt += "<td><span class=\"badge badge-danger\">报废</span></td>";
+                     htxt += '<td><span class=\"badge badge-danger\">报废</span></td>';
                 }
-                htxt += "<td>" + n["sid"] + "</td>";
-                htxt += "<td>" + n["name"] + "</td>";
+                htxt += '<td>' + n["sid"] + "</td>";
+                htxt += '<td>' + n["name"] + "</td>";
 
                 if (n["specifications"] === null) {
-                    htxt += "<td></td>";
+                    htxt += '<td></td>';
                 } else {
-                    htxt += "<td>" + n["specifications"] + "</td>";
+                    htxt += '<td>' + n["specifications"] + "</td>";
                 }
                 if (n["sn"] === null) {
-                    htxt += "<td></td>";
+                    htxt += '<td></td>';
                 } else {
-                    htxt += "<td>" + n["sn"] + "</td>";
+                    htxt += '<td>' + n["sn"] + "</td>";
                 }
 
                 if (n["warranty"] === null) {
-                    htxt += "<td></td>";
+                    htxt += '<td></td>';
                 } else {
-                    htxt += "<td>" + n["warranty"] + "</td>";
+                    htxt += '<td>' + n["warranty"] + "</td>";
                 }
                 if (n["user__name"] === null) {
-                    htxt += "<td></td>";
+                    htxt += '<td></td>';
                 } else {
-                    htxt += "<td>" + n["user__name"] + "</td>";
+                    htxt += '<td>' + n["user__name"] + "</td>";
                 }
                 if (n["position"] === null) {
-                    htxt += "<td></td>";
+                    htxt += '<td></td>';
                 } else {
-                    htxt += "<td>" + n["position"] + "</td>";
+                    htxt += '<td>' + n["position"] + "</td>";
                 }
                 htxt += '</tr>';
             });

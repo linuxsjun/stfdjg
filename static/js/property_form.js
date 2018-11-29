@@ -436,6 +436,7 @@ $(document).ready(function () {
     $('#sid').blur(function () {
         var me = $('#sid');
         var pop = $('#popsid');
+        var pk = $('#assetid').text();
         if(me.val() === "") {
             pop.text('必填');
             me.addClass('is-invalid');
@@ -443,7 +444,7 @@ $(document).ready(function () {
         }else{
              $.get(
                  "/property_form",
-                 {act:'chacksid',sid:$(this).val()},
+                 {act:'chacksid',sid:$(this).val(), id:pk},
                  function (data) {
                      if (data.code === 0) {
                          $('button[data-toggle="save"]').removeClass("disabled");
@@ -459,10 +460,12 @@ $(document).ready(function () {
 
     // sn 必填、不重复、改o为0
     // 只读不验证
-    //  Todo 修改时当前记录不与本记录重复
+    // 当前记录不与本记录重复
     $('#sn').blur(function () {
         var me = $('#sn');
         var pop = $('#popsn');
+        var pk = $('#assetid').text();
+        console.log(pk);
         if (me.attr('readonly')) {
         } else {
             if (me.val() === "") {
@@ -472,7 +475,7 @@ $(document).ready(function () {
             } else {
                 $.get(
                     "/property_form",
-                    {act: 'chacksn', sn: $(this).val()},
+                    {act: 'chacksn', sn: $(this).val(), id:pk},
                     function (data) {
                         if (data.code === 0) {
                             $('button[data-toggle="save"]').removeClass("disabled");

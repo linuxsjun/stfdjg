@@ -176,6 +176,10 @@ class asset_property(models.Model):
 
 class asset_conf(models.Model):
     name = models.CharField(max_length=16)
+    viewtype = models.IntegerField(default=1, verbose_name='默认显示 1.list 2.board 3.singo')
+    listnum = models.IntegerField(default=100, verbose_name='列表每页数')
+    boardnum = models.IntegerField(default=50, verbose_name='标签每页数')
+    defaultimg = models.CharField(default='/static/img/asset.png',max_length=256, verbose_name='默认图标')
 
     class Meta:
         db_table = 'asset_conf'

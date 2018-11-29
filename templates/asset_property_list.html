@@ -95,7 +95,12 @@
                         </div>
                     </div>
                 </div>
-                {% include 'asset_property_sub_list.html' %}
+                {% if tview == 'list' %}
+                    {% include 'asset_property_sub_list.html' %}
+                {% else %}
+                    {% include 'asset_property_sub_board.html' %}
+                {% endif %}
+
             </div>
         </div>
     </div>
