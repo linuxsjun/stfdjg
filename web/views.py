@@ -302,7 +302,6 @@ def asset_property_list(request):
 
             page = request.GET.get('p',1)
             tview = request.GET.get('v',typeviewlist[baseconfig.viewtype-1])
-            print(tview)
             context['tview'] = tview
 
             paginator = Paginator(ps, lpnum)
@@ -329,7 +328,6 @@ def asset_property_list(request):
             except EmptyPage:
                 context['pagnext'] = 0
 
-            print(context)
             s = []
             for t in list(ps):
                 if t['warranty']:
@@ -1212,7 +1210,7 @@ def view_pure_list(request):
 
     ps = pureftp.objects.all().order_by('-id')
     context['context'] = ps
-    return render(request, 'pure_list.html', context)
+    return render(request, 'asset_pure_list.html', context)
 
 def pure_form(request):
     request.encoding='utf-8'
@@ -1585,7 +1583,8 @@ def wxcode(request):
                 u.session = s
                 u.save()
 
-                gourl = redirect('/')
+                # 企业微信通过后跳转的首页
+                gourl = redirect('/asset/')
                 gourl.set_cookie('usercookie', s, 14400)
                 return gourl
 

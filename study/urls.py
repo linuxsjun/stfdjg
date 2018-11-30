@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from web import views
 
@@ -65,5 +65,8 @@ urlpatterns = [
     path('category_form/', views.asset_category_form),
 
     path('importdata/', views.importdata),
+
+
+    path('asset/', include('appasset.urls')),
 ]
 

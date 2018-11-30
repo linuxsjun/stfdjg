@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>平台</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetbase.css">
+
+    {% block styecss %}
+    {% endblock styecss %}
+
+</head>
+<body>
+   <header class="nav fixed-bottom bg-light border-top nav-fill">
+       <a class="nav-item nav-link text-secondary" href="/asset/">
+           <i class="fa fa-home fa-1x"></i><div>主页</div>
+       </a>
+       <a class="nav-item nav-link text-secondary active" href="/asset/assetlist/">
+{#           <i class="fa fa-file fa-1x"></i><div>新建</div>#}
+           <i class="fa fa-cubes fa-1x"></i><div>设备</div>
+       </a>
+       <a class="nav-item nav-link text-secondary" href="#">
+{#           <i class="fa fa-pencil-square fa-1x"></i><div>单据</div>#}
+           <i class="fa fa-exchange fa-1x"></i><div>传输</div>
+       </a>
+
+       <a class="nav-item nav-link text-secondary" href="#">
+           <i class="fa fa-user fa-1x"></i><div>我的</div>
+       </a>
+   </header>
+
+   {% block mainbody %}
+   <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <h5 class="text-center">设备</h5>
+            </div>
+        </div>
+       <div class="row">
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-pencil-square-o fa-2x"></i><div>申请</div></div>
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-wrench fa-2x"></i><div>报修</div></div>
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-sign-out fa-2x"></i><div>退还</div></div>
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-cubes fa-2x"></i><div>设备</div></div>
+           <div class="col-4 p-3 border align-middle text-center"></div>
+           <div class="col-4 p-3 border align-middle text-center"></div>
+       </div>
+       <div class="row">
+            <div class="col-12">
+                <h5 class="text-center">服务</h5>
+            </div>
+        </div>
+       <div class="row">
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-exchange fa-2x"></i><div>FTP</div></div>
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-share-alt fa-2x"></i><div>传输</div></div>
+           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-database fa-2x"></i><div>项目空间</div></div>
+       </div>
+       <div class="row">
+            <div class="col-12">
+                <h5 class="text-center">网络</h5>
+            </div>
+        </div>
+       <div class="row">
+        <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-envelope-o fa-2x"></i><div>邮箱</div></div>
+        <div class="col-4 p-3 border align-middle text-center"></div>
+        <div class="col-4 p-3 border align-middle text-center"></div>
+       </div>
+   </div>
+   {% endblock %}
+
+
+
+
+<!--
+   jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边)
+   加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。
+   -->
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/Chart.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <script src="/static/js/holder.min.js"></script>
+
+    {% block jquery %}
+
+    {% endblock jquery%}
+</body>
+</html>
