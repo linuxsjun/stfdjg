@@ -8,6 +8,18 @@ from web.models import asset_conf, asset_property
 def index(request):
     context={}
 
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
     return render(request, 'assetbase.html', context)
 
 def assetlist(request):
@@ -15,7 +27,19 @@ def assetlist(request):
     context={}
     context['title']='设备列表'
 
-    ps = asset_property.objects.filter(bom=False, active=True).values('id',
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_property.objects.filter(bom=False, active=True, user=signuser).values('id',
                                                                       'status',
                                                                       'sid',
                                                                       'name',
@@ -26,7 +50,7 @@ def assetlist(request):
                                                                       'asset_attachment__filepath',
                                                                       'asset_attachment__final',
                                                                       'position',
-                                                                      'sn').order_by('name', 'sid')[:50]
+                                                                      'sn').order_by('name', 'sid')
     context['spk'] = ps.count()
 
     s = []

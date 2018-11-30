@@ -2,9 +2,25 @@
 
 
 {% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetlist.css">
 {% endblock styecss %}
 
 {% block mainbody %}
+    <header class="nav fixed-top bg-light border-bottom nav-fill">
+       <a class="nav-item nav-link active" href="#">
+           <div>我的</div>
+       </a>
+       <a class="nav-item nav-link" href="#">
+           <div>完结的</div>
+       </a>
+       <a class="nav-item nav-link" href="#">
+           部门的</div>
+       </a>
+        <a class="nav-item nav-link text-secondary" href="#">
+           <i class="fa fa-plus fa-1x"></i>
+       </a>
+   </header>
+
     <div class="container-fluid">
         <div>
             <!--
@@ -15,16 +31,16 @@
 
         {% for item in context %}
             <div class="row border-bottom">
-                <div class="col-12">
+                <div class="col-12 py-2">
                     <div class="row">
                         <div class="col align-self-center">
-                            <div class="media p-1">
-                                <a href="/property_form/?act=display&id={{ item.id }}">
+                            <div class="media">
+                                <a href="/assetform/?act=display&id={{ item.id }}">
                                  <img class="rounded mr-2" src="{{ item.asset_attachment__filepath }}" alt="img" style="height: 64px; width: 64px;">
                                 </a>
                                 <div class="media-body">
                                     <h6><strong>{{ item.name }}</strong><span class="font-weight-light"> [{{ item.sid }}]</span></h6>
-                                    <p><strogn>SN: </strogn>{{ item.sn| safe }}</p>
+                                    <p class="text-sm"><strong>SN: </strong>{{ item.sn| safe }}</p>
                                     <p>{{ item.statusstr| safe }}</p>
                                 </div>
                             </div>
@@ -36,6 +52,9 @@
                                 <button class="btn btn-light text-danger assetout"><i class="fa fa-sign-out fa-1x" aria-hidden="true"></i></button>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12"><p class="text-center m-0"><a href="#"> 查看详情>></a></p></div>
                     </div>
                 </div>
             </div>
@@ -55,7 +74,7 @@
                     <form method="post" enctype="multipart/form-data" id="forminput">
                         {% csrf_token %}
                         <p class="text-sm">确定要退还这个设备吗？</p>
-                        <p class="font-italic text-sm">确认后，请设备交还到设备管理部门，由管理员确认签收设备。</p>
+                        <p class="font-italic text-sm">确认后，请将设备交还到设备管理部门，由管理员确认签收设备。</p>
                     </form>
                 </div>
                 <div class="modal-footer">
