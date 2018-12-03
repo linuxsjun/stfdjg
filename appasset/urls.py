@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.index),
 
     path('assetlist/', views.assetlist),
+    path('assetform/', views.assetform),
 ]

@@ -197,6 +197,7 @@ class asset_attachment(models.Model):
     property = models.ForeignKey('asset_property', null=True, blank=True, on_delete=models.CASCADE, verbose_name='设备号')
     name = models.CharField(max_length=128, verbose_name='名称')
     filepath = models.CharField(null=True, blank=True, max_length=256, verbose_name='文件路径')
+    thumbnail = models.CharField(null=True, blank=True, max_length=256, verbose_name='缩略图')
     oldname = models.CharField(null=True, blank=True, max_length=128, verbose_name='原文件名')
     version = models.IntegerField(default=0, verbose_name='版本号')
     final = models.BooleanField(default=False, verbose_name='终稿标记')

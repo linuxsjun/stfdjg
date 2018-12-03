@@ -289,6 +289,7 @@ def asset_property_list(request):
                                                                                                                         'user__name',
                                                                                                                         'user__active',
                                                                                                                         'asset_attachment__filepath',
+                                                                                                                        'asset_attachment__thumbnail',
                                                                                                                         'asset_attachment__final',
                                                                                                                         'position',
                                                                                                                         'sn').order_by('name', 'sid')
@@ -336,6 +337,8 @@ def asset_property_list(request):
                     t['statusstr'] = status(t['status'], 2)
                 if t['asset_attachment__filepath'] == None:
                         t['asset_attachment__filepath'] = '/static/img/asset.png'
+                if t['asset_attachment__thumbnail'] == None:
+                    t['asset_attachment__thumbnail'] = '/static/img/asset.png'
                 s.append(t)
             context['context'] = s
     elif request.method == "POST":
@@ -1622,9 +1625,30 @@ def property_upload(request):
 
         # 网站中的相对文件
         pth='/static/upfile/property/img/' + nname
+        thumbnail='static/upfile/property/img/thumbnail/64/' + nname
+
+        # from web.models import asset_attachment
+        # from PIL import Image
+
+        # thumbnailpic = asset_attachment.objects.filter(final=True)
+        #
+        # for i in thumbnailpic:
+        #     oname = 'static/upfile/property/img/' + i.name
+        #     im = Image.open(oname)
+        #     print(im)
+        #
+        #     nameth = 'static/upfile/property/img/thumbnail/64/' + i.name
+        #     thu = im.resize((64,64))
+        #     thu.save(nameth)
+        #
+        #     nid = asset_attachment.objects.get(id=i.id)
+        #     nid.thumbnail = '/' + nameth
+        #     nid.save()
+
         k = asset_attachment(property=propertyid,
                              name=nname,
                              filepath=pth,
+                             thumbnail=thumbnail,
                              oldname=f.name,
                              version=0,
                              final=True,

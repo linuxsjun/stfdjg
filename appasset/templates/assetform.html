@@ -1,0 +1,95 @@
+{% extends "assetbase.html" %}
+
+
+{% block styecss %}
+
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="container-fluid">
+        <div class="row my-3">
+            <div class="col-12 ">
+                <div class="media align-middle">
+                    <img src={{ context.asset_attachment__thumbnail }} class='img-thumbnail mr-3' id="headerimg" alt="headerimg" style="height: 64px; width: 64px;">
+                    <div class="media-body">
+                        <h2 class="media-heading">{{ context.name }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 ">
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">设备编号</span>
+                    </div>
+                    <input type="text" class="form-control " value="{{ context.sid| default_if_none:"" }}" >
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">规格</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ context.specifications| default_if_none:"" }}" >
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">型号</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ context.model| default_if_none:"" }}" >
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">使用人</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ context.user__name| default_if_none:"" }}" >
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">位置</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ context.position| default_if_none:"" }}" >
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3 border-top">
+            <div class="col-12">
+                <h6 class="mt-2 text-center">
+                    维修记录
+                </h6>
+                <p>
+                    领用
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">退还设备</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" id="forminput">
+                        {% csrf_token %}
+                        <p class="text-sm">确定要退还这个设备吗？</p>
+                        <p class="font-italic text-sm">确认后，请将设备交还到设备管理部门，由管理员确认签收设备。</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-toggle="surinput" value="upload">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block jquery %}
+
+{% endblock jquery%}
+
+
+

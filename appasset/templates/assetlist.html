@@ -6,61 +6,77 @@
 {% endblock styecss %}
 
 {% block mainbody %}
-    <header class="nav fixed-top bg-light border-bottom nav-fill">
-       <a class="nav-item nav-link active" href="#">
-           <div>我的</div>
-       </a>
-       <a class="nav-item nav-link" href="#">
-           <div>完结的</div>
-       </a>
-       <a class="nav-item nav-link" href="#">
-           部门的</div>
-       </a>
-        <a class="nav-item nav-link text-secondary" href="#">
-           <i class="fa fa-plus fa-1x"></i>
-       </a>
-   </header>
-
     <div class="container-fluid">
-        <div>
-            <!--
-
-            -->
-
+    <div class="row  fixed-top bg-light">
+        <div class="col-12 ">
+            <ul class="nav nav-tabs nav-fill nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" href="#my" data-toggle="tab">
+                        <div>我的</div>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#over" data-toggle="tab">
+                       <div>已退还</div>
+                    </a>
+                </li>
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#dep" data-toggle="tab">#}
+{#                       <div>部门</div>#}
+{#                    </a>#}
+{#                </li>#}
+                <li>
+                    <a class="nav-link text-secondary" href="#">
+                       <i class="fa fa-plus fa-1x"></i>
+                    </a>
+                </li>
+            </ul>
         </div>
-
-        {% for item in context %}
-            <div class="row border-bottom">
-                <div class="col-12 py-2">
-                    <div class="row">
-                        <div class="col align-self-center">
-                            <div class="media">
-                                <a href="/assetform/?act=display&id={{ item.id }}">
-                                 <img class="rounded mr-2" src="{{ item.asset_attachment__filepath }}" alt="img" style="height: 64px; width: 64px;">
-                                </a>
-                                <div class="media-body">
-                                    <h6><strong>{{ item.name }}</strong><span class="font-weight-light"> [{{ item.sid }}]</span></h6>
-                                    <p class="text-sm"><strong>SN: </strong>{{ item.sn| safe }}</p>
-                                    <p>{{ item.statusstr| safe }}</p>
+    </div>
+        <div class="tab-content">
+            <div class="tab-pane active" id="my">
+                {% for item in context %}
+                    <div class="row border-bottom">
+                        <div class="col-12 py-2">
+                            <div class="row">
+                                <div class="col align-self-center">
+                                    <div class="media">
+                                        <img class="rounded mr-2" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">
+                                        <div class="media-body">
+                                            <h6><strong>{{ item.name }}</strong><span class="font-weight-light"> [{{ item.sid }}]</span></h6>
+                                            <p class="text-sm"><strong>SN: </strong>{{ item.sn| safe }}</p>
+                                            <p>{{ item.statusstr| safe }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-auto align-self-center">
+                                    <div class="btn-group-vertical btn-group-sm">
+                                        <button class="btn btn-light text-warning"><i class="fa fa-wrench fa-1x"></i></button>
+        {#                                <button class="btn btn-light"><i class="fa fa-share fa-1x" aria-hidden="true"></i></button>#}
+                                        <button class="btn btn-light text-danger assetout"><i class="fa fa-sign-out fa-1x" aria-hidden="true"></i></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-auto align-self-center">
-                            <div class="btn-group-vertical btn-group-sm">
-                                <button class="btn btn-light text-warning"><i class="fa fa-wrench fa-1x"></i></button>
-{#                                <button class="btn btn-light"><i class="fa fa-share fa-1x" aria-hidden="true"></i></button>#}
-                                <button class="btn btn-light text-danger assetout"><i class="fa fa-sign-out fa-1x" aria-hidden="true"></i></button>
+                            <div class="row">
+                                <div class="col-12"><p class="text-center m-0"><a href="/asset/assetform/?act=display&id={{ item.id }}"> 查看详情>></a></p></div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12"><p class="text-center m-0"><a href="#"> 查看详情>></a></p></div>
-                    </div>
+                {% empty %}
+                    <div class="row border-bottom">(暂无数据)</div>
+                {% endfor %}
+            </div>
+            <div class="tab-pane" id="over">
+                <div class="row">
+                    <div class="col-12">完结的</div>
                 </div>
             </div>
-        {% empty %}
-            <div class="row border-bottom mt-3">(暂无数据)</div>
-        {% endfor %}
+            <div class="tab-pane" id="dep">
+                <div class="row">
+                    <div class="col-12">部门的</div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
