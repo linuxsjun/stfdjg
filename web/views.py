@@ -15,7 +15,7 @@ import re
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
-from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment
+from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment, asset_application
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -65,6 +65,16 @@ def index(request):
         return render(request, 'sign.html', context)
 
     return render(request, 'base.html', context)
+
+def asset_applicant(request):
+    request.encoding = 'utf-8'
+    context={}
+    context['title']='申请单'
+
+    ps = asset_application.objects.all()
+
+    context['context'] = ps
+    return render(request, 'asset_applicant_list.html', context)
 
 def asset_config(request):
     context={}

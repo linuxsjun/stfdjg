@@ -44,7 +44,8 @@
                                         <img class="rounded mr-2" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">
                                         <div class="media-body">
                                             <h6><strong>{{ item.name }}</strong><span class="font-weight-light"> [{{ item.sid }}]</span></h6>
-                                            <p class="text-sm"><strong>SN: </strong>{{ item.sn| safe }}</p>
+                                            <p class="text-sm m-0"><strong>SN: </strong>{{ item.sn| safe }}</p>
+                                            <p class="text-sm"><strong>部门: </strong>{{ item.user__employee_department__departmentid__name| safe }}</p>
                                             <p>{{ item.statusstr| safe }}</p>
                                         </div>
                                     </div>

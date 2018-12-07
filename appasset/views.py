@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+
+from django.db.models import Count, Sum
 
 from web.models import hr_hr
-from web.models import asset_conf, asset_property
+from web.models import asset_conf, asset_property, asset_attachment
+from web.models import hr_department
+
 
 # Create your views here.
 
@@ -39,8 +43,8 @@ def assetlist(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    # ps = asset_property.objects.filter(bom=False, active=True, user=signuser).values('id',
-    ps = asset_property.objects.filter(bom=False, active=True).values('id',
+    ps = asset_property.objects.filter(bom=False, active=True, user=signuser).values('id',
+    # ps = asset_property.objects.filter(bom=False, active=True).values('id',
                                                                       'status',
                                                                       'sid',
                                                                       'name',
@@ -50,6 +54,7 @@ def assetlist(request):
                                                                       'user__active',
                                                                       'asset_attachment__thumbnail',
                                                                       'asset_attachment__final',
+                                                                      'user__employee_department__departmentid__name',
                                                                       'position',
                                                                       'sn').order_by('name', 'sid')[:50]
     context['spk'] = ps.count()
@@ -89,19 +94,49 @@ def assetform(request):
             if request.GET['act'] == "display":
                 context['act'] = "display"
                 pn = int(request.GET['id'])
-                ps = asset_property.objects.filter(id=pn).values('id',
-                                                    'status',
-                                                    'sid',
-                                                    'name',
-                                                    'specifications',
-                                                    'warranty',
-                                                    'user__name',
-                                                    'model',
-                                                    'user__active',
-                                                    'asset_attachment__thumbnail',
-                                                    'asset_attachment__final',
-                                                    'position',
-                                                    'sn').first()
+
+                try:
+                    # 当前设备信息
+                    ps = asset_property.objects.get(id=pn)
+                except Exception:
+                    return redirect('/asset/assetlist/')
+                else:
+                    context['context'] = ps
+
+                # 设备照片信息
+                asspic = asset_attachment.objects.filter(property=pn,active=True, final=True).first()
+                if asspic:
+                    context['imgid'] = asspic.id
+                    context['headimg'] = asspic.thumbnail
+                else:
+                    # 如果无图则传占位符
+                    context['imgid'] = 0
+                    context['headimg'] = 'holder.js/64x64'
+
+                user=hr_hr.objects.filter(id=ps.user.id).values('name','employee_department__departmentid__name')
+                context['user'] = user.first()
+                print(user)
+
+                # ss = asset_property.objects.filter(id=pn).values('id',
+                #                                      'asset_attachment__thumbnail',
+                #                                      'user__employee_department__departmentid__name')
+
+
+    # kk = hr_department.objects.all().values('id').annotate(Count('employee_department__employeeid__asset_property__id'),Sum('employee_department__employeeid__asset_property__price'))
+    # 'employee_department__employeeid__asset_property__price'
+    # print(kk)
+    # tt = asset_property.objects.all().values('user','user__name').annotate(Count('id'),Sum('price'))
+    # print(tt)
+    # ss = asset_property.objects.filter(user=5).values('user','user__name').annotate(Count('id'),Sum('price'))
+    # print(ss)
+    # s = []
+    # for t in list(ps):
+    #     # if t['warranty']:
+    #     #     t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+    #     # if t['status']:
+    #     #     t['statusstr'] = status(t['status'], 2)
+    #     # if t['asset_attachment__thumbnail'] == None:
+    #     #     t['asset_attachment__thumbnail'] = '/static/img/asset.png'
+    #     s.append(t)
     context['context'] = ps
-    print(context)
     return render(request, 'assetform.html', context)

@@ -1,9 +1,9 @@
 window.onload = function() {
     var chartCanvas = $("#chartContainer");
-    var chartCanvas = document.getElementById("chartContainer");
-    var chartCanvas = document.getElementById("chartContainer").getContext("2d");
+    // var chartCanvas = document.getElementById("chartContainer");
+    // var chartCanvas = document.getElementById("chartContainer").getContext("2d");
 
-    var chartCanvas = new Chart(chartCanvas, {
+    var schartCanvas = new Chart(chartCanvas, {
         type: 'pie',
         data: {
             labels: ["闲置(352)", "在用(505)", "维修(7)", "报废(76)"],
@@ -21,8 +21,8 @@ window.onload = function() {
     });
 
     var secendCanvas = $("#secend");
-    var secendCanvas = document.getElementById("secend");
-    var secendCanvas = document.getElementById("secend").getContext("2d");
+    // var secendCanvas = document.getElementById("secend");
+    // var secendCanvas = document.getElementById("secend").getContext("2d");
 
     var secendCanvas = new Chart(secendCanvas, {
         type: 'bar',
@@ -49,8 +49,8 @@ window.onload = function() {
     });
 
     var popCanvas = $("#popChart");
-    var popCanvas = document.getElementById("popChart");
-    var popCanvas = document.getElementById("popChart").getContext("2d");
+    // var popCanvas = document.getElementById("popChart");
+    // var popCanvas = document.getElementById("popChart").getContext("2d");
 
     var barChart = new Chart(popCanvas, {
         type: 'bar',
@@ -77,6 +77,6 @@ window.onload = function() {
     });
 };
 
-$(document).ready(function () {
+$(function () {
 
 });

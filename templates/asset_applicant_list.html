@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block styecss %}
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 border-right">
+                {% include 'asset_menu_side_sub.html' %}
+            </div>
+            <div class="col-10">
+                <div class="container-fluid" id="panl">
+                    <div class="row mt-2">
+                        <h3 class="col-sm-6">{{ title }}</h3>
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <input type="text" list="typesch" class="form-control" id="search-input" name="search-input" placeholder="搜索...">
+                                <datalist id="typesch">
+                                    <!-- Todo 搜索-->
+                                    <option value="编号">sid</option>
+                                    <option value="规格"></option>
+                                    <option value="出厂编号"></option>
+                                    <option value="购买日期"></option>
+                                    <option value="维保日期"></option>
+                                    <option value="用户"></option>
+                                    <option value="位置"></option>
+                                </datalist>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" id="search-btn"><i class="fa fa-search-plus fa-1x"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-sm-6">
+                            <!--工具条-->
+                            <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
+                            <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
+                            <button type="button" class="btn btn-outline-secondary disabled" id="subboard">llll</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <!--导入导出条-->
+                            <div class="btn-group">
+                                <div class="btn-group dropdown">
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                                        动作
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#" id="dddd">导入</a>
+                                        <a class="dropdown-item" href="/static/download/property_list.xlsx">导出xlsx</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                                        筛选
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#" id="unactive">已归档</a>
+                                    </div>
+                                </div>
+                                <div class="btn-group dropdown">
+                                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                                        分组
+                                        <span class="caret"></span>
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#" data-act="group" data-groupby="name">名称</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-act="group" data-groupby="categoryid">类型</a>
+                                        <a class="dropdown-item" href="#" data-act="group" data-groupby="model">型号</a>
+                                        <a class="dropdown-item" href="#" data-act="group" data-groupby="specifications">规格</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#" data-act="group" data-groupby="status">状态</a>
+                                        <a class="dropdown-item" href="#" data-act="group" data-groupby="position">位置</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2">
+                            {% include 'navigation_range.html' %}
+                        </div>
+                        <div class="col-1">
+                            <div class="btn-group btn-group-toggle" data-toggle="buttons" id="viewtype">
+                                <label class="btn btn-outline-secondary">
+                                    <input type="radio" name="listoptions" id="board" autocomplete="off"><i class="fa fa-th-large fa-1x"></i>
+                                </label>
+                                <label class="btn btn-outline-secondary active">
+                                    <input type="radio" name="listoptions" id="list" autocomplete="off" checked><i class="fa fa-list-ul fa-1x"></i>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table table-hover table-responsive-sm">
+                        <thead>
+                            <tr>
+                                <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
+                                <th class="border-right" data-id="status">申请时间<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="sid">申请人<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="name">说明<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
+                                <th class="border-right" data-id="specifications">借用/领用<i class="" aria-hidden="true" data-id="0"></i></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in context %}
+                                {% if item.user__name and item.user__active == 0 %}
+                                <tr class="listitem text-danger">
+                                {% else %}
+                                <tr class="listitem">
+                                {% endif %}
+                                    <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
+                                    <td>{{ item.statusstr| safe }}</td>
+                                    <td>{{ item.sid }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.specifications| default:"" }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="10" style="text-align: center;">(暂无数据)</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jquery %}
+{% endblock jquery%}

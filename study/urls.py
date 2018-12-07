@@ -64,6 +64,8 @@ urlpatterns = [
     path('category_list/', views.asset_category_list),
     path('category_form/', views.asset_category_form),
 
+    path('applicant_list/', views.asset_applicant),
+
     path('importdata/', views.importdata),
 
 

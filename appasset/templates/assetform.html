@@ -1,16 +1,23 @@
-{% extends "assetbase.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <title>平台</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 
-{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetbase.css">
 
-{% endblock styecss %}
+</head>
 
-{% block mainbody %}
+<body>
     <div class="container-fluid">
         <div class="row my-3">
             <div class="col-12 ">
                 <div class="media align-middle">
-                    <img src={{ context.asset_attachment__thumbnail }} class='img-thumbnail mr-3' id="headerimg" alt="headerimg" style="height: 64px; width: 64px;">
+                    <img src={{ headimg }} class="img-thumbnail mr-2" id="headerimg" alt="headerimg" style="height: 64px; width: 64px;">
                     <div class="media-body">
                         <h2 class="media-heading">{{ context.name }}</h2>
                     </div>
@@ -39,9 +46,21 @@
                 </div>
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
+                        <span class="input-group-text">出厂编号</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ context.sn| default_if_none:"" }}" >
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">部门</span>
+                    </div>
+                    <input type="text" class="form-control" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
+                </div>
+                <div class="input-group input-group-sm mb-2">
+                    <div class="input-group-prepend">
                         <span class="input-group-text">使用人</span>
                     </div>
-                    <input type="text" class="form-control" value="{{ context.user__name| default_if_none:"" }}" >
+                    <input type="text" class="form-control" value="{{ user.name| default_if_none:"" }}" >
                 </div>
                 <div class="input-group input-group-sm mb-2">
                     <div class="input-group-prepend">
@@ -51,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-3 border-top">
+        <div class="row mt-3 border-top sr-only">
             <div class="col-12">
                 <h6 class="mt-2 text-center">
                     维修记录
@@ -85,11 +104,19 @@
         </div>
     </div>
 
-{% endblock %}
+<!--
+   jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边)
+   加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。
+   -->
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/Chart.min.js"></script>
 
-{% block jquery %}
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-{% endblock jquery%}
+    <script src="/static/js/bootstrap.min.js"></script>
 
+    <script src="/static/js/holder.min.js"></script>
 
+</body>
+</html>
 
