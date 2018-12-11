@@ -111,13 +111,36 @@ class hr_conf(models.Model):
 #==================设备表==================
 class asset_application(models.Model):
     #设备领用单->发放单->确认单
+    appltno = models.CharField(max_length=10,null=True, blank=True, verbose_name="申请单编号")
     appdate = models.DateTimeField(auto_created=True, verbose_name="申请时间")
     applicant = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='申请人')
     Explain = models.TextField(null=True, blank=True, verbose_name='说明')
     type = models.IntegerField(null=True, blank=True, verbose_name='借用/领用')
+    # userhr = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='领用人' )
+    status = models.IntegerField(default=0, verbose_name='流程状态')
+    flow = models.IntegerField(default=0, verbose_name='流程模板号')
+    active = models.BooleanField(default=True, verbose_name='有效的')
 
     class Meta:
         db_table = 'asset_application'
+
+class asset_allot (models.Model):
+    # 领用记录
+    date = models.DateTimeField(verbose_name="领用时间")
+    user = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='领用人')
+    parent = models.ForeignKey('asset_application', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='申请单号')
+    type = models.IntegerField(null=True, blank=True, verbose_name='借用/领用')
+    perreturn = models.DateField(null=True, blank=True, verbose_name="预归还时间")
+    assetid = models.ForeignKey('asset_property', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='分配设备')
+    # managerout = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='发放人')
+    goreturn = models.DateField(null=True, blank=True, verbose_name="归还时间")
+    # managerin = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='回收人')
+    status = models.IntegerField(default=0, verbose_name='流程状态')
+    flow = models.IntegerField(default=0, verbose_name='流程模板号')
+    active = models.BooleanField(default=True, verbose_name='有效的')
+
+    class Meta:
+        db_table = 'asset_allot'
 
 class asset_category(models.Model):
     #设备分类

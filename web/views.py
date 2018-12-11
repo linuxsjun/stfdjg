@@ -226,6 +226,7 @@ def asset_property_list(request):
                                                                        'user__name',
                                                                        'user__active',
                                                                        'position',
+                                                                       'user__employee_department__departmentid__name',
                                                                        'sn').order_by(sns)
                 s = []
                 u = list(ps)
@@ -302,6 +303,7 @@ def asset_property_list(request):
                                                                                                                         'asset_attachment__thumbnail',
                                                                                                                         'asset_attachment__final',
                                                                                                                         'position',
+                                                                                                                        'user__employee_department__departmentid__name',
                                                                                                                         'sn').order_by('name', 'sid')
             context['spk'] = ps.count()
 

@@ -26,7 +26,7 @@ class hr_hr_Admin(admin.ModelAdmin):
 admin.site.register(hr_hr, hr_hr_Admin)
 
 class asset_application_Admin(admin.ModelAdmin):
-    list_display = ('appdate','applicant', 'Explain', 'type')
+    list_display = ('appltno', 'appdate','applicant', 'Explain', 'status', 'flow', 'active', 'type')
 admin.site.register(asset_application, asset_application_Admin)
 
 class asset_category_Admin(admin.ModelAdmin):

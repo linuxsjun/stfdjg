@@ -43,6 +43,11 @@ $(document).ready(function () {
                 } else {
                     htxt += '<td>' + n["user__name"] + "</td>";
                 }
+                // if ((n["user__employee_department__departmentid__name"] === null) || (n["user__employee_department__departmentid__name"] === None)) {
+                    htxt += '<td></td>';
+                // } else {
+                //     htxt += '<td>' + n["user__employee_department__departmentid__name"] + "</td>";
+                // }
                 if (n["position"] === null) {
                     htxt += '<td></td>';
                 } else {
@@ -95,7 +100,6 @@ $(document).ready(function () {
                     $('tbody').empty();
                     $("tbody").append(htext);
                 }
-
             }
         );
     });

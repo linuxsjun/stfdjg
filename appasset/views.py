@@ -140,3 +140,20 @@ def assetform(request):
     #     s.append(t)
     context['context'] = ps
     return render(request, 'assetform.html', context)
+
+def assetappl(request):
+    context={}
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    return render(request, 'assetappl.html', context)

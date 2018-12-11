@@ -37,7 +37,6 @@
                             <!--工具条-->
                             <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
                             <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
-                            <button type="button" class="btn btn-outline-secondary disabled" id="subboard">llll</button>
                         </div>
                         <div class="col-sm-3">
                             <!--导入导出条-->
@@ -99,10 +98,15 @@
                         <thead>
                             <tr>
                                 <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
-                                <th class="border-right" data-id="status">申请时间<i class="" aria-hidden="true" data-id="0"></i></th>
-                                <th class="border-right" data-id="sid">申请人<i class="" aria-hidden="true" data-id="0"></i></th>
-                                <th class="border-right" data-id="name">说明<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
+                                <th class="border-right" data-id="status">领用日期<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="sid">领用人<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="name">申请单号<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
                                 <th class="border-right" data-id="specifications">借用/领用<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">预计时间<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">设备编号<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">名称<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">规格<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">经手人<i class="" aria-hidden="true" data-id="0"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -115,6 +119,11 @@
                                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                                     <td>{{ item.statusstr| safe }}</td>
                                     <td>{{ item.sid }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.name }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.specifications| default:"" }}</td>
                                 </tr>

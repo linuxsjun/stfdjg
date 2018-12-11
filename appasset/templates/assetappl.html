@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>设备申请</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetbase.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="row bg-light mb-3 py-2">
+                    <div class="col-6">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group">
+                                <span class="input-text">申请日期</span>
+                            </div>
+                            <input type="date" class="form-control" value="" readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group">
+                                <span class="input-text">申请人</span>
+                            </div>
+                            <input type="text" class="form-control" value="" readonly="readonly">
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-light mb-3 py-2">
+                    <div class="col-12">
+                        <div class="mb-2 mt-3">
+                            <div class="input-group">
+                                <span class="input-text">申请事由</span>
+                            </div>
+                            <textarea class="form-control" name="comment" clos="100" rows="5" warp="soft" placeholder="事由">{{ context.nots }}</textarea>
+                        </div>
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group">
+                                <span class="input-text">申请类型</span>
+                            </div>
+                            <input type="text" class="form-control" value="{{ context.sn| default_if_none:"" }}" >
+                        </div>
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group">
+                                <span class="input-text">归还日期</span>
+                            </div>
+                            <input type="text" class="form-control" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
+                        </div>
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group">
+                                <span class="input-text">领用人</span>
+                            </div>
+                            <input type="text" class="form-control" value="{{ user.name| default_if_none:"" }}" >
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg-light mb-3 py-2">
+                    <div class="col-12">
+                        <div class="input-group input-group-sm mb-2">
+                            <div class="input-group">
+                                <span class="input-text">附件</span>
+                            </div>
+                            <input type="file" value="" >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-2 border-top">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12">
+                        <h6>审批流...</h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 my-1">
+                        <img class="rounded-circle" src="holder.js/48x48">
+                        <p class="text-sm-center text-success">通过</p>
+                    </div>
+                    <div class="col-3 my-1">
+                        <img class="rounded-circle" src="holder.js/48x48">
+                        <p class="text-sm-center text-info">审批中</p>
+                    </div>
+                    <div class="col-3 my-1">
+                        <img class="rounded-circle" src="holder.js/48x48">
+                        <p class="text-sm-center">待审批</p>
+                    </div>
+                    <div class="col-3 my-1">
+                        <img class="rounded-circle" src="holder.js/48x48">
+                        <p class="text-center text-danger">拒绝</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row pt-3 border-top">
+            <div class="col-12">
+                <button type="button" class="btn btn-primary btn-block">提交</button>
+                <button type="button" class="btn btn-secondary btn-block">取消</button>
+            </div>
+        </div>
+    </div>
+
+<!--
+   jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边)
+   加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。
+   -->
+    <script src="/static/js/jquery-3.3.1.js"></script>
+    <script src="/static/js/Chart.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="/static/js/bootstrap.min.js"></script>
+
+    <script src="/static/js/holder.min.js"></script>
+
+</body>
+</html>
+

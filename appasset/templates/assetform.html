@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <title>平台</title>
+    <title>设备详单</title>
     <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
 
@@ -14,7 +14,7 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row my-3">
+        <div class="row py-2 mb-3 bg-light">
             <div class="col-12 ">
                 <div class="media align-middle">
                     <img src={{ headimg }} class="img-thumbnail mr-2" id="headerimg" alt="headerimg" style="height: 64px; width: 64px;">
@@ -24,50 +24,60 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row py-2 mb-3 bg-light">
             <div class="col-12 ">
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">设备编号</span>
+                    <div class="input-group">
+                        <span class="input-text">设备编号</span>
                     </div>
                     <input type="text" class="form-control " value="{{ context.sid| default_if_none:"" }}" >
                 </div>
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">规格</span>
+                    <div class="input-group">
+                        <span class="input-text">规格</span>
                     </div>
                     <input type="text" class="form-control" value="{{ context.specifications| default_if_none:"" }}" >
                 </div>
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">型号</span>
+                    <div class="input-group">
+                        <span class="input-text">型号</span>
                     </div>
                     <input type="text" class="form-control" value="{{ context.model| default_if_none:"" }}" >
                 </div>
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">出厂编号</span>
+                    <div class="input-group">
+                        <span class="input-text">出厂编号</span>
                     </div>
                     <input type="text" class="form-control" value="{{ context.sn| default_if_none:"" }}" >
                 </div>
+            </div>
+        </div>
+        <div class="row py-2 mb-3 bg-light">
+            <div class="col-12 ">
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">部门</span>
+                    <div class="input-group">
+                        <span class="input-text">部门</span>
                     </div>
                     <input type="text" class="form-control" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
                 </div>
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">使用人</span>
+                    <div class="input-group">
+                        <span class="input-text">使用人</span>
                     </div>
                     <input type="text" class="form-control" value="{{ user.name| default_if_none:"" }}" >
                 </div>
                 <div class="input-group input-group-sm mb-2">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text">位置</span>
+                    <div class="input-group">
+                        <span class="input-text">位置</span>
                     </div>
                     <input type="text" class="form-control" value="{{ context.position| default_if_none:"" }}" >
                 </div>
+            </div>
+        </div>
+        <div class="row pt-3 border-top">
+            <div class="col-12">
+                <button type="button" class="btn btn-warning btn-block">报修</button>
+                <button type="button" class="btn btn-danger btn-block">退还</button>
             </div>
         </div>
         <div class="row mt-3 border-top sr-only">
@@ -80,6 +90,7 @@
                 </p>
             </div>
         </div>
+
     </div>
 
     <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
