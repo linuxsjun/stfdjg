@@ -257,8 +257,9 @@ $(document).ready(function () {
         );
     });
 
-    $('radio[name="listoptions"]').click(function (e) {
-        $(this).addClass("text-primary")
+    $('#list').change(function () {
+        $(this).addClass("text-light");
+        // alert(this.val());
     });
 
     //---- 排序 ----

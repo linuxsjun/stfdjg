@@ -26,51 +26,37 @@
         </div>
         <div class="row py-2 mb-3 bg-light">
             <div class="col-12 ">
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">设备编号</span>
-                    </div>
-                    <input type="text" class="form-control " value="{{ context.sid| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>设备编号</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ context.sid| default_if_none:"" }}" >
                 </div>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">规格</span>
-                    </div>
-                    <input type="text" class="form-control" value="{{ context.specifications| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>规格</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ context.specifications| default_if_none:"" }}" >
                 </div>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">型号</span>
-                    </div>
-                    <input type="text" class="form-control" value="{{ context.model| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>型号</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ context.model| default_if_none:"" }}" >
                 </div>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">出厂编号</span>
-                    </div>
-                    <input type="text" class="form-control" value="{{ context.sn| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>出厂编号</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ context.sn| default_if_none:"" }}" >
                 </div>
             </div>
         </div>
         <div class="row py-2 mb-3 bg-light">
             <div class="col-12 ">
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">部门</span>
-                    </div>
-                    <input type="text" class="form-control" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>部门</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
                 </div>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">使用人</span>
-                    </div>
-                    <input type="text" class="form-control" value="{{ user.name| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>使用人</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ user.name| default_if_none:"" }}" >
                 </div>
-                <div class="input-group input-group-sm mb-2">
-                    <div class="input-group">
-                        <span class="input-text">位置</span>
-                    </div>
-                    <input type="text" class="form-control" value="{{ context.position| default_if_none:"" }}" >
+                <div class="row">
+                    <label class="col-auto py-2 m-0"><strong>位置</strong></label>
+                    <input type="text" class="form-control-plaintext col text-right text-black-50" value="{{ context.position| default_if_none:"" }}" >
                 </div>
             </div>
         </div>

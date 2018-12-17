@@ -94,6 +94,7 @@ class hr_hr(models.Model):
     passwd = models.CharField(max_length=256,null=True,verbose_name='密码')
     session = models.CharField(max_length=32,null=True,verbose_name='Cookice_session')
     expsession = models.TimeField(null=True)
+    # 是否同步企业微信，F未同步，T已同步
     wxsync = models.BooleanField(default=0, verbose_name="同步企业微信")
     active = models.BooleanField(default=True, verbose_name='有效的')
 

@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.db.models import Count, Sum
 
 from web.models import hr_hr
-from web.models import asset_conf, asset_property, asset_attachment
+from web.models import asset_conf, asset_property, asset_attachment, asset_application
 from web.models import hr_department
 
+import requests, json, time, datetime, hashlib, random
 
 # Create your views here.
 
@@ -155,5 +156,19 @@ def assetappl(request):
     else:
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
+
+    t = datetime.datetime.now()
+    context['now'] = t
+
+    if request.method == "GET":
+        print(request.GET)
+    elif request.method == "POST":
+        print(request.POST)
+        if "act" in request.POST:
+            if request.POST['act'] == 'create':
+                # Todo 提交申请->保存数据->新建单据流程->修改单据状态->通知下一流程审批人
+                # 保存数据
+
+                pass
 
     return render(request, 'assetappl.html', context)

@@ -13,99 +13,115 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="row bg-light mb-3 py-2">
-                    <div class="col-6">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group">
-                                <span class="input-text">申请日期</span>
+        <form>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="row bg-light mb-3 py-2 sr-only">
+                        <div class="col-6">
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group">
+                                    <span class="input-text">申请日期</span>
+                                </div>
+                                <input type="date" class="form-control" name="appdate" value="{{ now |date:'Y-m-d' }}" readonly="readonly">
                             </div>
-                            <input type="date" class="form-control" value="" readonly="readonly">
+                        </div>
+                        <div class="col-6">
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group">
+                                    <span class="input-text">申请人</span>
+                                </div>
+                                <input type="text" class="form-control" name="applicant" value="{{ userinfo }}" readonly="readonly">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-6">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group">
-                                <span class="input-text">申请人</span>
+                    <div class="row bg-light mb-3 py-2">
+                        <div class="col-12">
+                            <div class="row mb-2">
+                                <label class="col-12 py-2 m-0"><strong>申请事由<span class="text-danger">*</span></strong></label>
+                                <div class="col-12">
+                                    <textarea class="form-control text-black-50" name="explain" cols="100" rows="3" warp="soft" placeholder="事由">{{ context.nots }}</textarea>
+                                </div>
                             </div>
-                            <input type="text" class="form-control" value="" readonly="readonly">
+                            <div class="row mb-2">
+                                <label class="col-auto py-2 m-0"><strong>设备<span class="text-danger">*</span></strong></label>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right text-black-50" name="needasset" value="" placeholder="电脑、移动电脑、移动硬盘、外接硬盘盒">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <label class="col-auto py-2 m-0"><strong>领用人<span class="text-danger">*</span></strong></label>
+                                <div class="col">
+                                    <input type="text" class="form-control text-right text-black-50" name="user" value="{{ userinfo| default_if_none:"" }}" readonly="True">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <label class="col-auto py-2 m-0"><strong>申请类型<span class="text-danger">*</span></strong></label>
+                                <div class="col py-2 m-0">
+                                    <span class="form-check form-check-inline">
+                                      <input type="radio" id="radiotypeaccess" name="type" class="form-check-input" value="1" checked>
+                                      <label class="form-check-label" for="customRadio1">领用</label>
+                                    </span>
+                                    <span class="form-check form-check-inline">
+                                      <input type="radio" id="radiotypeborrow" name="type" class="form-check-input" value="2">
+                                      <label class="form-check-label" for="customRadio2">借用</label>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2 sr-only" id="borrowdate">
+                                <label class="col-auto py-2 m-0"><strong>归还日期 <span class="text-danger">*</span></strong></label>
+                                <div class="col">
+                                    <input type="date" class="form-control text-right text-black-50" name="backdate" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row bg-light mb-3 py-2">
+                        <div class="col-12">
+                            <div class="input-group input-group-sm mb-2">
+                                <div class="input-group">
+                                    <span class="input-text">附件</span>
+                                </div>
+                                <input type="file" name="notsfile" value="">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="row bg-light mb-3 py-2">
-                    <div class="col-12">
-                        <div class="mb-2 mt-3">
-                            <div class="input-group">
-                                <span class="input-text">申请事由</span>
-                            </div>
-                            <textarea class="form-control" name="comment" clos="100" rows="5" warp="soft" placeholder="事由">{{ context.nots }}</textarea>
-                        </div>
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group">
-                                <span class="input-text">申请类型</span>
-                            </div>
-                            <input type="text" class="form-control" value="{{ context.sn| default_if_none:"" }}" >
-                        </div>
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group">
-                                <span class="input-text">归还日期</span>
-                            </div>
-                            <input type="text" class="form-control" value="{{ user.employee_department__departmentid__name| default_if_none:"" }}" >
-                        </div>
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group">
-                                <span class="input-text">领用人</span>
-                            </div>
-                            <input type="text" class="form-control" value="{{ user.name| default_if_none:"" }}" >
+            </div>
+            <div class="row pt-2 border-top">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-12">
+                            <h6>审批流...</h6>
                         </div>
                     </div>
-                </div>
-                <div class="row bg-light mb-3 py-2">
-                    <div class="col-12">
-                        <div class="input-group input-group-sm mb-2">
-                            <div class="input-group">
-                                <span class="input-text">附件</span>
-                            </div>
-                            <input type="file" value="" >
+                    <div class="row">
+                        <div class="col-3 my-1">
+                            <img class="rounded-circle" src="holder.js/48x48">
+                            <p class="text-sm-center text-success">通过</p>
+                        </div>
+                        <div class="col-3 my-1">
+                            <img class="rounded-circle" src="holder.js/48x48">
+                            <p class="text-sm-center text-info">审批中</p>
+                        </div>
+                        <div class="col-3 my-1">
+                            <img class="rounded-circle" src="holder.js/48x48">
+                            <p class="text-sm-center">待审批</p>
+                        </div>
+                        <div class="col-3 my-1">
+                            <img class="rounded-circle" src="holder.js/48x48">
+                            <p class="text-center text-danger">拒绝</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row pt-2 border-top">
-            <div class="col-12">
-                <div class="row">
-                    <div class="col-12">
-                        <h6>审批流...</h6>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-3 my-1">
-                        <img class="rounded-circle" src="holder.js/48x48">
-                        <p class="text-sm-center text-success">通过</p>
-                    </div>
-                    <div class="col-3 my-1">
-                        <img class="rounded-circle" src="holder.js/48x48">
-                        <p class="text-sm-center text-info">审批中</p>
-                    </div>
-                    <div class="col-3 my-1">
-                        <img class="rounded-circle" src="holder.js/48x48">
-                        <p class="text-sm-center">待审批</p>
-                    </div>
-                    <div class="col-3 my-1">
-                        <img class="rounded-circle" src="holder.js/48x48">
-                        <p class="text-center text-danger">拒绝</p>
-                    </div>
+            <div class="row pt-3 border-top">
+                <div class="col-12">
+                    <button type="button" class="btn btn-primary btn-block disabled" id="submit">提交</button>
+                    <button type="button" class="btn btn-secondary btn-block">取消</button>
                 </div>
             </div>
-        </div>
-        <div class="row pt-3 border-top">
-            <div class="col-12">
-                <button type="button" class="btn btn-primary btn-block">提交</button>
-                <button type="button" class="btn btn-secondary btn-block">取消</button>
-            </div>
-        </div>
+        </form>
     </div>
 
 <!--
@@ -121,6 +137,7 @@
 
     <script src="/static/js/holder.min.js"></script>
 
+    <script src="/static/js/appasset/assetappl.js"></script>
 </body>
 </html>
 
