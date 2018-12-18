@@ -425,7 +425,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-1 col-form-label text-left text-sm-right">备注</label>
                                                 <div class="col-sm-5">
-                                                    <textarea class="form-control" name="comment" clos=",100" rows="5" warp="soft" placeholder="备注">{{ context.nots }}</textarea>
+                                                    <textarea class="form-control" name="comment" clos=",100" rows="5" warp="soft" placeholder="备注">{{ context.nots |default:"" }}</textarea>
                                                 </div>
                                             </div>
                                         </div>

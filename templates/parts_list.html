@@ -104,7 +104,7 @@
                                 <tr>
                                     <td><input type="checkbox" name="selitem"></td>
                                     <td>{{ item.statusstr | safe }}</td>
-                                    <td><a href="{{ item.id }}">{{ item.name }}</a></td>
+                                    <td><a href="/property_form/?act=display&id={{ item.id }}">{{ item.name }}</a></td>
                                     <td>{{ item.specifications }}</td>
                                     <td>{{ item.sn }}</td>
                                     <td>{{ item.purchase }}</td>

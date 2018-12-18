@@ -108,6 +108,57 @@ def asset_kanban_board(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
+    if request.method == "GET":
+        print(request.GET)
+        if "act" in request.GET:
+            if request.GET['act'] == 'pi':
+                f = asset_property.objects.filter(bom=False,active=True).values('status').annotate(count=Count('status')).order_by()[:10]
+                for item in f:
+                    item['disname'] = status(item['status'],0)
+                if f :
+                    data = {}
+                    data['code'] = 0
+                    data['msg'] = "ok"
+                    data['data'] = list(f)
+                    data = json.dumps(data)
+                else:
+                    data={}
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                    data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == 'y_num':
+                f = asset_property.objects.extra(select={'year': 'strftime("%%Y",purchase)'}).values('year').annotate(count=Count('purchase')).order_by('-year')
+                if f :
+                    data = {}
+                    data['code'] = 0
+                    data['msg'] = "ok"
+                    data['data'] = list(f)
+                    data = json.dumps(data)
+                else:
+                    data={}
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                    data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == 'y_price':
+                f = asset_property.objects.extra(select={'year': 'strftime("%%Y",purchase)'}).values('year').annotate(price=Sum('price')).order_by('-year')
+                if f :
+                    data = {}
+                    data['code'] = 0
+                    data['msg'] = "ok"
+                    data['data'] = list(f)
+                    data = json.dumps(data)
+                else:
+                    data={}
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                    data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+
     return render(request, 'asset_kanban_board.html', context)
 
 def asset_property_list(request):

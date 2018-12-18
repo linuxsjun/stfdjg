@@ -247,7 +247,8 @@ $(document).ready(function () {
     });
 
     //----视图类型----
-    $('#subboard').click(function () {
+    $('#board').change(function () {
+        $(this).next("i").addClass("text-danger");
         $.get(
             '/asset_property_sub_board/',
             function (data) {
@@ -255,11 +256,6 @@ $(document).ready(function () {
                 $('#panl').after(data);
             }
         );
-    });
-
-    $('#list').change(function () {
-        $(this).addClass("text-light");
-        // alert(this.val());
     });
 
     //---- 排序 ----

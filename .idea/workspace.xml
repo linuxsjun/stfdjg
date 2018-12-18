@@ -7,7 +7,15 @@
     <list id="f5d9c4a4-8c27-44a4-8d6c-5877907d7103" name="Revert: update input property" comment="" />
     <list id="5d41860e-1907-4c7b-be19-24c2cff566d1" name="Revert: update input property for user" comment="" />
     <list default="true" id="97628839-abd5-45fd-9487-3dccd5d1a11e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/asset_kanban_board.js" afterPath="$PROJECT_DIR$/static/js/asset_kanban_board.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/property_list.js" afterPath="$PROJECT_DIR$/static/js/property_list.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_kanban_board.html" afterPath="$PROJECT_DIR$/templates/asset_kanban_board.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_property_form.html" afterPath="$PROJECT_DIR$/templates/asset_property_form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_property_list.html" afterPath="$PROJECT_DIR$/templates/asset_property_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/parts_list.html" afterPath="$PROJECT_DIR$/templates/parts_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views.py" afterPath="$PROJECT_DIR$/web/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -48,160 +56,114 @@
     <option name="OUTPUT_DIRECTORY" value="C:\Python37env\stfdjg\exportToHTML" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5345679">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="admin.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/admin.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/appasset/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="122">
-                  <caret line="156" column="34" lean-forward="false" selection-start-line="156" selection-start-column="34" selection-end-line="156" selection-end-column="34" />
-                  <folding>
-                    <element signature="e#0#45#0" expanded="true" />
-                    <element signature="e#349#823#0" expanded="false" />
-                    <element signature="e#853#3041#0" expanded="false" />
-                    <element signature="e#3071#5882#0" expanded="false" />
-                    <element signature="e#3222#3451#0" expanded="false" />
-                    <element signature="e#3470#3549#0" expanded="false" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="assetappl.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/appasset/templates/assetappl.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="338">
-                  <caret line="56" column="34" lean-forward="false" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="property_form.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/js/property_form.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="328">
-                  <caret line="121" column="44" lean-forward="false" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
-                  <folding>
-                    <marker date="1545035967327" expanded="true" signature="18092:18111" ph="..." />
-                    <marker date="1545035967327" expanded="true" signature="19738:19757" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="asset_property_form.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/templates/asset_property_form.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
-                  <caret line="81" column="24" lean-forward="false" selection-start-line="81" selection-start-column="24" selection-end-line="81" selection-end-column="40" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="asset_property_list.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/templates/asset_property_list.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="251">
-                  <caret line="91" column="78" lean-forward="false" selection-start-line="91" selection-start-column="78" selection-end-line="91" selection-end-column="78" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/models.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="257">
-                  <caret line="118" column="8" lean-forward="false" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="8" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="assetappl.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/js/appasset/assetappl.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="285">
-                  <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="base.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/static/css/base.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="190">
-                  <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="property_list.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="343">
-                  <caret line="261" column="0" lean-forward="false" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="29" />
-                  <folding>
-                    <element signature="e#68#3323#0" expanded="false" />
-                    <element signature="e#105#2559#0" expanded="false" />
-                    <element signature="e#2597#3317#0" expanded="false" />
-                    <element signature="e#3401#3506#0" expanded="false" />
-                    <element signature="e#3549#4332#0" expanded="false" />
-                    <element signature="e#4413#4564#0" expanded="false" />
-                    <element signature="e#4626#4807#0" expanded="false" />
-                    <element signature="e#4867#5533#0" expanded="false" />
-                    <element signature="e#5589#5681#0" expanded="false" />
-                    <element signature="e#5725#5794#0" expanded="false" />
-                    <element signature="e#5856#6880#0" expanded="false" />
-                    <element signature="e#6940#7896#0" expanded="false" />
-                    <element signature="e#7964#8875#0" expanded="false" />
-                    <element signature="e#9306#11093#0" expanded="false" />
-                    <element signature="e#11170#12694#0" expanded="false" />
-                    <element signature="e#12702#12769#0" expanded="false" />
-                    <element signature="e#12911#13060#0" expanded="false" />
-                    <element signature="e#13130#13659#0" expanded="false" />
-                    <element signature="e#13715#14328#0" expanded="false" />
-                    <marker date="1545040843543" expanded="true" signature="4159:4178" ph="..." />
-                    <marker date="1545040843543" expanded="true" signature="7536:7555" ph="..." />
-                    <marker date="1545040843543" expanded="true" signature="8486:8505" ph="..." />
-                    <marker date="1545040843543" expanded="true" signature="12065:12084" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/views.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="19">
-                  <caret line="723" column="46" lean-forward="false" selection-start-line="723" selection-start-column="12" selection-end-line="723" selection-end-column="46" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="asset_kanban_board.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/asset_kanban_board.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="393">
+              <caret line="49" column="28" lean-forward="false" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+              <folding>
+                <element signature="e#408#1204#0#HTML" expanded="false" />
+                <element signature="e#1299#2093#0#HTML" expanded="false" />
+                <element signature="e#2188#2978#0#HTML" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="property_list.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="95">
+              <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="18" />
+              <folding>
+                <element signature="e#2597#3317#0" expanded="false" />
+                <element signature="e#3401#3506#0" expanded="false" />
+                <element signature="e#3549#4332#0" expanded="false" />
+                <element signature="e#4413#4564#0" expanded="false" />
+                <element signature="e#4626#4807#0" expanded="false" />
+                <element signature="e#4867#5533#0" expanded="false" />
+                <element signature="e#5589#5681#0" expanded="false" />
+                <element signature="e#5725#5794#0" expanded="false" />
+                <element signature="e#5856#6880#0" expanded="false" />
+                <element signature="e#6940#7896#0" expanded="false" />
+                <element signature="e#7964#8875#0" expanded="false" />
+                <element signature="e#12636#12703#0" expanded="false" />
+                <element signature="e#12845#12994#0" expanded="false" />
+                <element signature="e#13064#13593#0" expanded="false" />
+                <element signature="e#13649#14262#0" expanded="false" />
+                <marker date="1545099215428" expanded="true" signature="4159:4178" ph="..." />
+                <marker date="1545099215428" expanded="true" signature="7536:7555" ph="..." />
+                <marker date="1545099215428" expanded="true" signature="8486:8505" ph="..." />
+                <marker date="1545099215428" expanded="true" signature="11999:12018" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="463">
+              <caret line="1759" column="38" lean-forward="true" selection-start-line="1759" selection-start-column="38" selection-end-line="1759" selection-end-column="38" />
+              <folding>
+                <element signature="e#781#991#0" expanded="false" />
+                <element signature="e#1018#1911#0" expanded="false" />
+                <element signature="e#1964#2433#0" expanded="false" />
+                <element signature="e#2469#2673#0" expanded="false" />
+                <element signature="e#2706#3181#0" expanded="false" />
+                <element signature="e#3220#6001#0" expanded="false" />
+                <element signature="e#3312#3541#0" expanded="false" />
+                <element signature="e#3560#3639#0" expanded="false" />
+                <element signature="e#6041#20123#0" expanded="false" />
+                <element signature="e#6287#6516#0" expanded="false" />
+                <element signature="e#6535#6614#0" expanded="false" />
+                <element signature="e#20168#22294#0" expanded="false" />
+                <element signature="e#22334#40855#0" expanded="false" />
+                <element signature="e#40895#42165#0" expanded="false" />
+                <element signature="e#42205#47216#0" expanded="false" />
+                <element signature="e#47245#47829#0" expanded="false" />
+                <element signature="e#47857#48635#0" expanded="false" />
+                <element signature="e#48665#51596#0" expanded="false" />
+                <element signature="e#51624#52010#0" expanded="false" />
+                <element signature="e#52037#52600#0" expanded="false" />
+                <element signature="e#52635#53223#0" expanded="false" />
+                <element signature="e#53253#54405#0" expanded="false" />
+                <element signature="e#54434#57026#0" expanded="false" />
+                <element signature="e#57055#57305#0" expanded="false" />
+                <element signature="e#57334#58466#0" expanded="false" />
+                <element signature="e#58501#59282#0" expanded="false" />
+                <element signature="e#59308#62859#0" expanded="false" />
+                <element signature="e#62890#63451#0" expanded="false" />
+                <element signature="e#63479#64187#0" expanded="false" />
+                <element signature="e#64214#65259#0" expanded="false" />
+                <element signature="e#65286#66599#0" expanded="false" />
+                <element signature="e#66626#66711#0" expanded="false" />
+                <element signature="e#66747#68935#0" expanded="false" />
+                <element signature="e#69961#75253#0" expanded="false" />
+                <element signature="e#75280#77281#0" expanded="false" />
+                <element signature="e#77305#77575#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="asset_property_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/asset_property_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="423" column="73" lean-forward="true" selection-start-line="423" selection-start-column="73" selection-end-line="423" selection-end-column="73" />
+              <folding>
+                <element signature="e#34181#36484#0#HTML" expanded="false" />
+                <element signature="e#36543#40799#0#HTML" expanded="false" />
+                <element signature="e#40858#44369#0#HTML" expanded="false" />
+                <element signature="e#44426#45704#0#HTML" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -215,9 +177,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>active</find>
-      <find>assetid</find>
-      <find>assid</find>
       <find>-plaintext</find>
       <find>name=&quot;id&quot;</find>
       <find>rel</find>
@@ -245,6 +204,9 @@
       <find>lll</find>
       <find>post</find>
       <find>csrf</find>
+      <find>get</find>
+      <find>data</find>
+      <find>each</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -278,15 +240,12 @@
         <option value="$PROJECT_DIR$/static/css/sign.css" />
         <option value="$PROJECT_DIR$/templates/sign.html" />
         <option value="$PROJECT_DIR$/templates/base_conf.html" />
-        <option value="$PROJECT_DIR$/templates/parts_list.html" />
-        <option value="$PROJECT_DIR$/templates/asset_kanban_board.html" />
         <option value="$PROJECT_DIR$/templates/view_hr_broad.html" />
         <option value="$PROJECT_DIR$/static/js/sign.js" />
         <option value="$PROJECT_DIR$/templates/asset_conf.html" />
         <option value="$PROJECT_DIR$/templates/asset_category_form.html" />
         <option value="$PROJECT_DIR$/templates/navigation_range.html" />
         <option value="$PROJECT_DIR$/templates/base.html" />
-        <option value="$PROJECT_DIR$/templates/asset_property_form.html" />
         <option value="$PROJECT_DIR$/study/settings.py" />
         <option value="$PROJECT_DIR$/static/css/appasset/assetlist.css" />
         <option value="$PROJECT_DIR$/static/css/appasset/assetbase.css" />
@@ -294,9 +253,7 @@
         <option value="$PROJECT_DIR$/appasset/templates/assetlist.html" />
         <option value="$PROJECT_DIR$/templates/asset_recipients_list.html" />
         <option value="$PROJECT_DIR$/study/urls.py" />
-        <option value="$PROJECT_DIR$/static/js/asset_kanban_board.js" />
         <option value="$PROJECT_DIR$/templates/asset_property_sub_list.html" />
-        <option value="$PROJECT_DIR$/web/views.py" />
         <option value="$PROJECT_DIR$/appasset/urls.py" />
         <option value="$PROJECT_DIR$/templates/asset_applicant_list.html" />
         <option value="$PROJECT_DIR$/appasset/templates/assetbase.html" />
@@ -309,9 +266,14 @@
         <option value="$PROJECT_DIR$/static/js/property_form.js" />
         <option value="$PROJECT_DIR$/static/js/appasset/assetappl.js" />
         <option value="$PROJECT_DIR$/appasset/templates/assetappl.html" />
-        <option value="$PROJECT_DIR$/static/css/base.css" />
         <option value="$PROJECT_DIR$/static/js/property_list.js" />
         <option value="$PROJECT_DIR$/templates/asset_property_list.html" />
+        <option value="$PROJECT_DIR$/static/css/base.css" />
+        <option value="$PROJECT_DIR$/templates/asset_kanban_board.html" />
+        <option value="$PROJECT_DIR$/static/js/asset_kanban_board.js" />
+        <option value="$PROJECT_DIR$/web/views.py" />
+        <option value="$PROJECT_DIR$/templates/parts_list.html" />
+        <option value="$PROJECT_DIR$/templates/asset_property_form.html" />
       </list>
     </option>
   </component>
@@ -321,10 +283,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="width" value="1362" />
-    <option name="height" value="728" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1296" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -523,13 +486,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1533705842830</updated>
-    </task>
-    <task id="LOCAL-00067" summary="update list del all">
-      <created>1538042435292</created>
-      <option name="number" value="00067" />
-      <option name="presentableId" value="LOCAL-00067" />
-      <option name="project" value="LOCAL" />
-      <updated>1538042435293</updated>
     </task>
     <task id="LOCAL-00068" summary="update list del all">
       <created>1538093412935</created>
@@ -867,7 +823,14 @@
       <option name="project" value="LOCAL" />
       <updated>1545056870567</updated>
     </task>
-    <option name="localTasksCounter" value="116" />
+    <task id="LOCAL-00116" summary="update app asset forms">
+      <created>1545057163101</created>
+      <option name="number" value="00116" />
+      <option name="presentableId" value="LOCAL-00116" />
+      <option name="project" value="LOCAL" />
+      <updated>1545057163101</updated>
+    </task>
+    <option name="localTasksCounter" value="117" />
     <servers />
   </component>
   <component name="TodoView">
@@ -880,21 +843,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="0" width="1362" height="728" extended-state="0" />
+    <frame x="-8" y="-8" width="1380" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23153943" sideWeight="0.5303186" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31213874" sideWeight="0.5287648" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3462838" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29205608" sideWeight="0.475856" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3412162" sideWeight="0.4712352" order="20" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32476637" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13950618" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22188264" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34606743" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38980263" sideWeight="0.475856" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24446903" sideWeight="0.4712352" order="20" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3235955" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12348485" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22087379" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32552403" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944568" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3528761" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263288" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1021,20 +985,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/2bf24c77/96f99d12-34eb-4070-82df-d08b84cd1034/main.asset_conf">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/category_form.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="76" column="11" lean-forward="false" selection-start-line="76" selection-start-column="11" selection-end-line="76" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/css/mm-vertical - 副本.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1198,33 +1148,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/Chart.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset_kanban_board.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="777">
-          <caret line="61" column="52" lean-forward="false" selection-start-line="61" selection-start-column="44" selection-end-line="61" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/asset_property_sub_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="23" column="89" lean-forward="true" selection-start-line="23" selection-start-column="89" selection-end-line="23" selection-end-column="89" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/asset_kanban_board.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-716">
-          <caret line="10" column="29" lean-forward="false" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1248,21 +1176,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="228">
           <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/2bf24c77/96f99d12-34eb-4070-82df-d08b84cd1034/main.asset_property">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="17" column="23" lean-forward="true" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1298,14 +1211,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/asset_property_sub_board.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
@@ -1332,42 +1237,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/views.py">
+    <entry file="file://$PROJECT_DIR$/templates/asset_property_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="723" column="46" lean-forward="false" selection-start-line="723" selection-start-column="12" selection-end-line="723" selection-end-column="46" />
+        <state relative-caret-position="326">
+          <caret line="95" column="38" lean-forward="true" selection-start-line="95" selection-start-column="38" selection-end-line="95" selection-end-column="38" />
+          <folding>
+            <element signature="e#612#1835#0#HTML" expanded="false" />
+            <element signature="e#1942#2277#0#HTML" expanded="false" />
+            <element signature="e#2306#5334#0#HTML" expanded="false" />
+            <element signature="e#5363#5490#0#HTML" expanded="false" />
+            <element signature="e#6736#7652#0#HTML" expanded="false" />
+            <element signature="e#7658#9478#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/metisMenu.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/Chart.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="17" lean-forward="false" selection-start-line="2" selection-start-column="10" selection-end-line="2" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/models.py">
+    <entry file="file://$PROJECT_DIR$/web/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="118" column="8" lean-forward="false" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="8" />
+        <state relative-caret-position="189">
+          <caret line="28" column="31" lean-forward="false" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/appasset/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="156" column="34" lean-forward="false" selection-start-line="156" selection-start-column="34" selection-end-line="156" selection-end-column="34" />
+        <state relative-caret-position="95">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="50" />
           <folding>
-            <element signature="e#0#45#0" expanded="true" />
             <element signature="e#349#823#0" expanded="false" />
             <element signature="e#853#3041#0" expanded="false" />
             <element signature="e#3071#5882#0" expanded="false" />
             <element signature="e#3222#3451#0" expanded="false" />
             <element signature="e#3470#3549#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/appasset/assetappl.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1381,8 +1302,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/property_form.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="121" column="44" lean-forward="false" selection-start-line="121" selection-start-column="44" selection-end-line="121" selection-end-column="44" />
+        <state relative-caret-position="385">
+          <caret line="124" column="9" lean-forward="true" selection-start-line="124" selection-start-column="9" selection-end-line="124" selection-end-column="9" />
           <folding>
             <marker date="1545035967327" expanded="true" signature="18092:18111" ph="..." />
             <marker date="1545035967327" expanded="true" signature="19738:19757" ph="..." />
@@ -1390,10 +1311,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset_property_form.html">
+    <entry file="file://$PROJECT_DIR$/static/js/appasset/assetappl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="81" column="24" lean-forward="false" selection-start-line="81" selection-start-column="24" selection-end-line="81" selection-end-column="40" />
+        <state relative-caret-position="285">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1401,18 +1322,24 @@
     <entry file="file://$PROJECT_DIR$/static/css/base.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="190">
-          <caret line="10" column="18" lean-forward="false" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <caret line="10" column="18" lean-forward="true" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="200" column="33" lean-forward="false" selection-start-line="200" selection-start-column="33" selection-end-line="200" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="261" column="0" lean-forward="false" selection-start-line="261" selection-start-column="0" selection-end-line="261" selection-end-column="29" />
+        <state relative-caret-position="95">
+          <caret line="5" column="18" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="18" />
           <folding>
-            <element signature="e#68#3323#0" expanded="false" />
-            <element signature="e#105#2559#0" expanded="false" />
             <element signature="e#2597#3317#0" expanded="false" />
             <element signature="e#3401#3506#0" expanded="false" />
             <element signature="e#3549#4332#0" expanded="false" />
@@ -1424,25 +1351,116 @@
             <element signature="e#5856#6880#0" expanded="false" />
             <element signature="e#6940#7896#0" expanded="false" />
             <element signature="e#7964#8875#0" expanded="false" />
-            <element signature="e#9306#11093#0" expanded="false" />
-            <element signature="e#11170#12694#0" expanded="false" />
-            <element signature="e#12702#12769#0" expanded="false" />
-            <element signature="e#12911#13060#0" expanded="false" />
-            <element signature="e#13130#13659#0" expanded="false" />
-            <element signature="e#13715#14328#0" expanded="false" />
-            <marker date="1545040843543" expanded="true" signature="4159:4178" ph="..." />
-            <marker date="1545040843543" expanded="true" signature="7536:7555" ph="..." />
-            <marker date="1545040843543" expanded="true" signature="8486:8505" ph="..." />
-            <marker date="1545040843543" expanded="true" signature="12065:12084" ph="..." />
+            <element signature="e#12636#12703#0" expanded="false" />
+            <element signature="e#12845#12994#0" expanded="false" />
+            <element signature="e#13064#13593#0" expanded="false" />
+            <element signature="e#13649#14262#0" expanded="false" />
+            <marker date="1545099215428" expanded="true" signature="4159:4178" ph="..." />
+            <marker date="1545099215428" expanded="true" signature="7536:7555" ph="..." />
+            <marker date="1545099215428" expanded="true" signature="8486:8505" ph="..." />
+            <marker date="1545099215428" expanded="true" signature="11999:12018" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/asset_property_list.html">
+    <entry file="file://$PROJECT_DIR$/templates/asset_kanban_board.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="91" column="78" lean-forward="false" selection-start-line="91" selection-start-column="78" selection-end-line="91" selection-end-column="78" />
+        <state relative-caret-position="393">
+          <caret line="49" column="28" lean-forward="false" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
+          <folding>
+            <element signature="e#408#1204#0#HTML" expanded="false" />
+            <element signature="e#1299#2093#0#HTML" expanded="false" />
+            <element signature="e#2188#2978#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/asset_kanban_board.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="54" column="46" lean-forward="true" selection-start-line="54" selection-start-column="46" selection-end-line="54" selection-end-column="46" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="124">
+          <caret line="180" column="27" lean-forward="false" selection-start-line="180" selection-start-column="27" selection-end-line="180" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/parts_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="104" column="66" lean-forward="false" selection-start-line="104" selection-start-column="66" selection-end-line="104" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/asset_property_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="423" column="73" lean-forward="true" selection-start-line="423" selection-start-column="73" selection-end-line="423" selection-end-column="73" />
+          <folding>
+            <element signature="e#34181#36484#0#HTML" expanded="false" />
+            <element signature="e#36543#40799#0#HTML" expanded="false" />
+            <element signature="e#40858#44369#0#HTML" expanded="false" />
+            <element signature="e#44426#45704#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/2bf24c77/96f99d12-34eb-4070-82df-d08b84cd1034/main.asset_property">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="1759" column="38" lean-forward="true" selection-start-line="1759" selection-start-column="38" selection-end-line="1759" selection-end-column="38" />
+          <folding>
+            <element signature="e#781#991#0" expanded="false" />
+            <element signature="e#1018#1911#0" expanded="false" />
+            <element signature="e#1964#2433#0" expanded="false" />
+            <element signature="e#2469#2673#0" expanded="false" />
+            <element signature="e#2706#3181#0" expanded="false" />
+            <element signature="e#3220#6001#0" expanded="false" />
+            <element signature="e#3312#3541#0" expanded="false" />
+            <element signature="e#3560#3639#0" expanded="false" />
+            <element signature="e#6041#20123#0" expanded="false" />
+            <element signature="e#6287#6516#0" expanded="false" />
+            <element signature="e#6535#6614#0" expanded="false" />
+            <element signature="e#20168#22294#0" expanded="false" />
+            <element signature="e#22334#40855#0" expanded="false" />
+            <element signature="e#40895#42165#0" expanded="false" />
+            <element signature="e#42205#47216#0" expanded="false" />
+            <element signature="e#47245#47829#0" expanded="false" />
+            <element signature="e#47857#48635#0" expanded="false" />
+            <element signature="e#48665#51596#0" expanded="false" />
+            <element signature="e#51624#52010#0" expanded="false" />
+            <element signature="e#52037#52600#0" expanded="false" />
+            <element signature="e#52635#53223#0" expanded="false" />
+            <element signature="e#53253#54405#0" expanded="false" />
+            <element signature="e#54434#57026#0" expanded="false" />
+            <element signature="e#57055#57305#0" expanded="false" />
+            <element signature="e#57334#58466#0" expanded="false" />
+            <element signature="e#58501#59282#0" expanded="false" />
+            <element signature="e#59308#62859#0" expanded="false" />
+            <element signature="e#62890#63451#0" expanded="false" />
+            <element signature="e#63479#64187#0" expanded="false" />
+            <element signature="e#64214#65259#0" expanded="false" />
+            <element signature="e#65286#66599#0" expanded="false" />
+            <element signature="e#66626#66711#0" expanded="false" />
+            <element signature="e#66747#68935#0" expanded="false" />
+            <element signature="e#69961#75253#0" expanded="false" />
+            <element signature="e#75280#77281#0" expanded="false" />
+            <element signature="e#77305#77575#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
