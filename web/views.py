@@ -12,6 +12,10 @@ import requests, json, time, datetime, hashlib, random
 
 import os
 import re
+from requests.cookies import RequestsCookieJar
+
+from PIL import Image
+
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
@@ -1673,7 +1677,6 @@ def property_upload(request):
         nname = "%s-%02d%s" % (assetsn, assetnum, fext)
 
         filePath = os.path.join(settings.MDEIA_ROOT, 'property\img', nname)
-        print(filePath)
         with open(filePath,'wb') as fp:
             for info in f.chunks():
                 fp.write(info)
@@ -1688,30 +1691,20 @@ def property_upload(request):
 
         # 网站中的相对文件
         pth='/static/upfile/property/img/' + nname
-        thumbnail='static/upfile/property/img/thumbnail/64/' + nname
 
-        # from web.models import asset_attachment
-        # from PIL import Image
+        # 预览图的路径及相对路径
+        thumbnail= os.path.join(settings.MDEIA_ROOT, 'property\img\\thumbnail\\64', nname)
+        nameth = '/static/upfile/property/img/thumbnail/64/' + nname
 
-        # thumbnailpic = asset_attachment.objects.filter(final=True)
-        #
-        # for i in thumbnailpic:
-        #     oname = 'static/upfile/property/img/' + i.name
-        #     im = Image.open(oname)
-        #     print(im)
-        #
-        #     nameth = 'static/upfile/property/img/thumbnail/64/' + i.name
-        #     thu = im.resize((64,64))
-        #     thu.save(nameth)
-        #
-        #     nid = asset_attachment.objects.get(id=i.id)
-        #     nid.thumbnail = '/' + nameth
-        #     nid.save()
+        # 转小文件
+        im = Image.open(filePath)
+        thu = im.resize((64,64))
+        thu.save(thumbnail)
 
         k = asset_attachment(property=propertyid,
                              name=nname,
                              filepath=pth,
-                             thumbnail=thumbnail,
+                             thumbnail=nameth,
                              oldname=f.name,
                              version=0,
                              final=True,
@@ -1761,7 +1754,64 @@ def parts_list(request):
 
 #功能测试路由
 def importdata(request):
-    wb = load_workbook("kkk.xlsx")
+    url = 'https://www.qqxiuzi.cn/zh/pinyin/'
+    # r = requests.get(url, params=v)
+    r = requests.get(url)
+    r.encoding = "utf-8"
+
+    print(r.text)
+
+    for key, value in r.cookies.items():
+        print(key, '==', value)
+    # tk = re.match(r"thoken",r.text,flags=0)
+    # print(tk)
+
+    url = 'https://www.qqxiuzi.cn/zh/pinyin/show.php'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0',
+    }
+
+    v = {}
+    v['t'] = '胜多负少'
+    v['d'] = 3
+    v['s'] = 'null'
+    v['k'] = 1
+    v['b'] = 'null'
+    v['h'] = 'null'
+    v['u'] = 'null'
+    v['v'] = 'null'
+    v['y'] = 'null'
+    v['z'] = 'null'
+    v['f'] = 'null'
+    v['token'] = '97fb41d9c78f12787d6e66405a21576b'
+
+    r1 = requests.post(url,cookies=r.cookies, headers=headers, params=v)
+    r1.encoding = "utf-8"
+    print(r1.url)
+    print(r1.cookies)
+    print(r1.text)
+    print(r1.status_code)
+
+
+    # url = 'http://www.atool.org/include/pinyin.inc.php'
+    # # url = 'http://httpbin.org/post'
+    # headers = {
+    #     'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:63.0) Gecko/20100101 Firefox/63.0'
+    # }
+    #
+    # v = {}
+    # v['w'] = '胜多负少'
+    # v['d'] = '-'
+    # v['sd'] = 'no'
+    # v['v'] = 9
+    #
+    # r = requests.post(url, params=v)
+    # r.encoding = "utf-8"
+    # print(r.url)
+    # print(r.text)
+    # print(r.status_code)
+
+    # wb = load_workbook("kkk.xlsx")
 
     # # 导入设备
     # sheet = wb["Sheet1"]
@@ -1878,54 +1928,84 @@ def importdata(request):
     # if request.method == 'POST':
     #     print(request.POST)
 
-    # 导入配件
-    sheet = wb["Sheet3"]
-    print(sheet["G2"].value)
+    # # 导入配件
+    # sheet = wb["Sheet3"]
+    # print(sheet["G2"].value)
+    #
+    # p = list()
+    # x = 0
+    # for i in sheet["A"]:
+    #     x += 1
+    #     if x != 1:
+    #
+    #         u = sheet["D"+str(x)].value
+    #         m = sheet["D"+str(x)].value
+    #         w = sheet["L"+str(x)].value
+    #
+    #         # print(type(u))
+    #         print(sheet["A"+str(x)].value)
+    #         # print(type(datetime.datetime.strptime(u, '%Y/%m/%d %H:%M:%S')))
+    #
+    #         cat = sheet["H" + str(x)].value
+    #         catn = asset_category.objects.filter(name=cat).first()
+    #
+    #         print(catn)
+    #
+    #         # c = sheet["S" + str(x)].value
+    #         # cou = hr_hr.objects.filter(name=c).first()
+    #
+    #         # p = list()
+    #         # p.append(asset_property(
+    #         #     sid=sheet["AA"+str(x)].value,
+    #         #     name=sheet["E"+str(x)].value,
+    #         #     specifications=sheet["F"+str(x)].value,
+    #         #     # model=sheet["U"+str(x)].value,
+    #         #     # categoryid=sheet["E"+str(x)].value,
+    #         #     categoryid=catn,
+    #         #     purchase=u.date(),
+    #         #     price=sheet["Q"+str(x)].value,
+    #         #     manufacture=m.date(),
+    #         #     warranty=w.date(),
+    #         #     sn=sheet["Z"+str(x)].value,
+    #         #     status=sheet["C" + str(x)].value,
+    #         #     position="18F技术部",
+    #         #     # user=sheet["Q"+str(x)].value,
+    #         #     # user=cou,
+    #         #     # partlist=1,
+    #         #     nots=sheet["K" + str(x)].value,
+    #         # ))
+    #         # asset_property.objects.bulk_create(p)
+    # # asset_property.objects.bulk_create(p)
 
-    p = list()
-    x = 0
-    for i in sheet["A"]:
-        x += 1
-        if x != 1:
-
-            u = sheet["D"+str(x)].value
-            m = sheet["D"+str(x)].value
-            w = sheet["L"+str(x)].value
-
-            # print(type(u))
-            print(sheet["A"+str(x)].value)
-            # print(type(datetime.datetime.strptime(u, '%Y/%m/%d %H:%M:%S')))
-
-            cat = sheet["H" + str(x)].value
-            catn = asset_category.objects.filter(name=cat).first()
-
-            print(catn)
-
-            # c = sheet["S" + str(x)].value
-            # cou = hr_hr.objects.filter(name=c).first()
-
-            # p = list()
-            # p.append(asset_property(
-            #     sid=sheet["AA"+str(x)].value,
-            #     name=sheet["E"+str(x)].value,
-            #     specifications=sheet["F"+str(x)].value,
-            #     # model=sheet["U"+str(x)].value,
-            #     # categoryid=sheet["E"+str(x)].value,
-            #     categoryid=catn,
-            #     purchase=u.date(),
-            #     price=sheet["Q"+str(x)].value,
-            #     manufacture=m.date(),
-            #     warranty=w.date(),
-            #     sn=sheet["Z"+str(x)].value,
-            #     status=sheet["C" + str(x)].value,
-            #     position="18F技术部",
-            #     # user=sheet["Q"+str(x)].value,
-            #     # user=cou,
-            #     # partlist=1,
-            #     nots=sheet["K" + str(x)].value,
-            # ))
-            # asset_property.objects.bulk_create(p)
-    # asset_property.objects.bulk_create(p)
+    # # 导入价格
+    # sheet = wb["Sheet5"]
+    #
+    # x = 0
+    # n = 0
+    # sumi = 0
+    # for i in sheet["A"]:
+    #     x += 1
+    #     if x != 1:
+    #         s = sheet["F"+str(x)].value
+    #         p = 0
+    #         if s != None:
+    #             p = sheet["G"+str(x)].value
+    #             d = sheet["I"+str(x)].value
+    #             if p != 0:
+    #                 ps = asset_property.objects.filter(sn__icontains=s).first()
+    #                 if ps:
+    #                     # print(ps.sn, ps.price,ps.purchase, s, p, d)
+    #                     # ps.price = p
+    #                     # n += 1
+    #                     # # ps.save()
+    #                     # print(n)
+    #                     pass
+    #                 else:
+    #                     n += 1
+    #                     sumi = sumi + p
+    #                     print(s, p, d)
+    #                     pass
+    # print(n,sumi)
 
     response = {"status":"ok"}
     return HttpResponse(response)
