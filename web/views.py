@@ -225,8 +225,6 @@ def asset_property_list(request):
                                                                         'position',
                                                                         'sn').order_by('name')
                     u = list(ps)
-                    print(ps.query)
-                    print(ps.count())
                 else:
                     ps = asset_property.objects.filter(active=True,bom=False).filter(Q(user__name__icontains=search['ilike'])
                                                                                      | Q(sid__icontains=search['ilike'])
@@ -341,6 +339,45 @@ def asset_property_list(request):
                     data['spk'] = 0
                     data['data'] = "无返回值"
 
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == 'enableparts':
+                data = {}
+                search = {}
+                search['field'] = request.GET['field']
+                search['ilike'] = request.GET['ilike']
+                # if search['field'] == "active":
+                search['ilike'] = int(search['ilike'])
+                pn = asset_property.objects.filter(active=True, categoryid=search['ilike'], status=1).values('id',
+                                                                                  'status',
+                                                                                  'sid',
+                                                                                  'name',
+                                                                                  'specifications',
+                                                                                  'purchase',
+                                                                                  'warranty',
+                                                                                  'user__name',
+                                                                                  'user__active',
+                                                                                  'position',
+                                                                                  'sn').order_by('name')
+                s = []
+                for t in list(pn):
+                    if t['purchase']:
+                        t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
+                    if t['warranty']:
+                        t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+                    if t['status']:
+                        t['statusstr'] = status(t['status'], 2)
+                    s.append(t)
+                if len(s):
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['spk'] = len(s)
+                    data['data'] = s
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['spk'] = 0
+                    data['data'] = "无返回值"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
         else:
@@ -544,15 +581,20 @@ def asset_property_form(request):
                 pn = int(request.GET['id'])
                 ps = asset_attachment.objects.filter(property=pn, active=True).values("id","name","filepath")
 
-                # 返回JSON数据格式 0:为正常
-                # {"code": 0, "msg": "OK", "data": [1,2,3,]}
                 msg = {}
-                msg['code'] = 0
-                msg['msg'] = "OK"
+                if ps.count():
+                    # 返回JSON数据格式 0:为正常
+                    # {"code": 0, "msg": "OK", "data": [1,2,3,]}
+                    msg['code'] = 0
+                    msg['msg'] = "OK"
 
-                # 附加数据
-                ldata = list(ps)
-                msg['data'] = ldata
+                    # 附加数据
+                    msg['data'] = list(ps)
+                else:
+                    msg['code'] = 1
+                    msg['msg'] = "Fiale"
+                    msg['data'] = None
+
                 data = json.dumps(msg)
 
                 return HttpResponse(data, content_type="application/json")
@@ -586,17 +628,16 @@ def asset_property_form(request):
                 return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == "indexpartscategoryid":
                 # parts = asset_property.objects.filter(categoryid__active=True, categoryid__bom=True,active=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
-                parts = asset_property.objects.filter(active=True,categoryid__active=True, categoryid__bom=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
-                pp = asset_category.objects.filter(bom=True,active=True,asset_property__active=True).values("id", "name","asset_property__active").annotate(Count('asset_property__id'))
-                print(pp)
-                # parts = asset_category.objects.filter(active=True,bom=True).values("id", "name")
+                parts = asset_property.objects.filter(active=True,categoryid__active=True, categoryid__bom=True, status=1).values('categoryid__id','categoryid__name').annotate(count=Count('id'))
+                # pp = asset_category.objects.filter(bom=True,active=True,asset_property__active=True).values("id", "name","asset_property__active").annotate(Count('asset_property__id'))
+                # print(pp)
 
                 # 改名，校正数据格式
                 s = []
                 for t in list(parts):
                     t['disn'] = partt(t['categoryid__id'])
                     t['id'] = t['categoryid__id']
-                    t['num'] = t['id__count']
+                    t['num'] = t['count']
                     s.append(t)
 
 
@@ -931,6 +972,505 @@ def asset_property_form(request):
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
     return render(request, 'asset_property_form.html', context)
+
+def asset_parts_list(request):
+    context={}
+    context['title']='配件列表'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_property.objects.filter(bom=True,active=True).values().order_by('name', 'specifications', 'status')
+
+    u = list(ps)
+    s = []
+    for t in u:
+        if t['purchase']:
+            t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
+        if t['warranty']:
+            t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+        if t['status']:
+            t['statusstr'] = status(t['status'], 1)
+        s.append(t)
+        # print(s)
+    context['context'] = s
+
+    return render(request, 'parts_list.html', context)
+
+def asset_parts_form(request):
+    request.encoding = 'utf-8'
+    context={}
+    context['title']='设备单'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    if request.method == "GET":
+        print(request.GET)
+        if "act" in request.GET:
+            if request.GET['act'] == "display":
+                context['act'] = "display"
+
+                # 当前设备id、前后id
+                pn = int(request.GET['id'])
+                ppn = pn-1
+                npn = pn+1
+                context['pk'] = pn
+                context['ppk'] = ppn
+                context['npk'] = npn
+
+                #设备总数
+                spn = asset_property.objects.filter(active=True).count()
+                context['spk'] = spn
+
+                # 设备类型DisplayName计算
+                cats = asset_category.objects.filter(active=True).order_by('parentid','name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] =partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
+
+                # 可用人员查询
+                hrs = hr_hr.objects.filter(active=True).order_by('name')
+                context['hrs']= hrs
+
+                try:
+                    # 当前设备信息
+                    ps = asset_property.objects.get(id=pn)
+                except Exception:
+                    return redirect('/property_list/')
+                else:
+                    context['context'] = ps
+
+                    # 设备配件获取
+                    prs = ps.asset_property_set.all()
+                    context['parts'] = prs
+                    context['partsnum'] = prs.count()
+
+                # 设备照片信息
+                asspic = asset_attachment.objects.filter(property=pn,active=True, final=True).first()
+                if asspic:
+                    context['imgid'] = asspic.id
+                    context['headimg'] = asspic.filepath
+                else:
+                    # 如果无图则传占位符
+                    context['imgid'] = 0
+                    context['headimg'] = 'holder.js/64x64'
+
+                # 单据标题
+                context['title'] = '设备单'
+            elif request.GET['act'] == "disheadimg":
+                pn = int(request.GET['id'])
+                ps = asset_attachment.objects.filter(property=pn, active=True).values("id","name","filepath")
+
+                # 返回JSON数据格式 0:为正常
+                # {"code": 0, "msg": "OK", "data": [1,2,3,]}
+                msg = {}
+                msg['code'] = 0
+                msg['msg'] = "OK"
+
+                # 附加数据
+                ldata = list(ps)
+                msg['data'] = ldata
+                data = json.dumps(msg)
+
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "dishrinfo":
+                ghrid = int(request.GET['hrid'])
+                hrdeppos = employee_department.objects.filter(employeeid__id=ghrid).values('employeeid__id','employeeid__name','employeeid__position','departmentid__name').first()
+                data = {}
+                if hrdeppos:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = hrdeppos
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = "None"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "discategory":
+                gcategoryid = int(request.GET['categoryid'])
+                categorydeppos = asset_category.objects.filter(id=gcategoryid).values('id', 'name', 'bom').first()
+                data = {}
+                if categorydeppos:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = categorydeppos
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = "None"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexpartscategoryid":
+                # parts = asset_property.objects.filter(categoryid__active=True, categoryid__bom=True,active=True).values('categoryid__id','categoryid__name').annotate(Count('id'))
+                parts = asset_property.objects.filter(active=True,categoryid__active=True, categoryid__bom=True, status=1).values('categoryid__id','categoryid__name').annotate(count=Count('id'))
+                # pp = asset_category.objects.filter(bom=True,active=True,asset_property__active=True).values("id", "name","asset_property__active").annotate(Count('asset_property__id'))
+                # print(pp)
+
+                # 改名，校正数据格式
+                s = []
+                for t in list(parts):
+                    t['disn'] = partt(t['categoryid__id'])
+                    t['id'] = t['categoryid__id']
+                    t['num'] = t['count']
+                    s.append(t)
+
+
+                data = {}
+                if parts:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = s
+                else:
+                    data['code'] = 1
+                    data['msg'] = "FAIL"
+                    data['data'] = "None"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexname":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(name__icontains=val,active=True).values('name').distinct()
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexmodel":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(model__icontains=val,active=True).values('model').distinct()
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexspec":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(specifications__icontains=val,active=True).values('specifications').distinct()
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "indexposition":
+                val = request.GET['ilike']
+                t = asset_property.objects.filter(position__icontains=val,active=True).values('position').distinct().order_by('position')
+                data = {}
+                if t:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['data'] = list(t)
+                else:
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "chacksid":
+                val = request.GET['sid']
+                cid = request.GET['id']
+                t = asset_property.objects.filter(sid=val).exclude(pk=cid).first()
+                data = {}
+                if t:
+                    data['code'] = 1
+                    data['msg'] = "fail"
+                    data['data'] = "输入值已存在"
+                else:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "chacksn":
+                val = request.GET['sn']
+                cid = request.GET['id']
+                t = asset_property.objects.filter(sn=val).exclude(pk=cid).first()
+                data = {}
+                if t:
+                    data['code'] = 1
+                    data['msg'] = "fail"
+                    data['data'] = "输入值已存在"
+                else:
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == "create":
+                context['act'] = "create"
+                context['pk'] = id = int(request.GET['id'])
+
+                # 新建设置默认值
+                #
+                cats = asset_category.objects.filter(active=True).order_by('parentid', 'name')
+                lcats = []
+                for cat in cats:
+                    ncat = {}
+                    ncat["id"] = cat.id
+                    ncat["name"] = cat.name
+                    ncat["displayname"] = partt(cat.id)
+                    lcats.append(ncat)
+                context['cats'] = lcats
+
+                hrs = hr_hr.objects.filter(active=True).order_by('name')
+                context['hrs'] = hrs
+
+                ps = {}
+                # 默认编号
+                # Todo 这编号在建立规则后，可以根据规则生成
+                # ps['sid'] = 0
+
+
+                # Todo  id = 0 为新建 其它为复制
+                # ======================================
+                if id:
+                    # 取现有值进行复制
+                    context['title'] = '设备单 / 复制'
+                    ps = asset_property.objects.filter(id=id).first()
+                else:
+                    context['title'] = '设备单 / 新建'
+
+                    # 默认类型
+                    ps['categoryid'] = 1
+
+                    # 默认价格
+                    ps["price"] = 0
+
+                    # 默认出厂、维保、报废日期
+                    t =datetime.datetime.now()
+                    ps["manufacture"] = ps["purchase"] = ps["warranty"] = t
+
+                context['context'] = ps
+                return render(request, 'asset_property_form.html', context)
+            elif request.GET['act'] == "edit":
+                pass
+    elif request.method == "POST":
+        print(request.POST)
+        if "act" in request.POST:
+            if request.POST['act'] == "active":
+                assid = int(request.POST['id'])
+                act = asset_property.objects.filter(id=assid).update(active=True)
+                return HttpResponse(act)
+            if request.POST['act'] == 'unactive':
+                assid = int(request.POST['id'])
+                act = asset_property.objects.filter(id=assid).update(active=False)
+                return HttpResponse(act)
+            if request.POST['act'] == 'delimg':
+                id = int(request.POST['id'])
+                a = asset_attachment.objects.filter(id=id).update(active=False,final=False)
+                pid = int(request.POST['pid'])
+
+                n = asset_attachment.objects.filter(property=pid,active=True).order_by('-id').first()
+                data = {}
+                # 返回1.失败1 2.成功：无图2、有图0
+                if n:
+                    n.final = True
+                    n.save()
+                    data['code'] = 0
+                    data['msg'] = "OK"
+                    data['id'] = n.id
+                    data['filepath'] = n.filepath
+                else:
+                    data['code'] = 2
+                    data['msg'] = "OK"
+                    data['id'] = 0
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            if request.POST['act'] == 'create':
+                act='create'
+
+                ugcatid = int(request.POST['categoryid'])
+                if ugcatid == 0:
+                    catid = None
+                else:
+                    catid = asset_category.objects.filter(id=ugcatid).first()
+
+                guserid = int(request.POST['user'])
+                if guserid == 0:
+                    userid = None
+                else:
+                    userid = hr_hr.objects.filter(id=guserid).first()
+
+                if (request.POST.get('bom', False)):
+                    bom = False
+                else:
+                    bom = True
+
+                # 获取默认日期，当天日期
+                pdate = request.POST['purchase']
+                if pdate == '':
+                    purchase = datetime.datetime.today()
+                else:
+                    purchase = datetime.datetime.strptime(pdate, "%Y-%m-%d")
+
+                wdat = request.POST['warranty']
+                if wdat == '':
+                    warranty = datetime.datetime.today()
+                else:
+                    warranty = datetime.datetime.strptime(wdat, "%Y-%m-%d")
+
+                rdat = request.POST['manufacture']
+                if rdat == '':
+                    manufacture = datetime.datetime.today()
+                else:
+                    manufacture = datetime.datetime.strptime(rdat, "%Y-%m-%d")
+
+                item = asset_property(
+                    sid = request.POST['sid'],
+                    name = request.POST['name'],
+                    sn=request.POST['sn'],
+                    specifications = request.POST['specifications'],
+                    model = request.POST['model'],
+                    categoryid = catid,
+                    bom = bom,
+                    purchase = purchase,
+                    price = float(request.POST['price']),
+                    manufacture = manufacture,
+                    warranty = warranty,
+                    user = userid,
+                    # partlist = request.POST[''],
+                    position = request.POST['position'],
+                    status = 1,
+                    nots = request.POST['comment'],
+                    active = True
+                )
+
+                item.save()
+                id = item.id
+                return HttpResponse(id)
+            if request.POST['act'] == 'edit':
+                act='edit'
+                id = int(request.POST['id'])
+
+                pid = asset_property.objects.get(id=id)
+
+                ugcatid = int(request.POST['categoryid'])
+                pid.categoryid = asset_category.objects.filter(id=ugcatid).first()
+
+                guserid = int(request.POST['user'])
+                pid.user = hr_hr.objects.filter(id=guserid).first()
+
+                if (request.POST.get('bom', False)):
+                    pid.bom = True
+                else:
+                    pid.bom = False
+
+                print(pid.bom)
+
+                # # 获取默认日期，当天日期
+                pdate = request.POST['purchase']
+                if pdate == '':
+                    pid.purchase = datetime.datetime.today()
+                else:
+                    pid.purchase = datetime.datetime.strptime(pdate, "%Y-%m-%d")
+
+                wdat = request.POST['warranty']
+                if wdat == '':
+                    pid.warranty = datetime.datetime.today()
+                else:
+                    pid.warranty = datetime.datetime.strptime(wdat, "%Y-%m-%d")
+
+                rdat = request.POST['manufacture']
+                if rdat == '':
+                    pid.manufacture = datetime.datetime.today()
+                else:
+                    pid.manufacture = datetime.datetime.strptime(rdat, "%Y-%m-%d")
+
+                pid.sid = request.POST.get('sid')
+                pid.name = request.POST['name']
+                pid.sn = request.POST['sn']
+                pid.specifications = request.POST['specifications']
+                pid.model = request.POST['model']
+                pid.price = float(request.POST['price'])
+                # # partlist = request.POST[''],
+                pid.position = request.POST['position']
+                # pid.status = 1
+                pid.nots = request.POST['comment']
+                # pid.active = True
+
+                pid.save()
+
+                return HttpResponse(id)
+            if request.POST['act'] == 'addparts':
+                assetidlist= request.POST['id']
+                parentid = int(request.POST['parentid'])
+
+                # Todo 向设备添加配件，1.改配件的父级 2.此配件归档 3.修改配件状态为使用中 4. 刷新对应设备的配件列表
+                pps= asset_property.objects.get(id=parentid)
+
+                for assetid in assetidlist.split(",")[0:-1]:
+                    print(assetid)
+                    ps = asset_property.objects.get(id=int(assetid))
+
+                    ps.parentid = pps
+                    # ps.active = False
+                    ps.status = 2
+
+                    ps.save()
+
+                data={}
+
+                data['code'] = 0
+                data['msg'] = "ok"
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+            if request.POST['act'] == 'delparts':
+                assetid = int(request.POST['id'])
+
+                ps = asset_property.objects.get(id=assetid)
+                ps.parentid = None
+                # ps.active = True
+                ps.status = 1
+                ps.save()
+
+                data = {}
+                data['code'] = 0
+                data['msg'] = "ok"
+
+                data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+    return render(request, 'asset_parts_form.html', context)
 
 def asset_category_list(request):
     request.encoding = 'utf-8'
@@ -1718,39 +2258,6 @@ def property_upload(request):
         return HttpResponse(data, content_type="application/json")
     else:
         return HttpResponse('no')
-
-def parts_list(request):
-    context={}
-    context['title']='配件列表'
-
-    username = request.COOKIES.get('usercookie', None)
-    if username:
-        try:
-            signuser = hr_hr.objects.get(session=username)
-        except Exception:
-            context['userinfo'] = '用户'
-            return render(request, 'sign.html', context)
-        context['userinfo'] = signuser.name
-    else:
-        context['userinfo'] = '用户'
-        return render(request, 'sign.html', context)
-
-    ps = asset_property.objects.filter(bom=True,active=True).values().order_by('name')
-
-    u = list(ps)
-    s = []
-    for t in u:
-        if t['purchase']:
-            t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
-        if t['warranty']:
-            t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
-        if t['status']:
-            t['statusstr'] = status(t['status'], 1)
-        s.append(t)
-        # print(s)
-    context['context'] = s
-
-    return render(request, 'parts_list.html', context)
 
 #功能测试路由
 def importdata(request):

@@ -59,7 +59,8 @@ urlpatterns = [
     path('property_form/', views.asset_property_form),
     path('property_upload/', views.property_upload),
 
-    path('parts_list/', views.parts_list),
+    path('parts_list/', views.asset_parts_list),
+    path('parts_form/', views.asset_parts_form),
 
     path('category_list/', views.asset_category_list),
     path('category_form/', views.asset_category_form),

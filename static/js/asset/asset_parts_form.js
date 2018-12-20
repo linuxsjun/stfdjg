@@ -45,6 +45,7 @@ $(document).ready(function () {
     $('#cateid').click(function () {
             $('#myModal').modal("show");
     });
+
     // ----管理工具条----
     $('button[data-toggle="edit"]').on('click', function () {
         if ($(this).hasClass('disabled')) {
@@ -121,7 +122,7 @@ $(document).ready(function () {
         } else {
             // $('.form-control, .custom-select').attr('readonly', true);
             // $('button[data-toggle="save"]').addClass("disabled");
-            window.location.href = "/property_list/";
+            window.location.href = "/parts_list/";
         }
     });
 
@@ -162,25 +163,28 @@ $(document).ready(function () {
     $('#headerimg').click(function () {
         var asid = $("#assetid").text();
         //----请求照片表----
-        $.ajax({
-            url: "/property_form/",
-            type: "GET",
-            data: {
+        $.get("/property_form/",
+            {
                 "act": 'disheadimg',
                 "id": asid
             },
-            success: function (data) {
+            function (data) {
                 $('ol[class="carousel-indicators"]').empty();
                 $('div.carousel-inner').empty();
-                $.each(data['data'],function (i,n) {
-                    $('ol[class="carousel-indicators"]').append('<li data-target="#carouselExampleIndicators" data-slide-to="'+ i + '"></li>');
-                    $('div[class="carousel-inner"]').append('<div class="carousel-item"><img class="d-block w-100 img-responsive" src="'+ n['filepath'] +'" data-src="holder.js/400x520" alt="Third slide"></div>')
-                });
-                $('li[data-target="#carouselExampleIndicators"]').first().addClass('active');
-                $('div.carousel-item').first().addClass('active');
+                if (data.code === 0) {
+                    $.each(data['data'],function (i,n) {
+                        $('ol[class="carousel-indicators"]').append('<li data-target="#carouselExampleIndicators" data-slide-to="'+ i + '"></li>');
+                        $('div[class="carousel-inner"]').append('<div class="carousel-item"><img class="d-block w-100 img-responsive" src="'+ n['filepath'] +'" data-src="holder.js/400x520" alt="Third slide"></div>')
+                    });
+                    $('li[data-target="#carouselExampleIndicators"]').first().addClass('active');
+                    $('div.carousel-item').first().addClass('active');
+
+                    $('#imglist').modal("show");
+                } else {
+                    alert('暂无图像');
+                }
             }
-        });
-        $('#imglist').modal("show");
+        );
     });
 
      // ----头像上传----
@@ -447,7 +451,7 @@ $(document).ready(function () {
         }
     });
 
-    // sn 必填、不重复、改o为0
+    // sn 不重复、改o为0
     // 只读不验证
     // 当前记录不与本记录重复
     $('#sn').blur(function () {
@@ -458,9 +462,9 @@ $(document).ready(function () {
         if (me.attr('readonly')) {
         } else {
             if (me.val() === "") {
-                pop.text('必填');
-                me.addClass('is-invalid');
-                $('button[data-toggle="save"]').addClass("disabled");
+                // pop.text('必填');
+                // me.addClass('is-invalid');
+                // $('button[data-toggle="save"]').addClass("disabled");
             } else {
                 $.get(
                     "/property_form",
@@ -476,141 +480,6 @@ $(document).ready(function () {
                         }
                     });
             }
-        }
-    });
-
-    //----配件添加----
-    $('#addpart').click(function () {
-        if ($(this).hasClass('disabled')) {
-        } else {
-
-            $.get("/property_form/",
-                {act:"indexpartscategoryid"},
-                function (data) {
-                    if(data.code === 0){
-                        var seloptl = $('#partscategoryid').selpartscategoryid(data.data);
-                        $('#partscategoryid').empty();
-                        $('#partscategoryid').append(seloptl);
-
-                        var tabpartslist = $('#tabpartssel');
-                        var categoryid = $('#partscategoryid');
-                        var val = categoryid.val();
-
-                        $.get("/property_list/",
-                            {
-                                act:"enableparts",
-                                field:"categoryid",
-                                ilike:val
-                            },
-                            function (data) {
-                                var seloptl = "";
-                                if(data.code === 0){
-                                    seloptl = tabpartslist.tabpartsadd(data.data);
-                                }else {
-                                    seloptl = '<tr><td  colspan="5" style="text-align: center;">(暂无数据)</td></tr>';
-                                }
-                                tabpartslist.empty();
-                                tabpartslist.append(seloptl);
-                            }
-                        );
-
-                        }else {
-                        var seloptl = '<option value="0">(请先指定哪些类型为配件)</option>';
-                        $('#partscategoryid').empty();
-                        $('#partscategoryid').append(seloptl);
-                    }
-                }
-            );
-            $('#Modalparts').modal("show");
-        }
-    });
-
-    $('#tabpartlst').on('click','tr td button',function () {
-        $.post("/property_form/",
-            {
-                act:"delparts",
-                id:$(this).parent().parent().attr('data-id')
-            },
-            function (data) {
-                // console.log(data);
-                window.location.reload()
-            }
-        )
-    });
-
-    $('#partscategoryid').change(function () {
-        //----重置添加按键----
-        $('#partnum').html("0");
-        $('#btnpartadd').addClass("disabled");
-
-        var tabpartslist = $('#tabpartssel');
-        var categoryid = $('#partscategoryid');
-        var val = categoryid.val();
-
-        $.get("/property_list/",
-            {
-                act:"enableparts",
-                field:"categoryid",
-                ilike:val
-            },
-            function (data) {
-                var seloptl = "";
-                if(data.code === 0){
-                    seloptl = tabpartslist.tabpartsadd(data.data);
-                }else {
-                    seloptl = '<tr><td  colspan="5" style="text-align: center;">(暂无数据)</td></tr>';
-                }
-                tabpartslist.empty().append(seloptl);
-            }
-        );
-    });
-
-    // ----勾选----
-    $('#tabpartssel').on("click","tr td input",function () {
-        var tabpartslist = $('#tabpartssel');
-        var sel = $(this).prop("checked");
-        var i = $('#partnum').html();
-        i=parseInt(i);
-
-        if (sel){
-            $(this).prop("checked", true);
-            $('#btnpartadd').removeClass("disabled");
-            i=i+1;
-            $('#partnum').html(i);
-        }else{
-            $(this).prop("checked", false);
-            i=i-1;
-            $('#partnum').html(i);
-            if(!i){
-                $('#btnpartadd').addClass("disabled");
-            }
-        }
-    });
-
-    $('#btnpartadd').click(function () {
-        var chkbox = $('#tabpartssel tr td input');
-        var addid = "";
-        if ($(this).hasClass('disabled')) {
-        } else {
-            chkbox.each(function(){
-                if( $(this).prop("checked")){
-                    console.log($(this).val());
-                    addid = addid + $(this).val() + ","
-                }
-            });
-            $.post("/property_form/",
-                {
-                    act:"addparts",
-                    id:addid,
-                    parentid:$("#id").val()
-                },
-                function (data) {
-                console.log(data);
-                $('#Modalparts').modal('hide');
-                window.location.reload();
-                }
-            );
-
         }
     });
 });
