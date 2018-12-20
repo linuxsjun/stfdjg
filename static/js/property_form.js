@@ -1,45 +1,5 @@
-$(document).ready(function () {
-    // ----扩展函数----
-    $.fn.extend({
-        'selpartscategoryid':function (data) {
-            var htxt = "";
-            $.each(data,function (i,items) {
-                htxt +='<option value=' + items['id'] + '>' + items['disn'] + ' (' + items['num'] + ')</option>';
-            });
-            return htxt;
-        },
-        'tabpartsadd':function (data) {
-            var htxt = "";
-            $.each(data,function (i,items) {
-                htxt +='<tr>';
-                htxt +='<td scope="col"><input type="checkbox" name="selitem" value="' + items['id'] + '"></td>';
-                htxt +='<td scope="col">' + items['name'] + '</td>';
-                // htxt +='<td scope="col">' + items['model'] + '</td>';
-                htxt +='<td scope="col">' + items['specifications'] + '</td>';
-                htxt +='<td scope="col">' + items['sn'] + '</td>';
-                // Todo 配件的状态用彩色图标来显示
-                htxt +='<td scope="col">' + items['statusstr'] + '</td>';
-                htxt +='</tr>';
-            });
-            return htxt;
-        }
-    });
-    //----页面初始化----
-    if ($('#act').val() === "create") {
-        $('[data-dis="display"]').addClass("sr-only");
-        $('[data-dis="edit"]').removeClass("sr-only");
-
-        // $('button[data-toggle="save"]').removeClass("disabled");
-
-        $('[data-toggle="tooltip"]').tooltip();
-    }else {
-        $('[data-dis="display"]').removeClass("sr-only");
-        $('[data-dis="edit"]').addClass("sr-only");
-
-        $('.form-control').attr('readonly', true);
-        $('.form-check-input').attr('disabled', true);
-        $('.custom-select').attr('disabled', true);
-    }
+$(function () {
+    init('页面初始化');
 
     //----bars----
     $('#cateid').click(function () {
@@ -488,12 +448,13 @@ $(document).ready(function () {
                 {act:"indexpartscategoryid"},
                 function (data) {
                     if(data.code === 0){
-                        var seloptl = $('#partscategoryid').selpartscategoryid(data.data);
-                        $('#partscategoryid').empty();
-                        $('#partscategoryid').append(seloptl);
-
                         var tabpartslist = $('#tabpartssel');
                         var categoryid = $('#partscategoryid');
+
+                        // var seloptl = $('#partscategoryid').selpartscategoryid(data.data);
+                        var seloptl = seletpartscategoryid(data.data);
+                        categoryid.empty().append(seloptl);
+
                         var val = categoryid.val();
 
                         $.get("/property_list/",
@@ -505,7 +466,8 @@ $(document).ready(function () {
                             function (data) {
                                 var seloptl = "";
                                 if(data.code === 0){
-                                    seloptl = tabpartslist.tabpartsadd(data.data);
+                                    // seloptl = tabpartslist.tabpartsadd(data.data);
+                                    seloptl = tabpadd(data.data);
                                 }else {
                                     seloptl = '<tr><td  colspan="5" style="text-align: center;">(暂无数据)</td></tr>';
                                 }
@@ -513,11 +475,9 @@ $(document).ready(function () {
                                 tabpartslist.append(seloptl);
                             }
                         );
-
-                        }else {
+                    }else {
                         var seloptl = '<option value="0">(请先指定哪些类型为配件)</option>';
-                        $('#partscategoryid').empty();
-                        $('#partscategoryid').append(seloptl);
+                        $('#partscategoryid').empty().append(seloptl);
                     }
                 }
             );
@@ -556,7 +516,8 @@ $(document).ready(function () {
             function (data) {
                 var seloptl = "";
                 if(data.code === 0){
-                    seloptl = tabpartslist.tabpartsadd(data.data);
+                    // seloptl = tabpartslist.tabpartsadd(data.data);
+                    seloptl = tabpadd(data.data);
                 }else {
                     seloptl = '<tr><td  colspan="5" style="text-align: center;">(暂无数据)</td></tr>';
                 }
@@ -614,3 +575,47 @@ $(document).ready(function () {
         }
     });
 });
+
+function init(obj) {
+    console.log(obj);
+
+    if ($('#act').val() === "create") {
+        $('[data-dis="display"]').addClass("sr-only");
+        $('[data-dis="edit"]').removeClass("sr-only");
+
+        // $('button[data-toggle="save"]').removeClass("disabled");
+
+        $('[data-toggle="tooltip"]').tooltip();
+    }else {
+        $('[data-dis="display"]').removeClass("sr-only");
+        $('[data-dis="edit"]').addClass("sr-only");
+
+        $('.form-control').attr('readonly', true);
+        $('.form-check-input').attr('disabled', true);
+        $('.custom-select').attr('disabled', true);
+    }
+}
+
+function tabpadd(data){
+    var htxt = "";
+    $.each(data,function (i,items) {
+        htxt +='<tr>';
+        htxt +='<td scope="col"><input type="checkbox" name="selitem" value="' + items['id'] + '"></td>';
+        htxt +='<td scope="col">' + items['name'] + '</td>';
+        // htxt +='<td scope="col">' + items['model'] + '</td>';
+        htxt +='<td scope="col">' + items['specifications'] + '</td>';
+        htxt +='<td scope="col">' + items['sn'] + '</td>';
+        // Todo 配件的状态用彩色图标来显示
+        htxt +='<td scope="col">' + items['statusstr'] + '</td>';
+        htxt +='</tr>';
+    });
+    return htxt;
+}
+
+function seletpartscategoryid(data) {
+    var htxt = "";
+    $.each(data,function (i,items) {
+        htxt +='<option value=' + items['id'] + '>' + items['disn'] + ' (' + items['num'] + ')</option>';
+    });
+    return htxt;
+}

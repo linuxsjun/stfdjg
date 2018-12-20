@@ -1,4 +1,10 @@
-window.onload = function() {
+$(function () {
+    init('这是一个初始模块');
+});
+
+function init(obj){
+    console.log(obj);
+
     $.get('/asset_kanban_board/',
         {
             act: 'pi'
@@ -103,8 +109,4 @@ window.onload = function() {
             }
         }
     );
-};
-
-$(function () {
-
-});
+}

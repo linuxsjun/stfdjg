@@ -1009,7 +1009,7 @@ def asset_parts_list(request):
 def asset_parts_form(request):
     request.encoding = 'utf-8'
     context={}
-    context['title']='设备单'
+    context['title']='配件单'
 
     username = request.COOKIES.get('usercookie', None)
     if username:
