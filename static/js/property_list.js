@@ -1,4 +1,5 @@
-$(document).ready(function () {
+$(function () {
+    init('页面初始化');
     // ----扩展函数----
     $.fn.extend({
         'listitem':function (data) {
@@ -218,9 +219,9 @@ $(document).ready(function () {
     });
 
     //----分组----
-    $('[data-act="group"]').click(function (e) {
+    $('[data-act="group"]').click(function (d) {
         var byf = $(this).attr("data-groupby");
-        e.preventDefault();
+        d.preventDefault();
         $.get(
             "/property_list/",
             {
@@ -234,8 +235,7 @@ $(document).ready(function () {
                 }else{
                     $('#assetid').text("0-0/0");
                     var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
-                    $('tbody').empty();
-                    $("tbody").append(htext);
+                    $('tbody').empty().append(htext);
                 }
 
                 //
@@ -246,11 +246,65 @@ $(document).ready(function () {
         );
     });
 
-    //----视图类型----
-    $('#board').change(function () {
-        $(this).next("i").addClass("text-danger");
+    // ----上下页----
+
+    $('#pagenav').find('[aria-label="Previous"]').click(function (e) {
+        e.preventDefault();
+
+        var elm = $('#viewtype');
+        var viewtype = elm.attr('data-tview');
+
+        var npage = $(this).parent().attr('data-pagprevious');
+
+        // 获取视图数据
         $.get(
             '/asset_property_sub_board/',
+            {
+                v: viewtype,
+                p:npage
+            },
+            function (data) {
+                $('#panl').next().remove();
+                $('#panl').after(data);
+            }
+        );
+        // 修改页号
+    });
+
+    $('#pagenav').find('[aria-label="Next"]').click(function (e) {
+        e.preventDefault();
+
+        var elm = $('#viewtype');
+        var viewtype = elm.attr('data-tview');
+
+        var npage = $(this).parent().attr('data-pagnext');
+
+        // 获取视图数据
+        $.get(
+            '/asset_property_sub_board/',
+            {
+                v: viewtype,
+                p:npage
+            },
+            function (data) {
+                $('#panl').next().remove();
+                $('#panl').after(data);
+            }
+        );
+        // 修改页号
+    });
+
+    // ----视图类型----
+    $('#viewtype label input[type="radio"]').change(function () {
+        var npage = $('#page').attr('data-page');
+        var nview = $(this).val();
+        $('#viewtype').attr('data-tview',nview);
+        $.get(
+            '/asset_property_sub_board/',
+            {
+                v: nview,
+                p: npage
+            },
             function (data) {
                 $('#panl').next().remove();
                 $('#panl').after(data);
@@ -400,3 +454,27 @@ $(document).ready(function () {
         }
     });
 });
+
+function init(obj) {
+    // console.log(obj);
+
+    var elm = $('#viewtype');
+    // typeviewlist = [1"list", 2"board", 3"singo"]
+    var viewtype = elm.attr('data-tview');
+    // 标记视图类型
+    var sel = '[value=' + viewtype + ']';
+    elm.find(sel).parent().addClass("active");
+    // 获取视图数据
+    $.get(
+            '/asset_property_sub_board/',
+            {
+                v: viewtype,
+                p:1
+            },
+            function (data) {
+                $('#panl').next().remove();
+                $('#panl').after(data);
+            }
+        );
+    // 获取分页数
+}

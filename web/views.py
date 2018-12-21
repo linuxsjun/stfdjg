@@ -399,14 +399,18 @@ def asset_property_list(request):
                                                                                                                         'sn').order_by('name', 'sid')
             context['spk'] = ps.count()
 
-            #每页条目数
-            baseconfig = asset_conf.objects.get(pk=1)
-            lpnum = baseconfig.boardnum
             #显示方式 board、list
             typeviewlist = ["list","board","singo"]
 
-            page = request.GET.get('p',1)
-            tview = request.GET.get('v',typeviewlist[baseconfig.viewtype-1])
+            #每页条目数
+            baseconfig = asset_conf.objects.get(pk=1)
+            lpnum = baseconfig.boardnum
+
+            page = 1
+            context['page'] = page
+
+            tview = baseconfig.viewtype
+
             context['tview'] = tview
 
             paginator = Paginator(ps, lpnum)
@@ -426,25 +430,15 @@ def asset_property_list(request):
             try:
                 context['pagprevious'] = data.previous_page_number()
             except EmptyPage:
-                context['pagprevious'] = 0
+                context['pagprevious'] = 1
 
             try:
                 context['pagnext'] = data.next_page_number()
             except EmptyPage:
-                context['pagnext'] = 0
+                context['pagnext'] = 1
 
-            s = []
-            for t in list(ps):
-                if t['warranty']:
-                    t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
-                if t['status']:
-                    t['statusstr'] = status(t['status'], 2)
-                if t['asset_attachment__filepath'] == None:
-                        t['asset_attachment__filepath'] = '/static/img/asset.png'
-                if t['asset_attachment__thumbnail'] == None:
-                    t['asset_attachment__thumbnail'] = '/static/img/asset.png'
-                s.append(t)
-            context['context'] = s
+            print(context)
+            return render(request, 'asset_property_list.html', context)
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
@@ -469,26 +463,33 @@ def asset_property_sub_board(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
+    print(request.GET)
     ps = asset_property.objects.filter(bom=False,active=True).filter(Q(asset_attachment__final=True)
                                                                      |Q(asset_attachment__final=None)).values('id',
-                                                           'status',
-                                                           'sid',
-                                                           'name',
-                                                           'specifications',
-                                                           'warranty',
-                                                           'user__name',
-                                                           'user__active',
-                                                           'asset_attachment__filepath',
-                                                           'asset_attachment__final',
-                                                           'position',
-                                                           'sn').order_by('name', 'specifications', 'sid')
-    context['spk'] = ps.count()
-    print(context['spk'])
+                                                                                                              'status',
+                                                                                                              'sid',
+                                                                                                              'name',
+                                                                                                              'specifications',
+                                                                                                              'warranty',
+                                                                                                              'user__name',
+                                                                                                              'user__active',
+                                                                                                              'asset_attachment__filepath',
+                                                                                                              'asset_attachment__thumbnail',
+                                                                                                              'asset_attachment__final',
+                                                                                                              'position',
+                                                                                                              'user__employee_department__departmentid__name',
+                                                                                                              'sn').order_by('name', 'specifications', 'sid')
 
-    lpnum = 200
+    context['spk'] = ps.count()
+
+    # 每页条目数
+    baseconfig = asset_conf.objects.get(pk=1)
+    lpnum = baseconfig.boardnum
+
+    page = request.GET.get('p', 1)
 
     paginator = Paginator(ps,lpnum)
-    data=paginator.page(1)
+    data=paginator.page(page)
 
     s = []
     for t in list(data):
@@ -498,9 +499,18 @@ def asset_property_sub_board(request):
             t['statusstr'] = status(t['status'], 2)
         if t['asset_attachment__filepath'] == None:
             t['asset_attachment__filepath'] = '/static/img/asset.png'
+        if t['asset_attachment__thumbnail'] == None:
+            t['asset_attachment__thumbnail'] = '/static/img/asset.png'
         s.append(t)
     context['context'] = s
-    return render(request, 'asset_property_sub_board.html', context)
+
+    # 显示方式 board、list
+    typeviewlist = ["list", "board", "singo"]
+
+    context['tview'] = tview = typeviewlist[int(request.GET.get('v', 1)) - 1]
+    view_tpl = 'asset_property_sub_' + tview + '.html'
+
+    return render(request, view_tpl, context)
 
 def asset_property_form(request):
     request.encoding = 'utf-8'
