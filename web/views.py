@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
+from django.template import loader
 
 from django.db.models import Count, Sum
 from django.db.models import F, Q
@@ -509,6 +510,9 @@ def asset_property_sub_board(request):
 
     context['tview'] = tview = typeviewlist[int(request.GET.get('v', 1)) - 1]
     view_tpl = 'asset_property_sub_' + tview + '.html'
+
+    # t = loader.get_template('asset_property_sub_list.html')
+    # m = t.render(context)
 
     return render(request, view_tpl, context)
 
