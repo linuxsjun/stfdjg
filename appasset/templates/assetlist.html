@@ -2,105 +2,155 @@
 
 
 {% block styecss %}
-    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetlist.css">
+{#    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetlist.css">#}
 {% endblock styecss %}
 
 {% block mainbody %}
-    <div class="container-fluid">
-    <div class="row  fixed-top bg-light">
-        <div class="col-12 ">
-            <ul class="nav nav-tabs nav-fill nav-pills">
-                <li class="nav-item">
-                    <a class="nav-link active" href="#my" data-toggle="tab">
-                        <div>我的</div>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#over" data-toggle="tab">
-                       <div>已退还</div>
-                    </a>
-                </li>
+{#    <div class="container-fluid">#}
+{#    <div class="row  fixed-top bg-light">#}
+{#        <div class="col-12 ">#}
+{#            <ul class="nav nav-tabs nav-fill nav-pills">#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link active" href="#my" data-toggle="tab">#}
+{#                        <div></div>#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a class="nav-link" href="#over" data-toggle="tab">#}
+{#                       <div></div>#}
+{#                    </a>#}
+{#                </li>#}
 {#                <li class="nav-item">#}
 {#                    <a class="nav-link" href="#dep" data-toggle="tab">#}
 {#                       <div>部门</div>#}
 {#                    </a>#}
 {#                </li>#}
-                <li>
-                    <a class="nav-link text-secondary" href="#">
-                       <i class="fa fa-plus fa-1x"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </div>
-        <div class="tab-content">
-            <div class="tab-pane active" id="my">
-                {% for item in context %}
-                    <div class="row border-bottom">
-                        <div class="col-12 py-2">
-                            <div class="row">
-                                <div class="col align-self-center">
-                                    <div class="media">
-                                        <img class="rounded mr-2" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">
-                                        <div class="media-body">
-                                            <h6><strong>{{ item.name }}</strong><span class="font-weight-light"> [{{ item.sid }}]</span></h6>
-                                            <p class="text-sm m-0"><strong>SN: </strong>{{ item.sn| safe }}</p>
-                                            <p class="text-sm"><strong>部门: </strong>{{ item.user__employee_department__departmentid__name| safe }}</p>
-                                            <p>{{ item.statusstr| safe }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-auto align-self-center">
-                                    <div class="btn-group-vertical btn-group-sm">
-                                        <button class="btn btn-light text-warning"><i class="fa fa-wrench fa-1x"></i></button>
-        {#                                <button class="btn btn-light"><i class="fa fa-share fa-1x" aria-hidden="true"></i></button>#}
-                                        <button class="btn btn-light text-danger assetout"><i class="fa fa-sign-out fa-1x" aria-hidden="true"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12"><p class="text-center m-0"><a href="/asset/assetform/?act=display&id={{ item.id }}"> 查看详情>></a></p></div>
-                            </div>
-                        </div>
-                    </div>
-                {% empty %}
-                    <div class="row border-bottom">(暂无数据)</div>
-                {% endfor %}
-            </div>
-            <div class="tab-pane" id="over">
-                <div class="row">
-                    <div class="col-12">完结的</div>
-                </div>
-            </div>
-            <div class="tab-pane" id="dep">
-                <div class="row">
-                    <div class="col-12">部门的</div>
-                </div>
-            </div>
-        </div>
-    </div>
+{#                <li>#}
+{#                    <a class="nav-link text-secondary" href="#">#}
+{#                       <i class="fa fa-plus fa-1x"></i>#}
+{#                    </a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </div>#}
+{#    </div>#}
 
-    <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="myModalLabel">退还设备</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data" id="forminput">
-                        {% csrf_token %}
-                        <p class="text-sm">确定要退还这个设备吗？</p>
-                        <p class="font-italic text-sm">确认后，请将设备交还到设备管理部门，由管理员确认签收设备。</p>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" data-toggle="surinput" value="upload">确认</button>
-                </div>
+<div class="weui-tab">
+    <div class="weui-navbar">
+        <a href="#tab1" class="weui-navbar__item weui_bar__item_on">
+            我的
+        </a>
+        <a href="#tab2" class="weui-navbar__item">
+            已退还
+        </a>
+        <a href="#tab3" class="weui-navbar__item">
+            <i class="fa fa-plus fa-1x"></i>
+        </a>
+    </div>
+    <div class="weui-tab__bd">
+        <div id="tab1" class="weui-tab__bd-item weui-tab__bd-item--active page__bd">
+            <div class="weui-panel weui-panel_access">
+            <div class="weui-panel__hd">设备列表</div>
+            <div class="weui-panel__bd">
+            {% for item in context %}
+                <a href="/asset/assetform/?act=display&id={{ item.id }}" class="weui-media-box weui-media-box_appmsg">
+                    <div class="weui-media-box__hd">
+                        <img class="weui-media-box__thumb" src="{{ item.asset_attachment__thumbnail }}">
+                    </div>
+                    <div class="weui-media-box__bd">
+                        <h4 class="weui-media-box__title">{{ item.name }}</h4>
+                        <div class="weui-media-box__desc"><strong>SN: </strong>{{ item.sn| safe }}</div>
+                        <div class="weui-media-box__desc"><strong>部门: </strong>{{ item.user__employee_department__departmentid__name| safe }}</div>
+                    </div>
+                </a>
+            {% empty %}
+                <div class="row border-bottom">(暂无数据)</div>
+            {% endfor %}
+              </div>
+{#              <div class="weui-panel__ft">#}
+{#                <a href="javascript:void(0);" class="weui-cell weui-cell_access weui-cell_link">#}
+{#                  <div class="weui-cell__bd">查看更多</div>#}
+{#                  <span class="weui-cell__ft"></span>#}
+{#                </a>#}
+{#              </div>#}
             </div>
         </div>
+        <div id="tab2" class="weui-tab__bd-item">
+            <h1>页面二</h1>
+        </div>
+        <div id="tab3" class="weui-tab__bd-item">
+            <h1>页面三</h1>
+        </div>
     </div>
+</div>
+
+{#    <div class="tab-content">#}
+{#        <div class="tab-pane active" id="my">#}
+{#            {% for item in context %}#}
+{#                <div class="row border-bottom">#}
+{#                    <div class="col-12 py-2">#}
+{#                        <div class="row">#}
+{#                            <div class="col align-self-center">#}
+{#                                <div class="media">#}
+{#                                    <img class="rounded mr-2" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">#}
+{#                                    <div class="media-body">#}
+{#                                        <h6><strong>{{ item.name }}</strong><span class="font-weight-light"> [{{ item.sid }}]</span></h6>#}
+{#                                        <p class="text-sm m-0"><strong>SN: </strong>{{ item.sn| safe }}</p>#}
+{#                                        <p class="text-sm"><strong>部门: </strong>{{ item.user__employee_department__departmentid__name| safe }}</p>#}
+{#                                        <p>{{ item.statusstr| safe }}</p>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="col-auto align-self-center">#}
+{#                                <div class="btn-group-vertical btn-group-sm">#}
+{#                                    <button class="btn btn-light text-warning"><i class="fa fa-wrench fa-1x"></i></button>#}
+{#                                    <button class="btn btn-light"><i class="fa fa-share fa-1x" aria-hidden="true"></i></button>#}
+{#                                    <button class="btn btn-light text-danger assetout"><i class="fa fa-sign-out fa-1x" aria-hidden="true"></i></button>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="row">#}
+{#                            <div class="col-12"><p class="text-center m-0"><a href=""> 查看详情>></a></p></div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#            {% empty %}#}
+{#                <div class="row border-bottom">(暂无数据)</div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#        <div class="tab-pane" id="over">#}
+{#            <div class="row">#}
+{#                <div class="col-12">完结的</div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <div class="tab-pane" id="dep">#}
+{#            <div class="row">#}
+{#                <div class="col-12">部门的</div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#    </div>#}
+
+{#    <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">#}
+{#        <div class="modal-dialog" role="document">#}
+{#            <div class="modal-content">#}
+{#                <div class="modal-header">#}
+{#                    <h5 class="modal-title" id="myModalLabel">退还设备</h5>#}
+{#                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>#}
+{#                </div>#}
+{#                <div class="modal-body">#}
+{#                    <form method="post" enctype="multipart/form-data" id="forminput">#}
+{#                        {% csrf_token %}#}
+{#                        <p class="text-sm">确定要退还这个设备吗？</p>#}
+{#                        <p class="font-italic text-sm">确认后，请将设备交还到设备管理部门，由管理员确认签收设备。</p>#}
+{#                    </form>#}
+{#                </div>#}
+{#                <div class="modal-footer">#}
+{#                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>#}
+{#                    <button type="button" class="btn btn-primary" data-toggle="surinput" value="upload">确认</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
 {% endblock %}
 

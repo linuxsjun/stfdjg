@@ -6,77 +6,184 @@
 
     <title>平台</title>
     <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+{#    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">#}
 
-    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetbase.css">
+{#    <link rel="stylesheet" type="text/css" href="https://res.wx.qq.com/open/libs/weui/1.1.2/weui-for-work.min.css">#}
+    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.3/style/weui.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.1/css/jquery-weui.min.css">
+
+{#    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetbase.css">#}
 
     {% block styecss %}
     {% endblock styecss %}
 
 </head>
 <body>
-   <header class="nav fixed-bottom bg-light border-top nav-fill">
-       <a class="nav-item nav-link text-secondary" href="/asset/">
-           <i class="fa fa-home fa-1x"></i><div>首页</div>
-       </a>
-       <a class="nav-item nav-link text-secondary active" href="#">
-           <i class="fa fa-cubes fa-1x"></i><div>待处理</div>
-       </a>
-       <a class="nav-item nav-link text-secondary" href="#">
-           <i class="fa fa-exchange fa-1x"></i><div>已处理</div>
-       </a>
-
-       <a class="nav-item nav-link text-secondary" href="#">
-           <i class="fa fa-user fa-1x"></i><div>{{ userinfo }}</div>
-       </a>
-   </header>
+{#   <header class="nav fixed-bottom bg-light border-top nav-fill sr-only">#}
+{#       <a class="nav-item nav-link text-secondary" href="/asset/">#}
+{#           <i class="fa fa-home fa-1x"></i><div>首页</div>#}
+{#       </a>#}
+{#       <a class="nav-item nav-link text-secondary active" href="#">#}
+{#           <i class="fa fa-cubes fa-1x"></i><div>待处理</div>#}
+{#       </a>#}
+{#       <a class="nav-item nav-link text-secondary" href="#">#}
+{#           <i class="fa fa-exchange fa-1x"></i><div>已处理</div>#}
+{#       </a>#}
+{##}
+{#       <a class="nav-item nav-link text-secondary" href="#">#}
+{#           <i class="fa fa-user fa-1x"></i><div>{{ userinfo }}</div>#}
+{#       </a>#}
+{#   </header>#}
 
    {% block mainbody %}
-   <div class="container-fluid">
-       <div class="row mt-2">
-           <div class="col-12">
-               <h5 class="text-center">设备</h5>
-           </div>
-       </div>
-       <div class="row">
-           <div class="col-4 p-3 border align-middle text-center"><a href="/asset/assetappl/"><i class="fa fa-pencil-square-o fa-2x"></i><div>申请</div></a></div>
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-wrench fa-2x"></i><div>报修</div></div>
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-sign-out fa-2x"></i><div>退还</div></div>
-           <div class="col-4 p-3 border align-middle text-center"><a href="/asset/assetlist/"><i class="fa fa-cubes fa-2x"></i><div>设备</div></a></div>
-           <div class="col-4 p-3 border align-middle text-center"></div>
-           <div class="col-4 p-3 border align-middle text-center"></div>
-       </div>
-       <div class="row mt-2">
-            <div class="col-12">
-                <h5 class="text-center">服务</h5>
+{#       <header class="demos-header">#}
+{#           <h1 class="demos-title">jQuery WeUI</h1>#}
+{#           <p class="demos-sub-title">轻量强大的UI库，不仅仅是 WeUI</p>#}
+{#       </header>#}
+<header class="demos-header">
+      <h1 class="demos-title">Grid</h1>
+    </header>
+        <div class="weui-flex">
+            <div class="weui-flex__item">
+               <div class="weui-grids">
+                   <a href="/asset/assetappl/" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <span class="text-primary"><i class="fa fa-pencil-square-o fa-2x"></i></span>
+                       </div>
+                       <p class="weui-grid__label">
+                           申请
+                       </p>
+                   </a>
+                   <a href="" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <span class="text-warning"><i class="fa fa-wrench fa-2x"></i></span>
+                       </div>
+                       <p class="weui-grid__label">
+                           报修
+                       </p>
+                   </a>
+                   <a href="" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <span class="text-danger"><i class="fa fa-sign-out fa-2x"></i></span>
+                       </div>
+                       <p class="weui-grid__label">
+                           退还
+                       </p>
+                   </a>
+                   <a href="/asset/assetlist/" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <span class="text-info"><i class="fa fa-cubes fa-2x"></i></span>
+                       </div>
+                       <p class="weui-grid__label">
+                           设备
+                       </p>
+                   </a>
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-wheelchair-alt fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           帮助
+                       </p>
+                   </a>
+                </div>
             </div>
         </div>
-       <div class="row">
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-exchange fa-2x"></i><div>FTP</div></div>
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-share-alt fa-2x"></i><div>分享</div></div>
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-database fa-2x"></i><div>项目空间</div></div>
-       </div>
-       <div class="row mt-2">
-            <div class="col-12">
-                <h5 class="text-center">网络</h5>
+
+        <div class="weui-flex">
+           <div class="weui-flex__item">
+               <div class="weui-grids">
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-exchange fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           FTP
+                       </p>
+                   </a>
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-share-alt fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           分享
+                       </p>
+                   </a>
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-database fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           项目空间
+                       </p>
+                   </a>
+               </div>
             </div>
         </div>
-       <div class="row">
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-at fa-2x"></i><div>企业邮箱</div></div>
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-paperclip fa-2x"></i><div>附件邮寄</div></div>
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-globe fa-2x"></i><div>上网权限</div></div>
-       </div>
-       <div class="row mt-2">
-            <div class="col-12">
-                <h5 class="text-center">其它</h5>
+
+        <div class="weui-flex">
+           <div class="weui-flex__item">
+               <div class="weui-grids">
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-at fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           企业邮箱
+                       </p>
+                   </a>
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-paperclip fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           附件邮寄
+                       </p>
+                   </a>
+                   <a href="#" class="weui-grid js_grid">
+                       <div class="weui-grid__icon">
+                           <i class="fa fa-globe fa-2x"></i>
+                       </div>
+                       <p class="weui-grid__label">
+                           上网权限
+                       </p>
+                   </a>
+               </div>
             </div>
         </div>
-       <div class="row">
-           <div class="col-4 p-3 border align-middle text-center"><i class="fa fa-wheelchair-alt fa-2x"></i><div>帮助</div></div>
-           <div class="col-4 p-3 border align-middle text-center"></div>
-           <div class="col-4 p-3 border align-middle text-center"></div>
-       </div>
-   </div>
+
+        <div class="weui-tabbar">
+            <a href="javascript:;" class="weui-tabbar__item weui-bar__item_on">
+                <span style="display: inline-block;position: relative;">
+                    <img src="/static/img/FG.png" alt="" class="weui-tabbar__icon">
+                    <span class="weui-badge" style="position: absolute;top: -2px;right: -13px;">8</span>
+                </span>
+                <p class="weui-tabbar__label">首页</p>
+            </a>
+            <a href="javascript:;" class="weui-tabbar__item">
+                <img src="/static/img/FG.png" alt="" class="weui-tabbar__icon">
+                <p class="weui-tabbar__label">待处理</p>
+            </a>
+            <a href="javascript:;" class="weui-tabbar__item">
+                <span style="display: inline-block;position: relative;">
+                    <img src="/static/img/FG.png" alt="" class="weui-tabbar__icon">
+                    <span class="weui-badge weui-badge_dot" style="position: absolute;top: 0;right: -6px;"></span>
+                </span>
+                <p class="weui-tabbar__label">已处理</p>
+            </a>
+            <a href="javascript:;" class="weui-tabbar__item">
+                <img src="/static/img/FG.png" alt="" class="weui-tabbar__icon">
+                <p class="weui-tabbar__label">{{ userinfo }}</p>
+            </a>
+        </div>
+
+{#       <div class="weui-footer">#}
+{#            <p class="weui-footer__links">#}
+{#                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>#}
+{#                <a href="javascript:void(0);" class="weui-footer__link">底部链接</a>#}
+{#            </p>#}
+{#            <p class="weui-footer__text">Copyright © 2008-2016 weui.io</p>#}
+{#        </div>#}
    {% endblock %}
 
 
@@ -94,6 +201,11 @@
     <script src="/static/js/bootstrap.min.js"></script>
 
     <script src="/static/js/holder.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/jquery-weui.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/swiper.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery-weui/1.2.1/js/city-picker.min.js"></script>
 
     {% block jquery %}
 
