@@ -11,7 +11,9 @@ import requests, json, time, datetime, hashlib, random
 # Create your views here.
 
 def index(request):
+    request.encoding = 'utf-8'
     context={}
+    context['title']='设备平台'
 
     username = request.COOKIES.get('usercookie', None)
     if username:
@@ -143,7 +145,9 @@ def assetform(request):
     return render(request, 'assetform.html', context)
 
 def assetappl(request):
+    request.encoding = 'utf-8'
     context={}
+    context['title']='设备申请'
 
     username = request.COOKIES.get('usercookie', None)
     if username:
