@@ -118,14 +118,14 @@
                                 {% endif %}
                                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                                     <td>{{ item.statusstr| safe }}</td>
-                                    <td>{{ item.sid }}</td>
+                                    <td>{{ item.applicant_id }}</td>
+                                    <td>{{ item.appltno }}</td>
+                                    <td>{{ item.type }}</td>
+                                    <td>{{ item.backdate }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.name }}</td>
                                     <td>{{ item.name }}</td>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.name }}</td>
-                                    <td>{{ item.specifications| default:"" }}</td>
+                                    <td>{{ item.applicant_id| default:"" }}</td>
                                 </tr>
                             {% empty %}
                                 <tr>

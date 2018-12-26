@@ -76,9 +76,10 @@ def asset_applicant(request):
     context={}
     context['title']='申请单'
 
-    ps = asset_application.objects.all()
+    ps = asset_application.objects.all().values()
 
     context['context'] = ps
+    print(ps)
     return render(request, 'asset_applicant_list.html', context)
 
 def asset_config(request):

@@ -170,9 +170,30 @@ def assetappl(request):
         print(request.POST)
         if "act" in request.POST:
             if request.POST['act'] == 'create':
-                # Todo 提交申请->保存数据->新建单据流程->修改单据状态->通知下一流程审批人
+                # Todo 新建单据流程->修改单据状态->通知下一流程审批人
+                # 提交申请->保存数据
+
                 # 保存数据
+                appdate = request.POST['appdate']
+                applicant = request.POST['applicant']
+                explain = request.POST['explain']
+                needasset = request.POST['needasset']
+                user = request.POST['user']
+                type = request.POST['type']
 
-                pass
+                backdate =request.POST.get('backdate', '')
+                if backdate == '':
+                    backdate = None
 
+                item = asset_application(
+                    appltno = "ASL325469",
+                    applicant = signuser,
+                    Explain = request.POST['explain'],
+                    type = request.POST['type'],
+                    backdate = backdate,
+                    status = 1,
+                    flow = 1,
+                    active = True,
+                )
+                item.save()
     return render(request, 'assetappl.html', context)

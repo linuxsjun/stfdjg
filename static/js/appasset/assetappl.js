@@ -19,8 +19,8 @@ $(function () {
     });
 
     // todo 设备选择必填
-    $("#explain").blur(function () {
-        var me=$("#explain");
+    $("#assetsel").blur(function () {
+        var me=$("#assetsel");
         var btn_submit=$('#submit');
 
         if (me.val() === null) {
@@ -34,9 +34,14 @@ $(function () {
     $("#submit").click(function () {
         if ($(this).hasClass('disabled')) {
         } else {
+            var postval = $('form').serialize();
+            console.log(postval);
+
+            console.log(postval['appdate']);
             $.post("/asset/assetappl/",
-                $('form').serialize(),
+                postval,
                 function (data) {
+                    window.location.href = "/asset/";
                 });
         }
     });
