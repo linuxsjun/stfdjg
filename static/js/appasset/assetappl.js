@@ -40,4 +40,8 @@ $(function () {
                 });
         }
     });
+
+    $("#cancel").click(function () {
+        window.location.href = "/asset/";
+    });
 });

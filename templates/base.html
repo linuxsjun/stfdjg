@@ -6,44 +6,42 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>这是基础页</title>
 
-    <!-- font-awesome -->
+    <!-- Icon -->
     <link rel="stylesheet" type="text/css" href="/static/css/font-awesome.css">
-    <!-- Bootstrap
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
+    <!-- Graphs -->
+    <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css">
 
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
-
     {% block styecss %}
-    {% endblock styecss %}
 
+    {% endblock styecss %}
 </head>
 <body>
    <header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
        <div class="container">
-           <a class="navbar-brand" href="/"><i class="fa fa-windows fa-1x"></i></a>
+           <a class="navbar-brand p-0" href="/"><i class="fa fa-share-alt-square fa-2x" aria-hidden="true"></i></a>
            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
            </button>
-
            <div id="navbarSupportedContent" class="collapse navbar-collapse">
                <ul class="navbar-nav mr-auto">
                    <li class="nav-item dropdown">
-                       <a class="nav-link active" href="/hr/">员工</a>
+                       <a class="nav-link" href="/hr/" id="menu01">员工</a>
                    </li>
                    <li class="nav-item dropdown">
-                       <a class="nav-link" href="/property_list/">信息技术</a>
+                       <a class="nav-link" href="/property_list/" id="menu02">信息技术</a>
                    </li>
-                   <li class="nav-item"><a class="nav-link" href="/search/">Dome</a></li>
-                   <li class="nav-item"><a class="nav-link" href="/conf/">设置</a></li>
+                   <li class="nav-item"><a class="nav-link" href="/search/" id="menu03">Dome</a></li>
+                   <li class="nav-item"><a class="nav-link" href="/conf/" id="menu04">设置</a></li>
                </ul>
                <ul class="navbar-nav navbar-right">
                    <li class="nav-item dropdown">
-                       <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">
+                       <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                            <i class="fa fa-user fa-1x"></i> {{ userinfo }}<span class="caret"></span>
                        </a>
-                       <div class="dropdown-menu">
+                       <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                            <a class="dropdown-item" href="#">个人信息</a>
                            <div class="dropdown-divider"></div>
                            <a class="dropdown-item" href="/signout/">注销<i class="fa fa-sign-out fa-1x"></i></a>
@@ -53,7 +51,6 @@
            </div>
        </div>
    </header>
-
    <div class="clearfix">
         {% block mainbody %}
             <div class="container">
@@ -191,34 +188,16 @@
                     </div>
                 </div>
             </div>
-        {% endblock %}
+        {% endblock mainbody %}
    </div>
-
-   <!--  <script src="/static/js/jquery-3.3.1.min.js"></script> -->
-   <script src="/static/js/jquery-3.3.1.js"></script>
-
-   <!--
-   jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边)
-   加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。
-
-   <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-   -->
-   <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-{#   <script src="/static/js/popper.min.js " ></script>#}
-{#   <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>#}
+   <!-- Bootstrap -->
+   <script src="/static/js/jquery-3.3.1.min.js"></script>
+   <script src="/static/js/popper.min.js " ></script>
    <script src="/static/js/bootstrap.min.js"></script>
-
+   <!-- Graphs -->
    <script src="/static/js/holder.min.js"></script>
 
-   <script src="/static/js/metisMenu.min.js"></script>
-
-<script>
-    // 此处一定记得初始化metisMenu
-    $(function () {
-        $('#menu1').metisMenu();
-    });
-</script>
-
+{#   <script src="/static/js/metisMenu.min.js"></script>#}
 
 <script type="text/javascript">
     $.ajaxSetup({
@@ -227,7 +206,7 @@
 </script>
 
     {% block jquery %}
-{#        <script src="/static/js/base.js"></script>#}
+        <script src="/static/js/base.js"></script>
     {% endblock jquery%}
 </body>
 </html>

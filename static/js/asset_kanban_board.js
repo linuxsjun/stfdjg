@@ -3,7 +3,11 @@ $(function () {
 });
 
 function init(obj){
-    console.log(obj);
+    // 激活sideMenu
+    var navitem = $('.nav-link');
+    navitem.removeClass('active');
+    $('#menu02').addClass('active');
+    $('#menu020101').addClass('active');
 
     $.get('/asset_kanban_board/',
         {

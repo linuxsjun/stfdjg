@@ -22,8 +22,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('', views.index),
-    path('WW_verify_xtT9JTstqSGD5Lu2.txt', views.wxtext),
     path('WW_verify_nHQMbL9kxBaRLdjd.txt', views.wxtext),
+    path('favicon.ico', views.wxtext),
 
     path('asset_kanban_board/', views.asset_kanban_board),
     path('asset_config/', views.asset_config),

@@ -2215,7 +2215,6 @@ def wxcode(request):
     return HttpResponse('wxcode')
 
 def wxtext(request):
-    # return HttpResponse('xtT9JTstqSGD5Lu2')
     return HttpResponse('nHQMbL9kxBaRLdjd')
 
 def property_upload(request):

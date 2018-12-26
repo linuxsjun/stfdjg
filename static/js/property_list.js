@@ -458,6 +458,12 @@ $(function () {
 function init(obj) {
     // console.log(obj);
 
+    // 激活sideMenu
+    var navitem = $('nav').find('.nav-link');
+    navitem.removeClass('active');
+    $('#menu02').addClass('active');
+    $('#menu020301').addClass('active');
+
     var elm = $('#viewtype');
     // typeviewlist = [1"list", 2"board", 3"singo"]
     var viewtype = elm.attr('data-tview');
