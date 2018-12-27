@@ -80,6 +80,7 @@ def asset_applicant(request):
 
     context['context'] = ps
     print(ps)
+
     return render(request, 'asset_applicant_list.html', context)
 
 def asset_config(request):
