@@ -31,6 +31,20 @@ class base_conf(models.Model):
     class Meta:
         db_table = "base_conf"
 
+class base_flowlist(models.Model):
+    # 流程模板
+    formtplid = models.CharField(max_length=16, null=True, verbose_name='模板编号')
+    type = models.IntegerField(default=0, verbose_name='流程类型')
+    sequence = models.IntegerField(default=1, verbose_name='顺序')
+    personnel = models.IntegerField(default=0, verbose_name='签署对象')
+    # 0：个人，1：前级负责人，2：部门/组
+    pertype = models.IntegerField(default=0, verbose_name='对象类型')
+    # 0：种签，1：或签
+    signtype = models.IntegerField(default=0, verbose_name='签署方式')
+    logical = models.CharField(max_length=128, null=True,blank=True, verbose_name='流程逻辑')
+
+    class Meta:
+        db_table = 'base_flowlist'
 class base_menu(models.Model):
     #菜单
     mnid = models.CharField(unique=True, max_length=8, verbose_name='菜单编号')
@@ -116,6 +130,7 @@ class asset_application(models.Model):
     appdate = models.DateTimeField(auto_now_add=True, verbose_name="申请时间")
     applicant = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='申请人')
     Explain = models.TextField(null=True, blank=True, verbose_name='说明')
+    needasset = models.CharField(max_length=64, null=True, blank=True, verbose_name='需求')
     type = models.IntegerField(null=True, blank=True, verbose_name='借用/领用')
     backdate = models.DateTimeField(null=True, blank=True, verbose_name="预计时间")
     # userhr = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='领用人' )

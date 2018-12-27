@@ -190,10 +190,13 @@ def assetappl(request):
                     applicant = signuser,
                     Explain = request.POST['explain'],
                     type = request.POST['type'],
+                    needasset = request.POST['needasset'],
                     backdate = backdate,
                     status = 1,
                     flow = 1,
                     active = True,
                 )
+                item.save()
+                item.appltno='ASL{:0>9}'.format(item.id)
                 item.save()
     return render(request, 'assetappl.html', context)

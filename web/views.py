@@ -20,7 +20,7 @@ from PIL import Image
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
-from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment, asset_application
+from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment, asset_application, asset_allot
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -71,17 +71,57 @@ def index(request):
 
     return render(request, 'base.html', context)
 
-def asset_applicant(request):
+def asset_applicant_list(request):
     request.encoding = 'utf-8'
     context={}
     context['title']='申请单'
 
-    ps = asset_application.objects.all().values()
+    ps = asset_application.objects.filter(active=True).values('appltno',
+                                                              'appdate',
+                                                              'applicant',
+                                                              'applicant__name',
+                                                              'applicant__employee_department__departmentid__name',
+                                                              'Explain',
+                                                              'needasset',
+                                                              'type',
+                                                              'backdate',
+                                                              'status',
+                                                              'flow',
+                                                              'active').order_by('status','-appdate')
+    print(ps.count())
+    u = list(ps)
 
-    context['context'] = ps
-    print(ps)
+    s = []
+    for t in u:
+        if t['type']:
+            if t['type'] == 1:
+                t['type'] = '<span class="badge badge-success">领用</span>'
+            if t['type'] == 2:
+                t['type'] = '<span class="badge badge-warning">借用</span>'
+        # if t['status']:
+        if t['status'] == 0:
+            t['status'] = '<span class="text-secondary">取消</span>'
+        if t['status'] == 1:
+            t['status'] = '<span class="text-success">处理中...</span>'
+        s.append(t)
+
+    context['context'] = s
+    # print(ps)
 
     return render(request, 'asset_applicant_list.html', context)
+
+def asset_allot_list(request):
+    # 领用列表模块
+    request.encoding = 'utf-8'
+    context={}
+    context['title']='领用单'
+
+    ps = asset_allot.objects.all().values()
+
+    context['context'] = ps
+    # print(ps)
+
+    return render(request, 'asset_allot_list.html', context)
 
 def asset_config(request):
     context={}

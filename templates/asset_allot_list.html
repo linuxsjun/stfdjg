@@ -83,6 +83,9 @@
                         </div>
                         <div class="col-1">
                             <div class="btn-group btn-group-toggle" data-toggle="buttons" id="viewtype">
+                                <label class="btn btn-outline-secondary">
+                                    <input type="radio" name="listoptions" id="board" autocomplete="off"><i class="fa fa-th-large fa-1x"></i>
+                                </label>
                                 <label class="btn btn-outline-secondary active">
                                     <input type="radio" name="listoptions" id="list" autocomplete="off" checked><i class="fa fa-list-ul fa-1x"></i>
                                 </label>
@@ -91,19 +94,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <table class="table table-sm table-hover table-responsive-sm">
+                    <table class="table table-hover table-responsive-sm">
                         <thead>
                             <tr>
                                 <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
-                                <th class="border-right" data-id="appltno">单号</th>
-                                <th class="border-right" data-id="appdate">申请时间</th>
-                                <th class="border-right" data-id="Explain">说明</th>
-                                <th class="border-right" data-id="type">借用/领用</th>
-                                <th class="border-right" data-id="backdate">预计时间</th>
-                                <th class="border-right" data-id="needasset">申请设备</th>
-                                <th class="border-right" data-id="applicant">申请人</th>
-                                <th class="border-right" data-id="applicant">部门</th>
-                                <th class="border-right" data-id="status">状态</th>
+                                <th class="border-right" data-id="status">领用日期<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="sid">领用人<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="name">申请单号<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
+                                <th class="border-right" data-id="specifications">借用/领用<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">预计时间<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">设备编号<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">名称<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">规格<i class="" aria-hidden="true" data-id="0"></i></th>
+                                <th class="border-right" data-id="specifications">经手人<i class="" aria-hidden="true" data-id="0"></i></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -114,15 +117,15 @@
                                 <tr class="listitem">
                                 {% endif %}
                                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                                    <td>{{ item.appltno| safe }}</td>
-                                    <td>{{ item.appdate |date:'Y-m-d H:m'}}</td>
-                                    <td>{{ item.Explain }}</td>
-                                    <td>{{ item.type |safe }}</td>
-                                    <td>{{ item.backdate |date:'Y-m-d'}}</td>
-                                    <td>{{ item.needasset|default:'' }}</td>
-                                    <td>{{ item.applicant__name| default:"" }}</td>
-                                    <td>{{ item.applicant__employee_department__departmentid__name| default:"" }}</td>
-                                    <td>{{ item.status |safe }}</td>
+                                    <td>{{ item.statusstr| safe }}</td>
+                                    <td>{{ item.applicant_id }}</td>
+                                    <td>{{ item.appltno }}</td>
+                                    <td>{{ item.type }}</td>
+                                    <td>{{ item.backdate }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.name }}</td>
+                                    <td>{{ item.applicant_id| default:"" }}</td>
                                 </tr>
                             {% empty %}
                                 <tr>
