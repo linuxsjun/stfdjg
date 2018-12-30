@@ -192,6 +192,7 @@ def assetappl(request):
                     type = request.POST['type'],
                     needasset = request.POST['needasset'],
                     backdate = backdate,
+                    userhr = signuser,
                     status = 1,
                     flow = 1,
                     active = True,

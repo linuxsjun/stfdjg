@@ -102,7 +102,7 @@ def asset_applicant_list(request):
         if t['status'] == 0:
             t['status'] = '<span class="text-secondary">取消</span>'
         if t['status'] == 1:
-            t['status'] = '<span class="text-success">处理中...</span>'
+            t['status'] = '<span class="text-success">待处理</span>'
         s.append(t)
 
     context['context'] = s
