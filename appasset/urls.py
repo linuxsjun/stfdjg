@@ -9,4 +9,5 @@ urlpatterns = [
     path('assetlist/', views.assetlist),
     path('assetform/', views.assetform),
     path('assetappl/', views.assetappl),
+    path('assetprolist/', views.assetprolist),
 ]

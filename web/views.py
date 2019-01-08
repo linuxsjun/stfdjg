@@ -50,6 +50,27 @@ def status(id,show):
                     '<span class="badge badge-success">在用</span>',
                     '<span class="badge badge-warning">维修</span>',
                     '<span class="badge badge-danger">报废</span>']
+
+
+    elif show == 10:
+        statusname=['', '审批中', '已通过', '已驳回', '已取消', '', '通过后撤销']
+    elif show == 11:
+        statusname=['',
+                    '<span class="text-success"><i class="fa fa-code-fork" aria-hidden="true"></i></span>',
+                    '<span class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>',
+                    '<span class="text-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>',
+                    '<span class="text-danger"><i class="fa fa-times" aria-hidden="true"></i></span>',
+                    '<span class="text-light"><i class="fa fa-times" aria-hidden="true"></i></span>',
+                    '<span class="text-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>']
+    elif show == 12:
+        statusname = ['',
+                      '<span class="badge badge-success">审批中</span>',
+                      '<span class="badge badge-secondary">已通过</span>',
+                      '<span class="badge badge-danger">已驳回</span>',
+                      '<span class="badge badge-light">已取消</span>',
+                      '<span class="badge badge-light"> </span>',
+                      '<span class="badge badge-warning">通过后撤销</span>',
+                      ]
     return statusname[id]
 
 # Create your views here.
@@ -89,20 +110,17 @@ def asset_applicant_list(request):
                                                               'flow',
                                                               'active').order_by('status','-appdate')
     print(ps.count())
-    u = list(ps)
 
     s = []
-    for t in u:
+    for t in list(ps):
         if t['type']:
             if t['type'] == 1:
                 t['type'] = '<span class="badge badge-success">领用</span>'
             if t['type'] == 2:
                 t['type'] = '<span class="badge badge-warning">借用</span>'
-        # if t['status']:
-        if t['status'] == 0:
-            t['status'] = '<span class="text-secondary">取消</span>'
-        if t['status'] == 1:
-            t['status'] = '<span class="text-success">待处理</span>'
+        if t['status']:
+            if t['status']:
+                t['statusstr'] = status(t['status'], 11)
         s.append(t)
 
     context['context'] = s
@@ -507,6 +525,7 @@ def asset_property_sub_board(request):
         return render(request, 'sign.html', context)
 
     print(request.GET)
+    print(request.POST)
     ps = asset_property.objects.filter(bom=False,active=True).filter(Q(asset_attachment__final=True)
                                                                      |Q(asset_attachment__final=None)).values('id',
                                                                                                               'status',
@@ -529,7 +548,7 @@ def asset_property_sub_board(request):
     baseconfig = asset_conf.objects.get(pk=1)
     lpnum = baseconfig.boardnum
 
-    page = request.GET.get('p', 1)
+    page = request.POST.get('p', 1)
 
     paginator = Paginator(ps,lpnum)
     data=paginator.page(page)
@@ -550,11 +569,15 @@ def asset_property_sub_board(request):
     # 显示方式 board、list
     typeviewlist = ["list", "board", "singo"]
 
-    context['tview'] = tview = typeviewlist[int(request.GET.get('v', 1)) - 1]
+    context['tview'] = tview = typeviewlist[int(request.POST.get('v', 1)) - 1]
     view_tpl = 'asset_property_sub_' + tview + '.html'
 
-    # t = loader.get_template('asset_property_sub_list.html')
-    # m = t.render(context)
+    t = loader.get_template(view_tpl)
+    m = t.render(context)
+
+    # print(m)
+    # data = json.dumps(data)
+    # return HttpResponse(data, content_type="application/json")
 
     return render(request, view_tpl, context)
 

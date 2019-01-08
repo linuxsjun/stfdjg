@@ -1,5 +1,5 @@
 from django.contrib import admin
-from web.models import pureftp, base_conf, base_flowlist, hr_department, hr_hr, employee_department
+from web.models import pureftp, base_conf,  hr_department, hr_hr, employee_department, base_flowlist
 
 from web.models import asset_category, asset_parts, asset_property, asset_application
 
@@ -38,7 +38,7 @@ class asset_property_Admin(admin.ModelAdmin):
     list_display = ('sid', 'name', 'specifications', 'model', 'categoryid', 'purchase', 'price', 'sn', 'status')
 admin.site.register(asset_property, asset_property_Admin)
 
-# class base_flowlist_Admin(admin.ModelAdmin):
-#     list_display = ('formtplid', 'type', 'sequence', 'personnel', 'pertype', 'signtype', 'logical')
-# admin.site.register(base_flowlist, base_flowlist_Admin)
+class base_flowlist_Admin(admin.ModelAdmin):
+    list_display = ('formtplid', 'sheet', 'type', 'sequence', 'personnel', 'signtype', 'confim', 'notes', 'confimtime')
+admin.site.register(base_flowlist, base_flowlist_Admin)
 # admin.site.register(asset_property)

@@ -5,6 +5,7 @@ from django.db.models import Count, Sum
 from web.models import hr_hr
 from web.models import asset_conf, asset_property, asset_attachment, asset_application
 from web.models import hr_department
+from web.views import status
 
 import requests, json, time, datetime, hashlib, random
 
@@ -201,3 +202,54 @@ def assetappl(request):
                 item.appltno='ASL{:0>9}'.format(item.id)
                 item.save()
     return render(request, 'assetappl.html', context)
+
+def assetprolist(request):
+    request.encoding = 'utf-8'
+    context = {}
+    context['title'] = '审批'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_application.objects.filter(applicant=signuser,status=1).values().order_by('-appdate')
+
+    s = []
+    for t in list(ps):
+        if t['type']:
+            if t['type'] == 1:
+                t['type'] = '领用'
+            if t['type'] == 2:
+                t['type'] = '借用'
+        if t['status']:
+            t['statusstr'] = status(t['status'], 12)
+        s.append(t)
+
+    print(s)
+    context['processlist'] = s
+
+    ps = asset_application.objects.filter(applicant=signuser).exclude(status=1).values().order_by('-appdate')
+
+    s = []
+    for t in list(ps):
+        if t['type']:
+            if t['type'] == 1:
+                t['type'] = '领用'
+            if t['type'] == 2:
+                t['type'] = '借用'
+        if t['status']:
+            t['statusstr'] = status(t['status'], 12)
+        s.append(t)
+
+    print(s)
+    context['overlist'] = s
+
+    return render(request, 'assetprocesslist.html', context)

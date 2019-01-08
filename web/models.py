@@ -31,20 +31,20 @@ class base_conf(models.Model):
     class Meta:
         db_table = "base_conf"
 
-class base_flowlist_tpl(models.Model):
-    # 流程
-    formtplid = models.CharField(max_length=16, null=True, verbose_name='模板编号')
-    type = models.IntegerField(default=0, verbose_name='流程类型')
-    sequence = models.IntegerField(default=1, verbose_name='顺序')
-    personnel = models.IntegerField(default=0, verbose_name='签署对象')
-    # 0：个人，1：前级负责人，2：部门/组
-    pertype = models.IntegerField(default=0, verbose_name='对象类型')
-    # 0：会签，1：或签
-    signtype = models.IntegerField(default=0, verbose_name='签署方式')
-    logical = models.CharField(max_length=128, null=True,blank=True, verbose_name='流程逻辑')
-
-    class Meta:
-        db_table = 'base_flowlist_tpl'
+# class base_flowlist_tpl(models.Model):
+#     # 流程
+#     formtplid = models.CharField(max_length=16, null=True, verbose_name='模板编号')
+#     type = models.IntegerField(default=0, verbose_name='流程类型')
+#     sequence = models.IntegerField(default=1, verbose_name='顺序')
+#     personnel = models.IntegerField(default=0, verbose_name='签署对象')
+#     # 0：个人，1：前级负责人，2：部门/组
+#     pertype = models.IntegerField(default=0, verbose_name='对象类型')
+#     # 0：会签，1：或签
+#     signtype = models.IntegerField(default=0, verbose_name='签署方式')
+#     logical = models.CharField(max_length=128, null=True,blank=True, verbose_name='流程逻辑')
+#
+#     class Meta:
+#         db_table = 'base_flowlist_tpl'
 
 class base_flowlist(models.Model):
     # 流程签署记录，由模板生板，具体执行
@@ -130,6 +130,19 @@ class hr_hr(models.Model):
     wxsync = models.BooleanField(default=0, verbose_name="同步企业微信")
     active = models.BooleanField(default=True, verbose_name='有效的')
 
+class hr_attr(models.Model):
+    # 扩展属性
+    # 类型 0：文本 1：网址
+    type = models.IntegerField(default=0, verbose_name='类型')
+    # 名称
+    name = models.TextField(max_length=64, null=True, blank=True, verbose_name='名称')
+    # 值
+    value = models.TextField(max_length=256, null=True, blank=True, verbose_name='文本')
+    url = models.TextField(max_length=256, null=True, blank=True, verbose_name='网址')
+
+    class Meta:
+        db_table = 'hr_attr'
+
 class employee_department(models.Model):
     #员工部门表
     employeeid = models.ForeignKey('hr_hr',to_field='userid',on_delete=models.CASCADE , verbose_name='员工ID')
@@ -152,6 +165,7 @@ class asset_application(models.Model):
     type = models.IntegerField(null=True, blank=True, verbose_name='借用/领用')
     backdate = models.DateTimeField(null=True, blank=True, verbose_name="预计时间")
     userhr = models.ForeignKey('hr_hr', null=True, blank=True, on_delete=models.SET_NULL, related_name='user', verbose_name='领用人' )
+    # 1审批中；2 已通过；3已驳回；4已取消；6通过后撤销；10已支付
     status = models.IntegerField(default=0, verbose_name='流程状态')
     flow = models.IntegerField(default=0, verbose_name='流程模板号')
     active = models.BooleanField(default=True, verbose_name='有效的')

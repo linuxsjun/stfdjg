@@ -1,0 +1,158 @@
+{% extends "assetbase.html" %}
+
+
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetprolist.css">
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="container-fluid">
+        <div class="row fixed-top bg-light">
+            <div class="col-12">
+                <ul class="nav nav-tabs nav-fill" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#my" data-toggle="tab">待处理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#over" data-toggle="tab">已处理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#dep" data-toggle="tab">抄送</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-content" id="nav-tabContent">
+                    <div id="my" class="tab-pane show active" role="tabpanel">
+                        {% for item in processlist %}
+                        <div class="row border-bottom">
+                            <div class="col-12 py-2">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h6 class="mb-2 font-weight-bold">
+                                            {{ userinfo }}的设备申请单 {{ item.statusstr | safe }}
+                                        </h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="text-sm mb-2">{{ item.appdate |date:'Y-m-d' }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-base m-0 text-secondary">
+                                            说明：{{ item.Explain }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            类型：{{ item.type }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            申请设备：{{ item.needasset }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            申请日期：{{ item.appdate |date:'Y-m-d' }}
+                                        </p>
+                                    </div>
+                                </div>
+{#                                <div class="row">#}
+{#                                    <div class="col-12 text-center">#}
+{#                                        <a href="#" class="text-center m-0 text-base"> 查看详情>></a>#}
+{#                                    </div>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+                        {% empty %}
+                            <div class="row border-bottom" >
+                                <div class="col pt-3 text-center">
+                                    <p>(暂无数据)</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="over" class="tab-pane" role="tabpanel">
+                        {% for item in overlist %}
+                        <div class="row border-bottom">
+                            <div class="col-12 py-2">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <p class="mb-2 font-weight-bold">
+                                            {{ userinfo }}的设备申请单 {{ item.statusstr | safe }}
+                                        </p>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="mb-2">{{ item.appdate |date:'Y-m-d' }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-base m-0 text-secondary">
+                                            说明：{{ item.Explain }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            类型：{{ item.type }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            申请设备：{{ item.needasset }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            申请日期：{{ item.appdate |date:'Y-m-d' }}
+                                        </p>
+                                    </div>
+                                </div>
+{#                                <div class="row">#}
+{#                                    <div class="col-12 text-center">#}
+{#                                        <a href="#" class="text-center m-0 text-base"> 查看详情>></a>#}
+{#                                    </div>#}
+{#                                </div>#}
+                            </div>
+                        </div>
+                        {% empty %}
+                            <div class="row border-bottom" >
+                                <div class="col pt-3 text-center">
+                                    <p>(暂无数据)</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div id="dep" class="tab-pane" role="tabpanel">
+                        <div class="row border-bottom" >
+                            <div class="col pt-3 text-center">
+                                <p>(暂无数据)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">退还设备</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" id="forminput">
+                        {% csrf_token %}
+                        <p class="text-sm">确定要退还这个设备吗？</p>
+                        <p class="font-italic text-sm">确认后，请将设备交还到设备管理部门，由管理员确认签收设备。</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-toggle="surinput" value="upload">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jquery %}
+
+{% endblock jquery%}
+
+
+
