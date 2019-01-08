@@ -31,20 +31,20 @@ class base_conf(models.Model):
     class Meta:
         db_table = "base_conf"
 
-# class base_flowlist_tpl(models.Model):
-#     # 流程
-#     formtplid = models.CharField(max_length=16, null=True, verbose_name='模板编号')
-#     type = models.IntegerField(default=0, verbose_name='流程类型')
-#     sequence = models.IntegerField(default=1, verbose_name='顺序')
-#     personnel = models.IntegerField(default=0, verbose_name='签署对象')
-#     # 0：个人，1：前级负责人，2：部门/组
-#     pertype = models.IntegerField(default=0, verbose_name='对象类型')
-#     # 0：会签，1：或签
-#     signtype = models.IntegerField(default=0, verbose_name='签署方式')
-#     logical = models.CharField(max_length=128, null=True,blank=True, verbose_name='流程逻辑')
-#
-#     class Meta:
-#         db_table = 'base_flowlist_tpl'
+class base_flowlist_tpl(models.Model):
+    # 流程
+    formtplid = models.CharField(max_length=16, null=True, verbose_name='模板编号')
+    type = models.IntegerField(default=0, verbose_name='流程类型')
+    sequence = models.IntegerField(default=1, verbose_name='顺序')
+    personnel = models.IntegerField(default=0, verbose_name='签署对象')
+    # 0：个人，1：前级负责人，2：部门/组
+    pertype = models.IntegerField(default=0, verbose_name='对象类型')
+    # 0：会签，1：或签
+    signtype = models.IntegerField(default=0, verbose_name='签署方式')
+    logical = models.CharField(max_length=128, null=True,blank=True, verbose_name='流程逻辑')
+
+    class Meta:
+        db_table = 'base_flowlist_tpl'
 
 class base_flowlist(models.Model):
     # 流程签署记录，由模板生板，具体执行
@@ -92,7 +92,8 @@ class hr_department(models.Model):
     name = models.CharField(max_length=32, null=False, verbose_name='名称')
     parentid = models.IntegerField(default=0, verbose_name='上级部门')
     order = models.IntegerField(null=True, verbose_name="次序")
-    type = models.IntegerField(default=0, verbose_name='组织类型:0行政/1项目/2团队')
+    # 组织类型:0行政，1项目，2团队，3组织标签
+    type = models.IntegerField(default=0, verbose_name='组织类型')
 
     class Meta:
         db_table = 'hr_department'
@@ -144,9 +145,10 @@ class hr_attr(models.Model):
         db_table = 'hr_attr'
 
 class employee_department(models.Model):
-    #员工部门表
+    #员工部门关系表
     employeeid = models.ForeignKey('hr_hr',to_field='userid',on_delete=models.CASCADE , verbose_name='员工ID')
     departmentid = models.ForeignKey('hr_department',to_field='pid', on_delete=models.CASCADE, verbose_name='部门ID')
+    isleader = models.BooleanField(default=0, verbose_name='负责人')
 
 class hr_conf(models.Model):
     #人力资源配置表
