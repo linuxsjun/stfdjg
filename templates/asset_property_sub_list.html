@@ -24,11 +24,13 @@
                 {% endif %}
                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                     <td>{{ item.statusstr| safe }}</td>
-                    <td><a href="/property_form?act=display&id={{ item.id }}">{{ item.sid }}</a></td>
+                    <td>
+                        <a href="/property_form?act=display&id={{ item.id }}">{{ item.sid }}</a>
+                    </td>
                     <td>{{ item.name }}</td>
                     <td>{{ item.specifications| default:"" }}</td>
                     <td>{{ item.sn| default:"" }}</td>
-                    <td>{{ item.warranty }}</td>
+                    <td>{{ item.warranty | date:'Y-m-d'}}</td>
                     <td>{{ item.user__name| default:"" }}</td>
                     <td>{{ item.user__employee_department__departmentid__name| default:"" }}</td>
                     <td>{{ item.position| default:"" }}</td>

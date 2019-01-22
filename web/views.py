@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from django.template import loader
 
-from django.db.models import Count, Sum
+from django.db.models import Avg, Sum, Max, Min, Count
 from django.db.models import F, Q
 # from django.db.models import Sum,Count
 
@@ -20,7 +20,7 @@ from PIL import Image
 from django.conf import settings
 
 from web.models import pureftp, base_conf, hr_department, hr_hr, employee_department, base_user_sign_log
-from web.models import asset_conf, asset_category, asset_parts, asset_property, position, asset_attachment, asset_application, asset_allot
+from web.models import asset_conf, asset_category, asset_property, position, asset_attachment, asset_application, asset_allot
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -59,8 +59,8 @@ def status(id,show):
                     '<span class="text-success"><i class="fa fa-code-fork" aria-hidden="true"></i></span>',
                     '<span class="text-success"><i class="fa fa-check-circle" aria-hidden="true"></i></span>',
                     '<span class="text-danger"><i class="fa fa-minus-circle" aria-hidden="true"></i></span>',
-                    '<span class="text-danger"><i class="fa fa-times" aria-hidden="true"></i></span>',
-                    '<span class="text-light"><i class="fa fa-times" aria-hidden="true"></i></span>',
+                    '<span class="text-danger"><i class="fa fa-times-circle" aria-hidden="true"></i></span>',
+                    '<span class="text-light"><i class="fa fa-times-circle" aria-hidden="true"></i></span>',
                     '<span class="text-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i></span>']
     elif show == 12:
         statusname = ['',
@@ -115,9 +115,11 @@ def asset_applicant_list(request):
     for t in list(ps):
         if t['type']:
             if t['type'] == 1:
-                t['type'] = '<span class="badge badge-success">领用</span>'
+                # t['type'] = '<span class="badge badge-success">领用</span>'
+                t['type'] = '<span class="text-success">领用</span>'
             if t['type'] == 2:
-                t['type'] = '<span class="badge badge-warning">借用</span>'
+                # t['type'] = '<span class="badge badge-warning">借用</span>'
+                t['type'] = '<span class="text-warning">借用</span>'
         if t['status']:
             if t['status']:
                 t['statusstr'] = status(t['status'], 11)
@@ -223,6 +225,23 @@ def asset_kanban_board(request):
                     data['data'] = "无返回值"
                     data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
+            elif request.GET['act'] == 'dep_num':
+                f = hr_department.objects.all().values('name').annotate(num=Count('employee_department__employeeid__asset_property__sid'),picre=Sum('employee_department__employeeid__asset_property__price')).order_by('-num')[:10]
+                if f :
+                    data = {}
+                    data['code'] = 0
+                    data['msg'] = "ok"
+                    data['data'] = list(f)
+                    data = json.dumps(data)
+                else:
+                    data={}
+                    data['code'] = 1
+                    data['msg'] = "Fail"
+                    data['data'] = "无返回值"
+                    data = json.dumps(data)
+                return HttpResponse(data, content_type="application/json")
+    # ps = hr_department.objects.all().values_list('name').annotate(num=Count('employee_department__employeeid__asset_property__sid'),picre=Sum('employee_department__employeeid__asset_property__price')).order_by('-picre')
+    # ps = hr_department.objects.all().values_list('name').annotate(num=Count('employee_department__employeeid__id'))
 
     return render(request, 'asset_kanban_board.html', context)
 
@@ -460,17 +479,16 @@ def asset_property_list(request):
                                                                                                                         'sn').order_by('name', 'sid')
             context['spk'] = ps.count()
 
-            #显示方式 board、list
-            typeviewlist = ["list","board","singo"]
-
             #每页条目数
             baseconfig = asset_conf.objects.get(pk=1)
             lpnum = baseconfig.boardnum
 
+            #显示方式 board、list
+            typeviewlist = ["list","board","singo"]
+            tview = baseconfig.viewtype
+
             page = 1
             context['page'] = page
-
-            tview = baseconfig.viewtype
 
             context['tview'] = tview
 
@@ -491,12 +509,14 @@ def asset_property_list(request):
             try:
                 context['pagprevious'] = data.previous_page_number()
             except EmptyPage:
-                context['pagprevious'] = 1
+                context['pagprevious'] = 0
 
             try:
                 context['pagnext'] = data.next_page_number()
             except EmptyPage:
-                context['pagnext'] = 1
+                context['pagnext'] = 0
+
+            context['context'] = ps
 
             print(context)
             return render(request, 'asset_property_list.html', context)
@@ -555,8 +575,8 @@ def asset_property_sub_board(request):
 
     s = []
     for t in list(data):
-        if t['warranty']:
-            t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+        # if t['warranty']:
+        #     t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
         if t['status']:
             t['statusstr'] = status(t['status'], 2)
         if t['asset_attachment__filepath'] == None:
@@ -572,10 +592,10 @@ def asset_property_sub_board(request):
     context['tview'] = tview = typeviewlist[int(request.POST.get('v', 1)) - 1]
     view_tpl = 'asset_property_sub_' + tview + '.html'
 
-    t = loader.get_template(view_tpl)
-    m = t.render(context)
-
+    # t = loader.get_template(view_tpl)
+    # m = t.render(context)
     # print(m)
+
     # data = json.dumps(data)
     # return HttpResponse(data, content_type="application/json")
 
@@ -617,15 +637,8 @@ def asset_property_form(request):
                 context['spk'] = spn
 
                 # 设备类型DisplayName计算
-                cats = asset_category.objects.filter(active=True).order_by('parentid','name')
-                lcats = []
-                for cat in cats:
-                    ncat = {}
-                    ncat["id"] = cat.id
-                    ncat["name"] = cat.name
-                    ncat["displayname"] =partt(cat.id)
-                    lcats.append(ncat)
-                context['cats'] = lcats
+                cats = asset_category.objects.filter(active=True).values('id', 'name', 'displayname').order_by('displayname')
+                context['cats'] = cats
 
                 # 可用人员查询
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
@@ -821,15 +834,8 @@ def asset_property_form(request):
 
                 # 新建设置默认值
                 #
-                cats = asset_category.objects.filter(active=True).order_by('parentid', 'name')
-                lcats = []
-                for cat in cats:
-                    ncat = {}
-                    ncat["id"] = cat.id
-                    ncat["name"] = cat.name
-                    ncat["displayname"] = partt(cat.id)
-                    lcats.append(ncat)
-                context['cats'] = lcats
+                cats = asset_category.objects.filter(active=True).values('id', 'name', 'displayname').order_by('displayname')
+                context['cats'] = cats
 
                 hrs = hr_hr.objects.filter(active=True).order_by('name')
                 context['hrs'] = hrs
@@ -1574,18 +1580,15 @@ def asset_category_list(request):
             if request.GET['act'] == 'sort':
                 pass
         else:
-            ps = asset_category.objects.filter(active=True).order_by('parentid')
+            ps = asset_category.objects.filter(active=True).order_by('displayname')
             lcats = []
             for cat in ps:
                 ncat = {}
                 ncat["id"] = cat.id
                 ncat["name"] = cat.name
+                ncat["displayname"] = cat.displayname
                 ncat["bom"] = cat.bom
                 ncat["autosid"] = cat.autosid
-                if cat.parentid:
-                    ncat["displayname"] = partt(cat.parentid.id)
-                else:
-                    ncat["displayname"] =" "
                 lcats.append(ncat)
             context['context'] = lcats
     return render(request, 'asset_category_list.html', context)
@@ -1621,7 +1624,7 @@ def asset_category_form(request):
                 context['npk'] = npn
                 context['spk'] = asset_category.objects.filter(active=True).count()
 
-                cats = asset_category.objects.exclude(id=pn).filter(active=True).order_by('parentid', 'name')
+                cats = asset_category.objects.exclude(id=pn).filter(active=True).order_by('displayname')
                 lcats = []
                 for cat in cats:
                     ncat = {}
@@ -1691,10 +1694,23 @@ def asset_category_form(request):
                     catsid.bom = False
 
                 catsid.name = request.POST['name']
+                if catsid.parentid:
+                    catsid.displayname = partt(catsid.parentid.id) + ' / ' + catsid.name
+                else:
+                    catsid.displayname = catsid.name
                 catsid.autosid = request.POST['bname']
                 catsid.notes = request.POST['notes']
 
                 k = catsid.save()
+
+                ps = asset_category.objects.all()
+
+                for p in ps:
+                    if p.parentid:
+                        p.displayname = partt(p.parentid.id) + ' / ' + p.name
+                    else:
+                        p.displayname = p.name
+                    p.save()
 
                 data = {}
                 if True:
@@ -2664,11 +2680,39 @@ def search(request):
     # return render(request, 'view_hr_list.html',context)
 
 def sub(request):
-    context={}
-    context['title']='sub list'
-    ps = hr_hr.objects.filter(active=True).order_by('name')
-    kk = hr_hr.objects.first()
-    # kk.employee_department_set.all()
-    print(kk)
-    context['context'] = ps
-    return render(request, 'hr_list_sub.html', context)
+    # context={}
+    # context['title']='sub list'
+    # ps = hr_hr.objects.filter(active=True).order_by('name')
+    # kk = hr_hr.objects.first()
+    # # kk.employee_department_set.all()
+    # print(kk)
+    # context['context'] = ps
+    # return render(request, 'hr_list_sub.html', context)
+
+    ps = asset_category.objects.all().values_list()
+    # print(ps)
+
+    # for item in ps:
+    #     # pass
+    #     print(item)
+        # print(item[0])
+
+    s = list(ps)
+    # print(s)
+    # s.sort(key=lambda x:x[2])
+    # s.sort()
+    # print(type(s))
+    # print(s)
+    c =[]
+    for item in s:
+        k = list(item)
+        k.append(partt(item[0]))
+        # print(type(k))
+        # print(k)
+        c.append(k)
+    c.sort(key=lambda x: x[7])
+    for e in c:
+        print(e[7])
+
+    response = {"status":"ok"}
+    return HttpResponse(response)

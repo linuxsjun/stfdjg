@@ -113,4 +113,44 @@ function init(obj){
             }
         }
     );
+
+    $.get('/asset_kanban_board/',
+        {
+            act: 'dep_num'
+        },
+        function (data) {
+            if(data.code === 0){
+                var t = new Array();
+                var n = new Array();
+                var m = new Array();
+                $.each(data.data,function (i,item) {
+                    t[i] = item['name'];
+                    n[i] = item['num'];
+                    m[i] = item['picre'];
+                });
+                var popCanvas = $("#depassetbar");
+                var barChart = new Chart(popCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: t,
+                        datasets: [
+                            {
+                            label: '数量',
+                            data: n,
+                            backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                            fill: false
+                        }
+                        // , {
+                        //     label: '金额',
+                        //     data: m,
+                        //     backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                        //     fill: false,
+                        //     type: 'bar'
+                        // }
+                        ]
+                    }
+                });
+            }
+        }
+    );
 }

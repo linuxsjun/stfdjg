@@ -39,15 +39,6 @@
                     <div class="row bg-light mb-3 py-2">
                         <div class="col-12">
                             <div class="row mb-2">
-                                <label class="col-12 py-2 m-0"><strong>申请事由<span class="text-danger">*</span></strong></label>
-                                <div class="col-12">
-                                    <textarea class="form-control text-black-50" name="explain" id="explain" cols="100" rows="3" warp="soft" placeholder="事由" required>{{ context.nots }}</textarea>
-                                    <div class="invalid-tooltip" id="popname">
-                                        必填
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-2">
                                 <label class="col-auto py-2 m-0"><strong>设备<span class="text-danger">*</span></strong></label>
                                 <div class="col">
                                     <input type="text" class="form-control text-right text-black-50" name="needasset" id="assetsel" value="" placeholder="电脑、移动电脑、移动硬盘、外接硬盘盒" required>
@@ -57,6 +48,15 @@
                                 <label class="col-auto py-2 m-0"><strong>领用人<span class="text-danger">*</span></strong></label>
                                 <div class="col">
                                     <input type="text" class="form-control text-right text-black-50" name="user" value="{{ userinfo| default_if_none:"" }}" readonly="True">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <label class="col-12 py-2 m-0"><strong>申请事由<span class="text-danger">*</span></strong></label>
+                                <div class="col-12">
+                                    <textarea class="form-control text-black-50" name="explain" id="explain" cols="100" rows="3" warp="soft" placeholder="事由" required>{{ context.nots }}</textarea>
+                                    <div class="invalid-tooltip" id="popname">
+                                        必填
+                                    </div>
                                 </div>
                             </div>
                             <div class="row mb-2">

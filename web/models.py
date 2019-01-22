@@ -53,7 +53,7 @@ class base_flowlist(models.Model):
     type = models.IntegerField(default=0, verbose_name='流程类型')
     sequence = models.IntegerField(default=1, verbose_name='顺序')
     personnel = models.IntegerField(default=0, verbose_name='签署对象')
-    # 0：种签，1：或签
+    # 0：合签，1：或签
     signtype = models.IntegerField(default=0, verbose_name='签署方式')
     confim = models.BooleanField(null=True, blank=True, verbose_name='签署')
     # 不同意必填
@@ -196,7 +196,8 @@ class asset_allot (models.Model):
 class asset_category(models.Model):
     #设备分类
     name = models.CharField(unique=True, max_length=32, verbose_name='名称')
-    parentid = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL)
+    displayname =models.CharField(max_length=128, null=True, blank=True, verbose_name='显示')
+    parentid = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='上一级')
     bom = models.BooleanField(default=False, verbose_name='组件')
     active = models.BooleanField(default=True, verbose_name='有效的')
     notes = models.TextField(null=True, blank=True, verbose_name='备注')
@@ -205,24 +206,27 @@ class asset_category(models.Model):
     class Meta:
         db_table = 'asset_category'
 
-class asset_parts(models.Model):
-    #设备配件
-    parentid = models.ForeignKey('asset_property',null=True, blank=True, on_delete=models.SET_NULL, verbose_name='归属资产')
-    name = models.CharField(max_length=32, verbose_name='名称')
-    sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
-    type = models.CharField(max_length=32, null=True)
-    specifications = models.CharField(max_length=64, null=True, verbose_name='规格')
-    categoryid = models.ForeignKey('asset_category', null=True, blank=True, on_delete=models.SET_NULL,verbose_name='类型')
-    bom = models.BooleanField(default=True, verbose_name='组件')
-    price = models.FloatField(default=0, verbose_name='价格')
-    purchase = models.DateField(null=True, verbose_name='购买日期')
-    wrranty = models.DateField(null=True, verbose_name='维保到期')
-    notes = models.TextField(null=True, blank=True, verbose_name='备注')
-    status = models.IntegerField(default=1, verbose_name='状态')
-    active = models.BooleanField(default=True, verbose_name='有效的')
+    def __str__(self):
+        return self.name
 
-    class Meta:
-        db_table = 'asset_parts'
+# class asset_parts(models.Model):
+#     #设备配件
+#     parentid = models.ForeignKey('asset_property',null=True, blank=True, on_delete=models.SET_NULL, verbose_name='归属资产')
+#     name = models.CharField(max_length=32, verbose_name='名称')
+#     sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
+#     type = models.CharField(max_length=32, null=True)
+#     specifications = models.CharField(max_length=64, null=True, verbose_name='规格')
+#     categoryid = models.ForeignKey('asset_category', null=True, blank=True, on_delete=models.SET_NULL,verbose_name='类型')
+#     bom = models.BooleanField(default=True, verbose_name='组件')
+#     price = models.FloatField(default=0, verbose_name='价格')
+#     purchase = models.DateField(null=True, verbose_name='购买日期')
+#     wrranty = models.DateField(null=True, verbose_name='维保到期')
+#     notes = models.TextField(null=True, blank=True, verbose_name='备注')
+#     status = models.IntegerField(default=1, verbose_name='状态')
+#     active = models.BooleanField(default=True, verbose_name='有效的')
+#
+#     class Meta:
+#         db_table = 'asset_parts'
 
 class asset_property(models.Model):
     #设备表

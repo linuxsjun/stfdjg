@@ -1,7 +1,7 @@
 from django.contrib import admin
 from web.models import pureftp, base_conf,  hr_department, hr_hr, employee_department, base_flowlist
 
-from web.models import asset_category, asset_parts, asset_property, asset_application
+from web.models import asset_category, asset_property, asset_application
 
 
 # Register your models here.
@@ -32,7 +32,6 @@ admin.site.register(asset_application, asset_application_Admin)
 class asset_category_Admin(admin.ModelAdmin):
     list_display = ('name','parentid', 'bom', 'active')
 admin.site.register(asset_category, asset_category_Admin)
-admin.site.register(asset_parts)
 
 class asset_property_Admin(admin.ModelAdmin):
     list_display = ('sid', 'name', 'specifications', 'model', 'categoryid', 'purchase', 'price', 'sn', 'status')

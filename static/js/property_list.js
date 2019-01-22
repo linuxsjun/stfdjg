@@ -82,6 +82,7 @@ $(function () {
 
     $('#search-btn').click(function () {
         var val= $('#search-input').val();
+        $('#ilike').val(val);
         $.get(
             '/property_list/',
             {
@@ -463,6 +464,16 @@ $(function () {
             }
         }
     });
+
+    $('#test').click(function () {
+        $.post(
+            '/property_list/',
+            $('form#panl').serialize(),
+            function (context) {
+
+            }
+        )
+    })
 });
 
 function init(obj) {
@@ -474,25 +485,25 @@ function init(obj) {
     $('#menu02').addClass('active');
     $('#menu020301').addClass('active');
 
-    var elm = $('#viewtype');
-    // typeviewlist = [1"list", 2"board", 3"singo"]
-    var viewtype = elm.attr('data-tview');
-    // 标记视图类型
-    var sel = '[value=' + viewtype + ']';
-    elm.find(sel).parent().addClass("active");
-    // 获取视图数据
-    $('#dbody').load(
-        '/asset_property_sub_board/',
-        {
-            v: viewtype,
-            p:1
-        },
-        function (responseTxt) {
-            $("tbody").on("click","tr.listitem td:not(:first-child)",function () {
-                var showsel = $(this).parent().find('[name="selitem"]').val();
-                // window.location.href="/property_form?act=display&id="+showsel;
-                window.open("/property_form?act=display&id="+showsel);
-            });
-        });
-    // 获取分页数
+    // var elm = $('#viewtype');
+    // // typeviewlist = [1"list", 2"board", 3"singo"]
+    // var viewtype = elm.attr('data-tview');
+    // // 标记视图类型
+    // var sel = '[value=' + viewtype + ']';
+    // elm.find(sel).parent().addClass("active");
+    // // 获取视图数据
+    // $('#dbody').load(
+    //     '/asset_property_sub_board/',
+    //     {
+    //         v: viewtype,
+    //         p:1
+    //     },
+    //     function (responseTxt) {
+    //         $("tbody").on("click","tr.listitem td:not(:first-child)",function () {
+    //             var showsel = $(this).parent().find('[name="selitem"]').val();
+    //             // window.location.href="/property_form?act=display&id="+showsel;
+    //             window.open("/property_form?act=display&id="+showsel);
+    //         });
+    //     });
+    // // 获取分页数
 }

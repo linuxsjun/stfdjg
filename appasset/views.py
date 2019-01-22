@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 
 from django.db.models import Count, Sum
 
+from web.models import base_flowlist
 from web.models import hr_hr
 from web.models import asset_conf, asset_property, asset_attachment, asset_application
 from web.models import hr_department
@@ -220,36 +221,54 @@ def assetprolist(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    ps = asset_application.objects.filter(applicant=signuser,status=1).values().order_by('-appdate')
 
+    ps = base_flowlist.objects.filter(personnel=signuser.id,confim=None).values()
     s = []
     for t in list(ps):
-        if t['type']:
-            if t['type'] == 1:
-                t['type'] = '领用'
-            if t['type'] == 2:
-                t['type'] = '借用'
-        if t['status']:
-            t['statusstr'] = status(t['status'], 12)
+        # if t['type']:
+        #     if t['type'] == 1:
+        #         t['type'] = '领用'
+        #     if t['type'] == 2:
+        #         t['type'] = '借用'
+        # if t['status']:
+        #     t['statusstr'] = status(t['status'], 12)
         s.append(t)
-
     print(s)
-    context['processlist'] = s
-
-    ps = asset_application.objects.filter(applicant=signuser).exclude(status=1).values().order_by('-appdate')
-
-    s = []
-    for t in list(ps):
-        if t['type']:
-            if t['type'] == 1:
-                t['type'] = '领用'
-            if t['type'] == 2:
-                t['type'] = '借用'
-        if t['status']:
-            t['statusstr'] = status(t['status'], 12)
-        s.append(t)
-
-    print(s)
-    context['overlist'] = s
+    context['context'] = s
 
     return render(request, 'assetprocesslist.html', context)
+
+def assetmyappllst(request):
+    request.encoding = 'utf-8'
+    context = {}
+    context['title'] = '已提交'
+
+    username = request.COOKIES.get('usercookie', None)
+    if username:
+        try:
+            signuser = hr_hr.objects.get(session=username)
+        except Exception:
+            context['userinfo'] = '用户'
+            return render(request, 'sign.html', context)
+        context['userinfo'] = signuser.name
+    else:
+        context['userinfo'] = '用户'
+        return render(request, 'sign.html', context)
+
+    ps = asset_application.objects.filter(applicant=signuser).values().order_by('-appdate')
+
+    s = []
+    for t in list(ps):
+        if t['type']:
+            if t['type'] == 1:
+                t['typestr'] = '领用'
+            if t['type'] == 2:
+                t['typestr'] = '借用'
+        if t['status']:
+            t['statusstr'] = status(t['status'], 12)
+        s.append(t)
+
+    print(s)
+    context['context'] = s
+
+    return render(request, 'assetmyappllst.html', context)

@@ -1,0 +1,101 @@
+{% extends "assetbase.html" %}
+
+
+{% block styecss %}
+    <link rel="stylesheet" type="text/css" href="/static/css/appasset/assetmyappllst.css">
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="container-fluid">
+        <div class="row fixed-top bg-light">
+            <div class="col-12">
+                <form class="form-inline">
+                    <div class="col-12 my-1">
+                        <label class="sr-only" for="inputsearch">search</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputsearchPrepend"><i class="fa fa-search" aria-hidden="true"></i></span>
+                            </div>
+                            <input type="text" class="form-control" id="inputsearch" placeholder="Search" aria-describedby="validationTooltipUsernamePrepend" required>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="tab-content" id="nav-tabContent">
+                    <div id="my" class="tab-pane show active" role="tabpanel">
+                        {% for item in context %}
+                        <div class="row border-bottom">
+                            <div class="col-12 py-2">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <h6 class="mb-2 font-weight-bold">
+                                            {{ userinfo }}的设备申请单 {{ item.statusstr | safe }}
+                                        </h6>
+                                    </div>
+                                    <div class="col-4">
+                                        <p class="test-right mb-2">{{ item.appdate |date:'Y-m-d' }}</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <p class="text-base m-0 text-secondary">
+                                            申请设备：{{ item.needasset }}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            类型：{{ item.typestr }}
+                                            {% if item.type == 2 %}
+                                            (至: {{ item.backdate |date:'Y-m-d' }})
+                                            {% endif %}
+                                        </p>
+                                        <p class="text-base m-0 text-secondary">
+                                            申请日期：{{ item.appdate |date:'Y-m-d' }}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %}
+                            <div class="row border-bottom" >
+                                <div class="col pt-3 text-center">
+                                    <p>(暂无数据)</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Mdaout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">退还设备</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" id="forminput">
+                        {% csrf_token %}
+                        <p class="text-sm">确定要退还这个设备吗？</p>
+                        <p class="font-italic text-sm">确认后，请将设备交还到设备管理部门，由管理员确认签收设备。</p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-toggle="surinput" value="upload">确认</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block jquery %}
+
+{% endblock jquery%}
+
+
+

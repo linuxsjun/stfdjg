@@ -11,8 +11,16 @@
                 {% include 'asset_menu_side_sub.html' %}
             </div>
             <div class="col-10 ml-auto">
-                <div class="row border-bottom" id="panl">
+                <form class="row border-bottom" id="panl">
                     <div class="col-12">
+                        <div>
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-primary" id="test">ttttt</button>
+                            <input type="text" name="v" value="{{ tview }}">
+                            <input type="text" name="p" value="{{ page }}">
+                            <input type="text" name="ilike" value="{{ ilike }}" id="ilike">
+                            <input type="text" name="groupby" value="">
+                        </div>
                         <div class="row mt-2">
                             <h3 class="col-sm-6">{{ title }}</h3>
                             <div class="col-sm-6">
@@ -97,8 +105,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
                 <div id="dbody">
+                    {% if tview == 1 %}
+                        {% include 'asset_property_sub_list.html' %}
+                    {% else %}
+                        {% include 'asset_property_sub_board.html' %}
+                    {% endif %}
                 </div>
             </div>
         </div>

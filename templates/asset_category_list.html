@@ -81,8 +81,8 @@
                                 <tr>
                                     <th><input type="checkbox" name="selall" value="0" /></th>
                                     <th>名称<span class="caret"></span></th>
-                                    <th>上一级<span class="caret"></span></th>
-                                    <th>自动编号<span class="caret"></span></th>
+{#                                    <th>上一级<span class="caret"></span></th>#}
+                                    <th>编号规则<span class="caret"></span></th>
                                     <th>组件<span class="caret"></span></th>
                                 </tr>
                             </thead>
@@ -90,8 +90,8 @@
                                 {% for item in context %}
                                     <tr>
                                         <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                                        <td><a href="/category_form/?act=display&id={{ item.id }}">{{ item.name }}</a></td>
-                                        <td>{{ item.displayname }}</td>
+                                        <td><a href="/category_form/?act=display&id={{ item.id }}">{{ item.displayname }}</a></td>
+{#                                        <td>{{ item.pardisname }}</td>#}
                                         <td>{{ item.autosid }}</td>
                                         <td>
                                             {% if item.bom %}
