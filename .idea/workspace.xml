@@ -1,32 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ce572494-b3e8-4044-bff8-45a4b3cb9b90" name="Default" comment="create appprocesslist">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/migrations/0027_auto_20190110_1217.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/migrations/0028_auto_20190110_1319.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/migrations/0029_auto_20190110_1350.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034/_metadata_/metadata" afterPath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034/_metadata_/metadata" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034/_metadata_/metadata.values.at" afterPath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034/_metadata_/metadata.values.at" />
+    <list default="true" id="ce572494-b3e8-4044-bff8-45a4b3cb9b90" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/96f99d12-34eb-4070-82df-d08b84cd1034.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appasset/templates/assetappl.html" afterPath="$PROJECT_DIR$/appasset/templates/assetappl.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appasset/templates/assetbase.html" afterPath="$PROJECT_DIR$/appasset/templates/assetbase.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appasset/templates/assetprocesslist.html" afterPath="$PROJECT_DIR$/appasset/templates/assetprocesslist.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appasset/urls.py" afterPath="$PROJECT_DIR$/appasset/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appasset/views.py" afterPath="$PROJECT_DIR$/appasset/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/asset_kanban_board.js" afterPath="$PROJECT_DIR$/static/js/asset_kanban_board.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/property_list.js" afterPath="$PROJECT_DIR$/static/js/property_list.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_category_list.html" afterPath="$PROJECT_DIR$/templates/asset_category_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_kanban_board.html" afterPath="$PROJECT_DIR$/templates/asset_kanban_board.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_property_list.html" afterPath="$PROJECT_DIR$/templates/asset_property_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/asset_property_sub_list.html" afterPath="$PROJECT_DIR$/templates/asset_property_sub_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/base.html" afterPath="$PROJECT_DIR$/templates/base.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/sign.html" afterPath="$PROJECT_DIR$/templates/sign.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/admin.py" afterPath="$PROJECT_DIR$/web/admin.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/models.py" afterPath="$PROJECT_DIR$/web/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/views.py" afterPath="$PROJECT_DIR$/web/views.py" />
     </list>
     <ignored path=".idea/" />
     <ignored path="static/upfile/" />
@@ -69,14 +47,14 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.26753783">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/web/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="95">
-                  <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="54" />
+                <state relative-caret-position="323">
+                  <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
                   <folding>
                     <element signature="e#902#1112#0" expanded="false" />
                     <element signature="e#1139#3320#0" expanded="false" />
@@ -169,8 +147,8 @@
           <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="209" column="24" lean-forward="true" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="24" />
+                <state relative-caret-position="3971">
+                  <caret line="209" column="24" lean-forward="false" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -189,34 +167,9 @@
           <file leaf-file-name="property_list.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1957">
+                <state relative-caret-position="9386">
                   <caret line="494" column="24" lean-forward="false" selection-start-line="494" selection-start-column="24" selection-end-line="494" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#71#3326#0" expanded="false" />
-                    <element signature="e#3404#3509#0" expanded="false" />
-                    <element signature="e#3552#4365#0" expanded="false" />
-                    <element signature="e#4446#4597#0" expanded="false" />
-                    <element signature="e#4659#4840#0" expanded="false" />
-                    <element signature="e#4900#5566#0" expanded="false" />
-                    <element signature="e#5622#5714#0" expanded="false" />
-                    <element signature="e#5758#5827#0" expanded="false" />
-                    <element signature="e#5889#6913#0" expanded="false" />
-                    <element signature="e#6973#7929#0" expanded="false" />
-                    <element signature="e#7997#8876#0" expanded="false" />
-                    <element signature="e#8969#9463#0" expanded="false" />
-                    <element signature="e#9532#10022#0" expanded="false" />
-                    <element signature="e#10817#12604#0" expanded="false" />
-                    <element signature="e#11852#12586#0" expanded="false" />
-                    <element signature="e#12681#14205#0" expanded="false" />
-                    <element signature="e#14496#14547#0" expanded="false" />
-                    <element signature="e#14624#14839#0" expanded="false" />
-                    <element signature="e#14909#15438#0" expanded="false" />
-                    <element signature="e#15494#16107#0" expanded="false" />
-                    <marker date="1547551250915" expanded="true" signature="4192:4211" ph="..." />
-                    <marker date="1547551250915" expanded="true" signature="7569:7588" ph="..." />
-                    <marker date="1547551250915" expanded="true" signature="8519:8538" ph="..." />
-                    <marker date="1547551250915" expanded="true" signature="13576:13595" ph="..." />
-                  </folding>
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -238,34 +191,9 @@
           <file leaf-file-name="property_list.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="266">
-                  <caret line="157" column="0" lean-forward="true" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#71#3326#0" expanded="false" />
-                    <element signature="e#3404#3509#0" expanded="false" />
-                    <element signature="e#3552#4365#0" expanded="false" />
-                    <element signature="e#4446#4597#0" expanded="false" />
-                    <element signature="e#4659#4840#0" expanded="false" />
-                    <element signature="e#4900#5566#0" expanded="false" />
-                    <element signature="e#5622#5714#0" expanded="false" />
-                    <element signature="e#5758#5827#0" expanded="false" />
-                    <element signature="e#5889#6913#0" expanded="false" />
-                    <element signature="e#6973#7929#0" expanded="false" />
-                    <element signature="e#7997#8876#0" expanded="false" />
-                    <element signature="e#8969#9463#0" expanded="false" />
-                    <element signature="e#9532#10022#0" expanded="false" />
-                    <element signature="e#10817#12604#0" expanded="false" />
-                    <element signature="e#11852#12586#0" expanded="false" />
-                    <element signature="e#12681#14205#0" expanded="false" />
-                    <element signature="e#14496#14547#0" expanded="false" />
-                    <element signature="e#14624#14839#0" expanded="false" />
-                    <element signature="e#14909#15438#0" expanded="false" />
-                    <element signature="e#15494#16107#0" expanded="false" />
-                    <marker date="1547551250915" expanded="true" signature="4192:4211" ph="..." />
-                    <marker date="1547551250915" expanded="true" signature="7569:7588" ph="..." />
-                    <marker date="1547551250915" expanded="true" signature="8519:8538" ph="..." />
-                    <marker date="1547551250915" expanded="true" signature="13576:13595" ph="..." />
-                  </folding>
+                <state relative-caret-position="2983">
+                  <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -290,12 +218,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="asset_category_form.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="asset_category_form.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/templates/asset_category_form.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="133">
                   <caret line="7" column="40" lean-forward="false" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/README.md">
+              <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+                <state split_layout="SPLIT">
+                  <first_editor relative-caret-position="457">
+                    <caret line="114" column="16" lean-forward="true" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+                    <folding />
+                  </first_editor>
+                  <second_editor />
                 </state>
               </provider>
             </entry>
@@ -343,7 +284,6 @@
         <option value="$PROJECT_DIR$/appasset/templates/assetappl.html" />
         <option value="$PROJECT_DIR$/appasset/templates/assetmyappllst.html" />
         <option value="$PROJECT_DIR$/appasset/templates/assetprocesslist.html" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/templates/asset_category_list.html" />
         <option value="$PROJECT_DIR$/web/admin.py" />
         <option value="$PROJECT_DIR$/templates/asset_kanban_board.html" />
@@ -355,6 +295,7 @@
         <option value="$PROJECT_DIR$/templates/base.html" />
         <option value="$PROJECT_DIR$/templates/sign.html" />
         <option value="$PROJECT_DIR$/web/models.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -365,10 +306,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="122" />
-    <option name="y" value="9" />
-    <option name="width" value="1514" />
-    <option name="height" value="1054" />
+    <option name="x" value="42" />
+    <option name="y" value="82" />
+    <option name="width" value="1577" />
+    <option name="height" value="985" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="false" id="Update" />
@@ -389,6 +330,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -427,7 +369,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -540,22 +481,29 @@
       <option name="project" value="LOCAL" />
       <updated>1546941725912</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="create appprocesslist">
+      <created>1548151373478</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1548151373478</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="122" y="9" width="1514" height="1054" extended-state="0" />
+    <frame x="42" y="82" width="1577" height="985" extended-state="0" />
+    <editor active="true" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24415405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23153943" sideWeight="0.5303186" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24485126" sideWeight="0.53227156" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="manage.py@study" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24446903" sideWeight="0.47712418" order="13" side_tool="false" content_ui="tabs" x="212" y="121" width="1317" height="851" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34494382" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28104576" sideWeight="0.475856" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24115044" sideWeight="0.4677284" order="20" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32247192" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24071527" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25134844" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34407365" sideWeight="0.5" order="17" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.40822786" sideWeight="0.475856" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21083628" sideWeight="0.4677284" order="20" side_tool="false" content_ui="tabs" x="703" y="426" width="663" height="293" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944568" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32247192" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3528761" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3263288" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -565,6 +513,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="471" y="100" width="760" height="535" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="manage.py@study" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24446903" sideWeight="0.47712418" order="13" side_tool="false" content_ui="tabs" x="212" y="121" width="1317" height="851" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3280899" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32429245" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -831,16 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="494">
-            <caret line="59" column="18" lean-forward="true" selection-start-line="59" selection-start-column="18" selection-end-line="59" selection-end-column="18" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/asset_category_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -960,42 +899,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="304">
           <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding>
-            <element signature="n#form#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/property_list.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1957">
-          <caret line="494" column="24" lean-forward="false" selection-start-line="494" selection-start-column="24" selection-end-line="494" selection-end-column="24" />
-          <folding>
-            <element signature="e#71#3326#0" expanded="false" />
-            <element signature="e#3404#3509#0" expanded="false" />
-            <element signature="e#3552#4365#0" expanded="false" />
-            <element signature="e#4446#4597#0" expanded="false" />
-            <element signature="e#4659#4840#0" expanded="false" />
-            <element signature="e#4900#5566#0" expanded="false" />
-            <element signature="e#5622#5714#0" expanded="false" />
-            <element signature="e#5758#5827#0" expanded="false" />
-            <element signature="e#5889#6913#0" expanded="false" />
-            <element signature="e#6973#7929#0" expanded="false" />
-            <element signature="e#7997#8876#0" expanded="false" />
-            <element signature="e#8969#9463#0" expanded="false" />
-            <element signature="e#9532#10022#0" expanded="false" />
-            <element signature="e#10817#12604#0" expanded="false" />
-            <element signature="e#11852#12586#0" expanded="false" />
-            <element signature="e#12681#14205#0" expanded="false" />
-            <element signature="e#14496#14547#0" expanded="false" />
-            <element signature="e#14624#14839#0" expanded="false" />
-            <element signature="e#14909#15438#0" expanded="false" />
-            <element signature="e#15494#16107#0" expanded="false" />
-            <marker date="1547551250915" expanded="true" signature="4192:4211" ph="..." />
-            <marker date="1547551250915" expanded="true" signature="7569:7588" ph="..." />
-            <marker date="1547551250915" expanded="true" signature="8519:8538" ph="..." />
-            <marker date="1547551250915" expanded="true" signature="13576:13595" ph="..." />
-          </folding>
+        <state relative-caret-position="2983">
+          <caret line="157" column="0" lean-forward="false" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,16 +936,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/web/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="209" column="24" lean-forward="true" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="24" />
+        <state relative-caret-position="3971">
+          <caret line="209" column="24" lean-forward="false" selection-start-line="209" selection-start-column="24" selection-end-line="209" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="54" />
+        <state relative-caret-position="323">
+          <caret line="21" column="5" lean-forward="false" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
           <folding>
             <element signature="e#902#1112#0" expanded="false" />
             <element signature="e#1139#3320#0" expanded="false" />
@@ -1120,6 +1031,17 @@
             <element signature="e#103265#105266#0" expanded="false" />
             <element signature="e#105290#106130#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="457">
+            <caret line="114" column="16" lean-forward="true" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
