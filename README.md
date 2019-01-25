@@ -28,6 +28,8 @@ Use little App make it
 #### Login
 * 尝试微信扫码登录
 
+[Makedown基本语法](https://help.github.com/articles/basic-writing-and-formatting-syntax/)
+
 ##### 招聘分析常用计算公式
 * 招聘入职率：应聘成功入职的人数÷应聘的所有人数×100％。
 * 月平均人数：（月初人数＋月底人数）÷2
@@ -111,24 +113,7 @@ Use little App make it
 这个是什么`脚注`各
 
 
-```flow
-st=>start: Start
-e=>end
-op=>operation: My Operation
-cond=>condition: Yes or No?
-
-st->op->cond
-cond(yes)->e
-cond(no)->op
-```
-
-** 加粗文字
-
-可以创建行内公式，例如 $\Gamma(n) = (n-1)!\quad\forall n\in\mathbb N$。或者块级公式：
-
-$$	x = \dfrac{-b \pm \sqrt{b^2 - 4ac}}{2a} $$
-
-![GitHub Logo](./Octocat.jpg "Octocat.jpg") 
+![GitHub Logo](https://github.com/linuxsjun/stfdjg/blob/master/static/img/asset.png "Octocat.jpg") 
 
 |文件|数量|
 |:---|---:|

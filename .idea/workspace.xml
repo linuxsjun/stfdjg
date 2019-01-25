@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ce572494-b3e8-4044-bff8-45a4b3cb9b90" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
@@ -232,8 +231,8 @@
             <entry file="file://$PROJECT_DIR$/README.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
                 <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="457">
-                    <caret line="114" column="16" lean-forward="true" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+                  <first_editor relative-caret-position="405">
+                    <caret line="119" column="9" lean-forward="true" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -306,8 +305,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="42" />
-    <option name="y" value="82" />
+    <option name="x" value="39" />
+    <option name="y" value="10" />
     <option name="width" value="1577" />
     <option name="height" value="985" />
   </component>
@@ -488,11 +487,18 @@
       <option name="project" value="LOCAL" />
       <updated>1548151373478</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="update read.me">
+      <created>1548390448130</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1548390448130</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="82" width="1577" height="985" extended-state="0" />
+    <frame x="39" y="10" width="1577" height="985" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24415405" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -574,7 +580,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="update applicant_list" />
     <MESSAGE value="create appprocesslist" />
-    <option name="LAST_COMMIT_MESSAGE" value="create appprocesslist" />
+    <MESSAGE value="update read.me" />
+    <option name="LAST_COMMIT_MESSAGE" value="update read.me" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1037,8 +1044,8 @@
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="457">
-            <caret line="114" column="16" lean-forward="true" selection-start-line="114" selection-start-column="16" selection-end-line="114" selection-end-column="16" />
+          <first_editor relative-caret-position="405">
+            <caret line="119" column="9" lean-forward="true" selection-start-line="119" selection-start-column="9" selection-end-line="119" selection-end-column="9" />
             <folding />
           </first_editor>
           <second_editor />
