@@ -58,6 +58,7 @@ urlpatterns = [
     path('asset_property_sub_board/', views.asset_property_sub_board),
     path('property_form/', views.asset_property_form),
     path('property_upload/', views.property_upload),
+    path('property_output_cvs/', views.asset_property_list_output_cvs),
 
     path('parts_list/', views.asset_parts_list),
     path('parts_form/', views.asset_parts_form),
@@ -73,5 +74,6 @@ urlpatterns = [
 
 
     path('asset/', include('appasset.urls')),
+    path('task/', include('task.urls')),
 ]
 

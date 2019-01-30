@@ -23,7 +23,7 @@
                 <tr class="listitem">
                 {% endif %}
                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                    <td>{{ item.statusstr| safe }}</td>
+                    <td>{{ item.statusstr| safe }}{{ item.get_status_display}}----</td>
                     <td>
                         <a href="/property_form?act=display&id={{ item.id }}">{{ item.sid }}</a>
                     </td>

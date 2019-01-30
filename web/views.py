@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render_to_response
 from django.http import HttpResponse
-from django.template import loader
+from django.template import loader,Context
 
 from django.db.models import Avg, Sum, Max, Min, Count
 from django.db.models import F, Q
 # from django.db.models import Sum,Count
 
 import requests, json, time, datetime, hashlib, random
-
+import csv, codecs
 # from data.test import *
 
 import os
@@ -461,6 +461,12 @@ def asset_property_list(request):
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
         else:
+
+            page = request.POST.get('p', 1)
+
+            # page = int(request.POST.get('v', 1))
+            context['page'] = page
+
             # 没有动作,输出默认列表
             ps = asset_property.objects.filter(bom=False, active=True).filter(Q(asset_attachment__final=True)
                                                                               | Q(asset_attachment__final=None)).values('id',
@@ -484,13 +490,11 @@ def asset_property_list(request):
             lpnum = baseconfig.boardnum
 
             #显示方式 board、list
-            typeviewlist = ["list","board","singo"]
+            typeviewlist = ["list","board","details"]
             tview = baseconfig.viewtype
 
-            page = 1
-            context['page'] = page
-
             context['tview'] = tview
+            context['tviewstr'] = typeviewlist[tview-1]
 
             paginator = Paginator(ps, lpnum)
 
@@ -516,13 +520,106 @@ def asset_property_list(request):
             except EmptyPage:
                 context['pagnext'] = 0
 
-            context['context'] = ps
+            s = []
+            for t in list(ps):
+                # if t['warranty']:
+                #     t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+                if t['status']:
+                    t['statusstr'] = status(t['status'], 2)
+                if t['asset_attachment__filepath'] == None:
+                    t['asset_attachment__filepath'] = '/static/img/asset.png'
+                if t['asset_attachment__thumbnail'] == None:
+                    t['asset_attachment__thumbnail'] = '/static/img/asset.png'
+                s.append(t)
+            context['context'] = s
 
-            print(context)
+            # context['context'] = list(ps)
+
+            # print(context)
+            # print(context['context'])
             return render(request, 'asset_property_list.html', context)
     elif request.method == "POST":
         print(request.POST)
         if "act" in request.POST:
+            pass
+        else:
+            # page = request.POST.get('p', 1)
+            #
+            # # page = int(request.POST.get('v', 1))
+            # context['page'] = page
+            #
+            # # 没有动作,输出默认列表
+            # ps = asset_property.objects.filter(bom=False, active=True).filter(Q(asset_attachment__final=True)
+            #                                                                   | Q(asset_attachment__final=None)).values('id',
+            #                                                                                                             'status',
+            #                                                                                                             'sid',
+            #                                                                                                             'name',
+            #                                                                                                             'specifications',
+            #                                                                                                             'warranty',
+            #                                                                                                             'user__name',
+            #                                                                                                             'user__active',
+            #                                                                                                             'asset_attachment__filepath',
+            #                                                                                                             'asset_attachment__thumbnail',
+            #                                                                                                             'asset_attachment__final',
+            #                                                                                                             'position',
+            #                                                                                                             'user__employee_department__departmentid__name',
+            #                                                                                                             'sn').order_by('name', 'sid')
+            # context['spk'] = ps.count()
+            #
+            # #每页条目数
+            # baseconfig = asset_conf.objects.get(pk=1)
+            # lpnum = baseconfig.boardnum
+            #
+            # #显示方式 board、list
+            # typeviewlist = ["list","board","details"]
+            # tview = baseconfig.viewtype
+            #
+            # context['tview'] = tview
+            # context['tviewstr'] = typeviewlist[tview-1]
+            #
+            # paginator = Paginator(ps, lpnum)
+            #
+            # try:
+            #     data = paginator.page(page)
+            # except PageNotAnInteger:
+            #     data = paginator.page(1)
+            # except EmptyPage:
+            #     data = paginator.page(paginator.num_pages)
+            # ps = data
+            #
+            # # print(data.next_page_number())
+            # context['fpk'] = data.start_index()
+            # context['tpk'] = data.end_index()
+            #
+            # try:
+            #     context['pagprevious'] = data.previous_page_number()
+            # except EmptyPage:
+            #     context['pagprevious'] = 0
+            #
+            # try:
+            #     context['pagnext'] = data.next_page_number()
+            # except EmptyPage:
+            #     context['pagnext'] = 0
+            #
+            # s = []
+            # for t in list(ps):
+            #     # if t['warranty']:
+            #     #     t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+            #     if t['status']:
+            #         t['statusstr'] = status(t['status'], 2)
+            #     if t['asset_attachment__filepath'] == None:
+            #         t['asset_attachment__filepath'] = '/static/img/asset.png'
+            #     if t['asset_attachment__thumbnail'] == None:
+            #         t['asset_attachment__thumbnail'] = '/static/img/asset.png'
+            #     s.append(t)
+            # context['context'] = s
+            #
+            # # context['context'] = list(ps)
+            #
+            # # print(context)
+            # # print(context['context'])
+            # return render(request, 'asset_property_list.html', context)
+
             pass
 
     return render(request, 'asset_property_list.html', context)
@@ -587,7 +684,7 @@ def asset_property_sub_board(request):
     context['context'] = s
 
     # 显示方式 board、list
-    typeviewlist = ["list", "board", "singo"]
+    typeviewlist = ["list", "board", "details"]
 
     context['tview'] = tview = typeviewlist[int(request.POST.get('v', 1)) - 1]
     view_tpl = 'asset_property_sub_' + tview + '.html'
@@ -2352,6 +2449,42 @@ def property_upload(request):
         return HttpResponse(data, content_type="application/json")
     else:
         return HttpResponse('no')
+
+def asset_property_list_output_cvs(request):
+    response = HttpResponse(content_type='text/csv')
+    response.write(codecs.BOM_UTF8)
+    response['Content-Disposition'] = 'attachment; filename="somefilename.csv"'
+
+    ps = asset_property.objects.filter(bom=False, active=True).filter(Q(asset_attachment__final=True)
+                                                                      | Q(asset_attachment__final=None)).values_list('status',
+                                                                                                                'sid',
+                                                                                                                'name',
+                                                                                                                'specifications',
+                                                                                                                'warranty',
+                                                                                                                'user__name',
+                                                                                                                'position',
+                                                                                                                'user__employee_department__departmentid__name',
+                                                                                                                'sn').order_by('name', 'sid')
+    writer = csv.writer(response)
+
+    for i in ps:
+        writer.writerow(i)
+    # writer.writerow(['First row', 'Foo', 'Bar', 'Baz',2,"3"])
+    # writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote",1,"5"])
+
+    # csv_data = (
+    #     ('First row', 'Foo', 'Bar', 'Baz'),
+    #     ('Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote"),
+    # )
+    #
+    # t = loader.get_template('my_template_name.txt')
+    # c = Context({
+    #     'data': csv_data,
+    # })
+    # response.write(t.render(c))
+
+    print(response.content)
+    return response
 
 #功能测试路由
 def importdata(request):

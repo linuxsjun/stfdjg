@@ -230,6 +230,13 @@ class asset_category(models.Model):
 
 class asset_property(models.Model):
     #设备表
+    STATUS_VAL = (
+        (1, '闲置'),
+        (2, '在用'),
+        (3, '维修'),
+        (4, '报废'),
+    )
+
     sid = models.CharField(max_length=16, unique=True, verbose_name='编号')
     name = models.CharField(max_length=64, verbose_name='名称')
     specifications = models.CharField(null=True, blank=True, max_length=64, verbose_name='规格')
@@ -245,7 +252,7 @@ class asset_property(models.Model):
     # partlist = models.CharField(max_length=32, null=True, blank=True, verbose_name='配件-多个')
     parentid = models.ForeignKey('self', null=True, blank=True, on_delete=models.SET_NULL, verbose_name='隶属主机')
     position = models.CharField(max_length=24, null=True, blank=True, verbose_name='所在位置')
-    status = models.IntegerField(default=1, verbose_name='设备状态')
+    status = models.IntegerField(default=1, choices=STATUS_VAL, verbose_name='设备状态')
     nots = models.TextField(null=True, blank=True, verbose_name='备注')
     active = models.BooleanField(default=True, verbose_name='有效的')
 
@@ -254,7 +261,7 @@ class asset_property(models.Model):
 
 class asset_conf(models.Model):
     name = models.CharField(max_length=16)
-    viewtype = models.IntegerField(default=1, verbose_name='默认显示 1.list 2.board 3.singo')
+    viewtype = models.IntegerField(default=1, verbose_name='默认显示 1.list 2.board 3.details')
     listnum = models.IntegerField(default=100, verbose_name='列表每页数')
     boardnum = models.IntegerField(default=50, verbose_name='标签每页数')
     defaultimg = models.CharField(default='/static/img/asset.png',max_length=256, verbose_name='默认图标')

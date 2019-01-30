@@ -98,7 +98,7 @@ $(function () {
                     $("tbody").append(htext);
                 }else{
                     $('#assetid').text("0-0/0");
-                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
+                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
                     $('tbody').empty();
                     $("tbody").append(htext);
                 }
@@ -283,10 +283,11 @@ $(function () {
         // 获取视图数据
         $.get(
             '/asset_property_sub_board/',
-            {
-                v: viewtype,
-                p:npage
-            },
+            // {
+                // v: viewtype,
+                // p:npage
+            // },
+            $('form#panl').serialize(),
             function (data) {
                 $('#panl').next().remove();
                 $('#panl').after(data);
@@ -470,7 +471,8 @@ $(function () {
             '/property_list/',
             $('form#panl').serialize(),
             function (context) {
-
+                // $('body').empty();
+                // $('body').append(context)
             }
         )
     })
