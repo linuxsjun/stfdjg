@@ -252,16 +252,16 @@ def asset_property_list(request):
     context['title']='设备列表'
 
     username = request.COOKIES.get('usercookie', None)
-    if username:
-        try:
-            signuser = hr_hr.objects.get(session=username)
-        except Exception:
-            context['userinfo'] = '用户'
-            return render(request, 'sign.html', context)
-        context['userinfo'] = signuser.name
-    else:
-        context['userinfo'] = '用户'
-        return render(request, 'sign.html', context)
+    # if username:
+    #     try:
+    #         signuser = hr_hr.objects.get(session=username)
+    #     except Exception:
+    #         context['userinfo'] = '用户'
+    #         return render(request, 'sign.html', context)
+    #     context['userinfo'] = signuser.name
+    # else:
+    #     context['userinfo'] = '用户'
+    #     return render(request, 'sign.html', context)
 
     # print("%s\n%s" % (request.method,request.GET))
     if request.method == "GET":
@@ -474,6 +474,7 @@ def asset_property_list(request):
                                                                                                                         'sid',
                                                                                                                         'name',
                                                                                                                         'specifications',
+                                                                                                                        'sn',
                                                                                                                         'warranty',
                                                                                                                         'user__name',
                                                                                                                         'user__active',
@@ -481,8 +482,7 @@ def asset_property_list(request):
                                                                                                                         'asset_attachment__thumbnail',
                                                                                                                         'asset_attachment__final',
                                                                                                                         'position',
-                                                                                                                        'user__employee_department__departmentid__name',
-                                                                                                                        'sn').order_by('name', 'sid')
+                                                                                                                        'user__employee_department__departmentid__name').order_by('name', 'sid')
             context['spk'] = ps.count()
 
             #每页条目数
@@ -2467,8 +2467,12 @@ def asset_property_list_output_cvs(request):
                                                                                                                 'sn').order_by('name', 'sid')
     writer = csv.writer(response)
 
+    th = ['状态', '编号', '名称', '规格', '维保到期', '用户', '部门', '位置', '出厂编号']
+    writer.writerow(th)
     for i in ps:
-        writer.writerow(i)
+        li = list(i)
+        li[0] = status(li[0],0)
+        writer.writerow(li)
     # writer.writerow(['First row', 'Foo', 'Bar', 'Baz',2,"3"])
     # writer.writerow(['Second row', 'A', 'B', 'C', '"Testing"', "Here's a quote",1,"5"])
 
@@ -2483,7 +2487,7 @@ def asset_property_list_output_cvs(request):
     # })
     # response.write(t.render(c))
 
-    print(response.content)
+    # print(response.content)
     return response
 
 #功能测试路由

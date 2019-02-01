@@ -14,9 +14,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/dashboard.css">
 
     <link rel="stylesheet" type="text/css" href="/static/css/base.css">
-    {% block styecss %}
-
-    {% endblock styecss %}
+    {% block styecss %}{% endblock styecss %}
 </head>
 <body>
    <header class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
@@ -199,11 +197,11 @@
 
 {#   <script src="/static/js/metisMenu.min.js"></script>#}
 
-<script type="text/javascript">
-    $.ajaxSetup({
-        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
-    });
-</script>
+    <script type="text/javascript">
+        $.ajaxSetup({
+            data: {csrfmiddlewaretoken: '{{ csrf_token }}' }
+        });
+    </script>
 
     {% block jquery %}
         <script src="/static/js/base.js"></script>

@@ -1,7 +1,7 @@
 <div class="row">
 <div class="col-12 p-0">
     <table class="table table-hover table-responsive-sm">
-        <thead>
+        <thead class="bg-light">
             <tr>
                 <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
                 <th class="border-right" data-id="status">状态<i class="" aria-hidden="true" data-id="0"></i></th>
@@ -23,7 +23,7 @@
                 <tr class="listitem">
                 {% endif %}
                     <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                    <td>{{ item.statusstr| safe }}{{ item.get_status_display}}----</td>
+                    <td>{{ item.statusstr| safe }}</td>
                     <td>
                         <a href="/property_form?act=display&id={{ item.id }}">{{ item.sid }}</a>
                     </td>
