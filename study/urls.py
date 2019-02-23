@@ -16,14 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from django.views.generic import RedirectView
 from web import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
+    # App子程序路由
+    path('asset/', include('appasset.urls')),
+    path('task/', include('task.urls')),
+
+    # Web 程序路由
     path('', views.index),
     path('WW_verify_nHQMbL9kxBaRLdjd.txt', views.wxtext),
+    # 网站图标
     path('favicon.ico', views.wxtext),
+    # path('favicon.ico', RedirectView.as_view(url=r'static/img/logo.png')),
 
     path('asset_kanban_board/', views.asset_kanban_board),
     path('asset_config/', views.asset_config),
@@ -73,7 +81,6 @@ urlpatterns = [
     path('importdata/', views.importdata),
 
 
-    path('asset/', include('appasset.urls')),
-    path('task/', include('task.urls')),
+
 ]
 

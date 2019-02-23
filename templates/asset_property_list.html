@@ -16,10 +16,11 @@
                         <div>
                             {% csrf_token %}
                             <button type="button" class="btn btn-primary" id="test">ttttt</button>
-                            <input type="text" name="v" value="{{ tview }}">
+                            <input type="text" name="g" value="{{ groupby }}groupby">
                             <input type="text" name="p" value="{{ page }}">
-                            <input type="text" name="ilike" value="{{ ilike }}" id="ilike">
-                            <input type="text" name="groupby" value="">
+                            <input type="text" name="n" value="{{ lpnum }}" id="lpnum">
+{#                            <input type="text" name="i" value="{{ ilike }}" id="ilike">#}
+                            <input type="text" name="s" value="{{ sort }}" id="orderby">
                         </div>
                         <div class="row mt-2">
                             <h3 class="col-sm-6">{{ title }}</h3>
@@ -95,10 +96,10 @@
                             <div class="col-1">
                                 <div class="btn-group btn-group btn-group-toggle" data-toggle="buttons" id="viewtype" data-tview="{{ tview }}">
                                     <label class="btn btn-outline-secondary{% if tview == 2 %} active{% endif %}">
-                                        <input type="radio" name="listoptions" value='2' autocomplete="off" {% if tview == 2 %}checked{% endif %}><i class="fa fa-th-large fa-1x"></i>
+                                        <input type="radio" name="v" value='2' autocomplete="off" {% if tview == 2 %}checked{% endif %}><i class="fa fa-th-large fa-1x"></i>
                                     </label>
                                     <label class="btn btn-outline-secondary{% if tview == 1 %} active{% endif %}">
-                                        <input type="radio" name="listoptions" value="1" autocomplete="off" {% if tview == 1 %}checked{% endif %}><i class="fa fa-list-ul fa-1x"></i>
+                                        <input type="radio" name="v" value="1" autocomplete="off" {% if tview == 1 %}checked{% endif %}><i class="fa fa-list-ul fa-1x"></i>
                                     </label>
                                 </div>
                             </div>

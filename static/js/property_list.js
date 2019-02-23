@@ -82,7 +82,6 @@ $(function () {
 
     $('#search-btn').click(function () {
         var val= $('#search-input').val();
-        $('#ilike').val(val);
         $.get(
             '/property_list/',
             {
@@ -281,16 +280,30 @@ $(function () {
         var npage = $(this).parent().attr('data-pagnext');
 
         // 获取视图数据
-        $.get(
-            '/asset_property_sub_board/',
-            // {
-                // v: viewtype,
-                // p:npage
-            // },
+        // $.get(
+        //     // '/asset_property_sub_board/',
+        //     '/property_list/',
+        //     // {
+        //         // v: viewtype,
+        //         // p:npage
+        //     // },
+        //     $('form#panl').serialize(),
+        //     function (data) {
+        //         // $('#panl').next().remove();
+        //         $('html').empty();
+        //         // $('#panl').after(data);
+        //         $('html').before(data);
+        //     }
+        // );
+        console.log("kk");
+        $('html').load(
+            '/property_list/',
             $('form#panl').serialize(),
             function (data) {
-                $('#panl').next().remove();
-                $('#panl').after(data);
+                // $('#panl').next().remove();
+                $('html').empty();
+                // $('#panl').after(data);
+                $('html').before(data);
             }
         );
         // 修改页号
@@ -473,6 +486,9 @@ $(function () {
             function (context) {
                 // $('body').empty();
                 // $('body').append(context)
+                // self.location.href=context
+                window.location.href=context;
+                // console.log(context)
             }
         )
     })
