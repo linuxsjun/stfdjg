@@ -24,7 +24,6 @@ urlpatterns = [
 
     # App子程序路由
     path('asset/', include('appasset.urls')),
-    path('task/', include('task.urls')),
 
     # Web 程序路由
     path('', views.index),

@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'web',
     'appasset',
     'project',
-    'task',
 ]
 
 MIDDLEWARE = [

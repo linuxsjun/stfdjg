@@ -27,7 +27,7 @@ from web.models import asset_conf, asset_category, asset_property, position, ass
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from openpyxl import load_workbook
-# https://www.qqxiuzi.cn/zh/pinyin/
+
 def partt(id):
     #这是一个定义函数，返回父级关系
     tid = asset_category.objects.filter(id=id).first()
@@ -242,13 +242,10 @@ def asset_kanban_board(request):
                     data['data'] = "无返回值"
                     data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
-    # ps = hr_department.objects.all().values_list('name').annotate(num=Count('employee_department__employeeid__asset_property__sid'),picre=Sum('employee_department__employeeid__asset_property__price')).order_by('-picre')
-    # ps = hr_department.objects.all().values_list('name').annotate(num=Count('employee_department__employeeid__id'))
 
     return render(request, 'asset_kanban_board.html', context)
 
 def asset_property_list(request):
-    # http://127.0.0.1:8069/web#view_type=kanban&model=product.template&menu_id=305&action=435
     request.encoding = 'utf-8'
     context={}
     context['title']='设备列表'
@@ -265,7 +262,6 @@ def asset_property_list(request):
         context['userinfo'] = '用户'
         return render(request, 'sign.html', context)
 
-    # print("%s\n%s" % (request.method,request.GET))
     if request.method == "GET":
         print('GET')
         print(request.GET)
@@ -483,17 +479,17 @@ def asset_property_list(request):
             context['spk'] = ps.count()
 
             # 排序
-            orderby = request.POST.get('s', 'name')
+            orderby = request.GET.get('s', 'name')
             context['sort'] = orderby
             ps = ps.order_by(orderby)
 
             # 页码
-            page = request.POST.get('p', 1)
+            page = request.GET.get('p', 1)
             context['page'] = page
 
             #每页条目数
             baseconfig = asset_conf.objects.get(pk=1)
-            lpnum = baseconfig.boardnum
+            lpnum = request.GET.get('n', baseconfig.boardnum)
             context['lpnum'] = lpnum
 
             #显示方式 board、list
@@ -547,29 +543,12 @@ def asset_property_list(request):
             return render(request, 'asset_property_list.html', context)
     elif request.method == "POST":
         print("POST")
-        # print(request.scheme)
-        # print(request.body)
-        # print(request.path)
-        # print(request.path_info)
-        # print(request.method)
-        # print(request.content_type)
-        # print(request.content_params)
-        # print(request.COOKIES)
-        # print(request.FILES)
-        #
         print(request.POST)
-        # print(type(request.POST))
 
-        # print(request.GET)
-        # print(request.POST)
-        # print(request.META)
-        # print(
-        # print(request.path)
-
-        awg=request.scheme + '://172.18.0.231:8000' + request.path + '?'
-        for i in request.POST:
-            awg=awg + i + '=' + request.POST[i] +'&'
-        return HttpResponse(awg[:-1])
+        # awg=request.scheme + '://127.0.0.1:8000' + request.path + '?'
+        # for i in request.POST:
+        #     awg=awg + i + '=' + request.POST[i] +'&'
+        # return HttpResponse(awg[:-1])
     return render(request, 'asset_property_list.html', context)
 
 def asset_property_sub_board(request):
