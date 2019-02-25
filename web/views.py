@@ -494,7 +494,7 @@ def asset_property_list(request):
 
             #显示方式 board、list
             typeviewlist = ["list","board","details"]
-            tview = baseconfig.viewtype
+            tview = int(request.GET.get('v', baseconfig.viewtype))
 
             context['tview'] = tview
             context['tviewstr'] = typeviewlist[tview-1]

@@ -1,4 +1,14 @@
 $(function () {
+    function dataload() {
+        var juk=$('form#panl').serialize();
+        $('#dbody').load(
+            '/property_list/ #sub',
+            juk,
+            function (context) {
+                // console.log(context)
+            }
+        );
+    }
     init('页面初始化');
     // ----扩展函数----
     $.fn.extend({
@@ -75,12 +85,13 @@ $(function () {
     //-----控制面板----
     $('#search-input').bind('keypress', function (event) {
         if (event.keyCode === 13) {
-            return $('#search-btn').click();
+            $('#search-btn').trigger('click');
         }
     });
 
     $('#search-btn').click(function () {
         var val = $('#search-input').val();
+        $('#ilike').val(val);
         $.get(
             '/property_list/',
             {
@@ -311,22 +322,10 @@ $(function () {
 
     // ----视图类型----
     $('#viewtype label input[type="radio"]').change(function () {
-        var npage = $('#page').attr('data-page');
-        var viewtype = $(this).val();
-        $('#viewtype').attr('data-tview', viewtype);
-        $('#dbody').load(
-            '/asset_property_sub_board/',
-            {
-                v: viewtype,
-                p: npage
-            },
-            function (responseTxt) {
-                $("tbody").on("click", "tr.listitem td:not(:first-child)", function () {
-                    var showsel = $(this).parent().find('[name="selitem"]').val();
-                    // window.location.href="/property_form?act=display&id="+showsel;
-                    window.open("/property_form?act=display&id=" + showsel);
-                });
-            });
+        var val=$(this).val();
+        $('#tview').val(val);
+        $('#test').trigger('click');
+        alert(val)
     });
 
     //---- 排序 ----
@@ -480,32 +479,10 @@ $(function () {
     });
 
     $('#test').on('click', function () {
-        // $.post(
-        //     '/property_list/',
-        //     $('form#panl').serialize(),
-        //     function (context) {
-        //         // $('body').empty();
-        //         // $('body').append(context)
-        //         // self.location.href=context
-        //         window.location.href=context;
-        //         // console.log(context)
-        //     }
-        // )
-        juk=$('form#panl').serialize();
-        $('#dbody').load(
-            '/property_list/ #sub',
-            juk,
-            // {
-            //     v: 'lll',
-            //     p: 1
-            // },
-            function (context) {
-                console.log(context)
-            }
-        );
+        dataload()
     });
 
-    });
+});
 function init(obj) {
     // console.log(obj);
 
