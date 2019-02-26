@@ -1,8 +1,8 @@
 <!--导航条-->
-<nav aria-label="Page navigation example" id="pagenav">
-    <ul class="pagination justify-content-end">
-        <li class="page-item" data-pagprevious="{{ pagprevious }}">
-            <a class="page-link" href="#" aria-label="Previous">
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-end my-0" id="pagenav">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Previous" data-pagprevious="{{ pagprevious }}">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
@@ -11,8 +11,8 @@
                 <span id="assetid"><span>{{ fpk|default:0 }}</span>-<span>{{ tpk|default:0 }}</span>/<span>{{ spk|default:0 }}</span></span>
             </a>
         </li>
-        <li class="page-item" data-pagnext="{{ pagnext }}">
-            <a class="page-link" href="#" aria-label="Next">
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next" data-pagnext="{{ pagnext }}">
                 <span aria-hidden="true">&raquo;</span>
             </a>
         </li>

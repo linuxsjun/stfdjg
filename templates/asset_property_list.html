@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block styecss %}
-    <link rel="stylesheet" type="text/css" href="/static/css/view_hr_list.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/web/property_view_list.css">
 {% endblock styecss %}
 
 {% block mainbody %}
@@ -13,15 +13,18 @@
             <div class="col-10 ml-auto">
                 <form class="row border-bottom" id="panl">
                     <div class="col-12">
+{#                        <div class="sr-only">#}
                         <div class="">
                             {% csrf_token %}
                             <button type="button" class="btn btn-primary" id="test">ttttt</button>
                             <input type="text" name="g" value="{{ groupby }}groupby">
-                            <input type="text" name="p" value="{{ page }}">
+                            <input type="text" name="p" value="{{ page }}" id="page">
                             <input type="text" name="n" value="{{ lpnum }}" id="lpnum">
                             <input type="text" name="i" value="{{ ilike }}" id="ilike">
-                            <input type="text" name="s" value="{{ sort }}" id="orderby">
+                            <input type="text" name="s" value="{{ sort }}----" id="orderby">
                             <input type="text" name="v" value="{{ tview }}" id="tview">
+                            <input type="text" name="a" value="" id="act">
+                            <input type="text" name="b" value="" id="bom">
                         </div>
                         <div class="row my-3">
                             <h3 class="col-3">{{ title }}</h3>
@@ -99,7 +102,7 @@
                         {% else %}
                             {% include 'asset_property_sub_board.html' %}
                         {% endif %}
-                        <div class="row">
+                        <div class="row bg-light py-2 my-0  border-top">
                             <div class="col-6">
                                 <div class="btn-group btn-group btn-group-toggle" data-toggle="buttons" id="viewtype">
                                     <label class="btn btn-outline-secondary{% if tview == 2 %} active{% endif %}">

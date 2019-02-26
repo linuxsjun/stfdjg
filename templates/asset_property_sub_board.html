@@ -3,11 +3,15 @@
         <div class="col-sm-3 p-2">
             <div class="media border p-2 shadow-sm">
                  <a href="/property_form/?act=display&id={{ item.id }}">
-                     <img class="img-thumbnail mr-3" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">
+                     <img class="img-thumbnail mr-2" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">
                  </a>
                 <div class="media-body">
-                    <h5>[{{ item.sid }}]</h5>
-                    <div> {{ item.name }} {{ item.statusstr| safe }}</div>
+                    <h5 class="mb-1">{{ item.name }} {{ item.statusstr| safe }}</h5>
+                    <p class="mb-1 text-base"><span class="font-weight-bold">编号: </span>{{ item.sid }}</p>
+                    <p class="mb-1 text-base"><span class="font-weight-bold"> SN: </span>{{ item.sn }}</p>
+{#                    <p class="mb-1 text-base"><span class="font-weight-bold"> 用户: </span>{{ item.user__name| default:"" }}</p>#}
+{#                    <p class="mb-1 text-base"><span class="font-weight-bold"> 部门: </span>{{ item.user__employee_department__departmentid__name| default:"" }}</p>#}
+{#                    <p class="mb-1 text-base"><span class="font-weight-bold"> 位置: </span>{{ item.position| default:"" }}</p>#}
                 </div>
             </div>
         </div>

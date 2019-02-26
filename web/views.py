@@ -345,43 +345,43 @@ def asset_property_list(request):
                     data['data'] = "无返回值"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
-            elif request.GET['act'] == 'sort':
-                data = {}
-                sns = request.GET['field']
-                ps = asset_property.objects.filter(bom=False,active=True).values('id',
-                                                                       'status',
-                                                                       'sid',
-                                                                       'name',
-                                                                       'specifications',
-                                                                       'purchase',
-                                                                       'warranty',
-                                                                       'user__name',
-                                                                       'user__active',
-                                                                       'position',
-                                                                       'user__employee_department__departmentid__name',
-                                                                       'sn').order_by(sns)
-                s = []
-                u = list(ps)
-                for t in u:
-                    if t['purchase']:
-                        t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
-                    if t['warranty']:
-                        t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
-                    s.append(t)
-
-                if len(s):
-                    data['code'] = 0
-                    data['msg'] = "OK"
-                    data['spk'] = len(s)
-                    data['data'] = s
-                else:
-                    data['code'] = 1
-                    data['msg'] = "Fail"
-                    data['spk'] = 0
-                    data['data'] = "无返回值"
-
-                data = json.dumps(data)
-                return HttpResponse(data, content_type="application/json")
+            # elif request.GET['act'] == 'sort':
+            #     data = {}
+            #     sns = request.GET['field']
+            #     ps = asset_property.objects.filter(bom=False,active=True).values('id',
+            #                                                            'status',
+            #                                                            'sid',
+            #                                                            'name',
+            #                                                            'specifications',
+            #                                                            'purchase',
+            #                                                            'warranty',
+            #                                                            'user__name',
+            #                                                            'user__active',
+            #                                                            'position',
+            #                                                            'user__employee_department__departmentid__name',
+            #                                                            'sn').order_by(sns)
+            #     s = []
+            #     u = list(ps)
+            #     for t in u:
+            #         if t['purchase']:
+            #             t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
+            #         if t['warranty']:
+            #             t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
+            #         s.append(t)
+            #
+            #     if len(s):
+            #         data['code'] = 0
+            #         data['msg'] = "OK"
+            #         data['spk'] = len(s)
+            #         data['data'] = s
+            #     else:
+            #         data['code'] = 1
+            #         data['msg'] = "Fail"
+            #         data['spk'] = 0
+            #         data['data'] = "无返回值"
+            #
+            #     data = json.dumps(data)
+            #     return HttpResponse(data, content_type="application/json")
             elif request.GET['act'] == 'groupby':
                 data = {}
                 groupby = request.GET['field']

@@ -200,8 +200,8 @@ $(function () {
     });
 
     // ----筛选----
-    $('#unactive').click(function (e) {
-        e.preventDefault();
+    $('#unactive').click(function (event) {
+        event.preventDefault();
         $.get(
             "/property_list/",
             {
@@ -258,74 +258,24 @@ $(function () {
     });
 
     // ----上下页----
-
-    $('#pagenav').find('[aria-label="Previous"]').click(function (e) {
-        e.preventDefault();
-
-        var elm = $('#viewtype');
-        var viewtype = elm.attr('data-tview');
-
-        var npage = $(this).parent().attr('data-pagprevious');
-
-        // 获取视图数据
-        $.get(
-            '/asset_property_sub_board/',
-            {
-                v: viewtype,
-                p: npage
-            },
-            function (data) {
-                $('#panl').next().remove();
-                $('#panl').after(data);
-            }
-        );
-        // 修改页号
+    $('#dbody').delegate('[aria-label="Previous"]', 'click', function (event) {
+        event.preventDefault();
+        $('#page').val($(this).attr('data-pagprevious'));
+        $('#test').trigger('click');
     });
 
-    $('#pagenav').find('[aria-label="Next"]').click(function (e) {
-        e.preventDefault();
-
-        var elm = $('#viewtype');
-        var viewtype = elm.attr('data-tview');
-
-        var npage = $(this).parent().attr('data-pagnext');
-
-        // 获取视图数据
-        // $.get(
-        //     // '/asset_property_sub_board/',
-        //     '/property_list/',
-        //     // {
-        //         // v: viewtype,
-        //         // p:npage
-        //     // },
-        //     $('form#panl').serialize(),
-        //     function (data) {
-        //         // $('#panl').next().remove();
-        //         $('html').empty();
-        //         // $('#panl').after(data);
-        //         $('html').before(data);
-        //     }
-        // );
-        console.log("kk");
-        $('html').load(
-            '/property_list/',
-            $('form#panl').serialize(),
-            function (data) {
-                // $('#panl').next().remove();
-                $('html').empty();
-                // $('#panl').after(data);
-                $('html').before(data);
-            }
-        );
-        // 修改页号
+    $('#dbody').delegate('[aria-label="Next"]', 'click', function (event) {
+        event.preventDefault();
+        $('#page').val($(this).attr('data-pagnext'));
+        $('#test').trigger('click');
     });
+
 
     // ----视图类型----
-    $('#viewtype label input[type="radio"]').change(function () {
+    $('#dbody').delegate('#viewtype label input[type="radio"]', 'change', function () {
         var val=$(this).val();
         $('#tview').val(val);
         $('#test').trigger('click');
-        alert(val)
     });
 
     //---- 排序 ----
@@ -359,26 +309,26 @@ $(function () {
                 sortitem = "name";
             }
 
-            $.ajax({
-                url: "/property_list/",
-                type: "GET",
-                data: {
-                    "act": 'sort',
-                    "field": sortitem
-                },
-                success: function (data) {
-                    $('input[name="selall"]').prop("checked", false);
-
-                    $('#assetid').text("0-0/" + data.spk);
-                    var htext = $(this).listitem(data.data);
-                    $('tbody').empty();
-                    $("tbody").append(htext);
-
-                    $('input[name="selitem"]').prop("checked", false);
-                    $('button[data-toggle="del"]').addClass("disabled");
-                    $('input[name="selall"]').val(0);
-                }
-            });
+            // $.ajax({
+            //     url: "/property_list/",
+            //     type: "GET",
+            //     data: {
+            //         "act": 'sort',
+            //         "field": sortitem
+            //     },
+            //     success: function (data) {
+            //         $('input[name="selall"]').prop("checked", false);
+            //
+            //         $('#assetid').text("0-0/" + data.spk);
+            //         var htext = $(this).listitem(data.data);
+            //         $('tbody').empty();
+            //         $("tbody").append(htext);
+            //
+            //         $('input[name="selitem"]').prop("checked", false);
+            //         $('button[data-toggle="del"]').addClass("disabled");
+            //         $('input[name="selall"]').val(0);
+            //     }
+            // });
         }
     });
 
