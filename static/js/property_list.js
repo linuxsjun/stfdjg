@@ -279,9 +279,16 @@ $(function () {
     });
 
     //---- 排序 ----
+    $('#dbody').on('click', 'th', function () {
+        if ($(this).index() > 0) {
+            var sortitem = $(this).attr("data-id");
+            $('#orderby').val(sortitem);
+            $('#test').trigger('click');
+        }
+    });
+
     $('th').click(function () {
         if ($(this).index() > 0) {
-
             var obj = $(this).find('i');
             var alli = $('th i');
             var sortitem = $(this).attr("data-id");
@@ -383,14 +390,14 @@ $(function () {
         $('this').css('background', 'blue');
     });
 
-    $("tbody").on("click", "tr.listitem td:not(:first-child)", function () {
+    $("#dbody").on("click", "tr.listitem td:not(:first-child)", function () {
         var showsel = $(this).parent().find('[name="selitem"]').val();
         // window.location.href="/property_form?act=display&id="+showsel;
         window.open("/property_form?act=display&id=" + showsel);
     });
 
     // ----勾选----
-    $('input[name="selall"]').click(function () {
+    $('#dbody').on('click', 'input[name="selall"]', function () {
         var i = 0;
         if ($(this).prop("checked")) {
             $('input[name="selitem"]').each(function () {
@@ -407,7 +414,7 @@ $(function () {
         $('input[name="selall"]').val(i);
     });
 
-    $('tbody').on("click", "tr td input", function () {
+    $('#dbody').on("click", "tr td input", function () {
         var sel = $(this).prop("checked");
         var i = $('input[name="selall"]').val();
         i = parseInt(i);
@@ -434,33 +441,9 @@ $(function () {
 
 });
 function init(obj) {
-    // console.log(obj);
-
     // 激活sideMenu
     var navitem = $('nav').find('.nav-link');
     navitem.removeClass('active');
     $('#menu02').addClass('active');
     $('#menu020301').addClass('active');
-
-    // var elm = $('#viewtype');
-    // // typeviewlist = [1"list", 2"board", 3"singo"]
-    // var viewtype = elm.attr('data-tview');
-    // // 标记视图类型
-    // var sel = '[value=' + viewtype + ']';
-    // elm.find(sel).parent().addClass("active");
-    // // 获取视图数据
-    // $('#dbody').load(
-    //     '/asset_property_sub_board/',
-    //     {
-    //         v: viewtype,
-    //         p:1
-    //     },
-    //     function (responseTxt) {
-    //         $("tbody").on("click","tr.listitem td:not(:first-child)",function () {
-    //             var showsel = $(this).parent().find('[name="selitem"]').val();
-    //             // window.location.href="/property_form?act=display&id="+showsel;
-    //             window.open("/property_form?act=display&id="+showsel);
-    //         });
-    //     });
-    // // 获取分页数
 }

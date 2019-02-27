@@ -6,8 +6,8 @@
                      <img class="img-thumbnail mr-2" src="{{ item.asset_attachment__thumbnail }}" alt="img" style="height: 64px; width: 64px;">
                  </a>
                 <div class="media-body">
-                    <h5 class="mb-1">{{ item.name }} {{ item.statusstr| safe }}</h5>
-                    <p class="mb-1 text-base"><span class="font-weight-bold">编号: </span>{{ item.sid }}</p>
+                    <h5 class="mb-1">{{ item.name }}</h5>
+                    <p class="mb-1 text-base"><span class="font-weight-bold">编号: </span>{{ item.sid }} {{ item.statusstr| safe }}</p>
                     <p class="mb-1 text-base"><span class="font-weight-bold"> SN: </span>{{ item.sn }}</p>
 {#                    <p class="mb-1 text-base"><span class="font-weight-bold"> 用户: </span>{{ item.user__name| default:"" }}</p>#}
 {#                    <p class="mb-1 text-base"><span class="font-weight-bold"> 部门: </span>{{ item.user__employee_department__departmentid__name| default:"" }}</p>#}
