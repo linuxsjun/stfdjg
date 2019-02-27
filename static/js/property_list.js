@@ -258,13 +258,13 @@ $(function () {
     });
 
     // ----上下页----
-    $('#dbody').delegate('[aria-label="Previous"]', 'click', function (event) {
+    $('#dbody').on('click', '[aria-label="Previous"]', function (event) {
         event.preventDefault();
         $('#page').val($(this).attr('data-pagprevious'));
         $('#test').trigger('click');
     });
 
-    $('#dbody').delegate('[aria-label="Next"]', 'click', function (event) {
+    $('#dbody').on('click', '[aria-label="Next"]', function (event) {
         event.preventDefault();
         $('#page').val($(this).attr('data-pagnext'));
         $('#test').trigger('click');
@@ -272,7 +272,7 @@ $(function () {
 
 
     // ----视图类型----
-    $('#dbody').delegate('#viewtype label input[type="radio"]', 'change', function () {
+    $('#dbody').on('change', '#viewtype label input[type="radio"]', function () {
         var val=$(this).val();
         $('#tview').val(val);
         $('#test').trigger('click');
