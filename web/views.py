@@ -304,25 +304,6 @@ def asset_property_list(request):
                                                                         'position',
                                                                         'sn').order_by('name')
                     u = list(ps)
-                else:
-                    ps = asset_property.objects.filter(active=True,bom=False).filter(Q(user__name__icontains=search['ilike'])
-                                                                                     | Q(sid__icontains=search['ilike'])
-                                                                                     | Q(sn__icontains=search['ilike'])
-                                                                                     | Q(name__icontains=search['ilike'])
-                                                                                     | Q(specifications__icontains=search['ilike'])
-                                                                                     | Q(position__icontains=search['ilike'])).values('id',
-                                                                                                                                      'status',
-                                                                                                                                      'sid',
-                                                                                                                                      'name',
-                                                                                                                                      'specifications',
-                                                                                                                                      'purchase',
-                                                                                                                                      'warranty',
-                                                                                                                                      'user__name',
-                                                                                                                                      'user__active',
-                                                                                                                                      'position',
-                                                                                                                                      'sn')
-                    print(ps.count())
-                    u = list(ps)
 
                 s = []
                 for t in u:
@@ -345,43 +326,7 @@ def asset_property_list(request):
                     data['data'] = "无返回值"
                 data = json.dumps(data)
                 return HttpResponse(data, content_type="application/json")
-            # elif request.GET['act'] == 'sort':
-            #     data = {}
-            #     sns = request.GET['field']
-            #     ps = asset_property.objects.filter(bom=False,active=True).values('id',
-            #                                                            'status',
-            #                                                            'sid',
-            #                                                            'name',
-            #                                                            'specifications',
-            #                                                            'purchase',
-            #                                                            'warranty',
-            #                                                            'user__name',
-            #                                                            'user__active',
-            #                                                            'position',
-            #                                                            'user__employee_department__departmentid__name',
-            #                                                            'sn').order_by(sns)
-            #     s = []
-            #     u = list(ps)
-            #     for t in u:
-            #         if t['purchase']:
-            #             t['purchase'] = t['purchase'].strftime("%Y-%m-%d")
-            #         if t['warranty']:
-            #             t['warranty'] = t['warranty'].strftime("%Y-%m-%d")
-            #         s.append(t)
-            #
-            #     if len(s):
-            #         data['code'] = 0
-            #         data['msg'] = "OK"
-            #         data['spk'] = len(s)
-            #         data['data'] = s
-            #     else:
-            #         data['code'] = 1
-            #         data['msg'] = "Fail"
-            #         data['spk'] = 0
-            #         data['data'] = "无返回值"
-            #
-            #     data = json.dumps(data)
-            #     return HttpResponse(data, content_type="application/json")
+
             elif request.GET['act'] == 'groupby':
                 data = {}
                 groupby = request.GET['field']
@@ -461,21 +406,60 @@ def asset_property_list(request):
                 return HttpResponse(data, content_type="application/json")
         else:
             # 没有动作,输出默认列表
-            ps = asset_property.objects.filter(bom=False, active=True).filter(Q(asset_attachment__final=True)
-                                                                              | Q(asset_attachment__final=None)).values('id',
-                                                                                                                        'status',
-                                                                                                                        'sid',
-                                                                                                                        'name',
-                                                                                                                        'specifications',
-                                                                                                                        'sn',
-                                                                                                                        'warranty',
-                                                                                                                        'user__name',
-                                                                                                                        'user__active',
-                                                                                                                        'asset_attachment__filepath',
-                                                                                                                        'asset_attachment__thumbnail',
-                                                                                                                        'asset_attachment__final',
-                                                                                                                        'position',
-                                                                                                                        'user__employee_department__departmentid__name')
+
+            # 选择器字典结构
+            ilike={}
+            tbom = bool(int(request.GET.get('b', '0')))
+            ilike['bom'] = tbom
+            context['bom'] = int(tbom)
+
+            tactive = bool(int(request.GET.get('a', '1')))
+            ilike['active'] = tactive
+            context['active'] = int(tactive)
+
+            q1 = Q()
+            q1.connector = 'OR'
+            # 选无附件或终稿附件
+            q1.children.append(('asset_attachment__final', True))
+            q1.children.append(('asset_attachment__final', None))
+
+            # 构造一个或对象，使用Q
+            il = request.GET.get('i', None)
+            if il:
+                q2 = Q()
+                q2.connector = 'OR'
+
+                q2.children.append(('user__name__icontains', il))
+                q2.children.append(('sid__icontains', il))
+                q2.children.append(('sn__icontains', il))
+                q2.children.append(('name__icontains', il))
+                q2.children.append(('specifications__icontains', il))
+                q2.children.append(('position__icontains', il))
+
+                qc = Q()
+
+                qc.add(q1, 'AND')
+                qc.add(q2, 'AND')
+
+                q1 = qc
+
+            ps = asset_property.objects.filter(**ilike). \
+                filter(q1). \
+                values('id',
+                       'status',
+                       'sid',
+                       'name',
+                       'specifications',
+                       'sn',
+                       'warranty',
+                       'user__name',
+                       'user__active',
+                       'asset_attachment__filepath',
+                       'asset_attachment__thumbnail',
+                       'asset_attachment__final',
+                       'position',
+                       'user__employee_department__departmentid__name')
+
             context['spk'] = ps.count()
 
             # 排序
@@ -516,7 +500,7 @@ def asset_property_list(request):
             try:
                 context['pagprevious'] = data.previous_page_number()
             except EmptyPage:
-                context['pagprevious'] = 0
+                context['pagprevious'] = 1
 
             try:
                 context['pagnext'] = data.next_page_number()
@@ -541,6 +525,7 @@ def asset_property_list(request):
             # print(context)
             # print(context['context'])
             return render(request, 'asset_property_list.html', context)
+
     elif request.method == "POST":
         print("POST")
         print(request.POST)

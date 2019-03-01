@@ -13,8 +13,8 @@
             <div class="col-10 ml-auto">
                 <form class="row border-bottom" id="panl">
                     <div class="col-12">
-{#                        <div class="sr-only">#}
-                        <div class="">
+                        <div class="sr-only">
+{#                        <div class="">#}
                             {% csrf_token %}
                             <button type="button" class="btn btn-primary" id="test">ttttt</button>
                             <input type="text" name="g" value="{{ groupby }}groupby">
@@ -23,8 +23,9 @@
                             <input type="text" name="i" value="{{ ilike }}" id="ilike">
                             <input type="text" name="s" value="{{ sort }}" id="orderby">
                             <input type="text" name="v" value="{{ tview }}" id="tview">
-                            <input type="text" name="a" value="" id="act">
-                            <input type="text" name="b" value="" id="bom">
+                            <input type="text" name="a" value="{{ active }}" id="act">
+                            <input type="text" name="b" value="{{ bom }}" id="bom">
+                            <input type="text" name="t" value="" id="flow">
                         </div>
                         <div class="row my-3">
                             <h3 class="col-3">{{ title }}</h3>
@@ -51,8 +52,7 @@
                                 <div class="btn-group">
                                     <div class="btn-group dropdown">
                                         <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-                                            动作
-                                            <span class="caret"></span>
+                                            动作<span class="caret"></span>
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="#" id="dddd">导入</a>
@@ -62,17 +62,15 @@
                                     </div>
                                     <div class="btn-group dropdown">
                                         <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-                                            筛选
-                                            <span class="caret"></span>
+                                            筛选<span class="caret"></span>
                                         </button>
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" id="unactive">已归档</a>
+                                            <a class="dropdown-item" href="#" id="unactive"><span class="sr-only"><i class="fa fa-check fa-1x"></i></span> 已归档</a>
                                         </div>
                                     </div>
                                     <div class="btn-group dropdown">
                                         <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-                                            分组
-                                            <span class="caret"></span>
+                                            分组<span class="caret"></span>
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item" href="#" data-act="group" data-groupby="name">名称</a>
@@ -97,12 +95,7 @@
                 </form>
                 <div class="row" id="dbody">
                     <div class="col-12" id="sub">
-                        {% if tview == 1 %}
-                            {% include 'asset_property_sub_list.html' %}
-                        {% else %}
-                            {% include 'asset_property_sub_board.html' %}
-                        {% endif %}
-                        <div class="row bg-light py-2 my-0  border-top">
+                        <div class="row bg-light py-2 my-0 border-top border-bottom">
                             <div class="col-6">
                                 <div class="btn-group btn-group btn-group-toggle" data-toggle="buttons" id="viewtype">
                                     <label class="btn btn-outline-secondary{% if tview == 2 %} active{% endif %}">
@@ -117,6 +110,12 @@
                                 {% include 'navigation_range.html' %}
                             </div>
                         </div>
+                        {% if tview == 1 %}
+                            {% include 'asset_property_sub_list.html' %}
+                        {% else %}
+                            {% include 'asset_property_sub_board.html' %}
+                        {% endif %}
+
                     </div>
                 </div>
             </div>

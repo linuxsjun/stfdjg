@@ -83,36 +83,18 @@ $(function () {
     });
 
     //-----控制面板----
+    // ------查找------
     $('#search-input').bind('keypress', function (event) {
         if (event.keyCode === 13) {
             $('#search-btn').trigger('click');
         }
+
     });
 
     $('#search-btn').click(function () {
         var val = $('#search-input').val();
         $('#ilike').val(val);
-        $.get(
-            '/property_list/',
-            {
-                act: 'filter',
-                field: 'all',
-                ilike: val
-            },
-            function (data) {
-                if (data.code === 0) {
-                    $('#assetid').text("0-0/" + data.spk);
-                    var htext = $(this).listitem(data.data);
-                    $('tbody').empty();
-                    $("tbody").append(htext);
-                } else {
-                    $('#assetid').text("0-0/0");
-                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>';
-                    $('tbody').empty();
-                    $("tbody").append(htext);
-                }
-            }
-        );
+        $('#test').trigger('click');
     });
 
     // -----命令按键----
@@ -202,31 +184,15 @@ $(function () {
     // ----筛选----
     $('#unactive').click(function (event) {
         event.preventDefault();
-        $.get(
-            "/property_list/",
-            {
-                act: "filter",
-                field: "active",
-                ilike: 0
-            },
-            function (data) {
-                if (data.code === 0) {
-                    $('#assetid').text("0-0/" + data.spk);
-                    var htext = $(this).listitem(data.data);
-                    $('tbody').empty();
-                    $("tbody").append(htext);
-                } else {
-                    $('#assetid').text("0-0/0");
-                    var htext = '<tr><td  colspan="10" style="text-align: center;">(暂无数据)</td></tr>'
-                    $('tbody').empty();
-                    $("tbody").append(htext);
-                }
 
-                $('input[name="selitem"]').prop("checked", false);
-                $('button[data-toggle="del"]').addClass("disabled");
-                $('input[name="selall"]').val(0);
-            }
-        );
+        var eact = $('#act');
+        if (eact.val() === '1') {
+            eact.val('0');
+        } else {
+            eact.val('1');
+        }
+        $(this).children('span').toggleClass('sr-only');
+        $('#test').trigger('click');
     });
 
     //----分组----
@@ -284,6 +250,10 @@ $(function () {
             var sortitem = $(this).attr("data-id");
             $('#orderby').val(sortitem);
             $('#test').trigger('click');
+
+            // console.log($(this).css("background-color","yellow"));
+
+            // $(this).css("background-color","yellow");
         }
     });
 
@@ -340,7 +310,8 @@ $(function () {
     });
 
     //----点选----
-    $("tbody").on("click", "tr.groupitem td", function () {
+    // ----分组点选----
+    $("#dbody").on("click", "tr.groupitem td", function () {
         var tritem = $(this).parent();
         var ilike = tritem.attr("data-val");
         var field = tritem.find('span').attr("data-groupby");
@@ -381,15 +352,7 @@ $(function () {
 
     });
 
-    // $("tbody tr td:first-child").nextAll().css('background','blue');
-    // $("tbody tr td:not(:first-child)").css('background','blue');
-    // $("tbody").on("click","tr.listitem td:not(:first-child)",function () {
-
-
-    $("#dbody").on('click', 'div div table thead tr th', function () {
-        $('this').css('background', 'blue');
-    });
-
+    // ----条目点选----
     $("#dbody").on("click", "tr.listitem td:not(:first-child)", function () {
         var showsel = $(this).parent().find('[name="selitem"]').val();
         // window.location.href="/property_form?act=display&id="+showsel;

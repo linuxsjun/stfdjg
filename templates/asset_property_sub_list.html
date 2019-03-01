@@ -9,7 +9,7 @@
                 <th class="border-right" data-id="name">名称<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
                 <th class="border-right" data-id="specifications">规格<i class="" aria-hidden="true" data-id="0"></i></th>
                 <th class="border-right" data-id="sn">出厂编号<i class="" aria-hidden="true" data-id="0"></i></th>
-{#                <th class="border-right" data-id="warranty">维保到期<i class="" aria-hidden="true" data-id="0"></i></th>#}
+                <th class="border-right" data-id="warranty">维保到期<i class="" aria-hidden="true" data-id="0"></i></th>
                 <th class="border-right" data-id="user">用户<i class="" aria-hidden="true" data-id="0"></i></th>
                 <th class="border-right" data-id="user__employee_department__departmentid__name">部门<i class="" aria-hidden="true" data-id="0"></i></th>
                 <th class="border-right" data-id="position">位置<i class="" aria-hidden="true" data-id="0"></i></th>
@@ -31,7 +31,7 @@
                     <td>{{ item.name }}</td>
                     <td>{{ item.specifications| default:"" }}</td>
                     <td>{{ item.sn| default:"" }}</td>
-{#                    <td>{{ item.warranty | date:'Y-m-d'}}</td>#}
+                    <td>{{ item.warranty | date:'Y-m-d'}}</td>
                     <td>{{ item.user__name| default:"" }}</td>
                     <td>{{ item.user__employee_department__departmentid__name| default:"" }}</td>
                     <td>{{ item.position| default:"" }}</td>
