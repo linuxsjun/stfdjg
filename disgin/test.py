@@ -1,7 +1,7 @@
 from web.models import asset_category
 import io
 from django.http import FileResponse
-#from reportlab.pdfgen import canvas
+from reportlab.pdfgen import canvas
 
 #函数
 def partt(id):

@@ -78,12 +78,12 @@
                 </div>
 
                 <div class="row">
-                    <form class="col" action="#" method="post" enctype="multipart/form-data" name="accset_form" id="headerimgform">
+                    <form class="col-12" action="#" method="post" enctype="multipart/form-data" name="accset_form" id="headerimgform">
                         {% csrf_token %}
                         <input name="act" id="act" value="{{ act }}" type="hidden">
 
                         <div class="row shadow border-top border-bottom py-2">
-                            <div class="col-auto mr-auto  sr-only">
+                            <div class="col-auto mr-auto sr-only">
                                 <button type="button" class="btn btn-outline-primary" disabled="True">领用</button>
                                 <button type="button" class="btn btn-outline-info" disabled="True">借用</button>
                                 <button type="button" class="btn btn-outline-dark" disabled="True">退还</button>
@@ -102,19 +102,19 @@
                                 <span>
                                     {% if context.status  %}
                                         {% if context.status == 1 %}
-                                        <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
+                                        <a href="#" class="badge badge-secondary"><h6 class="my-0">闲置</h6></a>
                                         {% endif %}
                                         {% if context.status == 2 %}
-                                        <a href="#" class="badge badge-success"><h6>在用</h6></a>
+                                        <a href="#" class="badge badge-success"><h6 class="my-0">在用</h6></a>
                                         {% endif %}
                                         {% if context.status == 3 %}
-                                        <a href="#" class="badge badge-warning"><h6>维修</h6></a>
+                                        <a href="#" class="badge badge-warning"><h6 class="my-0">维修</h6></a>
                                         {% endif %}
                                         {% if context.status == 4 %}
-                                        <a href="#" class="badge badge-danger"><h6>报废</h6></a>
+                                        <a href="#" class="badge badge-danger"><h6 class="my-0">报废</h6></a>
                                         {% endif %}
                                     {% else %}
-                                        <a href="#" class="badge badge-secondary"><h6>闲置</h6></a>
+                                        <a href="#" class="badge badge-secondary"><h6 class="my-0">闲置</h6></a>
                                     {% endif %}
                                 </span>
                             </div>
@@ -434,21 +434,23 @@
                             </div>
                         </div>
                     </form>
-                    <div class="row justify-content-center mt-3 border-top">
-                        <div class="col-sm-8 sr-only">
-                            <p class="text-center">分配记录</p>
-                            <div class="media mt-2">
-                                <img src="" alt="" data-src="holder.js/48x48" class="mr-3">
-                                <div class="media-body bg-light">
-                                    <h5>记录一</h5>
-                                    <p>这是一条记录</p>
+                    <div class="col-12 sr-only">
+                        <div class="row justify-content-center mt-3 border-top">
+                            <div class="col-sm-8">
+                                <p class="text-center">分配记录</p>
+                                <div class="media mt-2">
+                                    <img src="" alt="" data-src="holder.js/48x48" class="mr-3">
+                                    <div class="media-body bg-light">
+                                        <h5>记录一</h5>
+                                        <p>这是一条记录</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="media mt-2">
-                                <img src="" alt="" data-src="holder.js/48x48" class="mr-3">
-                                <div class="media-body bg-light">
-                                    <h5>记录二</h5>
-                                    <p>这是一条记录</p>
+                                <div class="media mt-2">
+                                    <img src="" alt="" data-src="holder.js/48x48" class="mr-3">
+                                    <div class="media-body bg-light">
+                                        <h5>记录二</h5>
+                                        <p>这是一条记录</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

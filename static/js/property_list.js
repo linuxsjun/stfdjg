@@ -83,6 +83,7 @@ $(function () {
     });
 
     //-----控制面板----
+
     // ------查找------
     $('#search-input').bind('keypress', function (event) {
         if (event.keyCode === 13) {
@@ -196,9 +197,10 @@ $(function () {
     });
 
     //----分组----
-    $('[data-act="group"]').click(function (d) {
+    $('[data-act="group"]').click(function (event) {
+        event.preventDefault();
+
         var byf = $(this).attr("data-groupby");
-        d.preventDefault();
         $.get(
             "/property_list/",
             {
@@ -215,7 +217,6 @@ $(function () {
                     $('tbody').empty().append(htext);
                 }
 
-                //
                 // $('input[name="selitem"]').prop("checked", false);
                 // $('button[data-toggle="del"]').addClass("disabled");
                 // $('input[name="selall"]').val(0);
@@ -252,7 +253,6 @@ $(function () {
             $('#test').trigger('click');
 
             // console.log($(this).css("background-color","yellow"));
-
             // $(this).css("background-color","yellow");
         }
     });

@@ -79,6 +79,8 @@ urlpatterns = [
 
     path('importdata/', views.importdata),
 
+    path('test/', views.test)
+
 
 
 ]
