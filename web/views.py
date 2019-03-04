@@ -15,8 +15,6 @@ import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
-import preppy
-import trml2pdf
 
 import os
 import re
@@ -2778,21 +2776,6 @@ def sub(request):
 def test(request):
     # Create a file-like buffer to receive PDF data.
     buffer = io.BytesIO()
-
-
-    rml_context = dict(
-        name='RML Test'
-    )
-
-    template = preppy.getModule('hello.rml')
-    rml = template.getOutput(rml_context)
-    e = trml2pdf.parseString(rml)
-
-    response = HttpResponse(content_type='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename="hello.pdf"'
-
-    response.write(e)
-    return response
 
     # Create the PDF object, using the buffer as its "file."
     # p = canvas.Canvas(buffer)

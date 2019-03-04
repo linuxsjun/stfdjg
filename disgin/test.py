@@ -2,6 +2,8 @@ from web.models import asset_category
 import io
 from django.http import FileResponse
 from reportlab.pdfgen import canvas
+import preppy
+import trml2pdf
 
 #函数
 def partt(id):
@@ -58,3 +60,18 @@ def some_view_pdf(request):
     # FileResponse sets the Content-Disposition header so that browsers
     # present the option to save the file.
     return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+
+def pdf_rml(request):
+    rml_context = dict(
+        name='RML Test'
+    )
+
+    template = preppy.getModule('hello.rml')
+    rml = template.getOutput(rml_context)
+    e = trml2pdf.parseString(rml)
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="hello.pdf"'
+
+    response.write(e)
+    return response
