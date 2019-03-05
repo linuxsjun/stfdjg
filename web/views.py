@@ -8,6 +8,7 @@ from django.db.models import F, Q
 # from django.db.models import Sum,Count
 
 import requests, json, time, datetime, hashlib, random
+from requests.exceptions import RequestException
 import csv, codecs
 # from data.test import *
 

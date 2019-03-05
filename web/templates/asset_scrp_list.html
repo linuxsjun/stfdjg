@@ -104,6 +104,7 @@
                                             <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
                                             <th class="border-right" data-id="sid">单号<i class="" aria-hidden="true" data-id="0"></i></th>
                                             <th class="border-right" data-id="name">标题<i class="" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="name">概述(设备|配件)<i class="" aria-hidden="true" data-id="1"></i></th>
                                             <th class="border-right" data-id="name">新建日期<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
                                             <th class="border-right" data-id="name">生效日期<i class="" aria-hidden="true" data-id="1"></i></th>
                                             <th class="border-right" data-id="status">状态<i class="" aria-hidden="true" data-id="0"></i></th>
@@ -116,8 +117,9 @@
                                                 <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
                                                 <td>{{ item.number }}</td>
                                                 <td>{{ item.title }}</td>
-                                                <td>{{ item.createdate | date }}</td>
-                                                <td>{{ item.createdate | date }}</td>
+                                                <td>设备: 30个 | 配件: 40个</td>
+                                                <td>{{ item.createdate | date:'Y-m-d' }}</td>
+                                                <td>{{ item.createdate | date:'Y-m-d' }}</td>
                                                 <td>{{ item.status }}</td>
                                                 <td>{{ item.active }}</td>
                                             </tr>
