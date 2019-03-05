@@ -75,6 +75,8 @@ urlpatterns = [
 
     path('applicant_list/', views.asset_applicant_list),
 
+    path('scrp_list/', views.asset_scrp_list),
+
     path('allot_list/', views.asset_allot_list),
 
     path('importdata/', views.importdata),

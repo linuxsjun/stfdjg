@@ -209,25 +209,6 @@ class asset_category(models.Model):
     def __str__(self):
         return self.name
 
-# class asset_parts(models.Model):
-#     #设备配件
-#     parentid = models.ForeignKey('asset_property',null=True, blank=True, on_delete=models.SET_NULL, verbose_name='归属资产')
-#     name = models.CharField(max_length=32, verbose_name='名称')
-#     sn = models.CharField(max_length=32, null=True, verbose_name='出厂编号')
-#     type = models.CharField(max_length=32, null=True)
-#     specifications = models.CharField(max_length=64, null=True, verbose_name='规格')
-#     categoryid = models.ForeignKey('asset_category', null=True, blank=True, on_delete=models.SET_NULL,verbose_name='类型')
-#     bom = models.BooleanField(default=True, verbose_name='组件')
-#     price = models.FloatField(default=0, verbose_name='价格')
-#     purchase = models.DateField(null=True, verbose_name='购买日期')
-#     wrranty = models.DateField(null=True, verbose_name='维保到期')
-#     notes = models.TextField(null=True, blank=True, verbose_name='备注')
-#     status = models.IntegerField(default=1, verbose_name='状态')
-#     active = models.BooleanField(default=True, verbose_name='有效的')
-#
-#     class Meta:
-#         db_table = 'asset_parts'
-
 class asset_property(models.Model):
     #设备表
     STATUS_VAL = (
@@ -258,6 +239,36 @@ class asset_property(models.Model):
 
     class Meta:
         db_table = 'asset_property'
+
+class asset_scrplist(models.Model):
+    # 报废表
+    STATUS_VAL = (
+        (1, '草稿'),
+        (2, '处理中'),
+        (3, '完成'),
+        (4, '驳回'),
+        (0, '取消')
+    )
+    title = models.CharField(unique=True, max_length=64, verbose_name='表名')
+    number = models.CharField(unique=True, max_length=32, verbose_name='单据编号')
+    createdate = models.DateField(null=True, blank=True, verbose_name='新建日期')
+    finaldate = models.DateField(null=True, blank=True, verbose_name='生效日期')
+    status = models.IntegerField(default=1, choices=STATUS_VAL, verbose_name='报表状态')
+    active = models.BooleanField(default=True, null=True, verbose_name='有效的')
+
+    class Meta:
+        db_table = 'asset_scrplist'
+
+class asset_scrpdetail(models.Model):
+    # 报废明细
+    numberid = models.ForeignKey('asset_scrplist', on_delete=models.CASCADE, related_name='scrplist_id', verbose_name='表单编号')
+    propertyid = models.ForeignKey('asset_scrplist', on_delete=models.CASCADE, related_name='property_id', verbose_name='设备')
+    createdate = models.DateField(null=True, blank=True, verbose_name='建表日期')
+    details = models.CharField(unique=True, max_length=64, null=True, blank=True, verbose_name='详情')
+    nots = models.TextField(null=True, blank=True, verbose_name='备注')
+
+    class Meta:
+        db_table = 'asset_scrpdetail'
 
 class asset_conf(models.Model):
     name = models.CharField(max_length=16)

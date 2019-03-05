@@ -27,7 +27,7 @@ from django.conf import settings
 from web.models import base_conf, base_user_sign_log
 from web.models import pureftp
 from web.models import hr_department, hr_hr, employee_department
-from web.models import asset_conf, asset_category, asset_property, position, asset_attachment, asset_application, asset_allot
+from web.models import asset_conf, asset_category, asset_property, position, asset_attachment, asset_application, asset_allot, asset_scrplist, asset_scrpdetail
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
@@ -79,6 +79,29 @@ def status(id,show):
                       '<span class="badge badge-warning">通过后撤销</span>',
                       ]
     return statusname[id]
+
+def getpinyin(chinastr):
+    url = 'https://www.qqxiuzi.cn/zh/pinyin/show.php'
+    data = {
+        't': chinastr,
+        'd': 3
+    }
+    header = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:65.0) Gecko/20100101 Firefox/65.0'
+    }
+    # data =data.encode('utf-8')
+    try:
+        s = requests.session()
+        req = s.post(url, data=data, headers=header)
+        if req.status_code == 200:
+            if req.text:
+                pattern = re.compile('>(.*?)<', re.S)
+                pinyin = re.search(pattern, req.text)
+                return pinyin.group(1)
+        return None
+    except RequestException:
+        print('请求PINYIN页面失败')
+        return None
 
 # Create your views here.
 
@@ -1758,6 +1781,24 @@ def asset_category_form(request):
 
     return render(request, 'asset_category_form.html', context)
 
+def asset_scrp_list(request):
+    request.encoding = 'utf-8'
+    context = {}
+    context['title'] = '报损表'
+
+    # ps = asset_scrplist.objects.filter(active=True).values().order_by('active', 'name')
+    ps = asset_scrplist.objects.all().values(
+        'title',
+        'number',
+        # 'createdate',
+        # 'finaldate',
+        'status',
+        'active'
+    ).order_by('active', 'title')
+    context['context'] = ps
+    # print(type(ps))
+    return render(request, 'asset_scrp_list.html', context)
+
 def dep_view(request):
     context={}
     context['title']='部门'
@@ -2774,27 +2815,29 @@ def sub(request):
     return HttpResponse(response)
 
 def test(request):
-    # Create a file-like buffer to receive PDF data.
-    buffer = io.BytesIO()
-
-    # Create the PDF object, using the buffer as its "file."
-    # p = canvas.Canvas(buffer)
-    # p = canvas.Canvas('k.pdf', pagesize=A4)
-    p = canvas.Canvas(buffer, pagesize=A4)
-
-    # Draw things on the PDF. Here's where the PDF generation happens.
-    # See the ReportLab documentation for the full list of functionality.
-    p.drawString(100, 100, "Hello world.")
-
-    # Close the PDF object cleanly, and we're done.
-    p.showPage()
-    p.save()
-
-    print(p)
-    print("ok")
-
-    # FileResponse sets the Content-Disposition header so that browsers
-    # present the option to save the file.
-    return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
-    # response = {"status":"ok"}
-    # return HttpResponse(response)
+    # # Create a file-like buffer to receive PDF data.
+    # buffer = io.BytesIO()
+    #
+    # # Create the PDF object, using the buffer as its "file."
+    # # p = canvas.Canvas(buffer)
+    # # p = canvas.Canvas('k.pdf', pagesize=A4)
+    # p = canvas.Canvas(buffer, pagesize=A4)
+    #
+    # # Draw things on the PDF. Here's where the PDF generation happens.
+    # # See the ReportLab documentation for the full list of functionality.
+    # p.drawString(100, 100, "Hello world.")
+    #
+    # # Close the PDF object cleanly, and we're done.
+    # p.showPage()
+    # p.save()
+    #
+    # print(p)
+    # print("ok")
+    #
+    # # FileResponse sets the Content-Disposition header so that browsers
+    # # present the option to save the file.
+    # return FileResponse(buffer, as_attachment=True, filename='hello.pdf')
+    # # response = {"status":"ok"}
+    # # return HttpResponse(response)
+    print(getpinyin('别人开讲啦232'))
+    return HttpResponse('kkkk')

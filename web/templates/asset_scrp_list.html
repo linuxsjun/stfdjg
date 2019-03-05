@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+
+{% block styecss %}
+{#    <link rel="stylesheet" type="text/css" href="/static/css/web/property_view_list.css">#}
+{% endblock styecss %}
+
+{% block mainbody %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2 border-right">
+                {% include 'asset_menu_side_sub.html' %}
+            </div>
+            <div class="col-10 ml-auto">
+                <form class="row border-bottom" id="panl">
+                    <div class="col-12">
+                        <div class="sr-only">
+{#                        <div class="">#}
+                            {% csrf_token %}
+                            <button type="button" class="btn btn-primary" id="test">ttttt</button>
+                            <input type="text" name="g" value="{{ groupby }}groupby">
+                            <input type="text" name="p" value="{{ page }}" id="page">
+                            <input type="text" name="n" value="{{ lpnum }}" id="lpnum">
+                            <input type="text" name="i" value="{{ ilike }}" id="ilike">
+                            <input type="text" name="s" value="{{ sort }}" id="orderby">
+                            <input type="text" name="v" value="{{ tview }}" id="tview">
+                            <input type="text" name="a" value="{{ active }}" id="act">
+                            <input type="text" name="b" value="{{ bom }}" id="bom">
+                            <input type="text" name="t" value="" id="flow">
+                        </div>
+                        <div class="row my-3">
+                            <h3 class="col-3">{{ title }}</h3>
+                            <div class="col-3">
+                                <div class="input-group">
+                                    <input type="text" list="typesch" class="form-control" id="search-input" name="search-input" placeholder="搜索...">
+                                    <datalist id="typesch">
+                                        <!-- Todo 搜索-->
+                                        <option value="编号">sid</option>
+                                        <option value="规格"></option>
+                                        <option value="出厂编号"></option>
+                                        <option value="购买日期"></option>
+                                        <option value="维保日期"></option>
+                                        <option value="用户"></option>
+                                        <option value="位置"></option>
+                                    </datalist>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-primary" type="button" id="search-btn"><i class="fa fa-search-plus fa-1x"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <!--导入导出条-->
+                                <div class="btn-group">
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                                            动作<span class="caret"></span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" id="dddd">导入</a>
+                                            <a class="dropdown-item" href="/static/download/property_list.xlsx">导出xlsx</a>
+                                            <a class="dropdown-item" href="/property_output_cvs/">导出CVS</a>
+                                            <a class="dropdown-item" href="/test/">导出PDF</a>
+                                        </div>
+                                    </div>
+                                    <div class="btn-group dropdown">
+                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+                                            筛选<span class="caret"></span>
+                                        </button>
+                                        <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#" id="unactive"><span class="sr-only"><i class="fa fa-check fa-1x"></i></span> 已归档</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                                <!--工具条-->
+                                <button type="button" class="btn btn-primary" data-toggle="create">创建</button>
+                                <button type="button" class="btn btn-outline-secondary disabled" data-toggle="del">删除</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="row" id="dbody">
+                    <div class="col-12" id="sub">
+                        <div class="row bg-light py-2 my-0 border-top border-bottom">
+                            <div class="col-6">
+                                <div class="btn-group btn-group btn-group-toggle" data-toggle="buttons" id="viewtype">
+{#                                    <label class="btn btn-outline-secondary{% if tview == 2 %} active{% endif %}">#}
+{#                                        <input type="radio" name="viewtype" value='2' autocomplete="off" {% if tview == 2 %}checked{% endif %}><i class="fa fa-th-large fa-1x"></i>#}
+{#                                    </label>#}
+                                    <label class="btn btn-outline-secondary{% if tview == 1 %} active{% endif %}">
+                                        <input type="radio" name="viewtype" value="1" autocomplete="off" {% if tview == 1 %}checked{% endif %}><i class="fa fa-list-ul fa-1x"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                {% include 'navigation_range.html' %}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 p-0">
+                                <table class="table table-hover mb-0">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
+                                            <th class="border-right" data-id="sid">单号<i class="" aria-hidden="true" data-id="0"></i></th>
+                                            <th class="border-right" data-id="name">标题<i class="" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="name">新建日期<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="name">生效日期<i class="" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="status">状态<i class="" aria-hidden="true" data-id="0"></i></th>
+                                            <th class="border-right" data-id="specifications">归档<i class="" aria-hidden="true" data-id="0"></i></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for item in context %}
+                                            <tr class="listitem">
+                                                <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
+                                                <td>{{ item.number }}</td>
+                                                <td>{{ item.title }}</td>
+                                                <td>{{ item.createdate | date }}</td>
+                                                <td>{{ item.createdate | date }}</td>
+                                                <td>{{ item.status }}</td>
+                                                <td>{{ item.active }}</td>
+                                            </tr>
+                                        {% empty %}
+                                            <tr>
+                                                <td colspan="10" style="text-align: center;">(暂无数据)</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="Mdadel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">删除记录</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <p>这将会删除<b id="delnum"></b>条记录,请确认是否删除？</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-danger" data-toggle="surdel">删除</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="MdaInput" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">导入记录</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" id="forminput">
+                        {% csrf_token %}
+                        <div class="progress">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 1%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        </div>
+                         <div class="custom-file">
+                             <input type="file" class="custom-file-input" name="file" id="customFile" accept=".xls,.xlsx">
+                             <small id="passwordHelpBlock" class="form-text text-muted">
+                                 选择xlsx文件导入数据, 文件模板<a href="/static/download/property_list.xlsx">下载</a>
+                             </small>
+                             <label class="custom-file-label" for="customFile">选择要导入的列表文件(.xlsx .txt)</label>
+                         </div>
+                     </form >
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" data-toggle="surinput" value="upload">导入</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block jquery %}
+{#    <script src="/static/js/property_list.js"></script>#}
+{% endblock jquery%}
