@@ -8,6 +8,7 @@ from django.db.models import F, Q
 # from django.db.models import Sum,Count
 
 import requests, json, time, datetime, hashlib, random
+from requests.exceptions import RequestException
 import csv, codecs
 # from data.test import *
 
@@ -1798,6 +1799,23 @@ def asset_scrp_list(request):
     context['context'] = ps
     # print(type(ps))
     return render(request, 'asset_scrp_list.html', context)
+
+def asset_scrp_detail(request):
+    request.encoding = 'utf-8'
+    context = {}
+    context['title'] = '报损表 / 明细'
+
+    # ps = asset_scrplist.objects.filter(active=True).values().order_by('active', 'name')
+    ps = asset_scrplist.objects.all().values(
+        'title',
+        'number',
+        # 'createdate',
+        # 'finaldate',
+        'status',
+        'active'
+    ).order_by('active', 'title')
+    context['context'] = ps
+    return render(request, 'asset_scrp_detail.html', context)
 
 def dep_view(request):
     context={}

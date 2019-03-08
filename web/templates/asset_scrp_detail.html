@@ -49,15 +49,9 @@
                                             动作<span class="caret"></span>
                                         </button>
                                         <div class="dropdown-menu">
+                                            <a class="dropdown-item" href="#">打印</a>
                                             <a class="dropdown-item" href="#">导出CVS</a>
-                                        </div>
-                                    </div>
-                                    <div class="btn-group dropdown">
-                                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
-                                            筛选<span class="caret"></span>
-                                        </button>
-                                        <div class="dropdown-menu">
-                                            <a class="dropdown-item" href="#" id="unactive"><span class="sr-only"><i class="fa fa-check fa-1x"></i></span> 已归档</a>
+                                            <a class="dropdown-item" href="#">导出PDF</a>
                                         </div>
                                     </div>
                                 </div>
@@ -93,26 +87,28 @@
                                     <thead class="bg-light">
                                         <tr>
                                             <th class="border-right"><label class="sr-only" for="selall">selall</label><input type="checkbox" name="selall" id="selall" value="0" /></th>
-                                            <th class="border-right" data-id="sid">单号<i class="" aria-hidden="true" data-id="0"></i></th>
-                                            <th class="border-right" data-id="name">标题<i class="" aria-hidden="true" data-id="1"></i></th>
-                                            <th class="border-right" data-id="name">概述(设备|配件)<i class="" aria-hidden="true" data-id="1"></i></th>
-                                            <th class="border-right" data-id="name">新建日期<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
-                                            <th class="border-right" data-id="name">生效日期<i class="" aria-hidden="true" data-id="1"></i></th>
-                                            <th class="border-right" data-id="status">状态<i class="" aria-hidden="true" data-id="0"></i></th>
-                                            <th class="border-right" data-id="specifications">归档<i class="" aria-hidden="true" data-id="0"></i></th>
+                                            <th class="border-right" data-id="">编号<i class="" aria-hidden="true" data-id="0"></i></th>
+                                            <th class="border-right" data-id="">名称<i class="" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="">规格<i class="" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="">出厂编号<i class="fa fa-sort-alpha-asc" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="">配件<i class="" aria-hidden="true" data-id="1"></i></th>
+                                            <th class="border-right" data-id="">购买日期<i class="" aria-hidden="true" data-id="0"></i></th>
+                                            <th class="border-right" data-id="">报废原因<i class="" aria-hidden="true" data-id="0"></i></th>
+                                            <th class="border-right" data-id="">归档<i class="" aria-hidden="true" data-id="0"></i></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {% for item in context %}
                                             <tr class="listitem">
                                                 <td><input type="checkbox" name="selitem" value="{{ item.id }}"></td>
-                                                <td>{{ item.number }}</td>
-                                                <td><a href="/scrp_detail/?{{ item.id }}">{{ item.title }}</a></td>
-                                                <td>设备: 30个 | 配件: 40个</td>
-                                                <td>{{ item.createdate | date:'Y-m-d' }}2011-03-35</td>
-                                                <td>{{ item.createdate | date:'Y-m-d' }}2019-03-25</td>
-                                                <td>{{ item.status }}处理中...</td>
-                                                <td>{{ item.active }}已归档</td>
+                                                <td>JTA0039</td>
+                                                <td><a href="{{ item.id }}">UPS电源</a></td>
+                                                <td>SANTAK UPS</td>
+                                                <td>9103-7339-02P</td>
+                                                <td><i class="fa fa-chain " aria-hidden="true" data-id="1"></i></td>
+                                                <td>2011-03-35</td>
+                                                <td>损坏</td>
+                                                <td>已归档</td>
                                             </tr>
                                         {% empty %}
                                             <tr>
