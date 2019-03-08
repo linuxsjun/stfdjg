@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'web',
     'appasset',
     'project',
+    'hr',
 ]
 
 MIDDLEWARE = [

@@ -24,6 +24,7 @@ urlpatterns = [
 
     # App子程序路由
     path('asset/', include('appasset.urls')),
+    path('hr/', include('hr.urls')),
 
     # Web 程序路由
     path('', views.index),
@@ -48,12 +49,6 @@ urlpatterns = [
 
     path('conf/', views.config),
     path('gettoken/', views.getToken),
-
-    path('hr/', views.hr_view),
-    path('gethr/', views.gethr),
-
-    path('dep/', views.dep_view),
-    path('sync/', views.readdepartment),
 
     path('upload/', views.uploadfile),
     path('sendmsg/', views.sendmsg),
